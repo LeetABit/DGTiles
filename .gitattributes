@@ -18,4 +18,11 @@
 .editorconfig           code
 .gitattributes          code
 .gitignore              code
+*.yml                   code
+*.json                  code
+*.html                  code
+*.svg                   code
+*.css                   code
+*.lock                  code
 *.md                    rawtext
+*.txt                   rawtext
