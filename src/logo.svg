@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  
+  <g transform="translate(10 10)">
+    <line x1="0" y1="0" x2="0" y2="100" stroke="black" stroke-width="15" stroke-linecap="round" />
+    <line x1="0" y1="100" x2="81" y2="100" stroke="black" stroke-width="15" stroke-linecap="round" />
+
+    <path d=" M 40 78 A 30 30 0 0 1 40 22" stroke="rgb(0, 32, 28)" stroke-width="15" stroke-linecap="round" fill="transparent"/>
+    
+    <ellipse cx="50" cy="50" rx="10" ry="10" fill="rgb(0, 187, 137)" />
+    
+    <path d=" M 60 22 A 30 30 180 0 1 60 78" stroke="rgb(0, 32, 28)" stroke-width="15" stroke-linecap="round" fill="transparent"/>
+
+    <line x1="19" y1="0" x2="100" y2="0" stroke="black" stroke-width="15" stroke-linecap="round" />
+    <line x1="100" y1="0" x2="100" y2="100" stroke="black" stroke-width="15" stroke-linecap="round" />
+  </g>
+</svg>
