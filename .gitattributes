@@ -21,8 +21,11 @@
 *.yml                   code
 *.json                  code
 *.html                  code
-*.svg                   code
 *.css                   code
 *.lock                  code
+*.js                    code
+*.mjs                   code
+*.ts                    code
+*.tsx                   code
 *.md                    rawtext
 *.txt                   rawtext

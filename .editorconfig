@@ -4,7 +4,7 @@
 root = true
 
 # Deep indentation code files
-[*.{gitattribute,gitignore,editorconfig,md,js}]
+[*.{gitattribute,gitignore,editorconfig,md,js,mjs,ts,tsx}]
 indent_style = space
 indent_size = 4
 end_of_line = crlf
@@ -13,7 +13,7 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 
 # Shallow indentation code files
-[*.{yml,json,html,svg,css,lock}]
+[*.{yml,json,html,css,lock}]
 indent_style = space
 indent_size = 2
 end_of_line = crlf
