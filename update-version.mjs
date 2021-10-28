@@ -31,6 +31,7 @@ const version = {
     sha: "",
     branch: "",
     commitCount: 0,
+    isDirty: false,
     buildTime: "",
     buildSafeTime: "",
 };
@@ -39,7 +40,7 @@ const version = {
 try {
     const tagName = await executeCommandAsync('git describe --tags --abbrev=0');
     const commitsString = await executeCommandAsync('git rev-list ' + tagName + '..HEAD');
-    const commits = commitsString.split('\n').map(line => line.trim());
+    const commits = commitsString.trim().split('\n').map(line => line.trim()).filter(line => line);
     const messages = await Promise.all(commits.map(async (commit) => await executeCommandAsync('git show -s --format=%s ' + commit)));
 
     const versionTagMatch = tagName.match(versionTagRegexp);
@@ -60,7 +61,7 @@ try {
         version.minor = version.minor + 1;
         version.patch = 0;
     }
-    else {
+    else if (messages.length) {
         version.patch = version.patch + 1;
     }
 
@@ -77,6 +78,12 @@ try {
     const minutes =`${dateTime.getMinutes()}`.padStart(2, '0');
     const seconds =`${dateTime.getSeconds()}`.padStart(2, '0');
     const milliseconds =`${dateTime.getMilliseconds()}`.padStart(2, '0');
+    try {
+        await executeCommandAsync('git diff-index --quiet HEAD --');
+    }
+    catch {
+        version.isDirty = true;
+    }
 
     version.buildTime = dateTime.toISOString();
     version.buildSafeTime = `${year}${month}${day}-${hours}${minutes}${seconds}.${milliseconds}`;
