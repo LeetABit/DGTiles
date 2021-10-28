@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "command": "npm start && exit",
+      "command": "yarn start",
       "name": "Run frontend",
       "request": "launch",
       "type": "node-terminal",
