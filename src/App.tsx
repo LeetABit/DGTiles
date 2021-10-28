@@ -21,10 +21,24 @@ export default class App extends Component<AppProps> {
         const history = createBrowserHistory({ basename: this.props.basename });
         const store = configureStore(history);
         
+        let appVersion = gitVersion.version;
+
+        if (gitVersion.commitCount > 0) {
+            appVersion += `-beta.${gitVersion.commitCount}`
+        }
+
+        if (gitVersion.isDirty) {
+            appVersion += '-local'
+        }
+
+        appVersion += `+Branch.${gitVersion.branch}`
+        appVersion += `+Sha.${gitVersion.sha}`
+        appVersion += `+Timestamp.${gitVersion.buildSafeTime}`
+
         return (
             <Provider store={store}>
                 <ConnectedRouter history={history}>
-                    <div>Version: {gitVersion.version}+{gitVersion.branch}.{gitVersion.commitCount}+sha.{gitVersion.sha}</div>
+                    <div>Version: {appVersion}</div>
                     <div>Date: {gitVersion.buildTime}</div>
                 </ConnectedRouter>
             </Provider>
