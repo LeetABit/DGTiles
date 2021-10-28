@@ -5,11 +5,58 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "command": "yarn start",
-      "name": "Run frontend",
+      "name": "HTTP Backend Chrome",
+      "request": "launch",
+      "type": "pwa-chrome",
+      "url": "http://localhost:4280",
+      "webRoot": "${workspaceFolder}/src",
+      "presentation": {
+          "hidden": true,
+      },
+      "sourceMapPathOverrides": {
+        "webpack:///src/*": "${webRoot}/*"
+      },
+    },
+    {
+      "name": "HTTPS Frontend Chrome",
+      "request": "launch",
+      "type": "pwa-chrome",
+      "url": "https://localhost:5002",
+      "webRoot": "${workspaceFolder}/src",
+      "presentation": {
+          "hidden": true,
+      },
+      "sourceMapPathOverrides": {
+        "webpack:///src/*": "${webRoot}/*"
+      },
+    },
+    {
+      "name": "Static Web App",
       "request": "launch",
       "type": "node-terminal",
-      "cwd": "${workspaceFolder}"
+      "cwd": "${workspaceFolder}",
+      "command": "swa start https://localhost:5002/ --run 'yarn start'",
+      "presentation": {
+          "hidden": true,
+      },
     },
+  ],
+  "compounds": [
+    {
+      "name": "HTTP Static Web App",
+      "configurations": [
+        "HTTP Backend Chrome",
+        "Static Web App"
+      ],
+      "stopAll": true,
+    },
+    {
+      "name": "HTTPS Static Web App",
+      "configurations": [
+        "HTTPS Frontend Chrome",
+        "Static Web App"
+      ],
+      "stopAll": true,
+    }
   ]
 }
