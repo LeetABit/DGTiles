@@ -65,13 +65,13 @@ module.exports = async function() {
         version.commitCount = commits.length;
 
         const dateTime = new Date();
-        const year = dateTime.getFullYear();
-        const month = `${dateTime.getMonth() + 1}`.padStart(2, '0');
-        const day =`${dateTime.getDate()}`.padStart(2, '0');
-        const hours =`${dateTime.getHours()}`.padStart(2, '0');
-        const minutes =`${dateTime.getMinutes()}`.padStart(2, '0');
-        const seconds =`${dateTime.getSeconds()}`.padStart(2, '0');
-        const milliseconds =`${dateTime.getMilliseconds()}`.padStart(2, '0');
+        const year = dateTime.getUTCFullYear();
+        const month = `${dateTime.getUTCMonth() + 1}`.padStart(2, '0');
+        const day =`${dateTime.getUTCDate()}`.padStart(2, '0');
+        const hours =`${dateTime.getUTCHours()}`.padStart(2, '0');
+        const minutes =`${dateTime.getUTCMinutes()}`.padStart(2, '0');
+        const seconds =`${dateTime.getUTCSeconds()}`.padStart(2, '0');
+        const milliseconds =`${dateTime.getUTCMilliseconds()}`.padStart(2, '0');
         try {
             await executeCommandAsync('git diff-index --quiet HEAD --');
         }

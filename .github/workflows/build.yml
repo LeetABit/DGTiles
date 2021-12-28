@@ -11,11 +11,12 @@ on:
 
 jobs:
   build_and_deploy_job:
+    name: Build and Deploy Job
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
-    name: Build and Deploy Job
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
         with:
           submodules: true
           fetch-depth: 0
@@ -45,17 +46,16 @@ jobs:
             })
 
       - name: Fetch tag
+        if: github.event_name == 'push'
         run: git fetch --tags
 
       - name: Cache node modules
         uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
         with:
           path: ./node_modules
-          key: ${{ env.cache-name }}-${{ hashFiles('./yarn.json') }}
+          key: app-node-modules-${{ hashFiles('./yarn.json') }}
           restore-keys: |
-            ${{ env.cache-name }}-
+            app-node-modules-
 
       - name: Build And Deploy
         uses: Azure/static-web-apps-deploy@v1
