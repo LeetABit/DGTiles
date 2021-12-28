@@ -1,6 +1,11 @@
 {
   "recommendations": [
     "ms-azuretools.vscode-azurestaticwebapps",
-    "editorconfig.editorconfig"
+    "editorconfig.editorconfig",
+    "ms-vscode.azure-account",
+    "azureadb2ctools.aadb2c",
+    "ms-vscode.vscode-node-azure-pack",
+    "streetsidesoftware.code-spell-checker",
+    "npxms.hide-gitignored"
   ]
 }

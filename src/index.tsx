@@ -6,7 +6,7 @@
 
 import ReactDOM from 'react-dom';
 import { Optional, Nullable } from './Types';
-import App from './App';
+import { App } from './App';
 
 const baseElement: HTMLCollectionOf<HTMLBaseElement> = document.getElementsByTagName('base');
 const baseUrl: Optional<string> = (baseElement.length > 0)
