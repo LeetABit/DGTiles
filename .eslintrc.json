@@ -1,0 +1,52 @@
+{
+  "env": {
+      "browser": true,
+      "es2021": true
+  },
+  "extends": [
+      "plugin:react/recommended",
+      "airbnb"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+      "ecmaFeatures": {
+          "jsx": true
+      },
+      "ecmaVersion": 12,
+      "sourceType": "module"
+  },
+  "plugins": [
+      "react",
+      "@typescript-eslint"
+  ],
+  "ignorePatterns": ["*.svg", "*.json"],
+  "rules": {
+    "import/extensions": [ "error", "never", { "json": "always" } ],
+    "camelcase": [ "error", { "allow": [ "jwks_uri", "client_id", "redirect_uri", "response_mode", "response_type" ] } ],
+    "no-undef": "off",
+    "max-len": [ "error", { "code": 140 } ],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [ "error", { "extensions": [ ".jsx", ".tsx" ] } ],
+    "indent": [ "error", 4 ],
+    "react/jsx-indent": "off",
+    "react/jsx-indent-props": "off",
+    "react/function-component-definition": [ "error", {
+      "namedComponents": "arrow-function",
+      "unnamedComponents": "arrow-function"
+    }],
+    "react/jsx-no-useless-fragment": [ "error", { "allowExpressions": true }]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".msx",
+          ".ts",
+          ".tsx"
+        ]
+      }
+    }
+  }
+}

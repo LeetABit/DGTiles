@@ -12,27 +12,30 @@
     "jose": "4.3.7"
   },
   "devDependencies": {
+    "@types/js-cookie": "3.0.1",
     "@types/react": "17.0.2",
     "@types/react-dom": "17.0.2",
     "@types/react-router-dom": "5.3.2",
-    "@types/js-cookie": "3.0.1",
-
-    "yarn-or-npm": "3.0.1",
-    "rimraf": "3.0.2",
-    "react-scripts": "4.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.8.1",
+    "@typescript-eslint/parser": "^5.8.1",
     "cross-env": "7.0.3",
-    "eslint": "7.32.0"
+    "eslint": "^8.5.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "react-scripts": "5.0.0",
+    "rimraf": "3.0.2",
+    "yarn-or-npm": "3.0.1"
   },
   "scripts": {
     "generate": "node update-version.mjs",
     "start": "rimraf ./build && yon run generate && react-scripts start",
-    "build": "cross-env CI=true && yon run generate && eslint ./src/ && react-scripts build",
+    "build": "cross-env CI=true && yon run generate && eslint ./src/**/* && react-scripts build",
     "test": "yon run generate && cross-env CI=true react-scripts test --env=jsdom",
-    "lint": "eslint ./src/",
+    "lint": "eslint ./src/**/*",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [

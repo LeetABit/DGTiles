@@ -4,11 +4,21 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React, { useContext } from "react";
-import { AuthenticationContext } from "../App";
+import React, { useContext } from 'react';
+import { AuthenticationContext } from '../App';
 
-export const SessionLabel : React.FC = () => {
+const SessionLabel : React.FC = () => {
     const isAuthenticated = useContext(AuthenticationContext);
 
-    return <p>Session (you can copy this value to <a href="https://jwt.io">https://jwt.io</a> to check what data has been gathered from your social login): {isAuthenticated.session !== undefined ? isAuthenticated.session : ""}</p>
-}
+    return (
+        <p>
+          Session (you can copy this value to
+            <a href="https://jwt.io">https://jwt.io</a>
+            {' '}
+          to check what data has been gathered from your social login):
+            {isAuthenticated.session !== undefined ? isAuthenticated.session : ''}
+        </p>
+    );
+};
+
+export default SessionLabel;

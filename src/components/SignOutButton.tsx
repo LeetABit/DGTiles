@@ -4,19 +4,21 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React, { useContext } from "react";
-import { AuthenticationContext } from "../App";
+import React, { useContext } from 'react';
+import { AuthenticationContext } from '../App';
 
-export interface SignOutButtonProps {
+declare interface SignOutButtonProps {
     text: string,
 }
 
-export const SignOutButton : React.FC<SignOutButtonProps> = (props: SignOutButtonProps) => {
+const SignOutButton : React.FC<SignOutButtonProps> = ({ text } : SignOutButtonProps) => {
     const isAuthenticated = useContext(AuthenticationContext);
 
     function cleanSession() {
         isAuthenticated.setSession(undefined);
     }
 
-    return <button onClick={cleanSession}>{props.text}</button>
-}
+    return <button type="button" onClick={cleanSession}>{text}</button>;
+};
+
+export default SignOutButton;

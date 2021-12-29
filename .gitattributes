@@ -23,9 +23,9 @@
 *.html                  code
 *.css                   code
 *.lock                  code
-*.js                    code
-*.mjs                   code
-*.ts                    code
-*.tsx                   code
+*.js                    nixscript
+*.mjs                   nixscript
+*.ts                    nixscript
+*.tsx                   nixscript
 *.md                    rawtext
 *.txt                   rawtext

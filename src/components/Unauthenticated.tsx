@@ -4,17 +4,17 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React from "react";
-import { useContext } from "react";
-import { AuthenticationContext } from "../App";
+import React, { useContext } from 'react';
 
-export interface UnauthenticatedProps {
-}
+import { AuthenticationContext } from '../App';
 
-export const Unauthenticated : React.FC<React.PropsWithChildren<UnauthenticatedProps>> = (props: React.PropsWithChildren<UnauthenticatedProps>) => {
+const Unauthenticated : React.FC<React.PropsWithChildren<{}>> = (props: React.PropsWithChildren<{}>) => {
     const isAuthenticated = useContext(AuthenticationContext);
+    const { children } = props;
 
-    return isAuthenticated.session !== undefined
+    return isAuthenticated.session !== undefined || !children
         ? null
-        : <>{props.children}</>;
-}
+        : <>{children}</>;
+};
+
+export default Unauthenticated;

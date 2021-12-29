@@ -4,21 +4,23 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React from "react";
-import { IdentityProviderOptions, generateNonce, getAuthorizationUrl } from "../openid/openid";
+import React from 'react';
+import { IdentityProviderOptions, generateNonce, getAuthorizationUrl } from '../openid/openid';
 
-export interface IdentityProviderButtonProps {
+declare interface IdentityProviderButtonProps {
     options: IdentityProviderOptions,
 }
 
-export const IdentityProviderButton : React.FC<IdentityProviderButtonProps> = (props: IdentityProviderButtonProps) => {
+const IdentityProviderButton : React.FC<IdentityProviderButtonProps> = ({ options } : IdentityProviderButtonProps) => {
     const nonce = generateNonce();
-    const url = getAuthorizationUrl(props.options, nonce);
+    const url = getAuthorizationUrl(options, nonce);
 
     function storeNonceAndRedirectToProvider() {
         localStorage.setItem('nonce', nonce);
         window.location.assign(url.toString());
     }
 
-    return <button onClick={storeNonceAndRedirectToProvider}>{props.options.identityProviderName}</button>
-}
+    return <button type="button" onClick={storeNonceAndRedirectToProvider}>{options.identityProviderName}</button>;
+};
+
+export default IdentityProviderButton;

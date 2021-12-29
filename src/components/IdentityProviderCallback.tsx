@@ -4,40 +4,41 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React, { useContext } from "react";
-import { useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
-import { IdentityProviderOptions, verifyIdToken } from "../openid/openid";
-import { AuthenticationContext } from "../App";
+import React, { useContext, useEffect } from 'react';
 
-export interface IdentityProviderCallbackProps {
+import { useNavigate } from 'react-router-dom';
+import { IdentityProviderOptions, verifyIdToken } from '../openid/openid';
+import { AuthenticationContext } from '../App';
+
+declare interface IdentityProviderCallbackProps {
     options: IdentityProviderOptions
 }
 
-export const IdentityProviderCallback : React.FC<IdentityProviderCallbackProps> = (props: IdentityProviderCallbackProps) => {
+const IdentityProviderCallback : React.FC<IdentityProviderCallbackProps> = ({ options }: IdentityProviderCallbackProps) => {
     const isAuthenticated = useContext(AuthenticationContext);
     const navigate = useNavigate();
-    const nonce = localStorage.getItem("nonce");
+    const nonce = localStorage.getItem('nonce');
 
     useEffect(() => {
         async function verify() {
             try {
                 if (nonce === null) {
-                    throw new Error("Could not find authentication request nonce.");
+                    throw new Error('Could not find authentication request nonce.');
                 }
 
-                const idToken = await verifyIdToken(props.options, nonce);
+                const idToken = await verifyIdToken(options, nonce);
                 if (idToken !== undefined) {
                     isAuthenticated.setSession(idToken);
                 }
-            }
-            finally {
-                navigate("/", {replace: true});
+            } finally {
+                navigate('/', { replace: true });
             }
         }
 
         verify();
-    }, [nonce, props.options, isAuthenticated, navigate]);
+    }, [nonce, options, isAuthenticated, navigate]);
 
     return null;
-}
+};
+
+export default IdentityProviderCallback;

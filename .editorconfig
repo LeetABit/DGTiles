@@ -4,10 +4,18 @@
 root = true
 
 # Deep indentation code files
-[*.{gitattribute,gitignore,editorconfig,md,js,mjs,ts,tsx}]
+[*.{gitattribute,gitignore,editorconfig,md}]
 indent_style = space
 indent_size = 4
 end_of_line = crlf
+charset = urf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.{js,mjs,ts,tsx}]
+indent_style = space
+indent_size = 4
+end_of_line = lf
 charset = urf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
