@@ -5,6 +5,7 @@
         "dgtiles",
         "jwks",
         "leetabit",
+        "OIDC",
         "reduxjs"
     ]
 }
