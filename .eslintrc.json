@@ -19,7 +19,7 @@
       "react",
       "@typescript-eslint"
   ],
-  "ignorePatterns": ["*.svg", "*.json"],
+  "ignorePatterns": ["*.svg", "*.json", "*.md"],
   "rules": {
     "import/extensions": [ "error", "never", { "json": "always" } ],
     "camelcase": [ "error", { "allow": [ "jwks_uri", "client_id", "redirect_uri", "response_mode", "response_type" ] } ],
@@ -34,7 +34,8 @@
       "namedComponents": "arrow-function",
       "unnamedComponents": "arrow-function"
     }],
-    "react/jsx-no-useless-fragment": [ "error", { "allowExpressions": true }]
+    "react/jsx-no-useless-fragment": [ "error", { "allowExpressions": true }],
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
   },
   "settings": {
     "import/resolver": {

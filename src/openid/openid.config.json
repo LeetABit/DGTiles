@@ -1,8 +1,0 @@
-{
-  "baseUrl": "https://login.dgtiles.com/dgtiles.com/",
-  "clientId": "886eac23-9993-4293-8043-35c5e5610968",
-  "issuerUrl": "https://login.dgtiles.com/d2030318-9db4-4d47-97c2-1df2ec7db6ba/v2.0/",
-  "identityProviders": [
-    "Google", "Facebook"
-  ]
-}
