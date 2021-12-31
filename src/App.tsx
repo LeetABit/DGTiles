@@ -15,7 +15,7 @@ declare interface AppProps {
     basename: Optional<string>
 }
 
-const privacyPolicy = raw('./docs/PrivacyPolicy.md');
+const privacyPolicy = raw('../docs/PrivacyPolicy.md');
 
 const App : React.FC<AppProps> = ({ basename } : AppProps) => (
     <BrowserRouter basename={basename}>
