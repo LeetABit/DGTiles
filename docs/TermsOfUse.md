@@ -6,12 +6,12 @@ Thank you for visiting **our** **website**! Please read **our** **Terms of Use**
 
 Following list defines the terms used throughout the **Agreement** and their specific meaning. **We** are doing this to make **you** know what **we** mean when using them in this document.
 
-| | | |
-| :- | - | :- |
-| **Agreement** | | content of **this** document. |
-| **Website** | | DGTiles's website that is located at [dgtiles.com](https://dgtiles.com). |
-| **DGTiles**, **We**, **Our**, **Us** | | Members of the [LeetABit](https://github.com/LeetABit) organization. |
-| **You**, **your**, **user** | | Individual person that visits or is using **Website**. |
+| | |
+| :- | :- |
+| **Agreement** | content of **this** document. |
+| **Website** | DGTiles's website that is located at [dgtiles.com](https://dgtiles.com). |
+| **DGTiles**, **We**, **Our**, **Us** | Members of the [LeetABit](https://github.com/LeetABit) organization. |
+| **You**, **your**, **user** | Individual person that visits or is using **Website**. |
 
 ## 2. Acceptable use
 
