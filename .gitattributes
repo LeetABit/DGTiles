@@ -3,8 +3,8 @@
 ####################################################################
 [attr]rawtext           !binary text diff merge
 [attr]code              !binary text=auto diff merge=text
-[attr]windowsscript     !binary text eol=crlf diff merge=text
-[attr]nixscript         !binary text eol=lf diff merge=text
+[attr]windowscode       !binary text=auto eol=crlf diff merge=text
+[attr]nixcode           !binary text=auto eol=lf diff merge=text
 [attr]binary            -text -diff -merge
 
 ####################################################################
@@ -23,9 +23,9 @@
 *.html                  code
 *.css                   code
 *.lock                  code
-*.js                    nixscript
-*.mjs                   nixscript
-*.ts                    nixscript
-*.tsx                   nixscript
+*.js                    nixcode
+*.mjs                   nixcode
+*.ts                    nixcode
+*.tsx                   nixcode
 *.md                    rawtext
 *.txt                   rawtext
