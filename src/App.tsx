@@ -16,15 +16,11 @@ declare interface AppProps {
     basename: Optional<string>
 }
 
-const privacyPolicy = raw('../docs/PrivacyPolicy.md');
 const termsOfUse = raw('../docs/TermsOfUse.md');
 
 const App : React.FC<AppProps> = ({ basename } : AppProps) => (
     <BrowserRouter basename={basename}>
         <VersionLabel displayDate />
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {privacyPolicy}
-        </ReactMarkdown>
         <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {termsOfUse}
         </ReactMarkdown>
