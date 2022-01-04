@@ -8,8 +8,12 @@ import { Optional } from '../Types';
 import gitVersion from '../gitVersion.json';
 
 declare interface VersionLabelProps {
-    displayDate: Optional<boolean>
+    displayDate?: Optional<boolean>
 }
+
+const defaultProps: VersionLabelProps = {
+    displayDate: false,
+};
 
 const versionString : string = `${gitVersion.version
     + ((gitVersion.commitCount > 0) ? `-beta.${gitVersion.commitCount}` : '')
@@ -32,5 +36,7 @@ const VersionLabel : React.FC<VersionLabelProps> = ({ displayDate } : VersionLab
         )}
     </>
 );
+
+VersionLabel.defaultProps = defaultProps;
 
 export default VersionLabel;

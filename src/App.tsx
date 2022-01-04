@@ -5,26 +5,34 @@
 //  @jsxImportSource @emotion/react
 
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import raw from 'raw.macro';
-import { Optional } from './Types';
-import VersionLabel from './components/VersionLabel';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Viewport from './components/Viewport';
+import Dock from './components/Dock';
+import TermsOfUse from './components/TermsOfUse';
+import Footer from './components/Footer';
 
 declare interface AppProps {
-    basename: Optional<string>
+    basename?: string,
 }
 
-const termsOfUse = raw('../docs/TermsOfUse.md');
+const defaultProps : AppProps = {
+    basename: undefined,
+};
 
 const App : React.FC<AppProps> = ({ basename } : AppProps) => (
     <BrowserRouter basename={basename}>
-        <VersionLabel displayDate />
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {termsOfUse}
-        </ReactMarkdown>
+        <Viewport>
+            <Dock location="top" content={<h1>DGTiles</h1>}>
+                <Dock location="bottom" content={<Footer />}>
+                    <Routes>
+                        <Route path="/termsOfUse" element={<TermsOfUse />} />
+                    </Routes>
+                </Dock>
+            </Dock>
+        </Viewport>
     </BrowserRouter>
 );
+
+App.defaultProps = defaultProps;
 
 export default App;
