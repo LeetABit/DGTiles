@@ -8,8 +8,9 @@ import React, { PropsWithChildren } from 'react';
 import { CSSObject, Global } from '@emotion/react';
 
 const style : CSSObject = {
+    position: 'absolute',
     width: '100%',
-    minHeight: '100vh',
+    height: '100%',
     overflowWrap: 'anywhere',
     flexDirection: 'column',
     display: 'flex',
