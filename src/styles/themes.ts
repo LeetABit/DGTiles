@@ -2,7 +2,7 @@
 //  Licensed under the MIT License.
 //  See LICENSE file in the project root for full license information.
 
-import { Property } from 'csstype';
+import type { Property } from 'csstype';
 
 export const MainColor: Property.Color = 'black';
 export const BackgroundColor: Property.Color = 'white';
