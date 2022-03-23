@@ -4,10 +4,14 @@
 //
 //  @jsxImportSource @emotion/react
 
-import '@emotion/react';
+import React from 'react';
 
-declare module '@emotion/react' {
-    // eslint-disable-next-line @typescript-eslint/no-empty-interface
-    export interface Theme {
-    }
+const Header : React.FC = () => {
+    return (
+        <header>
+            <h1>DGTiles</h1>
+        </header>
+    );
 }
+
+export default Header;

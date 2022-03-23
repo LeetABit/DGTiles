@@ -5,7 +5,10 @@
   },
   "extends": [
       "plugin:react/recommended",
-      "airbnb"
+      "airbnb",
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -17,25 +20,47 @@
   },
   "plugins": [
       "react",
-      "@typescript-eslint"
+      "@typescript-eslint",
+      "only-warn"
   ],
   "ignorePatterns": ["*.svg", "*.json", "*.md"],
   "rules": {
-    "import/extensions": [ "error", "never", { "json": "always" } ],
-    "camelcase": [ "error", { "allow": [ "jwks_uri", "client_id", "redirect_uri", "response_mode", "response_type" ] } ],
+    "import/extensions": [ "warn", "never", { "json": "always" } ],
+    "camelcase": [ "warn", { "allow": [ "jwks_uri", "client_id", "redirect_uri", "response_mode", "response_type" ] } ],
     "no-undef": "off",
-    "max-len": [ "error", { "code": 140 } ],
+    "max-len": [ "warn", { "code": 180 } ],
     "react/react-in-jsx-scope": "off",
-    "react/jsx-filename-extension": [ "error", { "extensions": [ ".jsx", ".tsx" ] } ],
-    "indent": [ "error", 4 ],
+    "react/jsx-filename-extension": [ "warn", { "extensions": [ ".jsx", ".tsx" ] } ],
+    "indent": [ "warn", 4 ],
     "react/jsx-indent": "off",
     "react/jsx-indent-props": "off",
-    "react/function-component-definition": [ "error", {
+    "react/function-component-definition": [ "warn", {
       "namedComponents": "arrow-function",
       "unnamedComponents": "arrow-function"
     }],
-    "react/jsx-no-useless-fragment": [ "error", { "allowExpressions": true }],
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
+    "react/jsx-no-useless-fragment": [ "warn", { "allowExpressions": true }],
+    "import/no-extraneous-dependencies": ["warn", {"devDependencies": true}],
+    "object-curly-newline": ["warn", {
+      "ImportDeclaration": "never"
+    }],
+    "semi": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["warn", { "ignoreTypeReferences": true }],
+    "no-plusplus": "off",
+    "no-restricted-exports": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "arrow-body-style": "off",
+    "import/prefer-default-export": "off",
+    "react/static-property-placement": "off",
+    "react/prefer-stateless-function": "off",
+    "react/self-closing-comp": "warn",
+    "lines-between-class-members": "off",
+    "arrow-parens": "off",
+    "no-restricted-syntax": "off",
+    "no-empty-function": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": "warn"
   },
   "settings": {
     "import/resolver": {

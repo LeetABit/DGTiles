@@ -2,10 +2,15 @@
     "cSpell.words": [
         "browserslist",
         "camelcase",
+        "csstype",
+        "Descriptable",
         "dgtiles",
         "jwks",
         "leetabit",
         "OIDC",
-        "reduxjs"
+        "parens",
+        "plusplus",
+        "reduxjs",
+        "viewports"
     ]
 }

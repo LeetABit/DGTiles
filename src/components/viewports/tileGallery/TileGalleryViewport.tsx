@@ -4,10 +4,11 @@
 //
 //  @jsxImportSource @emotion/react
 
-import '@emotion/react';
+import React from 'react';
+import TileGallery from './TileGallery';
 
-declare module '@emotion/react' {
-    // eslint-disable-next-line @typescript-eslint/no-empty-interface
-    export interface Theme {
-    }
+const TileGalleryViewport : React.FC = () => {
+    return <TileGallery />
 }
+
+export default TileGalleryViewport;

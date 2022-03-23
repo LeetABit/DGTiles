@@ -6,7 +6,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Optional, Nullable } from './Types';
+import { Optional, Nullable } from './types';
 import App from './App';
 
 const baseElement: HTMLCollectionOf<HTMLBaseElement> = document.getElementsByTagName('base');

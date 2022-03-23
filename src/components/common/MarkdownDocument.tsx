@@ -13,7 +13,7 @@ declare interface MarkdownDocumentProps {
 }
 
 const style : CSSObject = {
-    display: 'table',
+    label: 'MarkdownDocument-Main',
     wordBreak: 'break-word',
 };
 
