@@ -6,6 +6,8 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
+import axe from '@axe-core/react';
 import { Optional, Nullable } from './types';
 import App from './App';
 
@@ -19,4 +21,9 @@ if (rootElement == null) {
     throw Error('Could not find element with root ID for React App substitution.');
 }
 
-ReactDOM.render(React.createElement(App, { basename: baseUrl }), rootElement);
+if (process.env.NODE_ENV !== 'production') {
+    axe(React, ReactDOM, 1000);
+}
+
+const root = createRoot(rootElement);
+root.render(<App basename={baseUrl} />);

@@ -60,7 +60,11 @@
     "no-empty-function": "off",
     "@typescript-eslint/no-empty-function": "off",
     "no-shadow": "off",
-    "@typescript-eslint/no-shadow": "warn"
+    "@typescript-eslint/no-shadow": "warn",
+    "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["state"] }],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }],
+    "react/jsx-props-no-spreading": "off"
   },
   "settings": {
     "import/resolver": {
