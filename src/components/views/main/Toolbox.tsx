@@ -5,10 +5,12 @@
 //  @jsxImportSource @emotion/react
 
 import React from 'react';
-import TileGallery from './TileGallery';
+import Toolbar from '../../common/Toolbar';
 
-const TileGalleryViewport : React.FC = () => {
-    return <TileGallery />
+const Toolbox : React.FC = () => {
+    return (
+        <Toolbar />
+    );
 }
 
-export default TileGalleryViewport;
+export default Toolbox;

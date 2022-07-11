@@ -7,6 +7,7 @@
 import { CSSObject } from '@emotion/react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import Header1 from '../markdown/Header1';
 
 declare interface MarkdownDocumentProps {
     content: string
@@ -19,7 +20,10 @@ const style : CSSObject = {
 
 const MarkdownDocument : React.FC<MarkdownDocumentProps> = ({ content } : MarkdownDocumentProps) => (
     <div css={style}>
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+        <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            components={{ h1: Header1 }}
+        >
             {content}
         </ReactMarkdown>
     </div>

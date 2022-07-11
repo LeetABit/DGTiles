@@ -10,9 +10,10 @@ import Dock from '../../common/Dock';
 import FullscreenViewport from '../../common/FullscreenViewport';
 import Footer from './Footer';
 import Header from './Header';
-import TileGalleryViewport from '../tileGallery/TileGalleryViewport';
+import TileGalleryViewport from '../tileGallery/TileGalleryView';
 import { Fill } from '../../../styles/layout';
 import { mergeStyles } from '../../../styles/mergeStyles';
+import Toolbox from './Toolbox';
 
 const globalStyle : CSSObject = {
     body: {
@@ -21,19 +22,21 @@ const globalStyle : CSSObject = {
 };
 
 const MainStyle: CSSObject = mergeStyles(Fill, {
-    label: 'MainViewport-Main',
+    label: 'MainView-Main',
 });
 
-const MainViewport : React.FC = () => {
+const MainView : React.FC = () => {
     return (
         <>
             <Global styles={globalStyle} />
             <FullscreenViewport>
                 <Dock location="top" content={<Header />}>
                     <Dock location="bottom" content={<Footer />}>
-                        <main css={MainStyle}>
-                            <TileGalleryViewport />
-                        </main>
+                        <Dock location="left" content={<Toolbox />}>
+                            <main css={MainStyle}>
+                                <TileGalleryViewport />
+                            </main>
+                        </Dock>
                     </Dock>
                 </Dock>
             </FullscreenViewport>
@@ -41,4 +44,4 @@ const MainViewport : React.FC = () => {
     );
 }
 
-export default MainViewport;
+export default MainView;

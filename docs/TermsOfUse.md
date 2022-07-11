@@ -6,7 +6,7 @@ Thank **you** for visiting **our** **website**! Please read **our** **Terms of U
 
 Following list defines the terms used throughout the **Agreement** and their specific meaning. **We** are doing this to make **you** know what **we** mean when using them in this document.
 
-| | |
+| **TERM** | **MEANING** |
 | :- | :- |
 | **Agreement** | content of this document. |
 | **Website**, **dgtiles.com**, **here** | DGTiles's website located at [dgtiles.com](https://dgtiles.com). |

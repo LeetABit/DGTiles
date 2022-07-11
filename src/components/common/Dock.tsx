@@ -15,13 +15,11 @@ declare interface DockProps {
 }
 
 const columnContainerStyle : CSSObject = mergeStyles(Fill, {
-    label: 'Dock-ColumnContainer',
     display: 'flex',
     flexFlow: 'column',
 });
 
 const rowContainerStyle : CSSObject = mergeStyles(Fill, {
-    label: 'Dock-RowContainer',
     display: 'flex',
     flexFlow: 'row',
 });
@@ -35,6 +33,8 @@ const Dock : React.FC<PropsWithChildren<DockProps>> = ({ location, content, chil
     const containerStyle = (location === 'left' || location === 'right')
         ? rowContainerStyle
         : columnContainerStyle;
+
+    Object.assign(containerStyle, { label: `Dock-${location}` });
 
     const containerElement = (
         <div key="content">

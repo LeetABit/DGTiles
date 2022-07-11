@@ -6,9 +6,9 @@
 
 import React, { PropsWithChildren } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Popup from './Popup';
+import ModalDialog from './ModalDialog';
 
-const RoutedPopup : React.FC<PropsWithChildren<unknown>> = ({ children } : PropsWithChildren<unknown>) => {
+const RoutedModalDialog : React.FC<PropsWithChildren<unknown>> = ({ children } : PropsWithChildren<unknown>) => {
     const navigate = useNavigate();
     const location = useLocation();
     const navigateBack = () => {
@@ -20,10 +20,10 @@ const RoutedPopup : React.FC<PropsWithChildren<unknown>> = ({ children } : Props
     }
 
     return (
-        <Popup onClose={navigateBack}>
+        <ModalDialog onClose={navigateBack}>
             {children}
-        </Popup>
+        </ModalDialog>
     );
 };
 
-export default RoutedPopup;
+export default RoutedModalDialog;

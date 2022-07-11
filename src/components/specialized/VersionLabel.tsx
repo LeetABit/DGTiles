@@ -4,8 +4,8 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { Optional } from '../../../types';
-import gitVersion from '../../../gitVersion.json';
+import { Optional } from '../../types';
+import gitVersion from '../../gitVersion.json';
 
 declare interface VersionLabelProps {
     displayDate?: Optional<boolean>

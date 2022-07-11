@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import MainViewport from './components/viewports/main/MainViewport';
+import MainView from './components/views/main/MainView';
 
 declare interface AppProps {
     basename?: string,
@@ -19,7 +19,7 @@ const defaultProps : AppProps = {
 const App : React.FC<AppProps> = ({ basename } : AppProps) => {
     return (
         <BrowserRouter basename={basename}>
-            <MainViewport />
+            <MainView />
         </BrowserRouter>
     );
 }

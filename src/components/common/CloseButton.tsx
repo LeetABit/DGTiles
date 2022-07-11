@@ -28,6 +28,7 @@ const style : CSSObject = mergeStyles(DiagonalCross, {
     '&:before, &:after': {
         background: MainColor,
     },
+    cursor: 'pointer',
 });
 
 const CloseButton : React.FC<CloseButtonProps> = ({ onClick, shiftContentDown } : CloseButtonProps) => {
