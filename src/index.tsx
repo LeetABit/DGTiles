@@ -4,10 +4,7 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
-import axe from '@axe-core/react';
 import { Optional, Nullable } from './types';
 import App from './App';
 
@@ -19,10 +16,6 @@ const rootElement: Nullable<HTMLElement> = document.getElementById('root');
 
 if (rootElement == null) {
     throw Error('Could not find element with root ID for React App substitution.');
-}
-
-if (process.env.NODE_ENV !== 'production') {
-    axe(React, ReactDOM, 1000);
 }
 
 const root = createRoot(rootElement);
