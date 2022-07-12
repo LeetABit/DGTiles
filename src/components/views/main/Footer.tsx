@@ -12,8 +12,9 @@ import VersionLabel from '../../specialized/VersionLabel';
 const Footer : React.FC = () => {
     return (
         <footer>
-            <Dock location="right" content={<TermsOfUseLink />}>
-                <VersionLabel displayDate />
+            <Dock>
+                <TermsOfUseLink dock-right />
+                <VersionLabel dock-fill displayDate />
             </Dock>
         </footer>
     );

@@ -14,10 +14,10 @@ const style: CSSObject = mergeStyles(Fill, {
     backgroundColor: GalleryColor,
 });
 
-const TileGalleryViewport : React.FC = () => {
+const TileGalleryView : React.FC = () => {
     return (
         <div css={style} />
     );
 }
 
-export default TileGalleryViewport;
+export default TileGalleryView;
