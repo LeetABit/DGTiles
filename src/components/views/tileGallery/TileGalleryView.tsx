@@ -4,20 +4,18 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { CSSObject } from '@emotion/react';
-import React from 'react';
+import { useTheme } from '@emotion/react';
 import { Fill } from '../../../styles/layout';
 import { mergeStyles } from '../../../styles/mergeStyles';
-import { GalleryColor } from '../../../styles/themes';
 
-const style: CSSObject = mergeStyles(Fill, {
-    backgroundColor: GalleryColor,
-});
+export default () => {
+    const theme = useTheme();
 
-const TileGalleryView : React.FC = () => {
+    const style = mergeStyles(Fill, { ...theme.workspace });
+
     return (
-        <div css={style} />
+        <div css={style}>
+            WIP
+        </div>
     );
 }
-
-export default TileGalleryView;

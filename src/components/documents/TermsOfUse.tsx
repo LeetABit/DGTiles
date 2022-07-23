@@ -9,8 +9,6 @@ import MarkdownDocument from '../common/MarkdownDocument';
 
 const termsOfUse = raw('../../../docs/TermsOfUse.md');
 
-const TermsOfUse : React.FC = () => (
+export default () => (
     <MarkdownDocument content={termsOfUse} />
 );
-
-export default TermsOfUse;

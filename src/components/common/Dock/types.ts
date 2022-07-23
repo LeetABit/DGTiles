@@ -4,10 +4,4 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { HeadingProps } from 'react-markdown/lib/ast-to-react';
-
-export default ({ node: _, children, ...rest }: HeadingProps) => (
-    <h1 id="h1" {...rest}>
-        {children}
-    </h1>
-);
+export type Direction = 'Left' | 'Right' | 'Top' | 'Bottom';

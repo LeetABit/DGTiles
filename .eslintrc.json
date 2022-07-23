@@ -34,10 +34,7 @@
     "indent": [ "warn", 4 ],
     "react/jsx-indent": "off",
     "react/jsx-indent-props": "off",
-    "react/function-component-definition": [ "warn", {
-      "namedComponents": "arrow-function",
-      "unnamedComponents": "arrow-function"
-    }],
+    "react/function-component-definition": "off",
     "react/jsx-no-useless-fragment": [ "warn", { "allowExpressions": true }],
     "import/no-extraneous-dependencies": ["warn", {"devDependencies": true}],
     "object-curly-newline": ["warn", {
@@ -64,7 +61,9 @@
     "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["state"] }],
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }],
-    "react/jsx-props-no-spreading": "off"
+    "react/jsx-props-no-spreading": "off",
+    "react/require-default-props": "off",
+    "react/prop-types": "off"
   },
   "settings": {
     "import/resolver": {

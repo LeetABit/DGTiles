@@ -5,12 +5,10 @@
 //  @jsxImportSource @emotion/react
 
 import React, { JSXElementConstructor, PropsWithChildren, ReactElement } from 'react';
-import DockBottom from './DockBottom';
-import DockDirectionalContainer, { Direction } from './DockContainer';
+import DockDirectionalContainer from './DockContainer';
 import DockFill from './DockFill';
-import DockLeft from './DockLeft';
-import DockRight from './DockRight';
-import DockTop from './DockTop';
+import DockItem from './DockItem';
+import { Direction } from './types';
 
 type ContainerTemplate = {
     direction?: Direction,
@@ -18,7 +16,7 @@ type ContainerTemplate = {
     children: React.ReactNode[],
 }
 
-const Dock : React.FC<PropsWithChildren<unknown>> = ({ children } : PropsWithChildren<unknown>) => {
+export default ({ children }: PropsWithChildren<unknown>) => {
     let currentTemplate: ContainerTemplate = {
         children: [],
     }
@@ -34,7 +32,7 @@ const Dock : React.FC<PropsWithChildren<unknown>> = ({ children } : PropsWithChi
             throw new Error('Dock component requires each of its children to have dock-* attribute defined.');
         }
 
-        const key = child.key != null ? child.key : index.toString(36);
+        const key = child.key ?? index.toString(36);
 
         let dock;
         let childComponent;
@@ -43,16 +41,16 @@ const Dock : React.FC<PropsWithChildren<unknown>> = ({ children } : PropsWithChi
             childComponent = <DockFill key={key}>{child}</DockFill>;
         } else if (child.props['dock-left']) {
             dock = 'dock-left';
-            childComponent = <DockLeft key={key}>{child}</DockLeft>;
+            childComponent = <DockItem direction="Left" key={key}>{child}</DockItem>;
         } else if (child.props['dock-right']) {
             dock = 'dock-right';
-            childComponent = <DockRight key={key}>{child}</DockRight>;
+            childComponent = <DockItem direction="Right" key={key}>{child}</DockItem>;
         } else if (child.props['dock-top']) {
             dock = 'dock-top';
-            childComponent = <DockTop key={key}>{child}</DockTop>;
+            childComponent = <DockItem direction="Top" key={key}>{child}</DockItem>;
         } else if (child.props['dock-bottom']) {
             dock = 'dock-bottom';
-            childComponent = <DockBottom key={key}>{child}</DockBottom>;
+            childComponent = <DockItem direction="Bottom" key={key}>{child}</DockItem>;
         }
 
         if (!dock) {
@@ -99,5 +97,3 @@ const Dock : React.FC<PropsWithChildren<unknown>> = ({ children } : PropsWithChi
         return <DockDirectionalContainer key="fill" direction={template.direction ?? 'Top'}>{childrenArray}</DockDirectionalContainer>
     }, null);
 };
-
-export default Dock;

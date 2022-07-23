@@ -4,14 +4,8 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React from 'react';
-
-const Header : React.FC = () => {
-    return (
-        <header>
-            <h1>DGTiles</h1>
-        </header>
-    );
-}
-
-export default Header;
+export default () => (
+    <header>
+        <h1>DGTiles</h1>
+    </header>
+);

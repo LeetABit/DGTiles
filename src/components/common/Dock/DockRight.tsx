@@ -4,15 +4,9 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { CSSObject } from '@emotion/react';
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
+import DockItem, { DockProps } from './DockItem';
 
-const style : CSSObject = {
-    label: 'Dock-Right',
-};
-
-const DockRight : React.FC<PropsWithChildren<unknown>> = ({ children } : PropsWithChildren<unknown>) => (
-    <div css={style}>{children}</div>
+export default ({ children, ...rest }: PropsWithChildren<DockProps>) => (
+    <DockItem direction="Right" {...rest}>{children}</DockItem>
 );
-
-export default DockRight;

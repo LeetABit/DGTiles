@@ -4,7 +4,7 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 import { CSSObject } from '@emotion/react';
 import { Fill, FullScreen } from '../../styles/layout';
 import { mergeStyles } from '../../styles/mergeStyles';
@@ -20,12 +20,10 @@ const fitContentStyle: CSSObject = mergeStyles(Fill, {
     minHeight: 'fit-content',
 });
 
-const FullscreenViewport : React.FC<PropsWithChildren<unknown>> = ({ children } : PropsWithChildren<unknown>) => (
+export default ({ children }: PropsWithChildren<unknown>) => (
     <div css={style}>
         <div css={fitContentStyle}>
             {children}
         </div>
     </div>
 );
-
-export default FullscreenViewport;

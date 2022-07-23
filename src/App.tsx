@@ -4,26 +4,19 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React from 'react';
+import { ThemeProvider } from '@emotion/react';
 import { BrowserRouter } from 'react-router-dom';
 import MainView from './components/views/main/MainView';
+import { theme } from './styles/themes';
 
-declare interface AppProps {
+export interface AppProps {
     basename?: string,
 }
 
-const defaultProps : AppProps = {
-    basename: undefined,
-};
-
-const App : React.FC<AppProps> = ({ basename } : AppProps) => {
-    return (
+export default ({ basename } : AppProps) => (
+    <ThemeProvider theme={theme}>
         <BrowserRouter basename={basename}>
             <MainView />
         </BrowserRouter>
-    );
-}
-
-App.defaultProps = defaultProps;
-
-export default App;
+    </ThemeProvider>
+);

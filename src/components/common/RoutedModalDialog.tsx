@@ -4,11 +4,11 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ModalDialog from './ModalDialog';
 
-const RoutedModalDialog : React.FC<PropsWithChildren<unknown>> = ({ children } : PropsWithChildren<unknown>) => {
+export default ({ children }: PropsWithChildren<unknown>) => {
     const navigate = useNavigate();
     const location = useLocation();
     const navigateBack = () => {
@@ -25,5 +25,3 @@ const RoutedModalDialog : React.FC<PropsWithChildren<unknown>> = ({ children } :
         </ModalDialog>
     );
 };
-
-export default RoutedModalDialog;

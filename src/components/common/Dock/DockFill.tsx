@@ -5,15 +5,13 @@
 //  @jsxImportSource @emotion/react
 
 import { CSSObject } from '@emotion/react';
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 
 const style : CSSObject = {
     label: 'Dock-Fill',
     flexGrow: 1,
 };
 
-const DockFill : React.FC<PropsWithChildren<unknown>> = ({ children } : PropsWithChildren<unknown>) => (
+export default ({ children }: PropsWithChildren<unknown>) => (
     <div css={style}>{children}</div>
 );
-
-export default DockFill;

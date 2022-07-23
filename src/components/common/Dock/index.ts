@@ -4,7 +4,5 @@
 //
 //  @jsxImportSource @emotion/react
 
-import Dock from './Dock';
-
-export default Dock;
+export { default as Dock } from './Dock';
 export { default as TagWrapper } from './TagWrapper';

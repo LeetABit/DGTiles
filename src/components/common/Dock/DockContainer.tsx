@@ -9,8 +9,7 @@ import type { Property } from 'csstype';
 import React, { PropsWithChildren } from 'react';
 import { Fill } from '../../../styles/layout';
 import { mergeStyles } from '../../../styles/mergeStyles';
-
-export type Direction = 'Left' | 'Right' | 'Top' | 'Bottom';
+import { Direction } from './types';
 
 const mapping = {
     Left: 'row' as Property.FlexDirection,
@@ -28,7 +27,7 @@ declare interface DockContainerProps {
     direction: Direction,
 }
 
-const DockContainer : React.FC<PropsWithChildren<DockContainerProps>> = ({ direction, children } : PropsWithChildren<DockContainerProps>) => {
+export default ({ direction, children }: PropsWithChildren<DockContainerProps>) => {
     const flexDirection = mapping[direction];
 
     const directionStyle = mergeStyles(style, {
@@ -41,5 +40,3 @@ const DockContainer : React.FC<PropsWithChildren<DockContainerProps>> = ({ direc
         </div>
     );
 };
-
-export default DockContainer;

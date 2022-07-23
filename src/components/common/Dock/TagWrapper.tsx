@@ -4,10 +4,8 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 
-const TagWrapper : React.FC<PropsWithChildren<unknown>> = ({ children } : PropsWithChildren<unknown>) => (
+export default ({ children }: PropsWithChildren<unknown>) => (
     <>{children}</>
 );
-
-export default TagWrapper;

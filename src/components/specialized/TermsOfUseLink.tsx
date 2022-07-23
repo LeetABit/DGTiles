@@ -4,14 +4,9 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React from 'react';
 import ModalDialogLink from '../common/ModalDialogLink';
 import TermsOfUse from '../documents/TermsOfUse';
 
-const TermsOfUseLink : React.FC = () => {
-    return (
-        <ModalDialogLink content={<TermsOfUse />} to="/termsOfUse">Terms of Use</ModalDialogLink>
-    );
-};
-
-export default TermsOfUseLink;
+export default () => (
+    <ModalDialogLink content={<TermsOfUse />} to="/termsOfUse">Terms of Use</ModalDialogLink>
+);

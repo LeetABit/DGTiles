@@ -6,20 +6,16 @@
 
 import { CSSObject } from '@emotion/react';
 import FocusTrap from 'focus-trap-react';
-import React, { PropsWithChildren, useEffect } from 'react';
+import { PropsWithChildren, useEffect } from 'react';
 import { Fill } from '../../styles/layout';
 import { mergeStyles } from '../../styles/mergeStyles';
 import { BackgroundColor, DimerColor } from '../../styles/themes';
 import CloseButton from './CloseButton';
 import FullscreenViewport from './FullscreenViewport';
 
-interface ModalDialogProps {
+export interface ModalDialogProps {
     onClose?: () => void,
 }
-
-const defaultProps : ModalDialogProps = {
-    onClose: undefined,
-};
 
 const flexStyle: CSSObject = mergeStyles(Fill, {
     label: 'ModalDialog-Flex',
@@ -52,7 +48,7 @@ const contentStyle: CSSObject = {
     margin: '0.5rem',
 }
 
-const ModalDialog : React.FC<PropsWithChildren<ModalDialogProps>> = ({ onClose, children } : PropsWithChildren<ModalDialogProps>) => {
+export default ({ onClose, children }: PropsWithChildren<ModalDialogProps>) => {
     const closeOnEscapeKey = (e: KeyboardEvent) => {
         if (e.key === 'Escape' && onClose) {
             onClose();
@@ -90,7 +86,3 @@ const ModalDialog : React.FC<PropsWithChildren<ModalDialogProps>> = ({ onClose, 
         </FullscreenViewport>
     );
 };
-
-ModalDialog.defaultProps = defaultProps;
-
-export default ModalDialog;

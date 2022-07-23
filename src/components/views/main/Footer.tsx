@@ -4,20 +4,15 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React from 'react';
-import Dock from '../../common/Dock';
+import { Dock } from '../../common/Dock';
 import TermsOfUseLink from '../../specialized/TermsOfUseLink';
 import VersionLabel from '../../specialized/VersionLabel';
 
-const Footer : React.FC = () => {
-    return (
-        <footer>
-            <Dock>
-                <TermsOfUseLink dock-right />
-                <VersionLabel dock-fill displayDate />
-            </Dock>
-        </footer>
-    );
-};
-
-export default Footer;
+export default () => (
+    <footer>
+        <Dock>
+            <TermsOfUseLink dock-right />
+            <VersionLabel dock-fill displayDate />
+        </Dock>
+    </footer>
+);

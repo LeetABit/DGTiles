@@ -5,7 +5,6 @@
 //  @jsxImportSource @emotion/react
 
 import { CSSObject } from '@emotion/react';
-import React from 'react';
 import { DiagonalCross } from '../../styles/icons';
 import { mergeStyles } from '../../styles/mergeStyles';
 import { MainColor } from '../../styles/themes';
@@ -14,11 +13,6 @@ interface CloseButtonProps {
     shiftContentDown?: boolean,
     onClick?: () => void,
 }
-
-const defaultProps : Partial<CloseButtonProps> = {
-    shiftContentDown: false,
-    onClick: () => {},
-};
 
 const style : CSSObject = mergeStyles(DiagonalCross, {
     label: 'CloseButton-Main',
@@ -31,7 +25,7 @@ const style : CSSObject = mergeStyles(DiagonalCross, {
     cursor: 'pointer',
 });
 
-const CloseButton : React.FC<CloseButtonProps> = ({ onClick, shiftContentDown } : CloseButtonProps) => {
+export default ({ shiftContentDown = false, onClick = () => {} }: CloseButtonProps) => {
     const additionalStyle: CSSObject = (shiftContentDown)
         ? { position: 'relative' }
         : { position: 'absolute', right: '0px' };
@@ -39,7 +33,3 @@ const CloseButton : React.FC<CloseButtonProps> = ({ onClick, shiftContentDown } 
     const mergedStyle = mergeStyles(style, additionalStyle);
     return <button type="button" css={mergedStyle} onClick={onClick} aria-label="close" />;
 }
-
-CloseButton.defaultProps = defaultProps;
-
-export default CloseButton;

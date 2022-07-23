@@ -7,10 +7,12 @@
         "dgtiles",
         "jwks",
         "leetabit",
+        "nameof",
         "OIDC",
         "parens",
         "plusplus",
         "reduxjs",
-        "viewports"
+        "viewports",
+        "whitesmoke"
     ]
 }

@@ -4,13 +4,8 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React from 'react';
 import Toolbar from '../../common/Toolbar';
 
-const Toolbox : React.FC = () => {
-    return (
-        <Toolbar />
-    );
-}
-
-export default Toolbox;
+export default () => (
+    <Toolbar />
+);

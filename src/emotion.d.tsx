@@ -5,9 +5,12 @@
 //  @jsxImportSource @emotion/react
 
 import '@emotion/react';
+import type { Property } from 'csstype';
 
 declare module '@emotion/react' {
-    // eslint-disable-next-line @typescript-eslint/no-empty-interface
     export interface Theme {
+        workspace: {
+            background: Property.Background<number | string>,
+        },
     }
 }

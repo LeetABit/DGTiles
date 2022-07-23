@@ -4,16 +4,16 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React, { PropsWithChildren, ReactNode } from 'react';
+import { PropsWithChildren, ReactNode } from 'react';
 import { Link, Outlet, Route, Routes } from 'react-router-dom';
 import RoutedModalDialog from './RoutedModalDialog';
 
-declare interface ModalDialogLinkProps {
+export interface ModalDialogLinkProps {
     content: ReactNode,
     to: string,
 }
 
-const ModalDialogLink : React.FC<PropsWithChildren<ModalDialogLinkProps>> = ({ content, to, children } : PropsWithChildren<ModalDialogLinkProps>) => {
+export default ({ content, to, children }: PropsWithChildren<ModalDialogLinkProps>) => {
     const dialog = <RoutedModalDialog>{content}</RoutedModalDialog>;
 
     return (
@@ -26,5 +26,3 @@ const ModalDialogLink : React.FC<PropsWithChildren<ModalDialogLinkProps>> = ({ c
         </>
     );
 };
-
-export default ModalDialogLink;

@@ -9,7 +9,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import Header1 from '../markdown/Header1';
 
-declare interface MarkdownDocumentProps {
+export interface MarkdownDocumentProps {
     content: string
 }
 
@@ -18,7 +18,7 @@ const style : CSSObject = {
     wordBreak: 'break-word',
 };
 
-const MarkdownDocument : React.FC<MarkdownDocumentProps> = ({ content } : MarkdownDocumentProps) => (
+export default ({ content }: MarkdownDocumentProps) => (
     <div css={style}>
         <ReactMarkdown
             remarkPlugins={[remarkGfm]}
@@ -28,5 +28,3 @@ const MarkdownDocument : React.FC<MarkdownDocumentProps> = ({ content } : Markdo
         </ReactMarkdown>
     </div>
 );
-
-export default MarkdownDocument;
