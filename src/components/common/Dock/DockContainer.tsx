@@ -4,39 +4,32 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { CSSObject } from '@emotion/react';
-import type { Property } from 'csstype';
-import React, { PropsWithChildren } from 'react';
+import { CSSObject } from '@emotion/react'
+import { PropsWithChildren } from 'react'
 import { Fill } from '../../../styles/layout';
 import { mergeStyles } from '../../../styles/mergeStyles';
-import { Direction } from './types';
 
-const mapping = {
-    Left: 'row' as Property.FlexDirection,
-    Right: 'row-reverse' as Property.FlexDirection,
-    Top: 'column' as Property.FlexDirection,
-    Bottom: 'column-reverse' as Property.FlexDirection,
+export interface DockContainerProps {
+    topLines: string[],
+    bottomLines: string[],
+    leftLines: string[],
+    rightLines: string[],
 }
 
-const style : CSSObject = mergeStyles(Fill, {
-    label: 'Dock-Container',
-    display: 'flex',
-});
+export default ({ topLines, bottomLines, leftLines, rightLines, children }: PropsWithChildren<DockContainerProps>) => {
+    const gridTemplateRows = `${topLines.join(' max-content ')} 1fr ${bottomLines.join(' max-content ')}`;
+    const gridTemplateColumns = `${leftLines.join(' max-content ')} 1fr ${rightLines.join(' max-content ')}`;
 
-declare interface DockContainerProps {
-    direction: Direction,
-}
-
-export default ({ direction, children }: PropsWithChildren<DockContainerProps>) => {
-    const flexDirection = mapping[direction];
-
-    const directionStyle = mergeStyles(style, {
-        flexDirection,
+    const style: CSSObject = mergeStyles(Fill, {
+        display: 'grid',
+        gridTemplateRows,
+        gridTemplateColumns,
+        label: 'Dock-Container',
     });
 
     return (
-        <div css={directionStyle}>
-            {React.Children.toArray(children)}
+        <div css={style}>
+            {children}
         </div>
     );
-};
+}

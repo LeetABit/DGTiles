@@ -4,96 +4,86 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React, { JSXElementConstructor, PropsWithChildren, ReactElement } from 'react';
-import DockDirectionalContainer from './DockContainer';
-import DockFill from './DockFill';
-import DockItem from './DockItem';
-import { Direction } from './types';
+import React, { PropsWithChildren, ReactNode } from 'react';
+import DockContainer from './DockContainer';
+import DockItem, { DockItemProps } from './DockItem';
+import { dockAttachedDelayProps, dockAttachedDirectionProps } from './types';
 
-type ContainerTemplate = {
-    direction?: Direction,
-    type?: string,
-    children: React.ReactNode[],
-}
+export default ({ children }: PropsWithChildren) => {
+    let topLineCount = 1;
+    let bottomLineCount = 1;
+    let leftLineCount = 1;
+    let rightLineCount = 1;
 
-export default ({ children }: PropsWithChildren<unknown>) => {
-    let currentTemplate: ContainerTemplate = {
-        children: [],
-    }
-    const templates: ContainerTemplate[] = [currentTemplate];
-    let fillOccurred = false;
+    const mapChild = (child: ReactNode, index: number) => {
+        if (child && typeof child === 'object' && 'props' in child) {
+            let props: DockItemProps = {
+                rowStart: `top-${topLineCount}`,
+                rowEnd: `bottom-${bottomLineCount}`,
+                columnStart: `left-${leftLineCount}`,
+                columnEnd: `right-${rightLineCount}`,
+                dock: 'Fill',
+            };
 
-    React.Children.forEach(children, (child, index) => {
-        if (!child
-            || typeof child !== 'object'
-            || !('props' in child)
-            || !child.props
-        ) {
-            throw new Error('Dock component requires each of its children to have dock-* attribute defined.');
-        }
+            dockAttachedDelayProps.filter(prop => prop in child.props).forEach(prop => {
+                props = { ...props, ...{ [prop.substring('dock-'.length)]: child.props[prop] } };
+            });
 
-        const key = child.key ?? index.toString(36);
+            switch (dockAttachedDirectionProps.find(propName => propName in child.props)) {
+                case 'dock-top': {
+                    ++topLineCount;
+                    props.rowEnd = `top-${topLineCount}`;
+                    props.dock = 'Top';
+                    break;
+                }
 
-        let dock;
-        let childComponent;
-        if (child.props['dock-fill']) {
-            dock = 'dock-fill';
-            childComponent = <DockFill key={key}>{child}</DockFill>;
-        } else if (child.props['dock-left']) {
-            dock = 'dock-left';
-            childComponent = <DockItem direction="Left" key={key}>{child}</DockItem>;
-        } else if (child.props['dock-right']) {
-            dock = 'dock-right';
-            childComponent = <DockItem direction="Right" key={key}>{child}</DockItem>;
-        } else if (child.props['dock-top']) {
-            dock = 'dock-top';
-            childComponent = <DockItem direction="Top" key={key}>{child}</DockItem>;
-        } else if (child.props['dock-bottom']) {
-            dock = 'dock-bottom';
-            childComponent = <DockItem direction="Bottom" key={key}>{child}</DockItem>;
-        }
+                case 'dock-bottom': {
+                    ++bottomLineCount;
+                    props.rowStart = `bottom-${bottomLineCount}`;
+                    props.dock = 'Bottom';
+                    break;
+                }
 
-        if (!dock) {
-            throw new Error('Dock component requires each of its children to have dock-* attribute defined.');
-        }
+                case 'dock-left': {
+                    ++leftLineCount;
+                    props.columnEnd = `left-${leftLineCount}`;
+                    props.dock = 'Left';
+                    break;
+                }
 
-        if (fillOccurred) {
-            throw new Error('Dock component does not accept any children after child with dock-fill attribute.');
-        } else if (dock === 'dock-fill') {
-            currentTemplate.children.push(childComponent);
-            fillOccurred = true;
-        } else if (currentTemplate.type === dock) {
-            currentTemplate.children.push(childComponent);
-        } else {
-            currentTemplate = {
-                type: dock,
-                children: [childComponent],
+                case 'dock-right': {
+                    ++rightLineCount;
+                    props.columnStart = `right-${rightLineCount}`;
+                    props.dock = 'Right';
+                    break;
+                }
+
+                case 'dock-fill': {
+                    break;
+                }
+
+                default: {
+                    return child;
+                }
             }
 
-            templates.push(currentTemplate);
-
-            if (dock === 'dock-fill') {
-                currentTemplate.direction = 'Left';
-            } else if (dock === 'dock-right') {
-                currentTemplate.direction = 'Right';
-            } else if (dock === 'dock-top') {
-                currentTemplate.direction = 'Top';
-            } else if (dock === 'dock-bottom') {
-                currentTemplate.direction = 'Bottom';
-            }
+            const key = child.key ?? index.toString(36);
+            return <DockItem key={key} {...props}>{child}</DockItem>;
         }
-    });
 
-    if (!fillOccurred) {
-        currentTemplate.children.push(<DockFill />);
+        return child;
     }
 
-    return templates.reduceRight<ReactElement<unknown, string | JSXElementConstructor<unknown>> | null>((previousContainer, template) => {
-        const childrenArray = [...template.children];
-        if (previousContainer) {
-            childrenArray.push(previousContainer);
-        }
+    const wrappedChildren = React.Children.map(children, mapChild);
 
-        return <DockDirectionalContainer key="fill" direction={template.direction ?? 'Top'}>{childrenArray}</DockDirectionalContainer>
-    }, null);
+    const topLines = [...Array(topLineCount + 1).keys()].slice(1).map(num => `[top-${num}]`);
+    const bottomLines = [...Array(bottomLineCount + 1).keys()].slice(1).reverse().map(num => `[bottom-${num}]`);
+    const leftLines = [...Array(leftLineCount + 1).keys()].slice(1).map(num => `[left-${num}]`);
+    const rightLines = [...Array(rightLineCount + 1).keys()].slice(1).reverse().map(num => `[right-${num}]`);
+
+    return (
+        <DockContainer topLines={topLines} bottomLines={bottomLines} leftLines={leftLines} rightLines={rightLines}>
+            {wrappedChildren}
+        </DockContainer>
+    );
 };

@@ -8,7 +8,7 @@ import { PropsWithChildren } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ModalDialog from './ModalDialog';
 
-export default ({ children }: PropsWithChildren<unknown>) => {
+export default ({ children }: PropsWithChildren) => {
     const navigate = useNavigate();
     const location = useLocation();
     const navigateBack = () => {

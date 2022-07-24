@@ -31,7 +31,9 @@
     "max-len": [ "warn", { "code": 180 } ],
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [ "warn", { "extensions": [ ".jsx", ".tsx" ] } ],
-    "indent": [ "warn", 4 ],
+    "indent": [ "warn", 4, {
+      "SwitchCase": 1
+    }],
     "react/jsx-indent": "off",
     "react/jsx-indent-props": "off",
     "react/function-component-definition": "off",

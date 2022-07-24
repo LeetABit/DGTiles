@@ -12,7 +12,8 @@ import { Fill } from '../../../styles/layout';
 import { mergeStyles } from '../../../styles/mergeStyles';
 import Toolbox from './Toolbox';
 import TileGalleryView from '../tileGallery/TileGalleryView';
-import { Dock, TagWrapper } from '../../common/Dock';
+import Dock from '../../common/Dock';
+import DockWrapper from '../../common/Dock/DockWrapper';
 
 const globalStyle : CSSObject = {
     body: {
@@ -31,12 +32,12 @@ export default () => (
             <Dock>
                 <Header dock-top />
                 <Footer dock-bottom />
-                <Toolbox dock-left />
-                <TagWrapper dock-fill>
+                <Toolbox dock-left dock-showDelay={300} dock-hideDelay={300} />
+                <DockWrapper dock-fill>
                     <main css={MainStyle}>
                         <TileGalleryView />
                     </main>
-                </TagWrapper>
+                </DockWrapper>
             </Dock>
         </FullscreenViewport>
     </>

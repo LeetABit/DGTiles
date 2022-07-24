@@ -4,32 +4,41 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { CSSObject } from '@emotion/react';
-import { PropsWithChildren } from 'react';
-import { mergeStyles } from '../../../styles/mergeStyles';
-import useThrottledState from '../../../hooks/useThrottledState';
+import { CSSObject } from '@emotion/react'
+import { PropsWithChildren } from 'react'
+import useThrottledState from '../../../hooks/useThrottledState'
+import { mergeStyles } from '../../../styles/mergeStyles'
+import { DockDirection } from './types'
 
-declare type DockDirection = 'Top' | 'Bottom' | 'Left' | 'Right';
-
-export interface DockProps {
-    autoHide?: boolean,
-    showTimeout?: number,
-    hideTimeout?: number,
+export interface DockItemProps {
+    columnStart: string,
+    columnEnd: string,
+    rowStart: string,
+    rowEnd: string,
+    dock: DockDirection,
+    showDelay?: number,
+    hideDelay?: number,
 }
 
-declare type DockItemProps = DockProps & { direction: DockDirection }
+export default ({ columnStart, columnEnd, rowStart, rowEnd, dock, showDelay, hideDelay, children }: PropsWithChildren<DockItemProps>) => {
+    const baseStyle: CSSObject = {
+        gridColumnStart: columnStart,
+        gridColumnEnd: columnEnd,
+        gridRowStart: rowStart,
+        gridRowEnd: rowEnd,
+        label: `Dock-${dock}`,
+    }
 
-export default ({ direction, autoHide = false, showTimeout = 100, hideTimeout = 100, children }: PropsWithChildren<DockItemProps>) => {
-    const baseStyle : CSSObject = {
-        label: `Dock-${direction}`,
-    };
+    const autoHide = showDelay !== undefined || hideDelay !== undefined;
+    const showDelayWithDefault = showDelay ?? 0;
+    const hideDelayWithDefault = hideDelay ?? 0;
 
-    const calculateTimeout = (isCurrentlyHidden: boolean) => (isCurrentlyHidden ? showTimeout : hideTimeout);
+    const calculateTimeout = (isCurrentlyHidden: boolean) => (isCurrentlyHidden ? showDelayWithDefault : hideDelayWithDefault);
     const [isHidden, setIsHidden] = useThrottledState(autoHide, calculateTimeout);
 
     let style = baseStyle;
     if (autoHide && isHidden) {
-        if (direction === 'Top' || direction === 'Bottom') {
+        if (dock === 'Top' || dock === 'Bottom') {
             style = mergeStyles(baseStyle, { height: '10px' });
         } else {
             style = mergeStyles(baseStyle, { width: '10px' });
@@ -44,5 +53,9 @@ export default ({ direction, autoHide = false, showTimeout = 100, hideTimeout = 
         setIsHidden(true);
     };
 
-    return <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} css={style}>{children}</div>;
-};
+    return (
+        <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} css={style}>
+            {children}
+        </div>
+    );
+}

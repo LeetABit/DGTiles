@@ -4,11 +4,10 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { Optional } from '../../types';
 import gitVersion from '../../gitVersion.json';
 
 export interface VersionLabelProps {
-    displayDate?: Optional<boolean>
+    displayDate?: boolean
 }
 
 const versionString : string = `${gitVersion.version

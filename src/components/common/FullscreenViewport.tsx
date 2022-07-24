@@ -20,7 +20,7 @@ const fitContentStyle: CSSObject = mergeStyles(Fill, {
     minHeight: 'fit-content',
 });
 
-export default ({ children }: PropsWithChildren<unknown>) => (
+export default ({ children }: PropsWithChildren) => (
     <div css={style}>
         <div css={fitContentStyle}>
             {children}
