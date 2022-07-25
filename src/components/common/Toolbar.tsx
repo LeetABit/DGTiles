@@ -11,7 +11,6 @@ const style: CSSObject = {
     label: 'Toolbar-Main',
     display: 'flex',
     flexDirection: 'row',
-    minWidth: '50px',
 };
 
 export default ({ children }: PropsWithChildren) => (

@@ -6,8 +6,10 @@
 
 import { ThemeProvider } from '@emotion/react';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux'
 import MainView from './components/views/main/MainView';
 import { theme } from './styles/themes';
+import { store } from './store';
 
 export interface AppProps {
     basename?: string,
@@ -16,7 +18,9 @@ export interface AppProps {
 export default ({ basename } : AppProps) => (
     <ThemeProvider theme={theme}>
         <BrowserRouter basename={basename}>
-            <MainView />
+            <Provider store={store}>
+                <MainView />
+            </Provider>
         </BrowserRouter>
     </ThemeProvider>
 );

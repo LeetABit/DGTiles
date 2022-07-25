@@ -32,7 +32,7 @@ export default () => (
             <Dock>
                 <Header dock-top />
                 <Footer dock-bottom />
-                <Toolbox dock-left dock-showDelay={300} dock-hideDelay={300} />
+                <Toolbox dock-left />
                 <DockWrapper dock-fill>
                     <main css={MainStyle}>
                         <TileGalleryView />

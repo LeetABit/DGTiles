@@ -5,7 +5,10 @@
 //  @jsxImportSource @emotion/react
 
 import Toolbar from '../../common/Toolbar';
+import EditTilesButton from '../../specialized/EditTilesButton';
 
 export default () => (
-    <Toolbar />
+    <Toolbar>
+        <EditTilesButton />
+    </Toolbar>
 );

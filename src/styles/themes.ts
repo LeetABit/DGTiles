@@ -10,6 +10,6 @@ export const GalleryColor: Property.Color = 'whitesmoke';
 export const DimerColor: Property.Color = 'rgba(0,0,0,.3)';
 export const theme: Theme = {
     workspace: {
-        background: `repeating-linear-gradient(45deg, ${GalleryColor}, ${GalleryColor} 10px, ${BackgroundColor} 10px, ${BackgroundColor} 20px)`,
+        background: `${GalleryColor}`,
     },
 };
