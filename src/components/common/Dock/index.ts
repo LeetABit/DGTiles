@@ -6,4 +6,4 @@
 
 export { default } from './Dock';
 export { default as DockWrapper } from './DockWrapper';
-export type { DockAttachedDirectionProps, DockAttachedDelayProps, DockAttachedProps } from './types';
+export type { DockAttachedProps } from './types';

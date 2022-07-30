@@ -6,39 +6,16 @@
 
 export type DockDirection = 'Top' | 'Bottom' | 'Left' | 'Right' | 'Fill';
 
-export interface DockAttachedDirectionProps {
-    'dock-top'?: boolean,
-    'dock-bottom'?: boolean,
-    'dock-left'?: boolean,
-    'dock-right'?: boolean,
-    'dock-fill'?: boolean,
+export const dockDirectionPropName = 'dock-direction';
+
+export interface DockAttachedProps {
+    'dock-direction'?: DockDirection,
 }
 
-export interface DockAttachedDelayProps {
-    'dock-showDelay'?: number,
-    'dock-hideDelay'?: number,
-}
-
-export interface DockAttachedProps extends DockAttachedDirectionProps, DockAttachedDelayProps {
-}
-
-export type DockAttachedDirectionProp = keyof DockAttachedDirectionProps;
-export type DockAttachedDelayProp = keyof DockAttachedDelayProps;
 export type DockAttachedProp = keyof DockAttachedProps;
 
-export const defaultDockAttachedDirectionProps: Required<DockAttachedDirectionProps> = {
-    'dock-top': false,
-    'dock-bottom': false,
-    'dock-left': false,
-    'dock-right': false,
-    'dock-fill': false,
+const fullDockAttachedProps: DockAttachedProps = {
+    'dock-direction': undefined,
 }
 
-export const dockAttachedDirectionProps = Object.getOwnPropertyNames(defaultDockAttachedDirectionProps) as DockAttachedDirectionProp[];
-
-export const defaultDockAttachedDelayProps: Required<DockAttachedDelayProps> = {
-    'dock-showDelay': 0,
-    'dock-hideDelay': 0,
-}
-
-export const dockAttachedDelayProps = Object.getOwnPropertyNames(defaultDockAttachedDelayProps) as DockAttachedDelayProp[];
+export const dockAttachedProps = Object.getOwnPropertyNames(fullDockAttachedProps) as DockAttachedProps[];

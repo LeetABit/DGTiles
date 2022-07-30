@@ -6,6 +6,7 @@
 
 import '@emotion/react';
 import type { Property } from 'csstype';
+import { DockDirection } from './components/common/Dock/types';
 
 declare module '@emotion/react' {
     export interface Theme {
@@ -17,12 +18,6 @@ declare module '@emotion/react' {
 
 declare module 'react' {
     export interface Attributes {
-        'dock-top'?: boolean,
-        'dock-bottom'?: boolean,
-        'dock-left'?: boolean,
-        'dock-right'?: boolean,
-        'dock-fill'?: boolean,
-        'dock-showDelay'?: number,
-        'dock-hideDelay'?: number,
+        'dock-direction'?: DockDirection,
     }
 }

@@ -5,7 +5,7 @@
 //  @jsxImportSource @emotion/react
 
 import { CSSObject } from '@emotion/react';
-import { PropsWithChildren } from 'react';
+import React from 'react';
 
 const style: CSSObject = {
     label: 'Toolbar-Main',
@@ -13,7 +13,7 @@ const style: CSSObject = {
     flexDirection: 'row',
 };
 
-export default ({ children }: PropsWithChildren) => (
+export default ({ children }: React.PropsWithChildren) => (
     <div css={style} role="toolbar">
         {children}
     </div>

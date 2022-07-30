@@ -4,14 +4,14 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { Dispatch, SetStateAction, useMemo, useRef, useState } from 'react';
+import React from 'react';
 
-export default <S>(initialState: S | (() => S), timeout: number | ((value: S) => number)): [S, Dispatch<SetStateAction<S>>] => {
-    const [value, setValue] = useState(initialState);
-    const timeoutForCurrentState = useMemo(() => ((typeof timeout === 'function') ? timeout(value) : timeout), [value]);
-    const timeoutId = useRef<NodeJS.Timeout>();
+export default <S>(initialState: S | (() => S), timeout: number | ((value: S) => number)): [S, React.Dispatch<React.SetStateAction<S>>] => {
+    const [value, setValue] = React.useState(initialState);
+    const timeoutForCurrentState = React.useMemo(() => ((typeof timeout === 'function') ? timeout(value) : timeout), [value]);
+    const timeoutId = React.useRef<NodeJS.Timeout>();
 
-    const setValueThrottled: Dispatch<SetStateAction<S>> = (action: SetStateAction<S>) => {
+    const setValueThrottled: React.Dispatch<React.SetStateAction<S>> = (action: React.SetStateAction<S>) => {
         clearTimeout(timeoutId.current);
         timeoutId.current = setTimeout(() => {
             setValue(action);

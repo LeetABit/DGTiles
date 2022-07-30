@@ -6,7 +6,7 @@
 
 import { CSSObject } from '@emotion/react';
 import FocusTrap from 'focus-trap-react';
-import { PropsWithChildren, useEffect } from 'react';
+import React from 'react';
 import { Fill } from '../../styles/layout';
 import { mergeStyles } from '../../styles/mergeStyles';
 import { BackgroundColor, DimerColor } from '../../styles/themes';
@@ -48,7 +48,7 @@ const contentStyle: CSSObject = {
     margin: '0.5rem',
 }
 
-export default ({ onClose, children }: PropsWithChildren<ModalDialogProps>) => {
+export default ({ onClose, children }: React.PropsWithChildren<ModalDialogProps>) => {
     const closeOnEscapeKey = (e: KeyboardEvent) => {
         if (e.key === 'Escape' && onClose) {
             onClose();
@@ -64,7 +64,7 @@ export default ({ onClose, children }: PropsWithChildren<ModalDialogProps>) => {
         window.removeEventListener('keydown', closeOnEscapeKey);
     };
 
-    useEffect(() => {
+    React.useEffect(() => {
         addListener();
         return removeListener;
     }, []);

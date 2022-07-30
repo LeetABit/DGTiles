@@ -5,15 +5,14 @@
 //  @jsxImportSource @emotion/react
 
 import { CSSObject, Global } from '@emotion/react';
+import React from 'react';
 import FullscreenViewport from '../../common/FullscreenViewport';
 import Footer from './Footer';
 import Header from './Header';
-import { Fill } from '../../../styles/layout';
-import { mergeStyles } from '../../../styles/mergeStyles';
 import Toolbox from './Toolbox';
-import TileGalleryView from '../tileGallery/TileGalleryView';
-import Dock from '../../common/Dock';
-import DockWrapper from '../../common/Dock/DockWrapper';
+import DockManager from '../../common/Dock/DockManager';
+import Workspace from './Workspace';
+import { DockDirection } from '../../common/Dock/types';
 
 const globalStyle : CSSObject = {
     body: {
@@ -21,24 +20,22 @@ const globalStyle : CSSObject = {
     },
 };
 
-const MainStyle: CSSObject = mergeStyles(Fill, {
-    label: 'MainView-Main',
-});
+type DockElement = [ DockDirection, React.ReactNode ];
 
-export default () => (
-    <>
-        <Global styles={globalStyle} />
-        <FullscreenViewport>
-            <Dock>
-                <Header dock-top />
-                <Footer dock-bottom />
-                <Toolbox dock-left />
-                <DockWrapper dock-fill>
-                    <main css={MainStyle}>
-                        <TileGalleryView />
-                    </main>
-                </DockWrapper>
-            </Dock>
-        </FullscreenViewport>
-    </>
-);
+const children: DockElement[] = [
+    ['Top', <Header key="header" />],
+    ['Bottom', <Footer key="footer" />],
+    ['Left', <Toolbox key="toolbox" />],
+    ['Fill', <Workspace key="workspace" />],
+];
+
+export default () => {
+    return (
+        <>
+            <Global styles={globalStyle} />
+            <FullscreenViewport>
+                <DockManager dockedNodes={children} />
+            </FullscreenViewport>
+        </>
+    );
+};

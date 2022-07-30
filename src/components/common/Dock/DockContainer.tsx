@@ -5,7 +5,7 @@
 //  @jsxImportSource @emotion/react
 
 import { CSSObject } from '@emotion/react'
-import { PropsWithChildren } from 'react'
+import React from 'react'
 import { Fill } from '../../../styles/layout';
 import { mergeStyles } from '../../../styles/mergeStyles';
 
@@ -16,7 +16,7 @@ export interface DockContainerProps {
     rightLines: string[],
 }
 
-export default ({ topLines, bottomLines, leftLines, rightLines, children }: PropsWithChildren<DockContainerProps>) => {
+export default ({ topLines, bottomLines, leftLines, rightLines, children }: React.PropsWithChildren<DockContainerProps>) => {
     const gridTemplateRows = `${topLines.join(' max-content ')} 1fr ${bottomLines.join(' max-content ')}`;
     const gridTemplateColumns = `${leftLines.join(' max-content ')} 1fr ${rightLines.join(' max-content ')}`;
 

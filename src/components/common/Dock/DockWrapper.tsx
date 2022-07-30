@@ -4,8 +4,8 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { PropsWithChildren } from 'react';
+import React from 'react';
 
-export default ({ children }: PropsWithChildren) => (
+export default ({ children }: React.PropsWithChildren) => (
     <>{children}</>
 );
