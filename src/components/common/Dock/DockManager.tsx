@@ -6,86 +6,34 @@
 
 import React from 'react'
 import DockContainer from './DockContainer';
-import DockItem, { DockItemProps } from './DockItem';
+import DockItem from './DockItem';
+import GridLineBuilder from './GridLineBuilder';
 import { DockDirection } from './types';
 
 export type DockedReactNode = [ DockDirection, React.ReactNode ];
-export interface RelocationInfo {
-    index: number,
-    dock: DockDirection,
-}
 
 export interface DockManagerProps {
     dockedNodes: DockedReactNode[],
 }
 
 export default ({ dockedNodes }: DockManagerProps) => {
-    let topLineCount = 1;
-    let bottomLineCount = 1;
-    let leftLineCount = 1;
-    let rightLineCount = 1;
+    const gridLineBuilder = new GridLineBuilder();
 
     const mapChild = (dockedNode: DockedReactNode, index: number) => {
         const [dock, child] = dockedNode;
+        const gridLocation = gridLineBuilder.push(dock);
+        const key: React.Key = (child && typeof child === 'object' && 'key' in child && child.key)
+            ? child.key
+            : index.toString(36);
 
-        const props: DockItemProps = {
-            rowStart: `top-${topLineCount}`,
-            rowEnd: `bottom-${bottomLineCount}`,
-            columnStart: `left-${leftLineCount}`,
-            columnEnd: `right-${rightLineCount}`,
-            dock,
-        };
-
-        let key: React.Key = index.toString(36);
-
-        if (child && typeof child === 'object' && 'props' in child) {
-            switch (dock) {
-                case 'Top': {
-                    ++topLineCount;
-                    props.rowEnd = `top-${topLineCount}`;
-                    break;
-                }
-
-                case 'Bottom': {
-                    ++bottomLineCount;
-                    props.rowStart = `bottom-${bottomLineCount}`;
-                    break;
-                }
-
-                case 'Left': {
-                    ++leftLineCount;
-                    props.columnEnd = `left-${leftLineCount}`;
-                    break;
-                }
-
-                case 'Right': {
-                    ++rightLineCount;
-                    props.columnStart = `right-${rightLineCount}`;
-                    break;
-                }
-
-                default: {
-                    break;
-                }
-            }
-
-            if (child.key) {
-                key = child.key;
-            }
-        }
-
-        return <DockItem key={key} {...props}>{child}</DockItem>
+        return <DockItem key={key} {...gridLocation}>{child}</DockItem>
     }
 
     const wrappedChildren = dockedNodes.map(mapChild);
-
-    const topLines = [...Array(topLineCount + 1).keys()].slice(1).map(num => `[top-${num}]`);
-    const bottomLines = [...Array(bottomLineCount + 1).keys()].slice(1).reverse().map(num => `[bottom-${num}]`);
-    const leftLines = [...Array(leftLineCount + 1).keys()].slice(1).map(num => `[left-${num}]`);
-    const rightLines = [...Array(rightLineCount + 1).keys()].slice(1).reverse().map(num => `[right-${num}]`);
+    const lines = gridLineBuilder.getLines();
 
     return (
-        <DockContainer topLines={topLines} bottomLines={bottomLines} leftLines={leftLines} rightLines={rightLines}>
+        <DockContainer {...lines}>
             {wrappedChildren}
         </DockContainer>
     );
