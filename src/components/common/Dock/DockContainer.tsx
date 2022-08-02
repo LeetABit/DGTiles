@@ -8,17 +8,15 @@ import { CSSObject } from '@emotion/react'
 import React from 'react'
 import { Fill } from '../../../styles/layout';
 import { mergeStyles } from '../../../styles/mergeStyles';
+import { GridLines } from './GridLineBuilder';
 
 export interface DockContainerProps {
-    topLines: string[],
-    bottomLines: string[],
-    leftLines: string[],
-    rightLines: string[],
+    lines: GridLines,
 }
 
-export default ({ topLines, bottomLines, leftLines, rightLines, children }: React.PropsWithChildren<DockContainerProps>) => {
-    const gridTemplateRows = `${topLines.join(' max-content ')} 1fr ${bottomLines.join(' max-content ')}`;
-    const gridTemplateColumns = `${leftLines.join(' max-content ')} 1fr ${rightLines.join(' max-content ')}`;
+export default ({ lines: { top, bottom, left, right }, children }: React.PropsWithChildren<DockContainerProps>) => {
+    const gridTemplateRows = `${top.join(' max-content ')} 1fr ${bottom.join(' max-content ')}`;
+    const gridTemplateColumns = `${left.join(' max-content ')} 1fr ${right.join(' max-content ')}`;
 
     const style: CSSObject = mergeStyles(Fill, {
         display: 'grid',

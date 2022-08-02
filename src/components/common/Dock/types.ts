@@ -4,7 +4,7 @@
 //
 //  @jsxImportSource @emotion/react
 
-export type DockDirection = 'Top' | 'Bottom' | 'Left' | 'Right' | 'Fill';
+export type DockDirection = 'top' | 'bottom' | 'left' | 'right' | 'fill';
 
 export const dockDirectionPropName = 'dock-direction';
 

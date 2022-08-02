@@ -33,7 +33,7 @@ export default ({ dockedNodes }: DockManagerProps) => {
     const lines = gridLineBuilder.getLines();
 
     return (
-        <DockContainer {...lines}>
+        <DockContainer lines={lines}>
             {wrappedChildren}
         </DockContainer>
     );

@@ -23,10 +23,10 @@ const globalStyle : CSSObject = {
 type DockElement = [ DockDirection, React.ReactNode ];
 
 const children: DockElement[] = [
-    ['Top', <Header key="header" />],
-    ['Bottom', <Footer key="footer" />],
-    ['Left', <Toolbox key="toolbox" />],
-    ['Fill', <Workspace key="workspace" />],
+    ['top', <Header key="header" />],
+    ['bottom', <Footer key="footer" />],
+    ['left', <Toolbox key="toolbox" />],
+    ['fill', <Workspace key="workspace" />],
 ];
 
 export default () => {

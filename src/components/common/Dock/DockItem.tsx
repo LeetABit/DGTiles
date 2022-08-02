@@ -6,23 +6,18 @@
 
 import { CSSObject } from '@emotion/react'
 import React from 'react'
-import { DockDirection } from './types'
+import { GridDockPosition } from './GridLineBuilder'
 
-export interface DockItemProps {
-    columnStart: string,
-    columnEnd: string,
-    rowStart: string,
-    rowEnd: string,
-    dock: DockDirection,
+export interface DockItemProps extends GridDockPosition {
 }
 
-export default ({ columnStart, columnEnd, rowStart, rowEnd, dock, children }: React.PropsWithChildren<DockItemProps>) => {
+export default ({ top, bottom, left, right, dock, children }: React.PropsWithChildren<DockItemProps>) => {
     const style: CSSObject = {
-        gridColumnStart: columnStart,
-        gridColumnEnd: columnEnd,
-        gridRowStart: rowStart,
-        gridRowEnd: rowEnd,
-        label: `Dock-${dock}`,
+        gridRowStart: top,
+        gridRowEnd: bottom,
+        gridColumnStart: left,
+        gridColumnEnd: right,
+        label: `Dock-${dock[0].toUpperCase()}${dock.slice(1)}`,
     }
 
     return (

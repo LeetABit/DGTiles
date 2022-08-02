@@ -7,37 +7,37 @@
 import { DockDirection } from './types';
 
 export interface GridDockPosition {
-    columnStart: string,
-    columnEnd: string,
-    rowStart: string,
-    rowEnd: string,
+    top: string,
+    bottom: string,
+    left: string,
+    right: string,
     dock: DockDirection,
 }
 
 export interface GridLines {
-    topLines: string[],
-    bottomLines: string[],
-    leftLines: string[],
-    rightLines: string[],
+    top: string[],
+    bottom: string[],
+    left: string[],
+    right: string[],
 }
 
 interface GridLineCount {
-    Top: number,
-    Bottom: number,
-    Left: number,
-    Right: number,
+    top: number,
+    bottom: number,
+    left: number,
+    right: number,
 }
 
-const reverseDirection = (direction: Exclude<DockDirection, 'Fill'>): Exclude<DockDirection, 'Fill'> => {
+const reverseDirection = (direction: Exclude<DockDirection, 'fill'>): Exclude<DockDirection, 'fill'> => {
     switch (direction) {
-        case 'Top':
-            return 'Bottom';
-        case 'Bottom':
-            return 'Top';
-        case 'Left':
-            return 'Right';
-        case 'Right':
-            return 'Left';
+        case 'top':
+            return 'bottom';
+        case 'bottom':
+            return 'top';
+        case 'left':
+            return 'right';
+        case 'right':
+            return 'left';
         default:
             throw new Error(`Specified dock direction '${direction}' is not supported.`);
     }
@@ -48,36 +48,36 @@ export default class {
 
     constructor() {
         this.count = {
-            Top: 1,
-            Bottom: 1,
-            Left: 1,
-            Right: 1,
+            top: 1,
+            bottom: 1,
+            left: 1,
+            right: 1,
         }
     }
 
     getLines(): GridLines {
         return {
-            topLines: [...Array(this.count.Top + 1).keys()].slice(1).map(num => `[top-${num}]`),
-            bottomLines: [...Array(this.count.Bottom + 1).keys()].slice(1).reverse().map(num => `[bottom-${num}]`),
-            leftLines: [...Array(this.count.Left + 1).keys()].slice(1).map(num => `[left-${num}]`),
-            rightLines: [...Array(this.count.Right + 1).keys()].slice(1).reverse().map(num => `[right-${num}]`),
+            top: [...Array(this.count.top + 1).keys()].slice(1).map(num => `[top${num}]`),
+            bottom: [...Array(this.count.bottom + 1).keys()].slice(1).reverse().map(num => `[bottom${num}]`),
+            left: [...Array(this.count.left + 1).keys()].slice(1).map(num => `[left${num}]`),
+            right: [...Array(this.count.right + 1).keys()].slice(1).reverse().map(num => `[right${num}]`),
         };
     }
 
     push(dock: DockDirection): GridDockPosition {
-        const indexes: GridLineCount = { ...this.count };
-
-        if (dock !== 'Fill') {
-            this.count[dock]++;
-            indexes[reverseDirection(dock)] = this.count[dock];
+        const result: GridDockPosition = {
+            top: `top${this.count.top}`,
+            bottom: `bottom${this.count.bottom}`,
+            left: `left${this.count.left}`,
+            right: `right${this.count.right}`,
+            dock,
         }
 
-        return {
-            rowStart: `Top-${indexes.Top}`,
-            rowEnd: `Bottom-${indexes.Bottom}`,
-            columnStart: `Left-${indexes.Left}`,
-            columnEnd: `Right-${indexes.Right}`,
-            dock,
-        };
+        if (dock !== 'fill') {
+            this.count[dock]++;
+            result[reverseDirection(dock)] = `${dock}${this.count[dock]}`;
+        }
+
+        return result;
     }
 }

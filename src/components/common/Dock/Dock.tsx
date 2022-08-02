@@ -10,7 +10,7 @@ import { DockDirection, dockDirectionPropName } from './types';
 
 export default ({ children }: React.PropsWithChildren) => {
     const dockedNodes: DockedReactNode[] = React.Children.toArray(children).filter(child => child).map(child => {
-        let dockDirection: DockDirection = 'Fill';
+        let dockDirection: DockDirection = 'fill';
 
         if (child && typeof child === 'object' && 'props' in child && dockDirectionPropName in child.props) {
             dockDirection = child.props[dockDirectionPropName];
