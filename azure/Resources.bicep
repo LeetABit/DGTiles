@@ -68,7 +68,7 @@ module B2CDirectory 'modules/B2CDirectory.bicep' = {
   scope: LeetABit_ResourceGroup
   params: {
     continent: continent
-    organizationName: '${toLower(organizationName)}'
+    organizationName: toLower(organizationName)
   }
 }
 

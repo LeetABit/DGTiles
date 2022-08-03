@@ -1,5 +1,6 @@
-# React basic
+# DGTiles
+[![Build status](https://github.com/LeetABit/DGTiles/actions/workflows/build.yml/badge.svg)](https://github.com/LeetABit/DGTiles/actions/workflows/build.yml)
 
-[Azure Static Web Apps](https://docs.microsoft.com/azure/static-web-apps/overview) allows you to easily build [React](https://reactjs.org/) apps in minutes. Use this repo with the [React quickstart](https://docs.microsoft.com/azure/static-web-apps/getting-started?tabs=react) to build and customize a new static site.
+Project for [dgtiles.com](https://dgtiles.com) website. This website serves the purpose of an online toolset which the user can customize and access via the tiles on the workspace.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The website name echoes this fact as a mashup of **"digital"** and **"tile"** words.
