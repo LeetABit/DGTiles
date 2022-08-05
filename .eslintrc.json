@@ -23,9 +23,9 @@
       "@typescript-eslint",
       "only-warn"
   ],
-  "ignorePatterns": ["*.svg", "*.json", "*.md"],
+  "ignorePatterns": ["*.svg", "*.json", "*.md", "*.bicep"],
   "rules": {
-    "import/extensions": [ "warn", "never", { "json": "always" } ],
+    "import/extensions": [ "warn", "never", { "json": "always", "mjs": "always" } ],
     "camelcase": [ "warn", { "allow": [ "jwks_uri", "client_id", "redirect_uri", "response_mode", "response_type" ] } ],
     "no-undef": "off",
     "max-len": [ "warn", { "code": 180 } ],
@@ -73,7 +73,7 @@
         "extensions": [
           ".js",
           ".jsx",
-          ".msx",
+          ".mjs",
           ".ts",
           ".tsx"
         ]

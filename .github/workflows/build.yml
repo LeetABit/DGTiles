@@ -24,17 +24,17 @@ jobs:
       - name: Get version
         id: gitVersion
         if: github.event_name == 'push'
-        uses: actions/github-script@v5
+        uses: actions/github-script@v6
         with:
           github-token: ${{ github.token }}
           script: |
-            const calculateGitVersion = require('./calculate-version.js');
+            const { default: calculateGitVersion } = await import('${{ github.workspace }}/scripts/calculateGitVersion.mjs');
             const gitVersion = await calculateGitVersion();
             return gitVersion.version;
 
       - name: Create tag
         if: github.event_name == 'push'
-        uses: actions/github-script@v5
+        uses: actions/github-script@v6
         with:
           github-token: ${{ github.token }}
           script: |

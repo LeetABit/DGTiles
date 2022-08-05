@@ -10,7 +10,7 @@ Automatic version bump simplifies version management and build system considerab
 Project should follow fast-to-production approach with very limited and incremental changes. Because of that the **main** branch should reflect version that is deployed
 or is about to be deployed to production environment. A small portion of changes may be committed directly to **main** branch after necessary QA. Larger changes should be
 handled by Pull Request mechanism that make use of additional environments offered by Azure Static Web App resource. As each commit on a **main** branch is being deployed
-to the production the version assigned to this commit should be incremented. This will be handled by calculate-version node script that will increment the version based on
+to the production the version assigned to this commit should be incremented. This will be handled by calculateGitVersion node script that will increment the version based on
 the commit messages. If the commit contains **Breaking** prefix the version is being bumped on major number. **Feature** prefix bumps minor version number. All other messages
 bump patch number.
 

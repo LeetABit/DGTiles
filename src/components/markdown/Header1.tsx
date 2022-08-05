@@ -4,7 +4,7 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { HeadingProps } from 'react-markdown/lib/ast-to-react';
+import type { HeadingProps } from 'react-markdown/lib/ast-to-react';
 
 export default ({ node: _, children, ...rest }: HeadingProps) => (
     <h1 id="h1" {...rest}>

@@ -5,9 +5,9 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "HTTP Backend Chrome",
+      "name": "HTTP Chrome",
       "request": "launch",
-      "type": "pwa-chrome",
+      "type": "chrome",
       "url": "http://localhost:4280",
       "webRoot": "${workspaceFolder}/src",
       "presentation": {
@@ -18,9 +18,9 @@
       },
     },
     {
-      "name": "HTTPS Frontend Chrome",
+      "name": "HTTPS Chrome",
       "request": "launch",
-      "type": "pwa-chrome",
+      "type": "chrome",
       "url": "https://localhost:5002",
       "webRoot": "${workspaceFolder}/src",
       "presentation": {
@@ -45,7 +45,7 @@
     {
       "name": "HTTP Static Web App",
       "configurations": [
-        "HTTP Backend Chrome",
+        "HTTP Chrome",
         "Static Web App"
       ],
       "stopAll": true,
@@ -53,7 +53,7 @@
     {
       "name": "HTTPS Static Web App",
       "configurations": [
-        "HTTPS Frontend Chrome",
+        "HTTPS Chrome",
         "Static Web App"
       ],
       "stopAll": true,
