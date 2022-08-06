@@ -13,8 +13,8 @@ import { BackgroundColor, DimerColor } from '../../styles/themes';
 import CloseButton from './CloseButton';
 import FullscreenViewport from './FullscreenViewport';
 
-export interface ModalDialogProps {
-    onClose?: () => void,
+interface Props {
+    onClose: () => void,
 }
 
 const flexStyle: CSSObject = mergeStyles(Fill, {
@@ -48,7 +48,7 @@ const contentStyle: CSSObject = {
     margin: '0.5rem',
 }
 
-export default ({ onClose, children }: React.PropsWithChildren<ModalDialogProps>) => {
+export default ({ onClose, children }: React.PropsWithChildren<Props>) => {
     const closeOnEscapeKey = (e: KeyboardEvent) => {
         if (e.key === 'Escape' && onClose) {
             onClose();

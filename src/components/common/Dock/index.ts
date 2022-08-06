@@ -6,4 +6,3 @@
 
 export { default } from './Dock';
 export { default as DockWrapper } from './DockWrapper';
-export type { DockAttachedProps } from './types';

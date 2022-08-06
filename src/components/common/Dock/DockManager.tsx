@@ -12,11 +12,11 @@ import { DockDirection } from './types';
 
 export type DockedReactNode = [ DockDirection, React.ReactNode ];
 
-export interface DockManagerProps {
+interface Props {
     dockedNodes: DockedReactNode[],
 }
 
-export default ({ dockedNodes }: DockManagerProps) => {
+export default ({ dockedNodes }: Props) => {
     const gridLineBuilder = new GridLineBuilder();
 
     const mapChild = (dockedNode: DockedReactNode, index: number) => {

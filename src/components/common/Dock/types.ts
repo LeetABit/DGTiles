@@ -7,15 +7,3 @@
 export type DockDirection = 'top' | 'bottom' | 'left' | 'right' | 'fill';
 
 export const dockDirectionPropName = 'dock-direction';
-
-export interface DockAttachedProps {
-    'dock-direction'?: DockDirection,
-}
-
-export type DockAttachedProp = keyof DockAttachedProps;
-
-const fullDockAttachedProps: DockAttachedProps = {
-    'dock-direction': undefined,
-}
-
-export const dockAttachedProps = Object.getOwnPropertyNames(fullDockAttachedProps) as DockAttachedProps[];

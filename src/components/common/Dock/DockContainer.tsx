@@ -10,11 +10,11 @@ import { Fill } from '../../../styles/layout';
 import { mergeStyles } from '../../../styles/mergeStyles';
 import { GridLines } from './GridLineBuilder';
 
-export interface DockContainerProps {
+interface Props {
     lines: GridLines,
 }
 
-export default ({ lines: { top, bottom, left, right }, children }: React.PropsWithChildren<DockContainerProps>) => {
+export default ({ lines: { top, bottom, left, right }, children }: React.PropsWithChildren<Props>) => {
     const gridTemplateRows = `${top.join(' max-content ')} 1fr ${bottom.join(' max-content ')}`;
     const gridTemplateColumns = `${left.join(' max-content ')} 1fr ${right.join(' max-content ')}`;
 

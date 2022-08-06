@@ -6,9 +6,13 @@ import { CSSObject } from '@emotion/react';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const mergeProperties = (target: any, source: any): void => {
+    if (!source) {
+        return;
+    }
+
     const destination = target;
     Object.keys(source).forEach(key => {
-        if (target[key]) {
+        if (destination[key]) {
             mergeProperties(destination[key], source[key]);
         } else {
             destination[key] = source[key];
@@ -16,7 +20,7 @@ const mergeProperties = (target: any, source: any): void => {
     });
 }
 
-export const mergeStyles = (...styles: CSSObject[]): CSSObject => {
+export const mergeStyles = (...styles: (CSSObject | undefined)[]): CSSObject => {
     const result: CSSObject = {};
     styles.forEach(style => mergeProperties(result, style));
     return result;

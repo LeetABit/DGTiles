@@ -4,15 +4,15 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { useAppDispatch } from '../../hooks/stateHooks';
-import { toggleIsActive, isActive } from '../../states/tileEditor';
+import { useAppDispatch, useAppSelector } from '../../hooks/stateHooks';
+import { toggleIsActive } from '../../states/tileEditor';
 
 export default () => {
-    const isTileEditorActive = isActive();
+    const isTileEditorActive = useAppSelector((state) => state.tileEditor.isActive)
     const dispatch = useAppDispatch();
 
     return (
-        <button type="button" onClick={toggleIsActive(dispatch)}>
+        <button type="button" onClick={() => dispatch(toggleIsActive())}>
             {isTileEditorActive ? 'Exit' : 'Edit'}
         </button>
     );

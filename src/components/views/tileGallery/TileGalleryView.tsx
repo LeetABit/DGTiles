@@ -4,18 +4,22 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { useTheme } from '@emotion/react';
-import { Fill } from '../../../styles/layout';
-import { mergeStyles } from '../../../styles/mergeStyles';
+import ClosableBox from '../../common/ClosableBox';
+import FlowContainer from '../../common/FlowContainer';
+import { removeItem } from '../../../states/tileEditor';
+import { useAppDispatch, useAppSelector } from '../../../hooks/stateHooks';
 
 export default () => {
-    const theme = useTheme();
+    const items = useAppSelector((state) => state.tileEditor.items);
+    const dispatch = useAppDispatch();
 
-    const style = mergeStyles(Fill, { ...theme.workspace });
+    const remove = (index: number) => {
+        dispatch(removeItem(index));
+    }
 
     return (
-        <div css={style}>
-            WIP
-        </div>
+        <FlowContainer>
+            {items.map((item, index) => <ClosableBox onClose={() => remove(index)} key={item}>WIP</ClosableBox>)}
+        </FlowContainer>
     );
 }

@@ -8,10 +8,10 @@ import { CSSObject } from '@emotion/react'
 import React from 'react'
 import { GridDockPosition } from './GridLineBuilder'
 
-export interface DockItemProps extends GridDockPosition {
+interface Props extends GridDockPosition {
 }
 
-export default ({ top, bottom, left, right, dock, children }: React.PropsWithChildren<DockItemProps>) => {
+export default ({ top, bottom, left, right, dock, children }: React.PropsWithChildren<Props>) => {
     const style: CSSObject = {
         gridRowStart: top,
         gridRowEnd: bottom,

@@ -12,6 +12,7 @@ import TileGalleryView from '../tileGallery/TileGalleryView';
 
 const style: CSSObject = mergeStyles(Fill, {
     label: 'Workspace-Main',
+    position: 'relative',
 });
 
 export default () => (

@@ -6,9 +6,16 @@
 
 import Toolbar from '../../common/Toolbar';
 import EditTilesButton from '../../specialized/EditTilesButton';
+import AddTileButton from '../../specialized/AddTileButton';
+import { useAppSelector } from '../../../hooks/stateHooks';
 
-export default () => (
-    <Toolbar>
-        <EditTilesButton />
-    </Toolbar>
-);
+export default () => {
+    const isTileEditorActive = useAppSelector((state) => state.tileEditor.isActive);
+
+    return (
+        <Toolbar direction="column">
+            <EditTilesButton />
+            { isTileEditorActive && <AddTileButton />}
+        </Toolbar>
+    );
+}

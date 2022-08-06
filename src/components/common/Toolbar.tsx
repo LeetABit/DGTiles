@@ -6,15 +6,34 @@
 
 import { CSSObject } from '@emotion/react';
 import React from 'react';
+import { mergeStyles } from '../../styles/mergeStyles';
 
-const style: CSSObject = {
+export type ToolbarDirection = 'row' | 'column';
+
+interface Props {
+    direction?: ToolbarDirection
+}
+
+const baseStyle: CSSObject = {
     label: 'Toolbar-Main',
     display: 'flex',
+};
+
+const rowStyle: CSSObject = {
     flexDirection: 'row',
 };
 
-export default ({ children }: React.PropsWithChildren) => (
-    <div css={style} role="toolbar">
-        {children}
-    </div>
-);
+const columnStyle: CSSObject = {
+    flexDirection: 'column',
+};
+
+export default ({ direction = 'row', children }: React.PropsWithChildren<Props>) => {
+    const directionStyle = direction === 'row' ? rowStyle : columnStyle;
+    const style = mergeStyles(baseStyle, directionStyle);
+
+    return (
+        <div css={style} role="toolbar">
+            {children}
+        </div>
+    );
+}

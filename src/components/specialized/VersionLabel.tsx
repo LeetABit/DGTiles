@@ -6,7 +6,7 @@
 
 import gitVersion from '../../gitVersion.json';
 
-export interface VersionLabelProps {
+interface Props {
     displayDate?: boolean
 }
 
@@ -17,7 +17,7 @@ const versionString : string = `${gitVersion.version
     + `+Sha.${gitVersion.sha}`
     + `+Timestamp.${gitVersion.buildSafeTime}`;
 
-export default ({ displayDate = false }) => (
+export default ({ displayDate = false }: Props) => (
     <>
         <div>
             <span>Version:</span>

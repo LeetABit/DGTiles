@@ -8,12 +8,12 @@ import React from 'react';
 import { Link, Outlet, Route, Routes } from 'react-router-dom';
 import RoutedModalDialog from './RoutedModalDialog';
 
-export interface ModalDialogLinkProps {
+interface Props {
     content: React.ReactNode,
     to: string,
 }
 
-export default ({ content, to, children }: React.PropsWithChildren<ModalDialogLinkProps>) => {
+export default ({ content, to, children }: React.PropsWithChildren<Props>) => {
     const dialog = <RoutedModalDialog>{content}</RoutedModalDialog>;
 
     return (

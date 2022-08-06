@@ -1,19 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { useAppSelector } from '../hooks/stateHooks';
-import { AppDispatch } from '../store';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 const editingTiles = createSlice({
     name: 'tileEditor',
     initialState: {
         isActive: false,
+        items: [] as number[],
+        lastItem: 0,
     },
     reducers: {
-        toggleIsActive: (state) => ({ isActive: !state.isActive }),
+        toggleIsActive: (state) => { state.isActive = !state.isActive },
+        addItem: (state) => { state.items = [...(state.items), state.lastItem]; ++state.lastItem },
+        removeItem: (state, action: PayloadAction<number>) => { state.items.splice(action.payload, 1) },
     },
 })
 
 export default editingTiles.reducer;
-export const isActive = () => useAppSelector(state => state.tileEditor.isActive);
-export const toggleIsActive = (dispatch: AppDispatch) => {
-    return () => dispatch(editingTiles.actions.toggleIsActive());
-}
+export const { toggleIsActive, addItem, removeItem } = editingTiles.actions

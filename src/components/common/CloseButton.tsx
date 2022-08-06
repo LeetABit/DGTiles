@@ -9,9 +9,9 @@ import { DiagonalCross } from '../../styles/icons';
 import { mergeStyles } from '../../styles/mergeStyles';
 import { MainColor } from '../../styles/themes';
 
-interface CloseButtonProps {
+interface Props {
     shiftContentDown?: boolean,
-    onClick?: () => void,
+    onClick: () => void,
 }
 
 const style : CSSObject = mergeStyles(DiagonalCross, {
@@ -25,7 +25,7 @@ const style : CSSObject = mergeStyles(DiagonalCross, {
     cursor: 'pointer',
 });
 
-export default ({ shiftContentDown = false, onClick = () => {} }: CloseButtonProps) => {
+export default ({ shiftContentDown = false, onClick }: Props) => {
     const additionalStyle: CSSObject = (shiftContentDown)
         ? { position: 'relative' }
         : { position: 'absolute', right: '0px' };
