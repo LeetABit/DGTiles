@@ -12,6 +12,7 @@ import { mergeStyles } from '../../styles/mergeStyles';
 const style : CSSObject = mergeStyles(FullScreen, {
     label: 'FullscreenViewport-Main',
     overflow: 'auto',
+    wordBreak: 'break-all',
 });
 
 const fitContentStyle: CSSObject = mergeStyles(Fill, {
