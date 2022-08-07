@@ -4,7 +4,7 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { CSSObject, useTheme } from '@emotion/react';
+import { CSSObject } from '@emotion/react';
 import React, { useMemo } from 'react';
 import { Fill } from '../../styles/layout';
 import { mergeStyles } from '../../styles/mergeStyles';
@@ -19,6 +19,7 @@ const baseStyle: CSSObject = {
     alignContent: 'flex-start',
     boxSizing: 'border-box',
     label: 'FlowContainer-Main',
+    overflow: 'auto',
 };
 
 const rowStyle: CSSObject = {
@@ -34,8 +35,7 @@ const calculateDirection = () => {
 }
 
 export default ({ children }: React.PropsWithChildren) => {
-    const theme = useTheme();
-    const mergedStyle = mergeStyles(Fill, baseStyle, { ...theme.workspace });
+    const mergedStyle = mergeStyles(Fill, baseStyle);
     const [direction, setDirection] = React.useState<CSSObject>(calculateDirection());
 
     const style = useMemo(() => {

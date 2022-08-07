@@ -4,21 +4,26 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { CSSObject } from '@emotion/react';
+import { CSSObject, useTheme } from '@emotion/react';
 import { Fill } from '../../../styles/layout';
 import { mergeStyles } from '../../../styles/mergeStyles';
 import { DockWrapper } from '../../common/Dock';
 import TileGalleryView from '../tileGallery/TileGalleryView';
 
-const style: CSSObject = mergeStyles(Fill, {
+const baseStyle: CSSObject = mergeStyles(Fill, {
     label: 'Workspace-Main',
     position: 'relative',
 });
 
-export default () => (
-    <DockWrapper>
-        <main css={style}>
-            <TileGalleryView />
-        </main>
-    </DockWrapper>
-);
+export default () => {
+    const theme = useTheme();
+    const style = mergeStyles(baseStyle, { ...theme.workspace });
+
+    return (
+        <DockWrapper>
+            <main css={style}>
+                <TileGalleryView />
+            </main>
+        </DockWrapper>
+    );
+};
