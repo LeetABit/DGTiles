@@ -4,16 +4,11 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React, { useEffect } from 'react';
-import { ModalDialogSetterContext } from './ModalDialogProvider';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { ModalDialogGetterContext } from './ModalDialogProvider';
 
 export default ({ children }: React.PropsWithChildren) => {
-    const modalDialogSetter = React.useContext(ModalDialogSetterContext);
-
-    useEffect(() => {
-        modalDialogSetter(children);
-        return () => modalDialogSetter(null);
-    })
-
-    return null;
+    const modalDialog = React.useContext(ModalDialogGetterContext);
+    return modalDialog ? ReactDOM.createPortal(children, modalDialog) : null;
 };

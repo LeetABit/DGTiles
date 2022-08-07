@@ -4,12 +4,17 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { ModalDialogGetterContext } from './ModalDialogProvider';
+import { CSSObject } from '@emotion/react';
+import React from 'react';
+import { ModalDialogSetterContext } from './ModalDialogProvider';
 
 export default () => {
+    const setter = React.useContext(ModalDialogSetterContext);
+    const style: CSSObject = {
+        label: 'ModalDialogPlaceholder-Main',
+    }
+
     return (
-        <ModalDialogGetterContext.Consumer>
-            {value => value}
-        </ModalDialogGetterContext.Consumer>
+        <div css={style} ref={setter} />
     );
 };

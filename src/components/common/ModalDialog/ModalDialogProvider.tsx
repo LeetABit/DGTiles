@@ -6,12 +6,12 @@
 
 import React, { useCallback } from 'react';
 
-export const ModalDialogSetterContext = React.createContext<(dialog: React.ReactNode) => void>((_) => {});
-export const ModalDialogGetterContext = React.createContext<React.ReactNode>(null);
+export const ModalDialogSetterContext = React.createContext<(dialog: HTMLDivElement) => void>((_) => {});
+export const ModalDialogGetterContext = React.createContext<HTMLDivElement | null>(null);
 
 export default ({ children }: React.PropsWithChildren) => {
-    const [dialog, setDialog] = React.useState<React.ReactNode>(null);
-    const setModalDialog = useCallback((newDialog: React.ReactNode) => {
+    const [dialog, setDialog] = React.useState<HTMLDivElement | null>(null);
+    const setModalDialog = useCallback((newDialog: HTMLDivElement) => {
         setDialog(newDialog);
     }, [setDialog]);
 
