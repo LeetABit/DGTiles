@@ -11,19 +11,25 @@ import { PersistGate } from 'redux-persist/integration/react';
 import MainView from './components/views/main/MainView';
 import { theme } from './styles/themes';
 import { persistor, store } from './store';
+import { ModalDialogProvider, ModalDialogPlaceholder } from './components/common/ModalDialog';
 
 interface Props {
     basename?: string,
 }
 
-export default ({ basename } : Props) => (
-    <ThemeProvider theme={theme}>
-        <BrowserRouter basename={basename}>
-            <Provider store={store}>
-                <PersistGate loading={null} persistor={persistor}>
-                    <MainView />
-                </PersistGate>
-            </Provider>
-        </BrowserRouter>
-    </ThemeProvider>
-);
+export default ({ basename } : Props) => {
+    return (
+        <ThemeProvider theme={theme}>
+            <BrowserRouter basename={basename}>
+                <Provider store={store}>
+                    <PersistGate loading={null} persistor={persistor}>
+                        <ModalDialogProvider>
+                            <MainView />
+                            <ModalDialogPlaceholder />
+                        </ModalDialogProvider>
+                    </PersistGate>
+                </Provider>
+            </BrowserRouter>
+        </ThemeProvider>
+    );
+};

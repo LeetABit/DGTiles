@@ -11,7 +11,7 @@ export const Fill: CSSObject = {
 }
 
 export const FullScreen: CSSObject = mergeStyles(Fill, {
-    position: 'fixed',
+    position: 'absolute',
     left: '0px',
     top: '0px',
 });

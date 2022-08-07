@@ -4,7 +4,7 @@
 //
 //  @jsxImportSource @emotion/react
 
-import ModalDialogLink from '../common/ModalDialogLink';
+import { ModalDialogLink } from '../common/ModalDialog';
 import TermsOfUse from '../documents/TermsOfUse';
 
 export default () => (

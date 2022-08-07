@@ -62,7 +62,12 @@
     "@typescript-eslint/no-shadow": "warn",
     "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["state"] }],
     "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }],
+    "@typescript-eslint/no-unused-vars": ["error", {
+      "ignoreRestSiblings": true,
+      "argsIgnorePattern": "^_",
+      "varsIgnorePattern": "^_",
+      "caughtErrorsIgnorePattern": "^_"
+    }],
     "react/jsx-props-no-spreading": "off",
     "react/require-default-props": "off",
     "react/prop-types": "off"

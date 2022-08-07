@@ -7,11 +7,11 @@
 import { CSSObject } from '@emotion/react';
 import FocusTrap from 'focus-trap-react';
 import React from 'react';
-import { Fill } from '../../styles/layout';
-import { mergeStyles } from '../../styles/mergeStyles';
-import { BackgroundColor, DimerColor } from '../../styles/themes';
-import CloseButton from './CloseButton';
-import FullscreenViewport from './FullscreenViewport';
+import { Fill } from '../../../styles/layout';
+import { mergeStyles } from '../../../styles/mergeStyles';
+import { BackgroundColor, DimerColor } from '../../../styles/themes';
+import CloseButton from '../CloseButton';
+import FullscreenViewport from '../FullscreenViewport';
 
 interface Props {
     onClose: () => void,

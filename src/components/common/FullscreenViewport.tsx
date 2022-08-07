@@ -11,7 +11,7 @@ import { mergeStyles } from '../../styles/mergeStyles';
 
 const style : CSSObject = mergeStyles(FullScreen, {
     label: 'FullscreenViewport-Main',
-    overflow: 'auto',
+    overflow: 'hidden',
     wordBreak: 'break-all',
 });
 
