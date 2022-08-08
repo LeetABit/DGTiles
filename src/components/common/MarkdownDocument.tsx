@@ -14,7 +14,7 @@ interface Props {
 }
 
 const style : CSSObject = {
-    label: 'MarkdownDocument-Main',
+    label: 'MarkdownDocument',
     wordBreak: 'break-word',
 };
 

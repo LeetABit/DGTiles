@@ -5,19 +5,23 @@
 //  @jsxImportSource @emotion/react
 
 import { CSSObject, useTheme } from '@emotion/react';
-import { Fill } from '../../../styles/layout';
+import { useMemo } from 'react';
 import { mergeStyles } from '../../../styles/mergeStyles';
 import { DockWrapper } from '../../common/Dock';
 import TileGalleryView from '../tileGallery/TileGalleryView';
 
-const baseStyle: CSSObject = mergeStyles(Fill, {
-    label: 'Workspace-Main',
+const baseStyle: CSSObject = {
+    label: 'Workspace',
     position: 'relative',
-});
+    width: '100%',
+    height: '100%',
+};
 
 export default () => {
     const theme = useTheme();
-    const style = mergeStyles(baseStyle, { ...theme.workspace });
+    const style = useMemo(() => {
+        return mergeStyles(baseStyle, { ...theme.workspace });
+    }, [theme.workspace]);
 
     return (
         <DockWrapper>

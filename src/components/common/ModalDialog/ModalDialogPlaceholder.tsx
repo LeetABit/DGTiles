@@ -11,7 +11,7 @@ import { ModalDialogSetterContext } from './ModalDialogProvider';
 export default () => {
     const setter = React.useContext(ModalDialogSetterContext);
     const style: CSSObject = {
-        label: 'ModalDialogPlaceholder-Main',
+        label: 'ModalDialogPlaceholder',
     }
 
     return (

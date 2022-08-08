@@ -6,10 +6,12 @@
 
 import { CSSObject } from '@emotion/react';
 import React, { useMemo } from 'react';
-import { Fill } from '../../styles/layout';
 import { mergeStyles } from '../../styles/mergeStyles';
 
 const baseStyle: CSSObject = {
+    label: 'FlowContainer',
+    width: '100%',
+    height: '100%',
     position: 'absolute',
     display: 'flex',
     flexWrap: 'wrap',
@@ -18,7 +20,6 @@ const baseStyle: CSSObject = {
     columnGap: '10px',
     alignContent: 'flex-start',
     boxSizing: 'border-box',
-    label: 'FlowContainer-Main',
     overflow: 'auto',
 };
 
@@ -35,11 +36,10 @@ const calculateDirection = () => {
 }
 
 export default ({ children }: React.PropsWithChildren) => {
-    const mergedStyle = mergeStyles(Fill, baseStyle);
     const [direction, setDirection] = React.useState<CSSObject>(calculateDirection());
 
     const style = useMemo(() => {
-        return mergeStyles(mergedStyle, direction);
+        return mergeStyles(baseStyle, direction);
     }, [window.innerWidth, window.innerHeight]);
 
     React.useEffect(() => {

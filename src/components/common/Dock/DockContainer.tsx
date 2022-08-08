@@ -6,8 +6,6 @@
 
 import { CSSObject } from '@emotion/react'
 import React from 'react'
-import { Fill } from '../../../styles/layout';
-import { mergeStyles } from '../../../styles/mergeStyles';
 import { GridLines } from './GridLineBuilder';
 
 interface Props {
@@ -18,12 +16,14 @@ export default ({ lines: { top, bottom, left, right }, children }: React.PropsWi
     const gridTemplateRows = `${top.join(' max-content ')} 1fr ${bottom.join(' max-content ')}`;
     const gridTemplateColumns = `${left.join(' max-content ')} 1fr ${right.join(' max-content ')}`;
 
-    const style: CSSObject = mergeStyles(Fill, {
+    const style: CSSObject = {
+        label: 'DockContainer',
+        width: '100%',
+        height: '100%',
         display: 'grid',
         gridTemplateRows,
         gridTemplateColumns,
-        label: 'Dock-Container',
-    });
+    };
 
     return (
         <div css={style}>

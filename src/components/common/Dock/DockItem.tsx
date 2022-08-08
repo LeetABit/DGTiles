@@ -13,11 +13,11 @@ interface Props extends GridDockPosition {
 
 export default ({ top, bottom, left, right, dock, children }: React.PropsWithChildren<Props>) => {
     const style: CSSObject = {
+        label: `DockItem-${dock[0].toUpperCase()}${dock.slice(1)}`,
         gridRowStart: top,
         gridRowEnd: bottom,
         gridColumnStart: left,
         gridColumnEnd: right,
-        label: `Dock-${dock[0].toUpperCase()}${dock.slice(1)}`,
     }
 
     return (

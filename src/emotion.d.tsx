@@ -6,7 +6,7 @@
 
 import '@emotion/react';
 import type { Property } from 'csstype';
-import { DockDirection } from './components/common/Dock/types';
+import { DockDirection } from './components/common/Dock';
 
 declare module '@emotion/react' {
     export interface Theme {

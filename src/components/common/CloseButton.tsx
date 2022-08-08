@@ -10,26 +10,23 @@ import { mergeStyles } from '../../styles/mergeStyles';
 import { MainColor } from '../../styles/themes';
 
 interface Props {
-    shiftContentDown?: boolean,
     onClick: () => void,
 }
 
 const style : CSSObject = mergeStyles(DiagonalCross, {
-    label: 'CloseButton-Main',
+    label: 'CloseButton',
     width: '1rem',
     height: '1rem',
     margin: '0.5rem',
     '&:before, &:after': {
-        background: MainColor,
+        backgroundColor: MainColor,
     },
     cursor: 'pointer',
+    position: 'absolute',
+    right: '0px',
+    top: '0px',
 });
 
-export default ({ shiftContentDown = false, onClick }: Props) => {
-    const additionalStyle: CSSObject = (shiftContentDown)
-        ? { position: 'relative' }
-        : { position: 'absolute', right: '0px' };
-
-    const mergedStyle = mergeStyles(style, additionalStyle);
-    return <button type="button" css={mergedStyle} onClick={onClick} aria-label="close" />;
+export default ({ onClick }: Props) => {
+    return <button type="button" css={style} onClick={onClick} aria-label="close" />;
 }

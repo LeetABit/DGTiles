@@ -12,9 +12,10 @@ import Header from './Header';
 import Toolbox from './Toolbox';
 import DockManager from '../../common/Dock/DockManager';
 import Workspace from './Workspace';
-import { DockDirection } from '../../common/Dock/types';
+import { DockDirection } from '../../common/Dock';
 
 const globalStyle : CSSObject = {
+    label: 'MainView',
     body: {
         margin: '0px',
     },

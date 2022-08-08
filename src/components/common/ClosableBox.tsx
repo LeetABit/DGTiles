@@ -15,6 +15,7 @@ interface Props {
 }
 
 const style: CSSObject = {
+    label: 'ClosableBox',
     position: 'relative',
     backgroundColor: 'white',
 }
@@ -24,7 +25,7 @@ export default ({ onClose, children }: React.PropsWithChildren<Props>) => {
 
     return (
         <div css={style}>
-            {isTileEditorActive && <CloseButton shiftContentDown onClick={onClose} />}
+            {isTileEditorActive && <CloseButton onClick={onClose} />}
             {children}
         </div>
     );
