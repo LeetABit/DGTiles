@@ -4,7 +4,6 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { CSSObject, Global } from '@emotion/react';
 import React from 'react';
 import FullscreenViewport from '../../common/FullscreenViewport';
 import Footer from './Footer';
@@ -13,13 +12,6 @@ import Toolbox from './Toolbox';
 import DockManager from '../../common/Dock/DockManager';
 import Workspace from './Workspace';
 import { DockDirection } from '../../common/Dock';
-
-const globalStyle : CSSObject = {
-    label: 'MainView',
-    body: {
-        margin: '0px',
-    },
-};
 
 type DockElement = [ DockDirection, React.ReactNode ];
 
@@ -32,11 +24,8 @@ const children: DockElement[] = [
 
 export default () => {
     return (
-        <>
-            <Global styles={globalStyle} />
-            <FullscreenViewport>
-                <DockManager dockedNodes={children} />
-            </FullscreenViewport>
-        </>
+        <FullscreenViewport>
+            <DockManager dockedNodes={children} />
+        </FullscreenViewport>
     );
 };

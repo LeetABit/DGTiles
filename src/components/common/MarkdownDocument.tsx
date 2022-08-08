@@ -7,6 +7,7 @@
 import { CSSObject } from '@emotion/react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import Anchor from '../markdown/Anchor';
 import Header1 from '../markdown/Header1';
 
 interface Props {
@@ -22,7 +23,7 @@ export default ({ content }: Props) => (
     <div css={style}>
         <ReactMarkdown
             remarkPlugins={[remarkGfm]}
-            components={{ h1: Header1 }}
+            components={{ h1: Header1, a: Anchor }}
         >
             {content}
         </ReactMarkdown>
