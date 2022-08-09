@@ -19,7 +19,7 @@ export default () => {
 
     return (
         <FlowContainer>
-            {items.map((item, index) => <ClosableBox onClose={() => remove(index)} key={item}>WIP</ClosableBox>)}
+            {items.map((item, index) => <ClosableBox onClose={() => remove(index)} key={item}>{`WIP ${item}`}</ClosableBox>)}
         </FlowContainer>
     );
 }

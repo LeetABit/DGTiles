@@ -14,8 +14,8 @@ interface Props {
 
 const style : CSSObject = mergeStyles(DiagonalCross, {
     label: 'CloseButton',
-    width: '1em',
-    height: '1em',
+    width: '1rem',
+    height: '1rem',
     cursor: 'pointer',
     position: 'relative',
     float: 'right',

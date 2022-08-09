@@ -12,7 +12,7 @@ export const DiagonalCross : CSSObject = {
         content: '""',
         position: 'absolute',
         height: '100%',
-        width: '10%',
+        width: '5%',
         backgroundColor: 'currentColor',
     },
     '&:before': {
