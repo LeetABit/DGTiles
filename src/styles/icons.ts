@@ -10,13 +10,15 @@ export const DiagonalCross : CSSObject = {
     padding: 0,
     '&:before, &:after': {
         content: '""',
-        width: '1px',
-        height: '100%',
-        transform: 'rotate(45deg) translateX(0px)',
         position: 'absolute',
-        top: '0',
+        height: '100%',
+        width: '10%',
+        backgroundColor: 'currentColor',
+    },
+    '&:before': {
+        transform: 'translate(-50%, -50%) rotate(45deg)',
     },
     '&:after': {
-        transform: 'rotate(-45deg) translateX(0px)',
+        transform: 'translate(-50%, -50%) rotate(-45deg)',
     },
 };

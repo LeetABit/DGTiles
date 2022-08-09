@@ -12,7 +12,7 @@ const mergeProperties = (target: any, source: any): void => {
 
     const destination = target;
     Object.keys(source).forEach(key => {
-        if (destination[key]) {
+        if (typeof (destination[key]) === 'object' && typeof (source[key]) === 'object') {
             mergeProperties(destination[key], source[key]);
         } else {
             destination[key] = source[key];

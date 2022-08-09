@@ -7,7 +7,6 @@
 import { CSSObject } from '@emotion/react';
 import { DiagonalCross } from '../../styles/icons';
 import { mergeStyles } from '../../styles/mergeStyles';
-import { MainColor } from '../../styles/themes';
 
 interface Props {
     onClick: () => void,
@@ -15,16 +14,11 @@ interface Props {
 
 const style : CSSObject = mergeStyles(DiagonalCross, {
     label: 'CloseButton',
-    width: '1rem',
-    height: '1rem',
-    margin: '0.5rem',
-    '&:before, &:after': {
-        backgroundColor: MainColor,
-    },
+    width: '1em',
+    height: '1em',
     cursor: 'pointer',
-    position: 'absolute',
-    right: '0px',
-    top: '0px',
+    position: 'relative',
+    float: 'right',
 });
 
 export default ({ onClick }: Props) => {
