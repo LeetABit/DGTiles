@@ -5,7 +5,7 @@
 //  @jsxImportSource @emotion/react
 
 import { CSSObject } from '@emotion/react';
-import React, { useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { mergeStyles } from '../../styles/mergeStyles';
 
 const baseStyle: CSSObject = {
@@ -37,6 +37,7 @@ const calculateDirection = () => {
 
 export default ({ children }: React.PropsWithChildren) => {
     const [direction, setDirection] = React.useState<CSSObject>(calculateDirection());
+    const divRef = React.useRef<HTMLDivElement>(null);
 
     const style = useMemo(() => {
         return mergeStyles(baseStyle, direction);
@@ -51,8 +52,23 @@ export default ({ children }: React.PropsWithChildren) => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    const handleWheelEvent = useCallback((e: WheelEvent) => {
+        if (divRef.current) {
+            divRef.current.scrollLeft += e.deltaY;
+        }
+    }, [divRef]);
+
+    useEffect(() => {
+        if (direction === columnStyle && divRef.current) {
+            divRef.current.addEventListener('wheel', handleWheelEvent);
+            return () => divRef.current?.removeEventListener('wheel', handleWheelEvent);
+        }
+
+        return undefined;
+    }, [direction, handleWheelEvent]);
+
     return (
-        <div css={style}>
+        <div ref={divRef} css={style}>
             {children}
         </div>
     );
