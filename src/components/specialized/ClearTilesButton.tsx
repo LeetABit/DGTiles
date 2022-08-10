@@ -5,17 +5,12 @@
 //  @jsxImportSource @emotion/react
 
 import { useAppDispatch } from '../../hooks/stateHooks';
-import { clearItems } from '../../states/tileEditor';
+import { clearTiles } from '../../states/tiles';
 
 export default () => {
     const dispatch = useAppDispatch();
-
-    const clear = () => {
-        dispatch(clearItems());
-    };
-
     return (
-        <button type="button" onClick={clear}>
+        <button type="button" onClick={() => dispatch(clearTiles())}>
             Clear
         </button>
     );

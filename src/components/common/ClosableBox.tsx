@@ -21,7 +21,7 @@ const style: CSSObject = {
 }
 
 export default ({ onClose, children }: React.PropsWithChildren<Props>) => {
-    const isTileEditorActive = useAppSelector((state: RootState) => state.tileEditor.isActive)
+    const isTileEditorActive = useAppSelector((state: RootState) => state.editor.isActive)
 
     return (
         <div css={style}>

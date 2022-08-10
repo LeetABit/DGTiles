@@ -6,20 +6,16 @@
 
 import ClosableBox from '../../common/ClosableBox';
 import FlowContainer from '../../common/FlowContainer';
-import { removeItem } from '../../../states/tileEditor';
+import { removeTile } from '../../../states/tiles';
 import { useAppDispatch, useAppSelector } from '../../../hooks/stateHooks';
 
 export default () => {
-    const items = useAppSelector((state) => state.tileEditor.items);
+    const items = useAppSelector((state) => state.tiles.items);
     const dispatch = useAppDispatch();
-
-    const remove = (index: number) => {
-        dispatch(removeItem(index));
-    }
 
     return (
         <FlowContainer>
-            {items.map((item, index) => <ClosableBox onClose={() => remove(index)} key={item}>{`WIP ${item}`}</ClosableBox>)}
+            {items.map((item) => <ClosableBox onClose={() => dispatch(removeTile(item.id))} key={item.id}>{item.id}</ClosableBox>)}
         </FlowContainer>
     );
 }

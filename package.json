@@ -17,29 +17,31 @@
     "redux-thunk": "2.4.1",
     "remark-gfm": "3.0.1",
     "ts-essentials": "9.2.0",
-    "typescript": "4.7.4"
+    "typescript": "4.7.4",
+    "uuid": "8.3.2"
   },
   "devDependencies": {
+    "@axe-core/react": "4.4.3",
     "@types/react": "18.0.15",
     "@types/react-dom": "18.0.6",
-    "@types/react-router-dom": "5.3.3",
     "@types/react-redux": "7.1.24",
+    "@types/react-router-dom": "5.3.3",
+    "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "5.30.5",
     "@typescript-eslint/parser": "5.30.5",
     "cross-env": "7.0.3",
+    "csstype": "3.1.0",
     "eslint": "8.19.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jsx-a11y": "6.6.0",
+    "eslint-plugin-only-warn": "1.0.3",
     "eslint-plugin-react": "7.30.1",
     "eslint-plugin-react-hooks": "4.6.0",
-    "eslint-plugin-only-warn": "1.0.3",
+    "raw.macro": "0.5.0",
     "react-scripts": "5.0.1",
     "rimraf": "3.0.2",
-    "yarn-or-npm": "3.0.1",
-    "raw.macro": "0.5.0",
-    "csstype": "3.1.0",
-    "@axe-core/react": "4.4.3"
+    "yarn-or-npm": "3.0.1"
   },
   "scripts": {
     "generate": "node scripts/updateGetVersion.mjs",
