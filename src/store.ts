@@ -34,7 +34,11 @@ const handleStorageEvent = async (event: StorageEvent) => {
     }
 
     const key = event.key.substring(KEY_PREFIX.length);
-    const payload = await getStoredState(persistConfig);
+    const config = {
+        key,
+        storage,
+    }
+    const payload = await getStoredState(config);
     const rehydrateAction = {
         type: REHYDRATE,
         payload,

@@ -5,12 +5,13 @@
 //  @jsxImportSource @emotion/react
 
 import { useAppDispatch } from '../../hooks/stateHooks';
-import { addTile } from '../../states/tiles';
+import { addOrUpdateItem } from '../../states/tiles';
+import { Entity } from '../../types';
 
 export default () => {
     const dispatch = useAppDispatch();
     return (
-        <button type="button" onClick={() => dispatch(addTile({}))}>
+        <button type="button" onClick={() => dispatch(addOrUpdateItem(new Entity({})))}>
             Add
         </button>
     );

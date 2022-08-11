@@ -6,7 +6,7 @@
 
 import ClosableBox from '../../common/ClosableBox';
 import FlowContainer from '../../common/FlowContainer';
-import { removeTile } from '../../../states/tiles';
+import { removeItem } from '../../../states/tiles';
 import { useAppDispatch, useAppSelector } from '../../../hooks/stateHooks';
 
 export default () => {
@@ -15,7 +15,8 @@ export default () => {
 
     return (
         <FlowContainer>
-            {items.map((item) => <ClosableBox onClose={() => dispatch(removeTile(item.id))} key={item.id}>{item.id}</ClosableBox>)}
+            {/* TODO: each item shall be validated as its origin is unknown. */}
+            {items.map((item) => <ClosableBox onClose={() => dispatch(removeItem(item.id))} key={item.id}>{item.id}</ClosableBox>)}
         </FlowContainer>
     );
 }

@@ -43,7 +43,7 @@ export default ({ basename } : Props) => {
             <ThemeProvider theme={theme}>
                 <BrowserRouter basename={basename}>
                     <Provider store={store}>
-                        <PersistGate loading={null} persistor={persistor}>
+                        <PersistGate persistor={persistor}>
                             <ModalDialogProvider>
                                 <MainView />
                                 <ModalDialogPlaceholder />

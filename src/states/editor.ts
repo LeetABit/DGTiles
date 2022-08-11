@@ -1,14 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const editingTiles = createSlice({
+interface State {
+    isActive: boolean,
+}
+
+const reducers = {
+    toggleIsActive: (state: State) => {
+        state.isActive = !state.isActive;
+    },
+}
+
+const editorSlice = createSlice<State, typeof reducers>({
     name: 'editor',
     initialState: {
         isActive: false,
     },
-    reducers: {
-        toggleIsActive: (state) => { state.isActive = !state.isActive },
-    },
+    reducers,
 })
 
-export default editingTiles.reducer;
-export const { toggleIsActive } = editingTiles.actions
+export default editorSlice.reducer;
+export const { toggleIsActive } = editorSlice.actions;

@@ -4,8 +4,18 @@
 //
 //  @jsxImportSource @emotion/react
 
-export default () => (
-    <header>
-        <h1>DGTiles</h1>
-    </header>
-);
+import { CSSObject } from '@emotion/react';
+import TilesTokenInput from '../../specialized/TilesTokenInput';
+
+const titleStyle: CSSObject = {
+    display: 'inline-block',
+}
+
+export default () => {
+    return (
+        <header>
+            <h1 css={titleStyle}>DGTiles</h1>
+            <TilesTokenInput />
+        </header>
+    );
+}
