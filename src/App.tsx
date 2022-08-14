@@ -12,7 +12,6 @@ import MainView from './components/views/main/MainView';
 import { theme } from './styles/themes';
 import { persistor, store } from './store';
 import { ModalDialogProvider, ModalDialogPlaceholder } from './components/common/ModalDialog';
-import ExternalLink from './images/ExternalLink.svg';
 
 interface Props {
     basename?: string,
@@ -26,7 +25,7 @@ const globalStyle : CSSObject = {
     'a[target="_blank"]': {
         '&:after': {
             content: '""',
-            background: `url(${ExternalLink})`,
+            background: `url(${process.env.PUBLIC_URL}/images/ExternalLink.svg)`,
             backgroundRepeat: 'no-repeat',
             width: '1em',
             height: '1em',
