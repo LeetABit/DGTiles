@@ -6,26 +6,29 @@
 
 import { CSSObject } from '@emotion/react';
 import React from 'react';
-import CloseButton from './CloseButton';
+import CloseButton from '../common/CloseButton';
 import type { RootState } from '../../store';
 import { useAppSelector } from '../../hooks/stateHooks';
+import EditButton from '../common/EditButton';
 
 interface Props {
     onClose: () => void,
+    onEdit: () => void,
 }
 
 const style: CSSObject = {
-    label: 'ClosableBox',
+    label: 'TileBox',
     position: 'relative',
     backgroundColor: 'white',
 }
 
-export default ({ onClose, children }: React.PropsWithChildren<Props>) => {
+export default ({ onClose, onEdit, children }: React.PropsWithChildren<Props>) => {
     const isTileEditorActive = useAppSelector((state: RootState) => state.editor.isActive)
 
     return (
         <div css={style}>
             {isTileEditorActive && <CloseButton onClick={onClose} />}
+            {isTileEditorActive && <EditButton onClick={onEdit} />}
             {children}
         </div>
     );

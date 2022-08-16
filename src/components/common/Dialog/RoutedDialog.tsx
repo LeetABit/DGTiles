@@ -6,9 +6,12 @@
 
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import ModalDialog from './ModalDialog';
+import Dialog, { DialogMode } from './Dialog';
 
-export default ({ children }: React.PropsWithChildren) => {
+interface Props {
+    mode?: DialogMode,
+}
+export default ({ mode, children }: React.PropsWithChildren<Props>) => {
     const navigate = useNavigate();
     const location = useLocation();
     const navigateBack = () => {
@@ -20,8 +23,8 @@ export default ({ children }: React.PropsWithChildren) => {
     }
 
     return (
-        <ModalDialog onClose={navigateBack}>
+        <Dialog mode={mode} onClose={navigateBack}>
             {children}
-        </ModalDialog>
+        </Dialog>
     );
 };

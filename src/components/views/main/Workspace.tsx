@@ -7,7 +7,6 @@
 import { CSSObject, useTheme } from '@emotion/react';
 import { useMemo } from 'react';
 import { mergeStyles } from '../../../styles/mergeStyles';
-import { DockWrapper } from '../../common/Dock';
 import TileGalleryView from '../tileGallery/TileGalleryView';
 
 const baseStyle: CSSObject = {
@@ -15,6 +14,7 @@ const baseStyle: CSSObject = {
     position: 'relative',
     width: '100%',
     height: '100%',
+    overflow: 'auto',
 };
 
 export default () => {
@@ -24,10 +24,8 @@ export default () => {
     }, [theme.workspace]);
 
     return (
-        <DockWrapper>
-            <main css={style}>
-                <TileGalleryView />
-            </main>
-        </DockWrapper>
+        <main css={style}>
+            <TileGalleryView />
+        </main>
     );
 };

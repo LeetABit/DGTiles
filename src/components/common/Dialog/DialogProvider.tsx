@@ -6,8 +6,8 @@
 
 import React, { useCallback } from 'react';
 
-export const ModalDialogSetterContext = React.createContext<(dialog: HTMLDivElement) => void>((_) => {});
-export const ModalDialogGetterContext = React.createContext<HTMLDivElement | null>(null);
+export const DialogSetterContext = React.createContext<(dialog: HTMLDivElement) => void>((_) => {});
+export const DialogGetterContext = React.createContext<HTMLDivElement | null>(null);
 
 export default ({ children }: React.PropsWithChildren) => {
     const [dialog, setDialog] = React.useState<HTMLDivElement | null>(null);
@@ -16,10 +16,10 @@ export default ({ children }: React.PropsWithChildren) => {
     }, [setDialog]);
 
     return (
-        <ModalDialogSetterContext.Provider value={setModalDialog}>
-            <ModalDialogGetterContext.Provider value={dialog}>
+        <DialogSetterContext.Provider value={setModalDialog}>
+            <DialogGetterContext.Provider value={dialog}>
                 {children}
-            </ModalDialogGetterContext.Provider>
-        </ModalDialogSetterContext.Provider>
+            </DialogGetterContext.Provider>
+        </DialogSetterContext.Provider>
     );
 };

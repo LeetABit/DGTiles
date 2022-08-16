@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/stateHooks';
 import { toggleIsActive } from '../../states/editor';
 
 export default () => {
-    const isTileEditorActive = useAppSelector((state) => state.editor.isActive)
+    const isTileEditorActive = useAppSelector((state) => state.editor.isActive);
     const dispatch = useAppDispatch();
 
     return (

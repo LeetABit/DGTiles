@@ -4,9 +4,9 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { ModalDialogLink } from '../common/ModalDialog';
+import { DialogLink } from '../common/Dialog';
 import TermsOfUse from '../documents/TermsOfUse';
 
 export default () => (
-    <ModalDialogLink content={<TermsOfUse />} to="/termsOfUse">Terms of Use</ModalDialogLink>
+    <DialogLink content={<TermsOfUse />} to="/termsOfUse">Terms of Use</DialogLink>
 );

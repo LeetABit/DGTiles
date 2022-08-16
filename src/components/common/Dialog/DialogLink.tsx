@@ -6,21 +6,23 @@
 
 import React from 'react';
 import { Link, Outlet, Route, Routes } from 'react-router-dom';
-import ModalDialogItem from './ModalDialogItem';
-import RoutedModalDialog from './RoutedModalDialog';
+import { DialogMode } from './Dialog';
+import DialogItem from './DialogItem';
+import RoutedDialog from './RoutedDialog';
 
 interface Props {
+    mode?: DialogMode,
     content: React.ReactNode,
     to: string,
 }
 
-export default ({ content, to, children }: React.PropsWithChildren<Props>) => {
+export default ({ mode, content, to, children }: React.PropsWithChildren<Props>) => {
     const element = (
-        <ModalDialogItem>
-            <RoutedModalDialog>
+        <DialogItem>
+            <RoutedDialog mode={mode}>
                 {content}
-            </RoutedModalDialog>
-        </ModalDialogItem>
+            </RoutedDialog>
+        </DialogItem>
     );
 
     return (
