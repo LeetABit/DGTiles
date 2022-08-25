@@ -5,21 +5,20 @@
 //  @jsxImportSource @emotion/react
 
 import React from 'react';
-import DockManager, { DockedReactNode } from './DockManager';
-import { DockDirection, dockDirectionPropName } from './types';
+import Grid from '../Grid';
+import GridAreaBuilder from './GridAreaBuilder';
+import reduceChildren, { LazyReactNode } from './reduceChildren';
+
+export type DockDirection = 'top' | 'bottom' | 'left' | 'right' | 'fill';
+
+export const dockDirectionPropName = 'dock-direction';
 
 export default ({ children }: React.PropsWithChildren) => {
-    const dockedNodes: DockedReactNode[] = React.Children.toArray(children).filter(child => child).map(child => {
-        let dockDirection: DockDirection = 'fill';
-
-        if (child && typeof child === 'object' && 'props' in child && dockDirectionPropName in child.props) {
-            dockDirection = child.props[dockDirectionPropName];
-        }
-
-        return [dockDirection, child];
-    });
-
+    const gridAreaBuilder = GridAreaBuilder.create();
+    const [reducedChildren, fillArea] = reduceChildren(gridAreaBuilder, children) as [LazyReactNode, GridAreaBuilder];
     return (
-        <DockManager dockedNodes={dockedNodes} />
+        <Grid templates={gridAreaBuilder.getTemplates(fillArea)}>
+            {reducedChildren()}
+        </Grid>
     );
 };

@@ -4,28 +4,24 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React from 'react';
 import FullscreenViewport from '../../common/FullscreenViewport';
 import Footer from './Footer';
 import Header from './Header';
 import Toolbox from './Toolbox';
-import DockManager from '../../common/Dock/DockManager';
 import Workspace from './Workspace';
-import { DockDirection } from '../../common/Dock';
-
-type DockElement = [ DockDirection, React.ReactNode ];
-
-const children: DockElement[] = [
-    ['top', <Header key="header" />],
-    ['bottom', <Footer key="footer" />],
-    ['left', <Toolbox key="toolbox" />],
-    ['fill', <Workspace key="workspace" />],
-];
+import Dock from '../../common/Dock';
 
 export default () => {
     return (
         <FullscreenViewport>
-            <DockManager dockedNodes={children} />
+            <Dock>
+                <Header dock-direction="top" />
+                <Dock dock-direction="fill">
+                    <Toolbox dock-direction="left" />
+                    <Workspace />
+                </Dock>
+                <Footer dock-direction="bottom" />
+            </Dock>
         </FullscreenViewport>
     );
 };

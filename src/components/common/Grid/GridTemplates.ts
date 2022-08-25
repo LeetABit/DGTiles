@@ -4,8 +4,9 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React from 'react';
+import type { Property } from 'csstype';
 
-export default ({ children }: React.PropsWithChildren) => (
-    <>{children}</>
-);
+export default interface GridTemplates {
+    rows: Property.GridTemplateRows<(string & {}) | 0>,
+    columns: Property.GridTemplateColumns<(string & {}) | 0>,
+}

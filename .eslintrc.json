@@ -44,7 +44,7 @@
     }],
     "semi": "off",
     "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": ["warn", { "ignoreTypeReferences": true }],
+    "@typescript-eslint/no-use-before-define": ["warn", { "ignoreTypeReferences": true, "functions": false }],
     "no-plusplus": "off",
     "no-restricted-exports": "off",
     "@typescript-eslint/no-empty-interface": "off",
@@ -60,9 +60,9 @@
     "@typescript-eslint/no-empty-function": "off",
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": "warn",
-    "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["state"] }],
+    "no-param-reassign": ["warn", { "props": true, "ignorePropertyModificationsFor": ["state"] }],
     "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": ["error", {
+    "@typescript-eslint/no-unused-vars": ["warn", {
       "ignoreRestSiblings": true,
       "argsIgnorePattern": "^_",
       "varsIgnorePattern": "^_",
@@ -70,7 +70,14 @@
     }],
     "react/jsx-props-no-spreading": "off",
     "react/require-default-props": "off",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "@typescript-eslint/ban-types": ["warn", {
+        "types": {
+          "{}": false
+        },
+        "extendDefaults": true
+      }
+    ]
   },
   "settings": {
     "import/resolver": {

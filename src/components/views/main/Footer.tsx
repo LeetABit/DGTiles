@@ -4,7 +4,7 @@
 //
 //  @jsxImportSource @emotion/react
 
-import Dock from '../../common/Dock';
+import Dock from '../../common/Dock/Dock';
 import TermsOfUseLink from '../../specialized/TermsOfUseLink';
 import VersionLabel from '../../specialized/VersionLabel';
 

@@ -6,4 +6,3 @@
 
 export type { DockDirection } from './types';
 export { default } from './Dock';
-export { default as DockWrapper } from './DockWrapper';
