@@ -14,6 +14,7 @@ export type DialogMode = 'modal' | 'modeless' | 'absolute-modal';
 interface Props {
     mode?: DialogMode,
     onClose: () => void,
+    labeledBy?: string,
 }
 
 const baseStyle: CSSObject = {
@@ -33,7 +34,7 @@ const contextualStyle: CSSObject = {
     boxShadow: '0 0 0 100vmax rgba(0, 0, 0, 0.1)',
 };
 
-export default ({ mode = 'modal', onClose, children }: React.PropsWithChildren<Props>) => {
+export default ({ mode = 'modal', onClose, labeledBy, children }: React.PropsWithChildren<Props>) => {
     const style = useMemo(() => {
         return mode === 'absolute-modal'
             ? mergeStyles(baseStyle, contextualStyle)
@@ -68,7 +69,7 @@ export default ({ mode = 'modal', onClose, children }: React.PropsWithChildren<P
     }, []);
 
     return (
-        <dialog ref={dialogRef} css={style} aria-modal={mode === 'modal'} aria-labelledby="h1">
+        <dialog ref={dialogRef} css={style} aria-modal={mode === 'modal'} aria-labelledby={labeledBy}>
             <CloseButton onClick={onClose} />
             {children}
         </dialog>

@@ -18,7 +18,7 @@ export default ({ children }: React.PropsWithChildren) => {
     const [reducedChildren, fillArea] = reduceChildren(gridAreaBuilder, children) as [LazyReactNode, GridAreaBuilder];
     return (
         <Grid templates={gridAreaBuilder.getTemplates(fillArea)}>
-            {reducedChildren()}
+            {React.Children.toArray(reducedChildren())}
         </Grid>
     );
 };

@@ -8,5 +8,5 @@ import { DialogLink } from '../common/Dialog';
 import TermsOfUse from '../documents/TermsOfUse';
 
 export default () => (
-    <DialogLink content={<TermsOfUse />} to="/termsOfUse">Terms of Use</DialogLink>
+    <DialogLink content={<TermsOfUse />} labeledBy="h1" to="/termsOfUse">Terms of Use</DialogLink>
 );

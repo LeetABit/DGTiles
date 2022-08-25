@@ -12,14 +12,15 @@ import RoutedDialog from './RoutedDialog';
 
 interface Props {
     mode?: DialogMode,
+    labeledBy?: string,
     content: React.ReactNode,
     to: string,
 }
 
-export default ({ mode, content, to, children }: React.PropsWithChildren<Props>) => {
+export default ({ mode, labeledBy, content, to, children }: React.PropsWithChildren<Props>) => {
     const element = (
         <DialogItem>
-            <RoutedDialog mode={mode}>
+            <RoutedDialog mode={mode} labeledBy={labeledBy}>
                 {content}
             </RoutedDialog>
         </DialogItem>

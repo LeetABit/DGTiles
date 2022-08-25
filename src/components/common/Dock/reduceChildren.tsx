@@ -58,15 +58,20 @@ const reduceChildren = (area: GridAreaBuilder, children: React.ReactNode): [Lazy
         childrenFactories.push((fill: GridAreaBuilder) => {
             const [selectedChildren, selectedFill] = childSelector(fill, areaSelector);
             return [() => {
-                const ss = selectedChildren();
-                if (Array.isArray(ss)) {
-                    return ss;
+                const selected = selectedChildren();
+                if (Array.isArray(selected)) {
+                    return selected;
+                }
+
+                let key;
+                if (selected && typeof selected === 'object' && 'key' in selected) {
+                    key = selected.key;
                 }
 
                 const originalFill = areaSelector(fill);
                 return (
-                    <GridItem area={originalFill.getArea()} cssLabelSuffix={dockDirection}>
-                        {ss}
+                    <GridItem area={originalFill.getArea()} cssLabelSuffix={dockDirection} key={key}>
+                        {selected}
                     </GridItem>
                 );
             }, selectedFill];

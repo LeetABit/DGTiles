@@ -10,8 +10,9 @@ import Dialog, { DialogMode } from './Dialog';
 
 interface Props {
     mode?: DialogMode,
+    labeledBy?: string,
 }
-export default ({ mode, children }: React.PropsWithChildren<Props>) => {
+export default ({ mode, labeledBy, children }: React.PropsWithChildren<Props>) => {
     const navigate = useNavigate();
     const location = useLocation();
     const navigateBack = () => {
@@ -23,7 +24,7 @@ export default ({ mode, children }: React.PropsWithChildren<Props>) => {
     }
 
     return (
-        <Dialog mode={mode} onClose={navigateBack}>
+        <Dialog mode={mode} labeledBy={labeledBy} onClose={navigateBack}>
             {children}
         </Dialog>
     );
