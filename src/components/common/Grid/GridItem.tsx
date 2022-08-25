@@ -20,7 +20,7 @@ export default ({ area: { rowStart, rowEnd, columnStart, columnEnd }, cssLabelSu
         gridRowEnd: rowEnd,
         gridColumnStart: columnStart,
         gridColumnEnd: columnEnd,
-    }), [rowStart, rowEnd, columnStart, columnEnd]);
+    }), [rowStart, rowEnd, columnStart, columnEnd, cssLabelSuffix]);
 
     return (
         <div css={style}>

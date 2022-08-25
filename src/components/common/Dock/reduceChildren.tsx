@@ -65,7 +65,7 @@ const reduceChildren = (area: GridAreaBuilder, children: React.ReactNode): [Lazy
 
                 const originalFill = areaSelector(fill);
                 return (
-                    <GridItem area={originalFill.getArea()}>
+                    <GridItem area={originalFill.getArea()} cssLabelSuffix={dockDirection}>
                         {ss}
                     </GridItem>
                 );
