@@ -5,14 +5,14 @@
 //  @jsxImportSource @emotion/react
 
 import Dock from '../../common/Dock/Dock';
-import TermsOfUseLink from '../../specialized/TermsOfUseLink';
+import LinksSection from '../../specialized/LinksSection';
 import VersionLabel from '../../specialized/VersionLabel';
 
 export default () => (
     <footer>
         <Dock>
             <VersionLabel dock-direction="fill" displayDate />
-            <TermsOfUseLink dock-direction="right" />
+            <LinksSection dock-direction="right" />
         </Dock>
     </footer>
 );
