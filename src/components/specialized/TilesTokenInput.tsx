@@ -77,7 +77,7 @@ export default () => {
         } catch {
             event.preventDefault();
         }
-    }, [dispatch]);
+    }, []);
 
     return (
         <div css={divStyle}>

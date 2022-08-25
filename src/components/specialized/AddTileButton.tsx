@@ -4,14 +4,22 @@
 //
 //  @jsxImportSource @emotion/react
 
+import { useCallback } from 'react';
 import { useAppDispatch } from '../../hooks/stateHooks';
+import { setEditedItem } from '../../states/editor';
 import { addOrUpdateItem } from '../../states/tiles';
 import { Entity } from '../../types';
 
 export default () => {
     const dispatch = useAppDispatch();
+    const clickHandler = useCallback(() => {
+        const newItem = new Entity({});
+        dispatch(addOrUpdateItem(newItem));
+        dispatch(setEditedItem(newItem));
+    }, []);
+
     return (
-        <button type="button" onClick={() => dispatch(addOrUpdateItem(new Entity({})))}>
+        <button type="button" onClick={clickHandler}>
             Add
         </button>
     );

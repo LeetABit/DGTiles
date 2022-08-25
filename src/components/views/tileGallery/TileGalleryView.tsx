@@ -4,36 +4,36 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import TileBox from '../../specialized/TileBox';
 import FlowContainer from '../../common/FlowContainer';
 import { removeItem, TileDefinition } from '../../../states/tiles';
 import { useAppDispatch, useAppSelector } from '../../../hooks/stateHooks';
 import TileEditor from '../../specialized/TileEditor';
 import { Entity } from '../../../types';
+import { setEditedItem } from '../../../states/editor';
 
 export default () => {
     const dispatch = useAppDispatch();
-    const [isTileEditorActive, items] = useAppSelector((state) => [state.editor.isActive, state.tiles.items]);
-    const [editedTile, setEditedTile] = useState<Entity<TileDefinition> | null>(null);
-    if (editedTile && (!isTileEditorActive || !items.includes(editedTile))) {
-        setEditedTile(null);
+    const [isTileEditorActive, editedItem, items] = useAppSelector((state) => [state.editor.isActive, state.editor.editedItem, state.tiles.items]);
+    if (editedItem && (!isTileEditorActive || !items.includes(editedItem))) {
+        dispatch(setEditedItem(undefined));
     }
 
     const startEditing = useCallback((item: Entity<TileDefinition>) => {
-        setEditedTile(item);
-    }, [setEditedTile]);
+        dispatch(setEditedItem(item));
+    }, []);
 
     const stopEditing = useCallback(() => {
-        setEditedTile(null);
-    }, [setEditedTile]);
+        dispatch(setEditedItem(undefined));
+    }, []);
 
     return (
         <>
             {/* TODO: React and TypeScript does not support inert attribute yet. */}
             {/* https://github.com/facebook/react/pull/24730 */}
             {/* https://github.com/DefinitelyTyped/DefinitelyTyped/pull/60822 */}
-            <div ref={node => node && (editedTile ? node.setAttribute('inert', '') : node.removeAttribute('inert'))}>
+            <div ref={node => node && (editedItem ? node.setAttribute('inert', '') : node.removeAttribute('inert'))}>
                 <FlowContainer>
                     {/* TODO: each item shall be validated as its origin is unknown. */}
                     {items.map((item) => {
@@ -46,7 +46,7 @@ export default () => {
                     })}
                 </FlowContainer>
             </div>
-            {editedTile && <TileEditor tile={editedTile} onClose={stopEditing} />}
+            {editedItem && <TileEditor tile={editedItem} onClose={stopEditing} />}
         </>
     );
 }

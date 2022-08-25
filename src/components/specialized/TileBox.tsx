@@ -9,7 +9,7 @@ import React from 'react';
 import CloseButton from '../common/CloseButton';
 import type { RootState } from '../../store';
 import { useAppSelector } from '../../hooks/stateHooks';
-import EditButton from '../common/EditButton';
+import EditButton from './EditButton';
 
 interface Props {
     onClose: () => void,

@@ -16,13 +16,12 @@ export default () => {
     return (
         <Toolbar direction="column">
             <EditTilesButton />
-            { isTileEditorActive
-                && (
-                    <>
-                        <AddTileButton />
-                        <ClearTilesButton />
-                    </>
-                )}
+            { isTileEditorActive && (
+                <>
+                    <AddTileButton />
+                    <ClearTilesButton />
+                </>
+            )}
         </Toolbar>
     );
 }

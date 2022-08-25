@@ -13,7 +13,7 @@ export default ({ children }: React.PropsWithChildren) => {
     const [dialog, setDialog] = React.useState<HTMLDivElement | null>(null);
     const setModalDialog = useCallback((newDialog: HTMLDivElement) => {
         setDialog(newDialog);
-    }, [setDialog]);
+    }, []);
 
     return (
         <DialogSetterContext.Provider value={setModalDialog}>

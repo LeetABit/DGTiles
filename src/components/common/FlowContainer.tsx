@@ -56,7 +56,7 @@ export default ({ children }: React.PropsWithChildren) => {
         if (divRef.current) {
             divRef.current.scrollLeft += e.deltaY;
         }
-    }, [divRef]);
+    }, []);
 
     useEffect(() => {
         if (direction === columnStyle && divRef.current) {
