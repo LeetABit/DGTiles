@@ -11,8 +11,8 @@ import VersionLabel from '../../specialized/VersionLabel';
 export default () => (
     <footer>
         <Dock>
+            <VersionLabel dock-direction="fill" displayDate />
             <TermsOfUseLink dock-direction="right" />
-            <VersionLabel displayDate />
         </Dock>
     </footer>
 );
