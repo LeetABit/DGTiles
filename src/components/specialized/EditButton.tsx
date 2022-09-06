@@ -16,6 +16,6 @@ const style : CSSObject = {
     float: 'right',
 };
 
-export default ({ onClick }: Props) => {
+export default function EditButton({ onClick }: Props) {
     return <button type="button" css={style} onClick={onClick} aria-label="edit">Edit</button>;
 }

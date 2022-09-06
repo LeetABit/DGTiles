@@ -19,13 +19,15 @@ const style : CSSObject = {
     wordBreak: 'break-word',
 };
 
-export default ({ content }: Props) => (
-    <div css={style}>
-        <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            components={{ h1: Header1, a: Anchor }}
-        >
-            {content}
-        </ReactMarkdown>
-    </div>
-);
+export default function MarkdownDocument({ content }: Props) {
+    return (
+        <div css={style}>
+            <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={{ h1: Header1, a: Anchor }}
+            >
+                {content}
+            </ReactMarkdown>
+        </div>
+    );
+}

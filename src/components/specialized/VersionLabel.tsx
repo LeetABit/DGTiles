@@ -17,17 +17,19 @@ const versionString : string = `${gitVersion.version
     + `+Sha.${gitVersion.sha}`
     + `+Timestamp.${gitVersion.buildSafeTime}`;
 
-export default ({ displayDate = false }: Props) => (
-    <>
-        <div>
-            <span>Version:</span>
-            <span>{versionString}</span>
-        </div>
-        {displayDate && (
+export default function VersionLabel({ displayDate = false }: Props) {
+    return (
+        <>
             <div>
-                <span>Date:</span>
-                <span>{gitVersion.buildTime}</span>
+                <span>Version:</span>
+                <span>{versionString}</span>
             </div>
-        )}
-    </>
-);
+            {displayDate && (
+                <div>
+                    <span>Date:</span>
+                    <span>{gitVersion.buildTime}</span>
+                </div>
+            )}
+        </>
+    );
+}

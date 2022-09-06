@@ -11,12 +11,38 @@ import GridAreaBuilder from './GridAreaBuilder';
 import { DockDirection, dockDirectionPropName } from './types';
 
 export type LazyReactNode = () => React.ReactNode;
+export type ReductionResult = [LazyReactNode, GridAreaBuilder];
+export type ReductionResultFactory = (fillArea: GridAreaBuilder) => [LazyReactNode, GridAreaBuilder];
 export type AreaSelector = (fillArea: GridAreaBuilder) => GridAreaBuilder;
-export type ChildSelector = (fillArea: GridAreaBuilder, childAreaSelector: AreaSelector) => [LazyReactNode, GridAreaBuilder];
+export type ChildSelector = (fillArea: GridAreaBuilder, childAreaSelector: AreaSelector) => ReductionResult;
 
-const reduceChildren = (area: GridAreaBuilder, children: React.ReactNode): [LazyReactNode, GridAreaBuilder] | undefined => {
+const createFactory = (areaSelector: AreaSelector, childSelector: ChildSelector, dockDirection: DockDirection): ReductionResultFactory => {
+    return (fill: GridAreaBuilder) => {
+        const [selectedChildren, selectedFill] = childSelector(fill, areaSelector);
+        return [() => {
+            const selected = selectedChildren();
+            if (Array.isArray(selected)) {
+                return selected;
+            }
+
+            let key;
+            if (selected && typeof selected === 'object' && 'key' in selected) {
+                key = selected.key;
+            }
+
+            const originalFill = areaSelector(fill);
+            return (
+                <GridItem area={originalFill.getArea()} cssLabelSuffix={dockDirection} key={key}>
+                    {selected}
+                </GridItem>
+            );
+        }, selectedFill];
+    }
+}
+
+const reduceChildren = (area: GridAreaBuilder, children: React.ReactNode): ReductionResult | undefined => {
     let cancel = false;
-    const childrenFactories: ((fillArea: GridAreaBuilder) => [LazyReactNode, GridAreaBuilder])[] = [];
+    const childrenFactories: ReductionResultFactory[] = [];
     let currentArea = area;
 
     React.Children.toArray(children).filter(child => child).forEach(child => {
@@ -42,7 +68,7 @@ const reduceChildren = (area: GridAreaBuilder, children: React.ReactNode): [Lazy
             areaSelector = (_) => thisArea;
         }
 
-        let childSelector: ChildSelector = (fill, _) => [() => child, fill];
+        let childSelector: ChildSelector = (fill, _childAreaSelector) => [() => child, fill];
         if (child && typeof child === 'object' && 'type' in child && child.type === Dock) {
             childSelector = (fill, childAreaSelector) => {
                 const childArea = childAreaSelector(fill);
@@ -50,32 +76,11 @@ const reduceChildren = (area: GridAreaBuilder, children: React.ReactNode): [Lazy
                     ? child.props.children
                     : [];
 
-                const reduced = reduceChildren(childArea, dockChildren);
-                return reduced ?? [() => child, fill];
+                return reduceChildren(childArea, dockChildren) ?? [() => child, fill];
             };
         }
 
-        childrenFactories.push((fill: GridAreaBuilder) => {
-            const [selectedChildren, selectedFill] = childSelector(fill, areaSelector);
-            return [() => {
-                const selected = selectedChildren();
-                if (Array.isArray(selected)) {
-                    return selected;
-                }
-
-                let key;
-                if (selected && typeof selected === 'object' && 'key' in selected) {
-                    key = selected.key;
-                }
-
-                const originalFill = areaSelector(fill);
-                return (
-                    <GridItem area={originalFill.getArea()} cssLabelSuffix={dockDirection} key={key}>
-                        {selected}
-                    </GridItem>
-                );
-            }, selectedFill];
-        });
+        childrenFactories.push(createFactory(areaSelector, childSelector, dockDirection));
     });
 
     if (cancel) {

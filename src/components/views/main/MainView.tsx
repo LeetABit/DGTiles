@@ -11,7 +11,7 @@ import Toolbox from './Toolbox';
 import Workspace from './Workspace';
 import Dock from '../../common/Dock';
 
-export default () => {
+export default function MainView() {
     return (
         <FullscreenViewport>
             <Dock>
@@ -24,4 +24,4 @@ export default () => {
             </Dock>
         </FullscreenViewport>
     );
-};
+}

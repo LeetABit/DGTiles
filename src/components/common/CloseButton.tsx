@@ -21,6 +21,6 @@ const style : CSSObject = mergeStyles(DiagonalCross, {
     float: 'right',
 });
 
-export default ({ onClick }: Props) => {
+export default function CloseButton({ onClick }: Props) {
     return <button type="button" css={style} onClick={onClick} aria-label="close" />;
 }

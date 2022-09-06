@@ -13,7 +13,7 @@ import TileEditor from '../../specialized/TileEditor';
 import { Entity } from '../../../types';
 import { setEditedItem } from '../../../states/editor';
 
-export default () => {
+export default function TileGalleryView() {
     const dispatch = useAppDispatch();
     const [isTileEditorActive, editedItem, items] = useAppSelector((state) => [state.editor.isActive, state.editor.editedItem, state.tiles.items]);
     if (editedItem && (!isTileEditorActive || !items.includes(editedItem))) {

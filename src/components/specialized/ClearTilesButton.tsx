@@ -7,11 +7,11 @@
 import { useAppDispatch } from '../../hooks/stateHooks';
 import { clearItems } from '../../states/tiles';
 
-export default () => {
+export default function ClearTilesButton() {
     const dispatch = useAppDispatch();
     return (
         <button type="button" onClick={() => dispatch(clearItems())}>
             Clear
         </button>
     );
-};
+}

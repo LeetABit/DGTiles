@@ -8,13 +8,13 @@ import { CSSObject } from '@emotion/react';
 import React from 'react';
 import { DialogSetterContext } from './DialogProvider';
 
-export default () => {
+export default function DialogPlaceholder() {
     const setter = React.useContext(DialogSetterContext);
     const style: CSSObject = {
-        label: 'ModalDialogPlaceholder',
+        label: 'DialogPlaceholder',
     }
 
     return (
         <div css={style} ref={setter} />
     );
-};
+}

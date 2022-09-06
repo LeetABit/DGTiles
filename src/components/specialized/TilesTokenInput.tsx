@@ -61,7 +61,7 @@ const consumeToken = (token: string) => {
     return undefined;
 }
 
-export default () => {
+export default function TilesTokenInput() {
     const id = useId();
     const dispatch = useAppDispatch();
     const items = useAppSelector((state) => state.tiles.items);

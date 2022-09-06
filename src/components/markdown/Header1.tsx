@@ -6,8 +6,10 @@
 
 import type { HeadingProps } from 'react-markdown/lib/ast-to-react';
 
-export default ({ node: _, children, ...rest }: HeadingProps) => (
-    <h1 id="h1" {...rest}>
-        {children}
-    </h1>
-);
+export default function Header({ node: _, children, ...rest }: HeadingProps) {
+    return (
+        <h1 id="h1" {...rest}>
+            {children}
+        </h1>
+    );
+}

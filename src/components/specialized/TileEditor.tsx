@@ -13,10 +13,10 @@ interface Props {
     onClose: () => void,
 }
 
-export default ({ tile, onClose }: Props) => {
+export default function TileEditor({ tile, onClose }: Props) {
     return (
         <Dialog mode="absolute-modal" onClose={onClose}>
             {tile.id}
         </Dialog>
     );
-};
+}

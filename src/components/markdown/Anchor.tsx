@@ -6,10 +6,10 @@
 
 import { ComponentPropsWithoutRef, ReactMarkdownProps } from 'react-markdown/lib/ast-to-react';
 
-export default ({ node, children, href, ...rest }: ComponentPropsWithoutRef<'a'> & ReactMarkdownProps) => {
+export default function Anchor({ node, children, href, ...rest }: ComponentPropsWithoutRef<'a'> & ReactMarkdownProps) {
     return (
         <a target="_blank" rel="noreferrer noopener" href={href} {...rest}>
             {children}
         </a>
     );
-};
+}

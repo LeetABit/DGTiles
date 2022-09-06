@@ -22,7 +22,7 @@ const style: CSSObject = {
     backgroundColor: 'white',
 }
 
-export default ({ onClose, onEdit, children }: React.PropsWithChildren<Props>) => {
+export default function TileBox({ onClose, onEdit, children }: React.PropsWithChildren<Props>) {
     const isTileEditorActive = useAppSelector((state: RootState) => state.editor.isActive)
 
     return (
@@ -32,4 +32,4 @@ export default ({ onClose, onEdit, children }: React.PropsWithChildren<Props>) =
             {children}
         </div>
     );
-};
+}

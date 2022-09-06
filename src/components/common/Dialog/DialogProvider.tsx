@@ -9,7 +9,7 @@ import React, { useCallback } from 'react';
 export const DialogSetterContext = React.createContext<(dialog: HTMLDivElement) => void>((_) => {});
 export const DialogGetterContext = React.createContext<HTMLDivElement | null>(null);
 
-export default ({ children }: React.PropsWithChildren) => {
+export default function DialogProvider({ children }: React.PropsWithChildren) {
     const [dialog, setDialog] = React.useState<HTMLDivElement | null>(null);
     const setModalDialog = useCallback((newDialog: HTMLDivElement) => {
         setDialog(newDialog);
@@ -22,4 +22,4 @@ export default ({ children }: React.PropsWithChildren) => {
             </DialogGetterContext.Provider>
         </DialogSetterContext.Provider>
     );
-};
+}

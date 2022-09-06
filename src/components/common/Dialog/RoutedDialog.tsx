@@ -12,7 +12,7 @@ interface Props {
     mode?: DialogMode,
     labeledBy?: string,
 }
-export default ({ mode, labeledBy, children }: React.PropsWithChildren<Props>) => {
+export default function RoutedDialog({ mode, labeledBy, children }: React.PropsWithChildren<Props>) {
     const navigate = useNavigate();
     const location = useLocation();
     const navigateBack = () => {
@@ -28,4 +28,4 @@ export default ({ mode, labeledBy, children }: React.PropsWithChildren<Props>) =
             {children}
         </Dialog>
     );
-};
+}

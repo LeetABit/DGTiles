@@ -7,7 +7,7 @@
 import { useAppDispatch, useAppSelector } from '../../hooks/stateHooks';
 import { toggleIsActive } from '../../states/editor';
 
-export default () => {
+export default function EditTilesButton() {
     const isTileEditorActive = useAppSelector((state) => state.editor.isActive);
     const dispatch = useAppDispatch();
 
@@ -16,4 +16,4 @@ export default () => {
             {isTileEditorActive ? 'Exit' : 'Edit'}
         </button>
     );
-};
+}

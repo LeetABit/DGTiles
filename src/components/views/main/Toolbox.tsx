@@ -10,7 +10,7 @@ import AddTileButton from '../../specialized/AddTileButton';
 import { useAppSelector } from '../../../hooks/stateHooks';
 import ClearTilesButton from '../../specialized/ClearTilesButton';
 
-export default () => {
+export default function Toolbox() {
     const isTileEditorActive = useAppSelector((state) => state.editor.isActive);
 
     return (

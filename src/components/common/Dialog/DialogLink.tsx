@@ -17,7 +17,7 @@ interface Props {
     to: string,
 }
 
-export default ({ mode, labeledBy, content, to, children }: React.PropsWithChildren<Props>) => {
+export default function DialogLink({ mode, labeledBy, content, to, children }: React.PropsWithChildren<Props>) {
     const element = (
         <DialogItem>
             <RoutedDialog mode={mode} labeledBy={labeledBy}>
@@ -35,4 +35,4 @@ export default ({ mode, labeledBy, content, to, children }: React.PropsWithChild
             </Routes>
         </>
     );
-};
+}

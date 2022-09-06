@@ -6,10 +6,12 @@
 
 import TermsOfUseLink from './TermsOfUseLink';
 
-export default () => (
-    <div>
-        <TermsOfUseLink />
-        <br />
-        <a target="_blank" rel="noreferrer noopener" href="https://github.com/LeetABit/DGTiles">GitHub</a>
-    </div>
-);
+export default function LinksSection() {
+    return (
+        <div>
+            <TermsOfUseLink />
+            <br />
+            <a target="_blank" rel="noreferrer noopener" href="https://github.com/LeetABit/DGTiles">GitHub</a>
+        </div>
+    );
+}

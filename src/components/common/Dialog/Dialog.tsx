@@ -34,7 +34,7 @@ const contextualStyle: CSSObject = {
     boxShadow: '0 0 0 100vmax rgba(0, 0, 0, 0.1)',
 };
 
-export default ({ mode = 'modal', onClose, labeledBy, children }: React.PropsWithChildren<Props>) => {
+export default function Dialog({ mode = 'modal', onClose, labeledBy, children }: React.PropsWithChildren<Props>) {
     const style = useMemo(() => {
         return mode === 'absolute-modal'
             ? mergeStyles(baseStyle, contextualStyle)
@@ -74,4 +74,4 @@ export default ({ mode = 'modal', onClose, labeledBy, children }: React.PropsWit
             {children}
         </dialog>
     );
-};
+}

@@ -8,7 +8,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { DialogGetterContext } from './DialogProvider';
 
-export default ({ children }: React.PropsWithChildren) => {
+export default function DialogItem({ children }: React.PropsWithChildren) {
     const modalDialog = React.useContext(DialogGetterContext);
     return modalDialog ? ReactDOM.createPortal(children, modalDialog) : null;
-};
+}

@@ -11,7 +11,7 @@ const titleStyle: CSSObject = {
     display: 'inline-block',
 }
 
-export default () => {
+export default function Header() {
     return (
         <header>
             <h1 css={titleStyle}>DGTiles</h1>

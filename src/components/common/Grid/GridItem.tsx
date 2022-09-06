@@ -13,7 +13,7 @@ interface Props {
     cssLabelSuffix?: string,
 }
 
-export default ({ area: { rowStart, rowEnd, columnStart, columnEnd }, cssLabelSuffix, children }: React.PropsWithChildren<Props>) => {
+export default function GridItem({ area: { rowStart, rowEnd, columnStart, columnEnd }, cssLabelSuffix, children }: React.PropsWithChildren<Props>) {
     const style: CSSObject = useMemo(() => ({
         label: cssLabelSuffix ? `GridItem-${cssLabelSuffix}` : 'GridItem',
         gridRowStart: rowStart,

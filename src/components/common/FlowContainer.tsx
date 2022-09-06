@@ -35,7 +35,7 @@ const calculateDirection = () => {
     return (window.innerWidth > window.innerHeight) ? rowStyle : columnStyle;
 }
 
-export default ({ children }: React.PropsWithChildren) => {
+export default function FlowContainer({ children }: React.PropsWithChildren) {
     const [direction, setDirection] = React.useState<CSSObject>(calculateDirection());
     const divRef = React.useRef<HTMLDivElement>(null);
 
@@ -72,4 +72,4 @@ export default ({ children }: React.PropsWithChildren) => {
             {children}
         </div>
     );
-};
+}

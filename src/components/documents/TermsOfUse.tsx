@@ -9,6 +9,8 @@ import MarkdownDocument from '../common/MarkdownDocument';
 
 const termsOfUse = raw('../../../docs/TermsOfUse.md');
 
-export default () => (
-    <MarkdownDocument content={termsOfUse} />
-);
+export default function TermsOfUse() {
+    return (
+        <MarkdownDocument content={termsOfUse} />
+    );
+}

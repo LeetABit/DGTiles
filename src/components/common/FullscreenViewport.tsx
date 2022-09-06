@@ -15,8 +15,10 @@ const style : CSSObject = {
     height: '100%',
 };
 
-export default ({ children }: React.PropsWithChildren) => (
-    <div css={style}>
-        {children}
-    </div>
-);
+export default function FullscreenViewport({ children }: React.PropsWithChildren) {
+    return (
+        <div css={style}>
+            {children}
+        </div>
+    );
+}

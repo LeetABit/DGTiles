@@ -8,11 +8,13 @@ import Dock from '../../common/Dock/Dock';
 import LinksSection from '../../specialized/LinksSection';
 import VersionLabel from '../../specialized/VersionLabel';
 
-export default () => (
-    <footer>
-        <Dock>
-            <VersionLabel dock-direction="fill" displayDate />
-            <LinksSection dock-direction="right" />
-        </Dock>
-    </footer>
-);
+export default function Footer() {
+    return (
+        <footer>
+            <Dock>
+                <VersionLabel dock-direction="fill" displayDate />
+                <LinksSection dock-direction="right" />
+            </Dock>
+        </footer>
+    );
+}

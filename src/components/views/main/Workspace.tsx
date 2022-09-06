@@ -17,7 +17,7 @@ const baseStyle: CSSObject = {
     overflow: 'auto',
 };
 
-export default () => {
+export default function Workspace() {
     const theme = useTheme();
     const style = useMemo(() => {
         return mergeStyles(baseStyle, { ...theme.workspace });
@@ -28,4 +28,4 @@ export default () => {
             <TileGalleryView />
         </main>
     );
-};
+}

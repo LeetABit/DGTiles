@@ -27,7 +27,7 @@ const columnStyle: CSSObject = {
     flexDirection: 'column',
 };
 
-export default ({ direction = 'row', children }: React.PropsWithChildren<Props>) => {
+export default function Toolbar({ direction = 'row', children }: React.PropsWithChildren<Props>) {
     const style = useMemo(() => {
         const directionStyle = direction === 'row' ? rowStyle : columnStyle;
         return mergeStyles(baseStyle, directionStyle);

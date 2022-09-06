@@ -13,7 +13,7 @@ export type DockDirection = 'top' | 'bottom' | 'left' | 'right' | 'fill';
 
 export const dockDirectionPropName = 'dock-direction';
 
-export default ({ children }: React.PropsWithChildren) => {
+export default function Dock({ children }: React.PropsWithChildren) {
     const gridAreaBuilder = GridAreaBuilder.create();
     const [reducedChildren, fillArea] = reduceChildren(gridAreaBuilder, children) as [LazyReactNode, GridAreaBuilder];
     return (
@@ -21,4 +21,4 @@ export default ({ children }: React.PropsWithChildren) => {
             {React.Children.toArray(reducedChildren())}
         </Grid>
     );
-};
+}

@@ -6,7 +6,7 @@
 
 import React from 'react';
 
-export default <S>(initialState: S | (() => S), timeout: number | ((value: S) => number)): [S, React.Dispatch<React.SetStateAction<S>>] => {
+export default function useThrottledState<S>(initialState: S | (() => S), timeout: number | ((value: S) => number)): [S, React.Dispatch<React.SetStateAction<S>>] {
     const [value, setValue] = React.useState(initialState);
     const timeoutForCurrentState = React.useMemo(() => ((typeof timeout === 'function') ? timeout(value) : timeout), [value]);
     const timeoutId = React.useRef<NodeJS.Timeout>();
@@ -19,4 +19,4 @@ export default <S>(initialState: S | (() => S), timeout: number | ((value: S) =>
     }
 
     return [value, setValueThrottled];
-};
+}

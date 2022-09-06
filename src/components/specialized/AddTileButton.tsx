@@ -10,7 +10,7 @@ import { setEditedItem } from '../../states/editor';
 import { addOrUpdateItem } from '../../states/tiles';
 import { Entity } from '../../types';
 
-export default () => {
+export default function AddTileButton() {
     const dispatch = useAppDispatch();
     const clickHandler = useCallback(() => {
         const newItem = new Entity({});
@@ -23,4 +23,4 @@ export default () => {
             Add
         </button>
     );
-};
+}

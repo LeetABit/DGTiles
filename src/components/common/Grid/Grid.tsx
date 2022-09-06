@@ -12,7 +12,7 @@ interface Props {
     templates: GridTemplates,
 }
 
-export default ({ templates: { rows, columns }, children }: React.PropsWithChildren<Props>) => {
+export default function Grid({ templates: { rows, columns }, children }: React.PropsWithChildren<Props>) {
     const style = useMemo((): CSSObject => ({
         label: 'Grid',
         width: '100%',
