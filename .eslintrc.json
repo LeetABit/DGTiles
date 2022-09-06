@@ -77,7 +77,10 @@
         },
         "extendDefaults": true
       }
-    ]
+    ],
+    "react/no-unknown-property": ["warn", {
+      "ignore": ["css"]
+    }]
   },
   "settings": {
     "import/resolver": {
