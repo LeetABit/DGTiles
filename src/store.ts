@@ -9,6 +9,7 @@ import tiles from './states/tiles';
 const persistConfig = {
     key: 'root',
     storage,
+    whitelist: ['items'],
 }
 
 const rootReducer = combineReducers({

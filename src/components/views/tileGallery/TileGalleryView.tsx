@@ -4,28 +4,34 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import TileBox from '../../specialized/TileBox';
 import FlowContainer from '../../common/FlowContainer';
-import { removeItem, TileDefinition } from '../../../states/tiles';
+import { removeItem, setEditedItemIndex, TileDefinition } from '../../../states/tiles';
 import { useAppDispatch, useAppSelector } from '../../../hooks/stateHooks';
 import TileEditor from '../../specialized/TileEditor';
 import { Entity } from '../../../types';
-import { setEditedItem } from '../../../states/editor';
 
 export default function TileGalleryView() {
     const dispatch = useAppDispatch();
-    const [isTileEditorActive, editedItem, items] = useAppSelector((state) => [state.editor.isActive, state.editor.editedItem, state.tiles.items]);
-    if (editedItem && (!isTileEditorActive || !items.includes(editedItem))) {
-        dispatch(setEditedItem(undefined));
+    const [isTileEditorActive, editedItemIndex, items] = useAppSelector((state) => [state.editor.isActive, state.tiles.editedItemIndex, state.tiles.items]);
+    let editedItem: Entity<TileDefinition> | null = null;
+    if (editedItemIndex !== -1) {
+        editedItem = items[editedItemIndex];
     }
 
-    const startEditing = useCallback((item: Entity<TileDefinition>) => {
-        dispatch(setEditedItem(item));
+    useEffect(() => {
+        if (!isTileEditorActive) {
+            dispatch(setEditedItemIndex(-1));
+        }
+    }, [isTileEditorActive]);
+
+    const startEditing = useCallback((itemIndex: number) => {
+        dispatch(setEditedItemIndex(itemIndex));
     }, []);
 
     const stopEditing = useCallback(() => {
-        dispatch(setEditedItem(undefined));
+        dispatch(setEditedItemIndex(-1));
     }, []);
 
     return (
@@ -36,12 +42,10 @@ export default function TileGalleryView() {
             <div ref={node => node && (editedItem ? node.setAttribute('inert', '') : node.removeAttribute('inert'))}>
                 <FlowContainer>
                     {/* TODO: each item shall be validated as its origin is unknown. */}
-                    {items.map((item) => {
+                    {items.map((item, itemIndex) => {
                         const onCloseHandler = () => dispatch(removeItem(item.id));
                         return (
-                            <TileBox onClose={onCloseHandler} onEdit={() => startEditing(item)} key={item.id}>
-                                {item.id}
-                            </TileBox>
+                            <TileBox onClose={onCloseHandler} onEdit={() => startEditing(itemIndex)} key={item.id} tile={item.entity} />
                         );
                     })}
                 </FlowContainer>

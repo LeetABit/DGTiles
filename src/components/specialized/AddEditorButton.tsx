@@ -6,26 +6,27 @@
 
 import { useCallback } from 'react';
 import { useAppDispatch } from '../../hooks/stateHooks';
-import { addOrUpdateItem } from '../../states/tiles';
-import { Entity } from '../../types';
+import { addInputEditor, addOutputEditor } from '../../states/tiles';
 
-export default function AddTileButton() {
+interface Props {
+    editorIndex: number,
+    editorName: string,
+    isOutput?: boolean,
+}
+
+export default function AddEditorButton({ editorIndex, editorName, isOutput = false }: Props) {
     const dispatch = useAppDispatch();
     const clickHandler = useCallback(() => {
-        const newItem = new Entity({
-            functions: [],
-            input: [],
-            output: [],
-            functionLinks: [],
-            inputLinks: [],
-            outputLinks: [],
-        });
-        dispatch(addOrUpdateItem(newItem));
-    }, []);
+        if (isOutput) {
+            dispatch(addOutputEditor(editorIndex));
+        } else {
+            dispatch(addInputEditor(editorIndex));
+        }
+    }, [isOutput, editorIndex]);
 
     return (
         <button type="button" onClick={clickHandler}>
-            Add
+            {editorName}
         </button>
     );
 }

@@ -7,6 +7,9 @@
 import { TileDefinition } from '../../states/tiles';
 import { Entity } from '../../types';
 import Dialog from '../common/Dialog';
+import Dock from '../common/Dock';
+import FunctionEditor from './FunctionEditor';
+import EditorToolbox from './EditorToolbox';
 
 interface Props {
     tile: Entity<TileDefinition>,
@@ -16,7 +19,11 @@ interface Props {
 export default function TileEditor({ tile, onClose }: Props) {
     return (
         <Dialog mode="absolute-modal" onClose={onClose}>
-            {tile.id}
+            <Dock>
+                <EditorToolbox dock-direction="left" />
+                <FunctionEditor dock-direction="fill" tile={tile} />
+                <EditorToolbox dock-direction="right" />
+            </Dock>
         </Dialog>
     );
 }
