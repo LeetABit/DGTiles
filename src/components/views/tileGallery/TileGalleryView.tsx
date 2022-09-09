@@ -9,8 +9,8 @@ import TileBox from '../../specialized/TileBox';
 import FlowContainer from '../../common/FlowContainer';
 import { removeItem, setEditedItemIndex, TileDefinition } from '../../../states/tiles';
 import { useAppDispatch, useAppSelector } from '../../../hooks/stateHooks';
-import TileEditor from '../../specialized/TileEditor';
 import { Entity } from '../../../types';
+import TileEditorDialog from '../../specialized/TileEditorDialog';
 
 export default function TileGalleryView() {
     const dispatch = useAppDispatch();
@@ -50,7 +50,7 @@ export default function TileGalleryView() {
                     })}
                 </FlowContainer>
             </div>
-            {editedItem && <TileEditor tile={editedItem} onClose={stopEditing} />}
+            {editedItem && <TileEditorDialog tile={editedItem} onClose={stopEditing} />}
         </>
     );
 }

@@ -4,18 +4,26 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { EditorInfo, EditorProps } from './interfaces';
 
 interface Props extends EditorProps<string> {
 }
 
 function StringEditor({ value, onValueChanged }: Props) {
+    const [oldValue, setOldValue] = useState<string>(value?.toString() ?? '');
     const onInputHandler = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        if (onValueChanged && !onValueChanged(e.currentTarget?.value)) {
-            e.preventDefault();
+        const target = e.currentTarget;
+        if (!target) {
+            return;
         }
-    }, [onValueChanged]);
+
+        if (Number.isNaN(target.value) || (onValueChanged && !onValueChanged(target.value))) {
+            target.value = oldValue;
+        } else {
+            setOldValue(target.value);
+        }
+    }, [oldValue, onValueChanged]);
 
     return <input type="text" onInput={onInputHandler} value={value} />;
 }

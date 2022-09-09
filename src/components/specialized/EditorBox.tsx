@@ -4,25 +4,23 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { CSSObject } from '@emotion/react';
+import { useContext } from 'react';
 import editors from '../editors';
+import { TileEditorContext } from './TileEditor';
 
 interface Props {
     editorIndex: number,
+    isOutput: boolean,
 }
 
-const flexStyle: CSSObject = {
-    display: 'flex',
-}
-
-export default function EditorBox({ editorIndex }: Props) {
+export default function EditorBox({ editorIndex, isOutput }: Props) {
     const f = editors[editorIndex];
+    const tileEditorContext = useContext(TileEditorContext);
 
     return (
         <div>
-            <div>
-                {f.name}
-            </div>
+            {f.name}
+            <input type="checkbox" onChange={() => isOutput ? tileEditorContext.outputEditor(editorIndex) : tileEditorContext.inputEditor(editorIndex)} />
         </div>
     );
 }

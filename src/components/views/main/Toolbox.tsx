@@ -9,11 +9,9 @@ import EditTilesButton from '../../specialized/EditTilesButton';
 import AddTileButton from '../../specialized/AddTileButton';
 import { useAppSelector } from '../../../hooks/stateHooks';
 import ClearTilesButton from '../../specialized/ClearTilesButton';
-import AddFunctionButton from '../../specialized/AddFunctionButton';
-import functions from '../../../framework/functions';
 
 export default function Toolbox() {
-    const [isTileEditorActive, editedItemIndex] = useAppSelector((state) => [state.editor.isActive, state.tiles.editedItemIndex]);
+    const [isTileEditorActive] = useAppSelector((state) => [state.editor.isActive]);
 
     return (
         <Toolbar direction="column">
@@ -23,9 +21,6 @@ export default function Toolbox() {
                     <AddTileButton />
                     <ClearTilesButton />
                 </>
-            )}
-            { editedItemIndex !== -1 && (
-                functions.map((f, i) => <AddFunctionButton functionName={f.name} functionIndex={i} key={f.name} />)
             )}
         </Toolbar>
     );

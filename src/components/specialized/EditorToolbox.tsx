@@ -8,10 +8,14 @@ import Toolbar from '../common/Toolbar';
 import Editors from '../editors';
 import AddEditorButton from './AddEditorButton';
 
-export default function EditorToolbox() {
+interface Props {
+    isOutput?: boolean,
+}
+
+export default function EditorToolbox({ isOutput = false }: Props) {
     return (
         <Toolbar direction="column">
-            {Editors.map((editor, index) => <AddEditorButton editorIndex={index} key={editor.name} editorName={editor.name} />)}
+            {Editors.map((editor, index) => <AddEditorButton editorIndex={index} key={editor.name} editorName={editor.name} isOutput={isOutput} />)}
         </Toolbar>
     );
 }

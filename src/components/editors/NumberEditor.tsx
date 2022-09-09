@@ -4,7 +4,7 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { ArgumentType } from '../../framework/functions/interfaces';
 import { EditorProps, EditorInfo } from './interfaces';
 
@@ -12,12 +12,20 @@ interface Props extends EditorProps<number> {
 }
 
 function NumberEditor({ value, onValueChanged }: Props) {
+    const [oldValue, setOldValue] = useState<string>(value?.toString() ?? '');
     const onInputHandler = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        const number = Number(e.currentTarget?.value);
-        if (onValueChanged && !onValueChanged(number)) {
-            e.preventDefault();
+        const target = e.currentTarget;
+        if (!target) {
+            return;
         }
-    }, [onValueChanged]);
+
+        const number = target.valueAsNumber;
+        if (Number.isNaN(number) || (onValueChanged && !onValueChanged(number))) {
+            target.value = oldValue;
+        } else {
+            setOldValue(target.value);
+        }
+    }, [oldValue, onValueChanged]);
 
     return <input type="number" onInput={onInputHandler} value={value} />;
 }

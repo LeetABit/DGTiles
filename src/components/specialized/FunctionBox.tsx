@@ -5,7 +5,9 @@
 //  @jsxImportSource @emotion/react
 
 import { CSSObject } from '@emotion/react';
+import { useContext } from 'react';
 import functions from '../../framework/functions';
+import { TileEditorContext } from './TileEditor';
 
 interface Props {
     functionIndex: number,
@@ -17,6 +19,7 @@ const flexStyle: CSSObject = {
 
 export default function FunctionBox({ functionIndex }: Props) {
     const f = functions[functionIndex];
+    const tileEditorContext = useContext(TileEditorContext);
 
     return (
         <div>
@@ -25,10 +28,10 @@ export default function FunctionBox({ functionIndex }: Props) {
             </div>
             <div css={flexStyle}>
                 <div>
-                    {f.input.map((i, index) => <div key={index}>{i.name}</div>)}
+                    {f.input.map((i, index) => <div key={index}>{i.name}<input type="checkbox" onChange={() => tileEditorContext.inputParam(functionIndex, index)}/></div>)}
                 </div>
                 <div>
-                    {f.output.map((i, index) => <div key={index}>{i.name}</div>)}
+                    {f.output.map((i, index) => <div key={index}>{i.name}<input type="checkbox" onChange={() => tileEditorContext.outputParam(functionIndex, index)}/></div>)}
                 </div>
             </div>
         </div>

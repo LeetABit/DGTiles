@@ -6,17 +6,16 @@
 
 import { TileDefinition } from '../../states/tiles';
 import { Entity } from '../../types';
-import FunctionBox from './FunctionBox';
+import EditorBox from './EditorBox';
 
 interface Props {
     tile: Entity<TileDefinition>,
 }
 
-export default function FunctionEditor({ tile }: Props) {
+export default function OutputEditor({ tile }: Props) {
     return (
         <>
-            {tile.id}
-            {tile.entity.functions.map((f, i) => <FunctionBox functionIndex={f} key={i} />)}
+            {tile.entity.output.map(f => <EditorBox editorIndex={f.entity} isOutput={true} key={f.id} />)}
         </>
     );
 }
