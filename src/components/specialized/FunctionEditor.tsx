@@ -16,7 +16,7 @@ export default function FunctionEditor({ tile }: Props) {
     return (
         <>
             {tile.id}
-            {tile.entity.functions.map((f, i) => <FunctionBox functionIndex={f} key={i} />)}
+            {tile.entity.functions.map((f, i) => <FunctionBox functionIndex={f} fIndex={i} key={i} />)}
         </>
     );
 }

@@ -18,7 +18,7 @@ function StringEditor({ value, onValueChanged }: Props) {
             return;
         }
 
-        if (Number.isNaN(target.value) || (onValueChanged && !onValueChanged(target.value))) {
+        if (onValueChanged && !onValueChanged(target.value)) {
             target.value = oldValue;
         } else {
             setOldValue(target.value);

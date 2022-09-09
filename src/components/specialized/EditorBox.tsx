@@ -10,17 +10,18 @@ import { TileEditorContext } from './TileEditor';
 
 interface Props {
     editorIndex: number,
+    eIndex: number,
     isOutput: boolean,
 }
 
-export default function EditorBox({ editorIndex, isOutput }: Props) {
+export default function EditorBox({ editorIndex, eIndex, isOutput }: Props) {
     const f = editors[editorIndex];
     const tileEditorContext = useContext(TileEditorContext);
 
     return (
         <div>
             {f.name}
-            <input type="checkbox" onChange={() => isOutput ? tileEditorContext.outputEditor(editorIndex) : tileEditorContext.inputEditor(editorIndex)} />
+            <input type="checkbox" onChange={() => isOutput ? tileEditorContext.outputEditor(eIndex) : tileEditorContext.inputEditor(eIndex)} />
         </div>
     );
 }

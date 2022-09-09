@@ -22,6 +22,7 @@ export default class FunctionRunner {
         this.validatorsField = func.input.map((_input, index) => {
             return (value: ArgumentType) => {
                 if (!func.validate) {
+                    this.inputItemUpdated(value, index);
                     return true;
                 }
 
@@ -56,7 +57,7 @@ export default class FunctionRunner {
     }
 
     private reevaluate() {
-        if (!this.inputProvided.includes(false) && this.func.validate && this.func.validate(this.inputValues)) {
+        if (!this.inputProvided.includes(false) && (!this.func.validate || this.func.validate(this.inputValues))) {
             const result = this.func.invoke(this.inputValues);
 
             result.forEach((item, index) => {

@@ -4,8 +4,9 @@
 //
 //  @jsxImportSource @emotion/react
 
+import DecToHex from './DecToHex';
 import Factorial from './Factorial';
 import Square from './Square';
 import StringLength from './StringLength';
 
-export default [Factorial, Square, StringLength];
+export default [Factorial, Square, StringLength, DecToHex];

@@ -11,13 +11,14 @@ import { TileEditorContext } from './TileEditor';
 
 interface Props {
     functionIndex: number,
+    fIndex: number,
 }
 
 const flexStyle: CSSObject = {
     display: 'flex',
 }
 
-export default function FunctionBox({ functionIndex }: Props) {
+export default function FunctionBox({ functionIndex, fIndex }: Props) {
     const f = functions[functionIndex];
     const tileEditorContext = useContext(TileEditorContext);
 
@@ -28,10 +29,10 @@ export default function FunctionBox({ functionIndex }: Props) {
             </div>
             <div css={flexStyle}>
                 <div>
-                    {f.input.map((i, index) => <div key={index}>{i.name}<input type="checkbox" onChange={() => tileEditorContext.inputParam(functionIndex, index)}/></div>)}
+                    {f.input.map((i, index) => <div key={index}>{i.name}<input type="checkbox" onChange={() => tileEditorContext.inputParam(fIndex, index)}/></div>)}
                 </div>
                 <div>
-                    {f.output.map((i, index) => <div key={index}>{i.name}<input type="checkbox" onChange={() => tileEditorContext.outputParam(functionIndex, index)}/></div>)}
+                    {f.output.map((i, index) => <div key={index}>{i.name}<input type="checkbox" onChange={() => tileEditorContext.outputParam(fIndex, index)}/></div>)}
                 </div>
             </div>
         </div>

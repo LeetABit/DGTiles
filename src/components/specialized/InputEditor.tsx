@@ -15,7 +15,7 @@ interface Props {
 export default function InputEditor({ tile }: Props) {
     return (
         <>
-            {tile.entity.input.map(f => <EditorBox editorIndex={f.entity} isOutput={false} key={f.id} />)}
+            {tile.entity.input.map((f, i) => <EditorBox editorIndex={f.entity} eIndex={i} isOutput={false} key={f.id} />)}
         </>
     );
 }
