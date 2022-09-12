@@ -23,8 +23,12 @@ const baseStyle: CSSObject = {
     boxSizing: 'border-box',
 }
 
+const buttonStyle: CSSObject = {
+    float: 'right',
+};
+
 // TODO: This style is based on modal dialog in Chrome. All this shall
-// be moved to theme and used here and for built-in modal dialog.
+// be moved to theme and used here for built-in modal dialog.
 // Including pseudo property dialog::backdrop.
 const contextualStyle: CSSObject = {
     top: '0px',
@@ -70,7 +74,9 @@ export default function Dialog({ mode = 'modal', onClose, labeledBy, children }:
 
     return (
         <dialog ref={dialogRef} css={style} aria-modal={mode === 'modal'} aria-labelledby={labeledBy}>
-            <CloseButton onClick={onClose} />
+            <span css={buttonStyle}>
+                <CloseButton onClick={onClose} />
+            </span>
             {children}
         </dialog>
     );

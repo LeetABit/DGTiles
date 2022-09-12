@@ -4,8 +4,13 @@
 //
 //  @jsxImportSource @emotion/react
 
-import EditWorkspaceToolbox from '../../specialized/tiles/EditWorkspaceToolbox';
+export interface EditorProps<T> {
+    value?: T;
+    onValueChanged?: (newValue: T) => boolean;
+}
 
-export default function Toolbox() {
-    return <EditWorkspaceToolbox />;
+export interface EditorInfo {
+    id: string,
+    editorName: string,
+    description: string,
 }

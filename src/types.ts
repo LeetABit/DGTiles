@@ -1,14 +1,15 @@
 import { v4 as uuid } from 'uuid';
 
-export interface Identification {
-    get id(): string
+export type Identity<T> = T & Identifier;
+
+export interface Identifier extends OptionalIdentifier {
+    id: string
 }
 
-export class Entity<T> implements Identification {
-    entity: T;
-    id: string;
-    constructor(entity: T) {
-        this.entity = entity;
-        this.id = uuid();
-    }
+export interface OptionalIdentifier {
+    id?: string
+}
+
+export function identify<T extends {}>(obj: T): Identity<T> {
+    return Object.assign(obj, { id: uuid() });
 }

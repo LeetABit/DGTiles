@@ -18,7 +18,7 @@ const style : CSSObject = mergeStyles(DiagonalCross, {
     height: '1rem',
     cursor: 'pointer',
     position: 'relative',
-    float: 'right',
+    //float: 'right',
 });
 
 export default function CloseButton({ onClick }: Props) {

@@ -12,6 +12,7 @@ import MainView from './components/views/main/MainView';
 import { theme } from './styles/themes';
 import { persistor, store } from './store';
 import { DialogProvider, DialogPlaceholder } from './components/common/Dialog';
+import ScreenOrientationProvider from './components/common/ScreenOrientationProvider';
 
 interface Props {
     basename?: string,
@@ -39,18 +40,20 @@ export default ({ basename } : Props) => {
     return (
         <>
             <Global styles={globalStyle} />
-            <ThemeProvider theme={theme}>
-                <BrowserRouter basename={basename}>
-                    <Provider store={store}>
-                        <PersistGate persistor={persistor}>
-                            <DialogProvider>
-                                <MainView />
-                                <DialogPlaceholder />
-                            </DialogProvider>
-                        </PersistGate>
-                    </Provider>
-                </BrowserRouter>
-            </ThemeProvider>
+            <ScreenOrientationProvider>
+                <ThemeProvider theme={theme}>
+                    <BrowserRouter basename={basename}>
+                        <Provider store={store}>
+                            <PersistGate persistor={persistor}>
+                                <DialogProvider>
+                                    <MainView />
+                                    <DialogPlaceholder />
+                                </DialogProvider>
+                            </PersistGate>
+                        </Provider>
+                    </BrowserRouter>
+                </ThemeProvider>
+            </ScreenOrientationProvider>
         </>
     );
 };

@@ -4,19 +4,18 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { TileDefinition } from '../../states/tiles';
-import { Entity } from '../../types';
-import Dialog from '../common/Dialog';
+import Dialog from '../../../common/Dialog';
+import TileEditor from './TileEditor';
 
 interface Props {
-    tile: Entity<TileDefinition>,
+    tileIndex: number,
     onClose: () => void,
 }
 
-export default function TileEditor({ tile, onClose }: Props) {
+export default function TileEditorDialog({ tileIndex, onClose }: Props) {
     return (
         <Dialog mode="absolute-modal" onClose={onClose}>
-            {tile.id}
+            <TileEditor tileIndex={tileIndex} />
         </Dialog>
     );
 }

@@ -3,17 +3,16 @@ import { configureStore } from '@reduxjs/toolkit'
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore, getStoredState, KEY_PREFIX, REHYDRATE } from 'redux-persist';
 import thunk from 'redux-thunk';
-import editor from './states/editor';
 import tiles from './states/tiles';
 
 const persistConfig = {
     key: 'root',
     storage,
+    whitelist: ['tiles'],
 }
 
 const rootReducer = combineReducers({
     tiles: persistReducer(persistConfig, tiles),
-    editor,
 })
 
 export type RootState = ReturnType<typeof rootReducer>;

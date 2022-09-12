@@ -5,14 +5,18 @@
 //  @jsxImportSource @emotion/react
 
 import { CSSObject } from '@emotion/react';
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo } from 'react';
 import { mergeStyles } from '../../styles/mergeStyles';
+import { ScreenOrientationContext } from './ScreenOrientationProvider';
+
+type Direction = 'horizontal' | 'vertical'
+
+interface Props {
+    direction?: Direction;
+}
 
 const baseStyle: CSSObject = {
     label: 'FlowContainer',
-    width: '100%',
-    height: '100%',
-    position: 'absolute',
     display: 'flex',
     flexWrap: 'wrap',
     padding: '10px',
@@ -31,26 +35,14 @@ const columnStyle: CSSObject = {
     flexDirection: 'column',
 }
 
-const calculateDirection = () => {
-    return (window.innerWidth > window.innerHeight) ? rowStyle : columnStyle;
-}
-
-export default function FlowContainer({ children }: React.PropsWithChildren) {
-    const [direction, setDirection] = React.useState<CSSObject>(calculateDirection());
+export default function FlowContainer({ direction = 'horizontal', children }: React.PropsWithChildren<Props>) {
+    const screenOrientation = useContext(ScreenOrientationContext);
+    const directionStyle = (screenOrientation === 'Landscape') === (direction === 'horizontal') ? rowStyle : columnStyle;
     const divRef = React.useRef<HTMLDivElement>(null);
 
     const style = useMemo(() => {
-        return mergeStyles(baseStyle, direction);
-    }, [window.innerWidth, window.innerHeight]);
-
-    React.useEffect(() => {
-        const handleResize = () => {
-            setDirection(calculateDirection());
-        }
-
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+        return mergeStyles(baseStyle, directionStyle);
+    }, [screenOrientation, direction]);
 
     const handleWheelEvent = useCallback((e: WheelEvent) => {
         if (divRef.current) {
@@ -59,13 +51,13 @@ export default function FlowContainer({ children }: React.PropsWithChildren) {
     }, []);
 
     useEffect(() => {
-        if (direction === columnStyle && divRef.current) {
+        if (directionStyle === columnStyle && divRef.current) {
             divRef.current.addEventListener('wheel', handleWheelEvent);
             return () => divRef.current?.removeEventListener('wheel', handleWheelEvent);
         }
 
         return undefined;
-    }, [direction, handleWheelEvent]);
+    }, [directionStyle, handleWheelEvent]);
 
     return (
         <div ref={divRef} css={style}>

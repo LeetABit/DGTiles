@@ -4,13 +4,18 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { useAppDispatch } from '../../hooks/stateHooks';
-import { clearItems } from '../../states/tiles';
+import { useCallback } from 'react';
+import { useAppDispatch } from '../../../hooks/stateHooks';
+import { clearTiles } from '../../../states/tiles';
 
 export default function ClearTilesButton() {
     const dispatch = useAppDispatch();
+    const clickHandler = useCallback(() => {
+        dispatch(clearTiles());
+    }, []);
+
     return (
-        <button type="button" onClick={() => dispatch(clearItems())}>
+        <button type="button" onClick={clickHandler}>
             Clear
         </button>
     );
