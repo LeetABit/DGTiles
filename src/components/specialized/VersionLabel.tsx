@@ -4,22 +4,28 @@
 //
 //  @jsxImportSource @emotion/react
 
+import { CSSObject } from '@emotion/react';
 import gitVersion from '../../gitVersion.json';
 
 interface Props {
     displayDate?: boolean
 }
 
-const versionString : string = `${gitVersion.version
-    + ((gitVersion.commitCount > 0) ? `-beta.${gitVersion.commitCount}` : '')
+const versionString : string = `${gitVersion.major}.${gitVersion.minor}.${gitVersion.patch}${
+    ((gitVersion.commitCount > 0) ? `-beta.${gitVersion.commitCount}` : '')
     + ((gitVersion.isDirty) ? '-local' : '')
 }+Branch.${gitVersion.branch}`
     + `+Sha.${gitVersion.sha}`
-    + `+Timestamp.${gitVersion.buildSafeTime}`;
+    + `+Timestamp.${gitVersion.safeTimestamp}`;
+
+const style: CSSObject = {
+    position: 'absolute',
+    bottom: '0px',
+}
 
 export default function VersionLabel({ displayDate = false }: Props) {
     return (
-        <>
+        <div css={style}>
             <div>
                 <span>Version:</span>
                 <span>{versionString}</span>
@@ -27,9 +33,9 @@ export default function VersionLabel({ displayDate = false }: Props) {
             {displayDate && (
                 <div>
                     <span>Date:</span>
-                    <span>{gitVersion.buildTime}</span>
+                    <span>{gitVersion.timestamp}</span>
                 </div>
             )}
-        </>
+        </div>
     );
 }

@@ -6,7 +6,7 @@
     {
       "type": "shell",
       "label": "Start Static Web App",
-      "command": "swa start https://localhost:5002/ --run 'yarn start'",
+      "command": "swa start https://localhost:5002/ --run 'yarn start' --devserver-timeout 600000",
       "isBackground": true,
       "problemMatcher": {
         "owner": "typescript",

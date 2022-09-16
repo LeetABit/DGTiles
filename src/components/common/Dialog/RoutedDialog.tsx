@@ -10,9 +10,9 @@ import Dialog, { DialogMode } from './Dialog';
 
 interface Props {
     mode?: DialogMode,
-    labeledBy?: string,
+    titleBarContent?: React.ReactNode,
 }
-export default function RoutedDialog({ mode, labeledBy, children }: React.PropsWithChildren<Props>) {
+export default function RoutedDialog({ mode, titleBarContent, children }: React.PropsWithChildren<Props>) {
     const navigate = useNavigate();
     const location = useLocation();
     const navigateBack = () => {
@@ -24,7 +24,7 @@ export default function RoutedDialog({ mode, labeledBy, children }: React.PropsW
     }
 
     return (
-        <Dialog mode={mode} labeledBy={labeledBy} onClose={navigateBack}>
+        <Dialog mode={mode} titleBarContent={titleBarContent} onClose={navigateBack}>
             {children}
         </Dialog>
     );

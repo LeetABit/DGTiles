@@ -35,7 +35,7 @@
       "request": "launch",
       "type": "node-terminal",
       "cwd": "${workspaceFolder}",
-      "command": "swa start https://localhost:5002/ --run 'yarn start'",
+      "command": "swa start https://localhost:5002/ --run 'yarn start' --devserver-timeout 600000",
       "presentation": {
           "hidden": true,
       },

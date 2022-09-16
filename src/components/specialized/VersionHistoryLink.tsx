@@ -5,10 +5,10 @@
 //  @jsxImportSource @emotion/react
 
 import { DialogLink } from '../common/Dialog';
-import TermsOfUse from '../documents/TermsOfUse';
+import VersionHistory from '../documents/VersionHistory';
 
-export default function TermsOfUseLink() {
+export default function VersionHistoryLink() {
     return (
-        <DialogLink content={<TermsOfUse />} to="/termsOfUse" titleBarContent="Terms of Use">Terms of Use</DialogLink>
+        <DialogLink content={<VersionHistory />} to="/versionHistory" titleBarContent="Version History">Version History</DialogLink>
     );
 }

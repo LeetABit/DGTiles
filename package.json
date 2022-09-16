@@ -8,6 +8,8 @@
     "bson": "4.6.5",
     "compress-json": "2.0.1",
     "history": "5.3.0",
+    "license-checker": "25.0.1",
+    "parse-package-name": "1.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-markdown": "8.0.3",
@@ -44,7 +46,7 @@
     "yarn-or-npm": "3.0.1"
   },
   "scripts": {
-    "generate": "node scripts/updateGetVersion.mjs",
+    "generate": "node scripts/generateFiles.mjs",
     "lint": "eslint ./src/**/*.{ts,tsx,js,jsx,mjs} ./scripts/**/*.{ts,tsx,js,jsx,mjs} --max-warnings=0",
     "clean": "rimraf ./build",
     "start": "yon run clean && yon run generate && react-scripts start",

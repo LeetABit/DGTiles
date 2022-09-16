@@ -11,12 +11,12 @@ export const DialogGetterContext = React.createContext<HTMLDivElement | null>(nu
 
 export default function DialogProvider({ children }: React.PropsWithChildren) {
     const [dialog, setDialog] = React.useState<HTMLDivElement | null>(null);
-    const setModalDialog = useCallback((newDialog: HTMLDivElement) => {
+    const setDialogCallback = useCallback((newDialog: HTMLDivElement) => {
         setDialog(newDialog);
     }, []);
 
     return (
-        <DialogSetterContext.Provider value={setModalDialog}>
+        <DialogSetterContext.Provider value={setDialogCallback}>
             <DialogGetterContext.Provider value={dialog}>
                 {children}
             </DialogGetterContext.Provider>

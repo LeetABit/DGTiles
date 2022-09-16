@@ -80,7 +80,8 @@
     ],
     "react/no-unknown-property": ["warn", {
       "ignore": ["css"]
-    }]
+    }],
+    "no-await-in-loop": "off"
   },
   "settings": {
     "import/resolver": {

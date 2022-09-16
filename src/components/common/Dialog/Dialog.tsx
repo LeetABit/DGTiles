@@ -6,6 +6,7 @@
 
 import { CSSObject } from '@emotion/react';
 import React, { useMemo } from 'react';
+import { v4 as uuid } from 'uuid';
 import { mergeStyles } from '../../../styles/mergeStyles';
 import CloseButton from '../CloseButton';
 
@@ -14,13 +15,17 @@ export type DialogMode = 'modal' | 'modeless' | 'absolute-modal';
 interface Props {
     mode?: DialogMode,
     onClose: () => void,
-    labeledBy?: string,
+    titleBarContent?: React.ReactNode,
 }
 
 const baseStyle: CSSObject = {
-    label: 'ModalDialog',
+    label: 'Dialog',
     borderStyle: 'none',
     boxSizing: 'border-box',
+    display: 'flex',
+    flexDirection: 'column',
+    overflow: 'hidden',
+    padding: '0px',
 }
 
 // TODO: This style is based on modal dialog in Chrome. All this shall
@@ -34,12 +39,34 @@ const contextualStyle: CSSObject = {
     boxShadow: '0 0 0 100vmax rgba(0, 0, 0, 0.1)',
 };
 
-export default function Dialog({ mode = 'modal', onClose, labeledBy, children }: React.PropsWithChildren<Props>) {
+const titleBarStyle: CSSObject = {
+    display: 'flex',
+    padding: '1em',
+};
+
+const titleContentStyle: CSSObject = {
+    flexGrow: 1,
+    textAlign: 'center',
+};
+const closeButtonStyle: CSSObject = {
+};
+const contentStyle: CSSObject = {
+    flexGrow: 1,
+    overflow: 'auto',
+    padding: '0px 1em',
+    marginBottom: '1em',
+};
+
+export default function Dialog({ mode = 'modal', onClose, children, titleBarContent }: React.PropsWithChildren<Props>) {
     const style = useMemo(() => {
         return mode === 'absolute-modal'
             ? mergeStyles(baseStyle, contextualStyle)
             : baseStyle;
     }, [mode]);
+
+    const labelId = useMemo(() => {
+        return uuid();
+    }, []);
 
     const dialogRef = React.useRef<HTMLDialogElement>(null);
     const closeOnEscapeKey = (e: KeyboardEvent) => {
@@ -69,9 +96,18 @@ export default function Dialog({ mode = 'modal', onClose, labeledBy, children }:
     }, []);
 
     return (
-        <dialog ref={dialogRef} css={style} aria-modal={mode === 'modal'} aria-labelledby={labeledBy}>
-            <CloseButton onClick={onClose} />
-            {children}
+        <dialog ref={dialogRef} css={style} aria-modal={mode === 'modal'} aria-labelledby={labelId}>
+            <div css={titleBarStyle}>
+                <span id={labelId} css={titleContentStyle}>
+                    {titleBarContent}
+                </span>
+                <span css={closeButtonStyle}>
+                    <CloseButton onClick={onClose} />
+                </span>
+            </div>
+            <div css={contentStyle}>
+                {children}
+            </div>
         </dialog>
     );
 }

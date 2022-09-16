@@ -8,11 +8,12 @@ on:
     types: [opened, synchronize, reopened, closed]
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build_and_deploy_job:
     name: Build and Deploy Job
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed') || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -21,33 +22,17 @@ jobs:
           submodules: true
           fetch-depth: 0
 
-      - name: Get version
-        id: gitVersion
-        if: github.event_name == 'push'
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{ github.token }}
-          script: |
-            const { default: calculateGitVersion } = await import('${{ github.workspace }}/scripts/calculateGitVersion.mjs');
-            const gitVersion = await calculateGitVersion();
-            return gitVersion.version;
-
       - name: Create tag
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         uses: actions/github-script@v6
-        continue-on-error: true
         with:
           github-token: ${{ github.token }}
           script: |
-            github.rest.git.createRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: "refs/tags/v" + ${{steps.gitVersion.outputs.result}},
-              sha: context.sha
-            })
+            const { default: createGitTag } = await import('${{ github.workspace }}/scripts/createGitTag.mjs');
+            await createGitTag(github, context);
 
       - name: Fetch tag
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         run: git fetch --tags
 
       - name: Cache node modules
@@ -59,6 +44,7 @@ jobs:
             app-node-modules-
 
       - name: Build And Deploy
+        if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}

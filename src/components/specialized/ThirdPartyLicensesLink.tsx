@@ -5,10 +5,10 @@
 //  @jsxImportSource @emotion/react
 
 import { DialogLink } from '../common/Dialog';
-import TermsOfUse from '../documents/TermsOfUse';
+import ThirdPartyLicenses from '../documents/ThirdPartyLicenses';
 
-export default function TermsOfUseLink() {
+export default function ThirdPartyLicensesLink() {
     return (
-        <DialogLink content={<TermsOfUse />} to="/termsOfUse" titleBarContent="Terms of Use">Terms of Use</DialogLink>
+        <DialogLink content={<ThirdPartyLicenses />} to="/thirdPartyLicenses" titleBarContent="Third-party Licenses">Third-party Licenses</DialogLink>
     );
 }
