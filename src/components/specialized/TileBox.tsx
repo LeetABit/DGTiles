@@ -6,9 +6,9 @@
 
 import { CSSObject } from '@emotion/react';
 import React from 'react';
+import type { RootState } from 'src/store';
+import { useAppSelector } from 'src/hooks/stateHooks';
 import CloseButton from '../common/CloseButton';
-import type { RootState } from '../../store';
-import { useAppSelector } from '../../hooks/stateHooks';
 import EditButton from './EditButton';
 
 interface Props {

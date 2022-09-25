@@ -7,7 +7,7 @@
 import { CSSObject } from '@emotion/react';
 import React, { useMemo } from 'react';
 import { v4 as uuid } from 'uuid';
-import { mergeStyles } from '../../../styles/mergeStyles';
+import { mergeStyles } from 'src/styles/mergeStyles';
 import CloseButton from '../CloseButton';
 
 export type DialogMode = 'modal' | 'modeless' | 'absolute-modal';

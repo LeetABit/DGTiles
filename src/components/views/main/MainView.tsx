@@ -4,12 +4,12 @@
 //
 //  @jsxImportSource @emotion/react
 
-import FullscreenViewport from '../../common/FullscreenViewport';
+import FullscreenViewport from 'src/components/common/FullscreenViewport';
+import Dock from 'src/components/common/Dock';
 import Footer from './Footer';
 import Header from './Header';
 import Toolbox from './Toolbox';
 import Workspace from './Workspace';
-import Dock from '../../common/Dock';
 
 export default function MainView() {
     return (

@@ -5,10 +5,10 @@
 //  @jsxImportSource @emotion/react
 
 import { useCallback } from 'react';
-import { useAppDispatch } from '../../hooks/stateHooks';
-import { setEditedItem } from '../../states/editor';
-import { addOrUpdateItem } from '../../states/tiles';
-import { Entity } from '../../types';
+import { useAppDispatch } from 'src/hooks/stateHooks';
+import { setEditedItem } from 'src/states/editor';
+import { addOrUpdateItem } from 'src/states/tiles';
+import { Entity } from 'src/types';
 
 export default function AddTileButton() {
     const dispatch = useAppDispatch();

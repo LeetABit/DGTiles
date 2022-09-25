@@ -6,7 +6,7 @@
 
 import { CSSObject, useTheme } from '@emotion/react';
 import { useMemo } from 'react';
-import { mergeStyles } from '../../../styles/mergeStyles';
+import { mergeStyles } from 'src/styles/mergeStyles';
 import TileGalleryView from '../tileGallery/TileGalleryView';
 
 const baseStyle: CSSObject = {

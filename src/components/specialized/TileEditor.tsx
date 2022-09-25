@@ -4,8 +4,8 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { TileDefinition } from '../../states/tiles';
-import { Entity } from '../../types';
+import { TileDefinition } from 'src/states/tiles';
+import { Entity } from 'src/types';
 import Dialog from '../common/Dialog';
 
 interface Props {

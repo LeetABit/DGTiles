@@ -4,8 +4,8 @@
 //
 //  @jsxImportSource @emotion/react
 
+import versionHistory from 'src/versionHistory.g.json';
 import MarkdownDocument from '../common/MarkdownDocument';
-import versionHistory from '../../versionHistory.json';
 
 const documentLines: string[] = [];
 versionHistory.forEach(entry => {

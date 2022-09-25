@@ -5,7 +5,7 @@
 //  @jsxImportSource @emotion/react
 
 import { CSSObject } from '@emotion/react';
-import gitVersion from '../../gitVersion.json';
+import gitVersion from 'src/gitVersion.g.json';
 
 interface Props {
     displayDate?: boolean

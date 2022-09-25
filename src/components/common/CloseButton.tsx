@@ -5,8 +5,8 @@
 //  @jsxImportSource @emotion/react
 
 import { CSSObject } from '@emotion/react';
-import { DiagonalCross } from '../../styles/icons';
-import { mergeStyles } from '../../styles/mergeStyles';
+import { DiagonalCross } from 'src/styles/icons';
+import { mergeStyles } from 'src/styles/mergeStyles';
 
 interface Props {
     onClick: () => void,

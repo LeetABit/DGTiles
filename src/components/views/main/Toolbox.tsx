@@ -4,11 +4,11 @@
 //
 //  @jsxImportSource @emotion/react
 
-import Toolbar from '../../common/Toolbar';
-import EditTilesButton from '../../specialized/EditTilesButton';
-import AddTileButton from '../../specialized/AddTileButton';
-import { useAppSelector } from '../../../hooks/stateHooks';
-import ClearTilesButton from '../../specialized/ClearTilesButton';
+import Toolbar from 'src/components/common/Toolbar';
+import EditTilesButton from 'src/components/specialized/EditTilesButton';
+import AddTileButton from 'src/components/specialized/AddTileButton';
+import { useAppSelector } from 'src/hooks/stateHooks';
+import ClearTilesButton from 'src/components/specialized/ClearTilesButton';
 
 export default function Toolbox() {
     const isTileEditorActive = useAppSelector((state) => state.editor.isActive);

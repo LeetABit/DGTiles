@@ -6,7 +6,7 @@
 
 import { CSSObject } from '@emotion/react';
 import React, { useCallback, useEffect, useMemo } from 'react';
-import { mergeStyles } from '../../styles/mergeStyles';
+import { mergeStyles } from 'src/styles/mergeStyles';
 
 const baseStyle: CSSObject = {
     label: 'FlowContainer',

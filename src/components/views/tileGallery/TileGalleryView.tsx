@@ -5,13 +5,13 @@
 //  @jsxImportSource @emotion/react
 
 import { useCallback } from 'react';
-import TileBox from '../../specialized/TileBox';
-import FlowContainer from '../../common/FlowContainer';
-import { removeItem, TileDefinition } from '../../../states/tiles';
-import { useAppDispatch, useAppSelector } from '../../../hooks/stateHooks';
-import TileEditor from '../../specialized/TileEditor';
-import { Entity } from '../../../types';
-import { setEditedItem } from '../../../states/editor';
+import TileBox from 'src/components/specialized/TileBox';
+import FlowContainer from 'src/components/common/FlowContainer';
+import { removeItem, TileDefinition } from 'src/states/tiles';
+import { useAppDispatch, useAppSelector } from 'src/hooks/stateHooks';
+import TileEditor from 'src/components/specialized/TileEditor';
+import { Entity } from 'src/types';
+import { setEditedItem } from 'src/states/editor';
 
 export default function TileGalleryView() {
     const dispatch = useAppDispatch();

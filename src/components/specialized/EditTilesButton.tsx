@@ -4,8 +4,8 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { useAppDispatch, useAppSelector } from '../../hooks/stateHooks';
-import { toggleIsActive } from '../../states/editor';
+import { useAppDispatch, useAppSelector } from 'src/hooks/stateHooks';
+import { toggleIsActive } from 'src/states/editor';
 
 export default function EditTilesButton() {
     const isTileEditorActive = useAppSelector((state) => state.editor.isActive);

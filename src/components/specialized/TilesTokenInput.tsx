@@ -8,9 +8,9 @@ import { CSSObject } from '@emotion/react';
 import { serialize, deserialize } from 'bson';
 import { compress, Compressed, decompress } from 'compress-json';
 import { useCallback, useMemo, useId } from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks/stateHooks';
-import { TileDefinition, setItems } from '../../states/tiles';
-import { Entity } from '../../types';
+import { useAppDispatch, useAppSelector } from 'src/hooks/stateHooks';
+import { TileDefinition, setItems } from 'src/states/tiles';
+import { Entity } from 'src/types';
 
 const textareaStyle: CSSObject = {
     resize: 'none',

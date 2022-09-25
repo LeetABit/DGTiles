@@ -84,15 +84,12 @@
     "no-await-in-loop": "off"
   },
   "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
     "import/resolver": {
-      "node": {
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".mjs",
-          ".ts",
-          ".tsx"
-        ]
+      "typescript": {
+        "alwaysTryTypes": true
       }
     }
   }
