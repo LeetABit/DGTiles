@@ -4,8 +4,8 @@
 //
 //  @jsxImportSource @emotion/react
 
+import thirdPartyLicenses from 'src/thirdPartyLicenses.g.json';
 import MarkdownDocument from '../common/MarkdownDocument';
-import thirdPartyLicenses from '../../thirdPartyLicenses.json';
 
 const documentLines: string[] = [];
 thirdPartyLicenses.forEach(entry => {

@@ -4,11 +4,11 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { DialogLink } from '../common/Dialog';
-import VersionHistory from '../documents/VersionHistory';
+import { DialogLink } from 'src/components/common/Dialog';
+import VersionHistory from 'src/components/documents/VersionHistory';
 
 export default function VersionHistoryLink() {
     return (
-        <DialogLink content={<VersionHistory />} to="/versionHistory" titleBarContent="Version History">Version History</DialogLink>
+        <DialogLink dialogContent={<VersionHistory />} to="/versionHistory" titleBar="Version History">Version History</DialogLink>
     );
 }

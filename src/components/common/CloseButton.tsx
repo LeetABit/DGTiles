@@ -5,22 +5,24 @@
 //  @jsxImportSource @emotion/react
 
 import { CSSObject } from '@emotion/react';
-import { DiagonalCross } from '../../styles/icons';
-import { mergeStyles } from '../../styles/mergeStyles';
+import { AriaAttributes, useMemo } from 'react';
+import { DiagonalCross } from 'src/styles/icons';
+import { mergeStyles } from 'src/styles/mergeStyles';
 
-interface Props {
+interface Props extends AriaAttributes {
+    style?: CSSObject,
     onClick: () => void,
 }
 
-const style : CSSObject = mergeStyles(DiagonalCross, {
-    label: 'CloseButton',
+const baseStyle : CSSObject = mergeStyles(DiagonalCross, {
     width: '1rem',
     height: '1rem',
     cursor: 'pointer',
     position: 'relative',
-    float: 'right',
+    verticalAlign: 'top',
 });
 
-export default function CloseButton({ onClick }: Props) {
-    return <button type="button" css={style} onClick={onClick} aria-label="close" />;
+export default function CloseButton({ style, onClick, ...ariaAttributes }: Props) {
+    const css = useMemo(() => mergeStyles(baseStyle, style), [style]);
+    return <button type="button" css={css} onClick={onClick} {...ariaAttributes} aria-label="close" />;
 }

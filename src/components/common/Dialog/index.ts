@@ -4,10 +4,8 @@
 //
 //  @jsxImportSource @emotion/react
 
-export type { DialogMode } from './Dialog';
+export type { DialogMode } from './types';
 export { default } from './Dialog';
-export { default as DialogItem } from './DialogItem';
 export { default as DialogLink } from './DialogLink';
-export { default as DialogPlaceholder } from './DialogPlaceholder';
 export { default as DialogProvider } from './DialogProvider';
 export { default as RoutedDialog } from './RoutedDialog';

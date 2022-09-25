@@ -5,17 +5,18 @@
 //  @jsxImportSource @emotion/react
 
 import { CSSObject } from '@emotion/react';
-import React, { useMemo } from 'react';
-import { mergeStyles } from '../../styles/mergeStyles';
+import React, { ReactElement, useMemo } from 'react';
+import { mergeStyles } from 'src/styles/mergeStyles';
+import { cloneElementWithEmotion } from 'src/types';
 
 export type ToolbarDirection = 'row' | 'column';
 
 interface Props {
-    direction?: ToolbarDirection
+    direction?: ToolbarDirection,
+    container?: ReactElement,
 }
 
 const baseStyle: CSSObject = {
-    label: 'Toolbar',
     display: 'flex',
 };
 
@@ -27,15 +28,7 @@ const columnStyle: CSSObject = {
     flexDirection: 'column',
 };
 
-export default function Toolbar({ direction = 'row', children }: React.PropsWithChildren<Props>) {
-    const style = useMemo(() => {
-        const directionStyle = direction === 'row' ? rowStyle : columnStyle;
-        return mergeStyles(baseStyle, directionStyle);
-    }, [direction]);
-
-    return (
-        <div css={style} role="toolbar">
-            {children}
-        </div>
-    );
+export default function Toolbar({ direction = 'row', container = <div />, children }: React.PropsWithChildren<Props>) {
+    const style = useMemo(() => mergeStyles(baseStyle, (direction === 'row' ? rowStyle : columnStyle)), [direction]);
+    return cloneElementWithEmotion(container, undefined, style, children);
 }

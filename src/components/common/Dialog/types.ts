@@ -4,8 +4,4 @@
 //
 //  @jsxImportSource @emotion/react
 
-import EditWorkspaceToolbox from 'src/components/specialized/tiles/EditWorkspaceToolbox';
-
-export default function Toolbox() {
-    return <EditWorkspaceToolbox />;
-}
+export type DialogMode = 'modal' | 'modeless' | 'absolute-modal';

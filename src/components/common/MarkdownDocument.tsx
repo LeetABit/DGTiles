@@ -4,7 +4,6 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { CSSObject } from '@emotion/react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import Anchor from '../markdown/Anchor';
@@ -14,20 +13,13 @@ interface Props {
     content: string
 }
 
-const style : CSSObject = {
-    label: 'MarkdownDocument',
-    wordBreak: 'break-word',
-};
-
 export default function MarkdownDocument({ content }: Props) {
     return (
-        <div css={style}>
-            <ReactMarkdown
-                remarkPlugins={[remarkGfm]}
-                components={{ a: Anchor, pre: Pre }}
-            >
-                {content}
-            </ReactMarkdown>
-        </div>
+        <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            components={{ a: Anchor, pre: Pre }}
+        >
+            {content}
+        </ReactMarkdown>
     );
 }

@@ -5,9 +5,9 @@
 //  @jsxImportSource @emotion/react
 
 import React, { useCallback } from 'react';
-
-export const DialogSetterContext = React.createContext<(dialog: HTMLDivElement) => void>((_) => {});
-export const DialogGetterContext = React.createContext<HTMLDivElement | null>(null);
+import { DialogGetterContext } from './private/DialogGetterContext';
+import DialogPlaceholder from './private/DialogPlaceholder';
+import { DialogSetterContext } from './private/DialogSetterContext';
 
 export default function DialogProvider({ children }: React.PropsWithChildren) {
     const [dialog, setDialog] = React.useState<HTMLDivElement | null>(null);
@@ -19,6 +19,7 @@ export default function DialogProvider({ children }: React.PropsWithChildren) {
         <DialogSetterContext.Provider value={setDialogCallback}>
             <DialogGetterContext.Provider value={dialog}>
                 {children}
+                <DialogPlaceholder />
             </DialogGetterContext.Provider>
         </DialogSetterContext.Provider>
     );

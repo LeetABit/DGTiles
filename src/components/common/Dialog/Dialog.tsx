@@ -5,21 +5,21 @@
 //  @jsxImportSource @emotion/react
 
 import { CSSObject } from '@emotion/react';
-import React, { useMemo } from 'react';
+import React, { AriaAttributes, useCallback, useMemo } from 'react';
 import { v4 as uuid } from 'uuid';
-import { mergeStyles } from '../../../styles/mergeStyles';
+import { mergeStyles } from 'src/styles/mergeStyles';
 import CloseButton from '../CloseButton';
+import { DialogMode } from './types';
+import Box from '../Box';
 
-export type DialogMode = 'modal' | 'modeless' | 'absolute-modal';
-
-interface Props {
+interface Props extends AriaAttributes{
     mode?: DialogMode,
+    titleBar?: React.ReactNode,
+    style?: CSSObject,
     onClose: () => void,
-    titleBarContent?: React.ReactNode,
 }
 
-const baseStyle: CSSObject = {
-    label: 'Dialog',
+const dialogStyle: CSSObject = {
     borderStyle: 'none',
     boxSizing: 'border-box',
     display: 'flex',
@@ -28,86 +28,64 @@ const baseStyle: CSSObject = {
     padding: '0px',
 }
 
-// TODO: This style is based on modal dialog in Chrome. All this shall
-// be moved to theme and used here and for built-in modal dialog.
-// Including pseudo property dialog::backdrop.
-const contextualStyle: CSSObject = {
+const gridStyle: CSSObject = {
+    display: 'grid',
+    gridTemplateRows: '[row-line-0] max-content [row-line-1] 1fr [row-line-2]',
+    gridTemplateColumns: '[column-line-0] 1fr [column-line-1] max-content [column-line-2]',
+}
+
+const modalDialogStyle: CSSObject = {
     top: '0px',
     bottom: '0px',
     maxWidth: 'calc((100% - 6px) - 2em)',
     maxHeight: 'calc((100% - 6px) - 2em)',
+}
+
+const absoluteModalDialogStyle: CSSObject = {
     boxShadow: '0 0 0 100vmax rgba(0, 0, 0, 0.1)',
-};
+}
 
-const titleBarStyle: CSSObject = {
-    display: 'flex',
-    padding: '1em',
-};
-
-const titleContentStyle: CSSObject = {
-    flexGrow: 1,
-    textAlign: 'center',
-};
-const closeButtonStyle: CSSObject = {
-};
 const contentStyle: CSSObject = {
-    flexGrow: 1,
     overflow: 'auto',
-    padding: '0px 1em',
-    marginBottom: '1em',
 };
 
-export default function Dialog({ mode = 'modal', onClose, children, titleBarContent }: React.PropsWithChildren<Props>) {
-    const style = useMemo(() => {
-        return mode === 'absolute-modal'
-            ? mergeStyles(baseStyle, contextualStyle)
-            : baseStyle;
-    }, [mode]);
+const absoluteModalStyle = mergeStyles(dialogStyle, modalDialogStyle, gridStyle, absoluteModalDialogStyle);
+const otherStyle = mergeStyles(dialogStyle, modalDialogStyle, gridStyle);
 
-    const labelId = useMemo(() => {
+export default function Dialog({ mode = 'modal', titleBar, style, onClose, children, ...ariaAttributes }: React.PropsWithChildren<Props>) {
+    const dialogRef = React.useRef<HTMLDialogElement>(null);
+
+    const dialogLabelId = useMemo(() => {
         return uuid();
     }, []);
 
-    const dialogRef = React.useRef<HTMLDialogElement>(null);
-    const closeOnEscapeKey = (e: KeyboardEvent) => {
-        if (e.key === 'Escape' && onClose) {
+    const css = useMemo(() => mergeStyles((mode === 'absolute-modal' ? absoluteModalStyle : otherStyle), style), [mode, style]);
+    const closeOnEscapeKey = useCallback((event: KeyboardEvent) => {
+        if (event.key === 'Escape' && onClose) {
+            event.stopImmediatePropagation();
             onClose();
-            e.stopImmediatePropagation();
         }
-    };
+    }, [onClose]);
 
-    const addListener = () => {
+    React.useEffect(() => {
         window.addEventListener('keydown', closeOnEscapeKey);
         if (mode === 'modal') {
             dialogRef.current?.showModal();
         } else {
             dialogRef.current?.show();
         }
-    };
 
-    const removeListener = () => {
-        dialogRef.current?.close();
-        window.removeEventListener('keydown', closeOnEscapeKey);
-    };
+        return () => {
+            dialogRef.current?.close();
+            window.removeEventListener('keydown', closeOnEscapeKey);
+        };
+    }, [closeOnEscapeKey]);
 
-    React.useEffect(() => {
-        addListener();
-        return removeListener;
-    }, []);
+    const container = <dialog ref={dialogRef} id={dialogLabelId} css={css} aria-modal={mode === 'modal'} {...ariaAttributes} />;
 
     return (
-        <dialog ref={dialogRef} css={style} aria-modal={mode === 'modal'} aria-labelledby={labelId}>
-            <div css={titleBarStyle}>
-                <span id={labelId} css={titleContentStyle}>
-                    {titleBarContent}
-                </span>
-                <span css={closeButtonStyle}>
-                    <CloseButton onClick={onClose} />
-                </span>
-            </div>
-            <div css={contentStyle}>
-                {children}
-            </div>
-        </dialog>
+        <Box container={container} titleBar={titleBar} buttons={<CloseButton onClick={onClose} />} contentStyle={contentStyle}>
+            {children}
+        </Box>
     );
 }

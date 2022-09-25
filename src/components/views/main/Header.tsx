@@ -5,7 +5,7 @@
 //  @jsxImportSource @emotion/react
 
 import { CSSObject } from '@emotion/react';
-import TilesTokenInput from '../../specialized/TilesTokenInput';
+import TilesTokenInput from 'src/components/specialized/TilesTokenInput';
 
 const titleStyle: CSSObject = {
     display: 'inline-block',

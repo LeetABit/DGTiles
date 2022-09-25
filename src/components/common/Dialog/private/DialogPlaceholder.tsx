@@ -4,17 +4,12 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { CSSObject } from '@emotion/react';
 import React from 'react';
-import { DialogSetterContext } from './DialogProvider';
+import { DialogSetterContext } from './DialogSetterContext';
 
 export default function DialogPlaceholder() {
     const setter = React.useContext(DialogSetterContext);
-    const style: CSSObject = {
-        label: 'DialogPlaceholder',
-    }
-
     return (
-        <div css={style} ref={setter} />
+        <div css ref={setter} />
     );
 }

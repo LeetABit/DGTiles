@@ -6,9 +6,14 @@
 
 import type { Property } from 'csstype';
 
-export default interface GridArea {
+export interface GridArea {
     rowStart: Property.GridRowStart,
     rowEnd: Property.GridRowEnd,
     columnStart: Property.GridColumnStart,
     columnEnd: Property.GridColumnEnd,
+}
+
+export interface GridTemplates {
+    rows: Property.GridTemplateRows<(string & {}) | 0>,
+    columns: Property.GridTemplateColumns<(string & {}) | 0>,
 }

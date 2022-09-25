@@ -5,26 +5,33 @@
 //  @jsxImportSource @emotion/react
 
 import { CSSObject } from '@emotion/react';
-import React, { useMemo } from 'react';
-import GridTemplates from './GridTemplates';
+import React, { ReactElement, useMemo } from 'react';
+import { mergeStyles } from 'src/styles/mergeStyles';
+import { cloneElementWithEmotion } from 'src/types';
+import { GridTemplates } from './types';
 
 interface Props {
     templates: GridTemplates,
+    container?: ReactElement,
 }
 
-export default function Grid({ templates: { rows, columns }, children }: React.PropsWithChildren<Props>) {
-    const style = useMemo((): CSSObject => ({
-        label: 'Grid',
-        width: '100%',
-        height: '100%',
-        display: 'grid',
-        gridTemplateRows: rows,
-        gridTemplateColumns: columns,
-    }), [rows, columns]);
+const baseStyle: CSSObject = {
+    width: '100%',
+    height: '100%',
+    display: 'grid',
+}
 
-    return (
-        <div css={style}>
-            {children}
-        </div>
+export default function Grid({ templates: { rows, columns }, container = <div />, children }: React.PropsWithChildren<Props>) {
+    const css = useMemo(
+        () => mergeStyles(
+            baseStyle,
+            {
+                gridTemplateRows: rows,
+                gridTemplateColumns: columns,
+            },
+        ),
+        [rows, columns],
     );
+
+    return cloneElementWithEmotion(container, undefined, css, children);
 }

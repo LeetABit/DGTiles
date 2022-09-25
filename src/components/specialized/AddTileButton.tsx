@@ -4,22 +4,29 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { useCallback } from 'react';
-import { useAppDispatch } from '../../hooks/stateHooks';
-import { setEditedItem } from '../../states/editor';
-import { addOrUpdateItem } from '../../states/tiles';
-import { Entity } from '../../types';
+import { useCallback, AriaAttributes } from 'react';
+import { CSSObject } from '@emotion/react';
+import { useDispatch } from 'react-redux';
+import { v4 as uuid } from 'uuid';
+import { setTile } from 'src/store/tiles';
+import { startEditing } from 'src/store/editor';
+import { useRootSelector } from 'src/hooks/useRootSelector';
 
-export default function AddTileButton() {
-    const dispatch = useAppDispatch();
+interface Props extends AriaAttributes {
+    style?: CSSObject,
+}
+
+export default function AddTileButton({ style, ...ariaAttributes }: Props) {
+    const tilesCount = useRootSelector(state => state.tiles.tilesOrder.length);
+    const dispatch = useDispatch();
     const clickHandler = useCallback(() => {
-        const newItem = new Entity({});
-        dispatch(addOrUpdateItem(newItem));
-        dispatch(setEditedItem(newItem));
-    }, []);
+        const id = uuid();
+        dispatch(setTile(id, { name: `New Tile ${tilesCount + 1}` }));
+        dispatch(startEditing(id));
+    }, [tilesCount]);
 
     return (
-        <button type="button" onClick={clickHandler}>
+        <button type="button" css={style} onClick={clickHandler} {...ariaAttributes}>
             Add
         </button>
     );

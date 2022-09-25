@@ -5,26 +5,28 @@
 //  @jsxImportSource @emotion/react
 
 import { CSSObject } from '@emotion/react';
-import React, { useMemo } from 'react';
-import GridArea from './GridArea';
+import React, { ReactElement, useMemo } from 'react';
+import { mergeStyles } from 'src/styles/mergeStyles';
+import { cloneElementWithEmotion } from 'src/types';
+import { GridArea } from './types';
 
 interface Props {
     area: GridArea,
-    cssLabelSuffix?: string,
+    container?: ReactElement,
 }
 
-export default function GridItem({ area: { rowStart, rowEnd, columnStart, columnEnd }, cssLabelSuffix, children }: React.PropsWithChildren<Props>) {
-    const style: CSSObject = useMemo(() => ({
-        label: cssLabelSuffix ? `GridItem-${cssLabelSuffix}` : 'GridItem',
-        gridRowStart: rowStart,
-        gridRowEnd: rowEnd,
-        gridColumnStart: columnStart,
-        gridColumnEnd: columnEnd,
-    }), [rowStart, rowEnd, columnStart, columnEnd, cssLabelSuffix]);
-
-    return (
-        <div css={style}>
-            {children}
-        </div>
+export default function GridItem({ area: { rowStart, rowEnd, columnStart, columnEnd }, container = <div />, children }: React.PropsWithChildren<Props>) {
+    const css: CSSObject = useMemo(
+        () => mergeStyles(
+            {
+                gridRowStart: rowStart,
+                gridRowEnd: rowEnd,
+                gridColumnStart: columnStart,
+                gridColumnEnd: columnEnd,
+            },
+        ),
+        [rowStart, rowEnd, columnStart, columnEnd],
     );
+
+    return cloneElementWithEmotion(container, undefined, css, children);
 }
