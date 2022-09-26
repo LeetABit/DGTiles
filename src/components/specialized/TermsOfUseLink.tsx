@@ -4,11 +4,11 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { DialogLink } from '../common/Dialog';
-import TermsOfUse from '../documents/TermsOfUse';
+import { DialogLink } from 'src/components/common/Dialog';
+import TermsOfUse from 'src/components/documents/TermsOfUse';
 
 export default function TermsOfUseLink() {
     return (
-        <DialogLink content={<TermsOfUse />} to="/termsOfUse" titleBarContent="Terms of Use">Terms of Use</DialogLink>
+        <DialogLink dialogContent={<TermsOfUse />} to="/termsOfUse" titleBar="Terms of Use">Terms of Use</DialogLink>
     );
 }

@@ -4,24 +4,30 @@
 //
 //  @jsxImportSource @emotion/react
 
-import FullscreenViewport from 'src/components/common/FullscreenViewport';
+import { CSSObject } from '@emotion/react';
 import Dock from 'src/components/common/Dock';
 import Footer from './Footer';
 import Header from './Header';
 import Toolbox from './Toolbox';
 import Workspace from './Workspace';
 
+const style : CSSObject = {
+    wordBreak: 'break-all',
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+};
+
 export default function MainView() {
+    const content = <div css={style} />;
     return (
-        <FullscreenViewport>
-            <Dock>
-                <Header dock-direction="top" />
-                <Dock dock-direction="fill">
-                    <Toolbox dock-direction="left" />
-                    <Workspace />
-                </Dock>
-                <Footer dock-direction="bottom" />
+        <Dock container={content}>
+            <Header dock-direction="top" />
+            <Dock dock-direction="fill">
+                <Toolbox dock-direction="left" />
+                <Workspace />
             </Dock>
-        </FullscreenViewport>
+            <Footer dock-direction="bottom" />
+        </Dock>
     );
 }

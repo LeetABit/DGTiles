@@ -4,7 +4,6 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { CSSObject } from '@emotion/react';
 import gitVersion from 'src/gitVersion.g.json';
 
 interface Props {
@@ -18,14 +17,9 @@ const versionString : string = `${gitVersion.major}.${gitVersion.minor}.${gitVer
     + `+Sha.${gitVersion.sha}`
     + `+Timestamp.${gitVersion.safeTimestamp}`;
 
-const style: CSSObject = {
-    position: 'absolute',
-    bottom: '0px',
-}
-
 export default function VersionLabel({ displayDate = false }: Props) {
     return (
-        <div css={style}>
+        <div>
             <div>
                 <span>Version:</span>
                 <span>{versionString}</span>

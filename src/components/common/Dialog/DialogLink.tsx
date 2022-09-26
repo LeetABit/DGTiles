@@ -4,24 +4,24 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React from 'react';
+import React, { AriaAttributes } from 'react';
 import { Link, Outlet, Route, Routes } from 'react-router-dom';
-import { DialogMode } from './Dialog';
-import DialogItem from './DialogItem';
+import { DialogMode } from './types';
+import DialogItem from './private/DialogItem';
 import RoutedDialog from './RoutedDialog';
 
-interface Props {
-    mode?: DialogMode,
-    content: React.ReactNode,
-    titleBarContent?: React.ReactNode,
+interface Props extends AriaAttributes{
     to: string,
+    dialogMode?: DialogMode,
+    dialogContent: React.ReactNode,
+    titleBar?: React.ReactNode,
 }
 
-export default function DialogLink({ mode, content, to, titleBarContent, children }: React.PropsWithChildren<Props>) {
+export default function DialogLink({ to, dialogMode, dialogContent, titleBar, children, ...ariaAttributes }: React.PropsWithChildren<Props>) {
     const element = (
         <DialogItem>
-            <RoutedDialog mode={mode} titleBarContent={titleBarContent}>
-                {content}
+            <RoutedDialog dialogMode={dialogMode} titleBar={titleBar} {...ariaAttributes}>
+                {dialogContent}
             </RoutedDialog>
         </DialogItem>
     );
@@ -30,8 +30,8 @@ export default function DialogLink({ mode, content, to, titleBarContent, childre
         <>
             <Link to={to} state>{children}</Link>
             <Routes>
-                <Route index element={<Outlet />} />
                 <Route path={to} element={element} />
+                <Route path="*" element={<Outlet />} />
             </Routes>
         </>
     );

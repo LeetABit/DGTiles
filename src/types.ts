@@ -1,14 +1,46 @@
+//  Copyright (c) Hubert Bukowski. All rights reserved.
+//  Licensed under the MIT License.
+//  See LICENSE file in the project root for full license information.
+//
+//  @jsxImportSource @emotion/react
+
+import { CSSObject, jsx } from '@emotion/react';
+import { DOMElement, HTMLAttributes, JSXElementConstructor, LegacyRef, ReactElement, ReactNode } from 'react';
 import { v4 as uuid } from 'uuid';
 
-export interface Identification {
-    get id(): string
+export interface Entity<T> {
+    id: string,
+    entity: T,
 }
 
-export class Entity<T> implements Identification {
-    entity: T;
-    id: string;
-    constructor(entity: T) {
-        this.entity = entity;
-        this.id = uuid();
-    }
+export function identify<T extends {}>(obj: T, id: string = uuid()): Entity<T> {
+    return { id, entity: obj };
+}
+
+function containsRef(element: ReactElement): element is DOMElement<HTMLAttributes<HTMLElement>, HTMLElement> {
+    return 'ref' in element;
+}
+
+function extractRef(element: ReactElement): LegacyRef<HTMLElement> | undefined {
+    return containsRef(element) ? element.ref : undefined;
+}
+
+function extractType(element: ReactElement): string | JSXElementConstructor<unknown> {
+    return element.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
+        ? element.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__
+        : element.type;
+}
+
+export function cloneElementWithEmotion(element: ReactElement, props?: {}, css?: CSSObject, children?: ReactNode) {
+    const elementRef = extractRef(element);
+    const elementProps = { ...element.props, key: element.key, ref: elementRef };
+    const { children: extractedChildren, css: extractedCss, ...extractedProps } = elementProps;
+    const mergedCss = { ...extractedCss, ...css };
+    const mergedProps = { ...extractedProps, ...props, css: mergedCss };
+
+    return jsx(
+        extractType(element),
+        mergedProps,
+        [extractedChildren, children],
+    );
 }

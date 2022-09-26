@@ -5,11 +5,20 @@
 //  @jsxImportSource @emotion/react
 
 import { CSSObject } from '@emotion/react';
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo } from 'react';
+import { ReactElement } from 'react-markdown/lib/react-markdown';
 import { mergeStyles } from 'src/styles/mergeStyles';
+import { cloneElementWithEmotion } from 'src/types';
+import { ScreenOrientationContext } from './ScreenOrientationProvider';
+
+type Direction = 'horizontal' | 'vertical'
+
+interface Props {
+    landscapeDirection?: Direction;
+    container?: ReactElement,
+}
 
 const baseStyle: CSSObject = {
-    label: 'FlowContainer',
     width: '100%',
     height: '100%',
     position: 'absolute',
@@ -31,26 +40,14 @@ const columnStyle: CSSObject = {
     flexDirection: 'column',
 }
 
-const calculateDirection = () => {
-    return (window.innerWidth > window.innerHeight) ? rowStyle : columnStyle;
-}
-
-export default function FlowContainer({ children }: React.PropsWithChildren) {
-    const [direction, setDirection] = React.useState<CSSObject>(calculateDirection());
+export default function FlowContainer({ landscapeDirection = 'horizontal', container = <div />, children }: React.PropsWithChildren<Props>) {
+    const screenOrientation = useContext(ScreenOrientationContext);
+    const directionStyle = (screenOrientation === 'Landscape') === (landscapeDirection === 'horizontal') ? rowStyle : columnStyle;
     const divRef = React.useRef<HTMLDivElement>(null);
 
-    const style = useMemo(() => {
-        return mergeStyles(baseStyle, direction);
-    }, [window.innerWidth, window.innerHeight]);
-
-    React.useEffect(() => {
-        const handleResize = () => {
-            setDirection(calculateDirection());
-        }
-
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    const css = useMemo(() => {
+        return mergeStyles(baseStyle, directionStyle);
+    }, [screenOrientation, landscapeDirection]);
 
     const handleWheelEvent = useCallback((e: WheelEvent) => {
         if (divRef.current) {
@@ -59,17 +56,13 @@ export default function FlowContainer({ children }: React.PropsWithChildren) {
     }, []);
 
     useEffect(() => {
-        if (direction === columnStyle && divRef.current) {
+        if (directionStyle === columnStyle && divRef.current) {
             divRef.current.addEventListener('wheel', handleWheelEvent);
             return () => divRef.current?.removeEventListener('wheel', handleWheelEvent);
         }
 
         return undefined;
-    }, [direction, handleWheelEvent]);
+    }, [directionStyle]);
 
-    return (
-        <div ref={divRef} css={style}>
-            {children}
-        </div>
-    );
+    return cloneElementWithEmotion(container, { ref: divRef }, css, children);
 }

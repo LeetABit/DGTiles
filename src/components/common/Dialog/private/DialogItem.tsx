@@ -6,7 +6,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { DialogGetterContext } from './DialogProvider';
+import { DialogGetterContext } from './DialogGetterContext';
 
 export default function DialogItem({ children }: React.PropsWithChildren) {
     const modalDialog = React.useContext(DialogGetterContext);

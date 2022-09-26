@@ -4,9 +4,6 @@
 //
 //  @jsxImportSource @emotion/react
 
-import type { Property } from 'csstype';
+import React from 'react';
 
-export default interface GridTemplates {
-    rows: Property.GridTemplateRows<(string & {}) | 0>,
-    columns: Property.GridTemplateColumns<(string & {}) | 0>,
-}
+export const DialogGetterContext = React.createContext<HTMLDivElement | null>(null);

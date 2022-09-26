@@ -5,17 +5,17 @@
 //  @jsxImportSource @emotion/react
 
 import { CSSObject } from '@emotion/react';
+import { AriaAttributes } from 'react';
 
-interface Props {
+interface Props extends AriaAttributes {
+    style?: CSSObject,
     onClick: () => void,
 }
 
-const style : CSSObject = {
-    label: 'EditButton',
-    position: 'relative',
-    float: 'right',
-};
-
-export default function EditButton({ onClick }: Props) {
-    return <button type="button" css={style} onClick={onClick} aria-label="edit">Edit</button>;
+export default function EditButton({ style, onClick, ...ariaAttributes }: Props) {
+    return (
+        <button type="button" css={style} onClick={onClick} aria-label="edit" {...ariaAttributes}>
+            Edit
+        </button>
+    );
 }

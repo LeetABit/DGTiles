@@ -4,7 +4,6 @@
 //
 //  @jsxImportSource @emotion/react
 
-export type { default as GridTemplates } from './GridTemplates';
-export type { default as GridArea } from './GridArea';
+export type { GridArea, GridTemplates } from './types';
 export { default } from './Grid';
 export { default as GridItem } from './GridItem';

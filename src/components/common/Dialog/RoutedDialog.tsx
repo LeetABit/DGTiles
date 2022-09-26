@@ -4,27 +4,30 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React from 'react';
+import { CSSObject } from '@emotion/react';
+import React, { AriaAttributes, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Dialog, { DialogMode } from './Dialog';
+import Dialog from './Dialog';
+import { DialogMode } from './types';
 
-interface Props {
-    mode?: DialogMode,
-    titleBarContent?: React.ReactNode,
+interface Props extends AriaAttributes {
+    dialogMode?: DialogMode,
+    titleBar?: React.ReactNode,
+    style?: CSSObject,
 }
-export default function RoutedDialog({ mode, titleBarContent, children }: React.PropsWithChildren<Props>) {
+export default function RoutedDialog({ dialogMode, titleBar, style, children, ...ariaAttributes }: React.PropsWithChildren<Props>) {
     const navigate = useNavigate();
     const location = useLocation();
-    const navigateBack = () => {
+    const navigateBack = useCallback(() => {
         if (document.referrer.split('/')[2] === window.location.host || location.state) {
             navigate(-1);
         } else {
             navigate('/');
         }
-    }
+    }, []);
 
     return (
-        <Dialog mode={mode} titleBarContent={titleBarContent} onClose={navigateBack}>
+        <Dialog mode={dialogMode} titleBar={titleBar} style={style} {...ariaAttributes} onClose={navigateBack}>
             {children}
         </Dialog>
     );

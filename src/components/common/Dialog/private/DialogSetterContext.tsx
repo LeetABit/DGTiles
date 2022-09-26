@@ -4,8 +4,6 @@
 //
 //  @jsxImportSource @emotion/react
 
-import EditWorkspaceToolbox from 'src/components/specialized/tiles/EditWorkspaceToolbox';
+import React from 'react';
 
-export default function Toolbox() {
-    return <EditWorkspaceToolbox />;
-}
+export const DialogSetterContext = React.createContext<(dialog: HTMLDivElement) => void>((_) => {});

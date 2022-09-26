@@ -81,7 +81,11 @@
     "react/no-unknown-property": ["warn", {
       "ignore": ["css"]
     }],
-    "no-await-in-loop": "off"
+    "no-await-in-loop": "off",
+    "no-underscore-dangle": "off",
+    "@typescript-eslint/no-explicit-any": ["warn", {
+      "ignoreRestArgs": true
+    }]
   },
   "settings": {
     "import/parsers": {

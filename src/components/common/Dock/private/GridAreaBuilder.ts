@@ -4,10 +4,10 @@
 //
 //  @jsxImportSource @emotion/react
 
-import type { DockDirection } from './types';
+import type { DockDirection } from '../types';
 import GridLine from './GridLine';
 import GridStripeBuilder from './GridStripeBuilder';
-import { GridTemplates, GridArea } from '../Grid';
+import { GridTemplates, GridArea } from '../../Grid';
 
 export default class GridAreaBuilder {
     horizontalStripe: GridStripeBuilder;

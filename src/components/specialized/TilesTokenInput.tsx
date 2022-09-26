@@ -8,9 +8,9 @@ import { CSSObject } from '@emotion/react';
 import { serialize, deserialize } from 'bson';
 import { compress, Compressed, decompress } from 'compress-json';
 import { useCallback, useMemo, useId } from 'react';
-import { useAppDispatch, useAppSelector } from 'src/hooks/stateHooks';
-import { TileDefinition, setItems } from 'src/states/tiles';
-import { Entity } from 'src/types';
+import { useDispatch } from 'react-redux';
+import { useRootSelector } from 'src/hooks/useRootSelector';
+import { isTileDefinition, selectAllTiles, setTiles, TileDefinition } from 'src/store/tiles';
 
 const textareaStyle: CSSObject = {
     resize: 'none',
@@ -43,9 +43,8 @@ const encode = (cson: Compressed): Buffer => {
     return serialize(cson);
 }
 
-const calculateToken = (items: Entity<TileDefinition>[]) => {
-    const stripped = items.map(item => item.entity);
-    const cson = compress(stripped);
+const calculateToken = (entities: {}) => {
+    const cson = compress(entities);
     const buffer = encode(cson);
     return buffer.toString('base64');
 }
@@ -55,7 +54,7 @@ const consumeToken = (token: string) => {
     const cson = deserialize(buffer) as Compressed;
     const stripped = decompress([cson[0], cson[1]]);
     if (Array.isArray(stripped)) {
-        return stripped.map(item => new Entity(item));
+        return stripped;
     }
 
     return undefined;
@@ -63,14 +62,15 @@ const consumeToken = (token: string) => {
 
 export default function TilesTokenInput() {
     const id = useId();
-    const dispatch = useAppDispatch();
-    const items = useAppSelector((state) => state.tiles.items);
+    const dispatch = useDispatch();
+    const items = useRootSelector(state => selectAllTiles(state.tiles)).map(entity => entity.entity);
     const token = useMemo(() => calculateToken(items), [items]);
     const tokenChanged = useCallback((event: React.ChangeEvent<HTMLTextAreaElement>) => {
         try {
             const newItems = consumeToken(event.currentTarget.value);
             if (newItems !== undefined) {
-                dispatch(setItems(newItems));
+                const newTileDefinitions = newItems.filter(newItem => isTileDefinition(newItem)) as TileDefinition[];
+                dispatch(setTiles(newTileDefinitions));
             } else {
                 event.preventDefault();
             }

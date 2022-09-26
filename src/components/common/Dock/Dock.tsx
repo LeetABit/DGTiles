@@ -4,21 +4,25 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React from 'react';
+import React, { ReactElement } from 'react';
+import { cloneElementWithEmotion } from 'src/types';
 import Grid, { GridItem } from '../Grid';
-import GridAreaBuilder from './GridAreaBuilder';
-
-export type DockDirection = 'top' | 'bottom' | 'left' | 'right' | 'fill';
+import GridAreaBuilder from './private/GridAreaBuilder';
+import { AreaSelector, ChildSelector, DockDirection, LazyReactNode, ReductionResult, ReductionResultFactory } from './types';
 
 export const dockDirectionPropName = 'dock-direction';
+export const dockContainerPropName = 'dock-container';
 
-type LazyReactNode = () => React.ReactNode;
-type ReductionResult = [LazyReactNode, GridAreaBuilder];
-type ReductionResultFactory = (fillArea: GridAreaBuilder) => [LazyReactNode, GridAreaBuilder];
-type AreaSelector = (fillArea: GridAreaBuilder) => GridAreaBuilder;
-type ChildSelector = (fillArea: GridAreaBuilder, childAreaSelector: AreaSelector) => ReductionResult;
+interface Props {
+    container?: ReactElement,
+}
 
-const createFactory = (areaSelector: AreaSelector, childSelector: ChildSelector, dockDirection: DockDirection): ReductionResultFactory => {
+const createFactory = (
+    areaSelector: AreaSelector,
+    childSelector: ChildSelector,
+    dockDirection: DockDirection,
+    container?: ReactElement,
+): ReductionResultFactory => {
     return (fill: GridAreaBuilder) => {
         const [selectedChildren, selectedFill] = childSelector(fill, areaSelector);
         return [() => {
@@ -33,8 +37,16 @@ const createFactory = (areaSelector: AreaSelector, childSelector: ChildSelector,
             }
 
             const originalFill = areaSelector(fill);
+            const css = {
+                label: `DockItem-${dockDirection}`,
+            };
+
+            const itemContainer = container
+                ? cloneElementWithEmotion(container, undefined, css, null)
+                : <div css={css} />;
+
             return (
-                <GridItem area={originalFill.getArea()} cssLabelSuffix={dockDirection} key={key}>
+                <GridItem area={originalFill.getArea()} container={itemContainer} key={key}>
                     {selected}
                 </GridItem>
             );
@@ -52,10 +64,13 @@ const reduceChildren = (area: GridAreaBuilder, children: React.ReactNode): Reduc
             return;
         }
 
-        let dockDirection: DockDirection = 'fill';
-        if (child && typeof child === 'object' && 'props' in child && dockDirectionPropName in child.props) {
-            dockDirection = child.props[dockDirectionPropName];
-        }
+        const dockDirection: DockDirection = (child && typeof child === 'object' && 'props' in child && dockDirectionPropName in child.props)
+            ? child.props[dockDirectionPropName]
+            : 'fill';
+
+        const dockContainer = (child && typeof child === 'object' && 'props' in child && dockContainerPropName in child.props)
+            ? child.props[dockContainerPropName]
+            : undefined;
 
         let areaSelector: AreaSelector = (fillArea) => fillArea;
         if (dockDirection !== 'fill') {
@@ -82,7 +97,7 @@ const reduceChildren = (area: GridAreaBuilder, children: React.ReactNode): Reduc
             };
         }
 
-        childrenFactories.push(createFactory(areaSelector, childSelector, dockDirection));
+        childrenFactories.push(createFactory(areaSelector, childSelector, dockDirection, dockContainer));
     });
 
     if (cancel) {
@@ -104,12 +119,15 @@ const reduceChildren = (area: GridAreaBuilder, children: React.ReactNode): Reduc
     return [() => childFactories.map(f => f()), currentArea];
 }
 
-export default function Dock({ children }: React.PropsWithChildren) {
+export default function Dock({ container = <div />, children }: React.PropsWithChildren<Props>) {
     const gridAreaBuilder = GridAreaBuilder.create();
     const [reducedChildren, fillArea] = reduceChildren(gridAreaBuilder, children) as [LazyReactNode, GridAreaBuilder];
+    const templates = gridAreaBuilder.getTemplates(fillArea);
+    const reducedChildrenNode = reducedChildren();
+
     return (
-        <Grid templates={gridAreaBuilder.getTemplates(fillArea)}>
-            {React.Children.toArray(reducedChildren())}
+        <Grid templates={templates} container={container}>
+            {reducedChildrenNode}
         </Grid>
     );
 }

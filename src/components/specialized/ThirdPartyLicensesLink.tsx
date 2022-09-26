@@ -4,11 +4,11 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { DialogLink } from '../common/Dialog';
-import ThirdPartyLicenses from '../documents/ThirdPartyLicenses';
+import { DialogLink } from 'src/components/common/Dialog';
+import ThirdPartyLicenses from 'src/components/documents/ThirdPartyLicenses';
 
 export default function ThirdPartyLicensesLink() {
     return (
-        <DialogLink content={<ThirdPartyLicenses />} to="/thirdPartyLicenses" titleBarContent="Third-party Licenses">Third-party Licenses</DialogLink>
+        <DialogLink dialogContent={<ThirdPartyLicenses />} to="/thirdPartyLicenses" titleBar="Third-party Licenses">Third-party Licenses</DialogLink>
     );
 }

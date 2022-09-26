@@ -8,10 +8,11 @@ import { CSSObject, Global, ThemeProvider } from '@emotion/react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react';
-import MainView from './components/views/main/MainView';
-import { theme } from './styles/themes';
-import { persistor, store } from './store';
-import { DialogProvider, DialogPlaceholder } from './components/common/Dialog';
+import MainView from 'src/components/views/main/MainView';
+import { theme } from 'src/styles/themes';
+import store, { persistor } from 'src/store';
+import { DialogProvider } from 'src/components/common/Dialog';
+import ScreenOrientationProvider from 'src/components/common/ScreenOrientationProvider';
 
 interface Props {
     basename?: string,
@@ -23,6 +24,7 @@ const globalStyle : CSSObject = {
         margin: '0px',
     },
     'a[target="_blank"]': {
+        whiteSpace: 'nowrap',
         '&:after': {
             content: '""',
             background: `url(${process.env.PUBLIC_URL}/images/ExternalLink.svg)`,
@@ -39,18 +41,19 @@ export default ({ basename } : Props) => {
     return (
         <>
             <Global styles={globalStyle} />
-            <ThemeProvider theme={theme}>
-                <BrowserRouter basename={basename}>
-                    <Provider store={store}>
-                        <PersistGate persistor={persistor}>
-                            <DialogProvider>
-                                <MainView />
-                                <DialogPlaceholder />
-                            </DialogProvider>
-                        </PersistGate>
-                    </Provider>
-                </BrowserRouter>
-            </ThemeProvider>
+            <ScreenOrientationProvider>
+                <ThemeProvider theme={theme}>
+                    <BrowserRouter basename={basename}>
+                        <Provider store={store}>
+                            <PersistGate persistor={persistor}>
+                                <DialogProvider>
+                                    <MainView />
+                                </DialogProvider>
+                            </PersistGate>
+                        </Provider>
+                    </BrowserRouter>
+                </ThemeProvider>
+            </ScreenOrientationProvider>
         </>
     );
 };
