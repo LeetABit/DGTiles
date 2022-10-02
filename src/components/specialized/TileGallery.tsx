@@ -36,6 +36,14 @@ export default function TileGallery() {
         dispatch(stopEditing());
     }, []);
 
+    const onCloseHandler = useCallback((tileId: string) => {
+        dispatch(removeTile(tileId));
+    }, []);
+
+    const onEditHandler = useCallback((tileId: string) => {
+        startEditingCallback(tileId);
+    }, []);
+
     return (
         <>
             {/* TODO: React and TypeScript does not support inert attribute yet. */}
@@ -43,11 +51,9 @@ export default function TileGallery() {
             {/* https://github.com/DefinitelyTyped/DefinitelyTyped/pull/60822 */}
             <div ref={node => node && (editedTile ? node.setAttribute('inert', '') : node.removeAttribute('inert'))}>
                 <FlowContainer>
-                    {/* TODO: check whether click handlers may be made common and passed with parameters from buttons data in child elements. */}
                     {definitions.map((definition) => {
-                        const onCloseHandler = () => dispatch(removeTile(definition.id));
                         return (
-                            <TileBox key={definition.id} onClose={onCloseHandler} onEdit={() => startEditingCallback(definition.id)} definition={definition.entity} />
+                            <TileBox key={definition.id} onClose={onCloseHandler} onEdit={onEditHandler} definition={definition} />
                         );
                     })}
                 </FlowContainer>
