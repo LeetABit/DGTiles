@@ -11,6 +11,9 @@ As a different reference you may also use: https://docs.microsoft.com/en-us/azur
 
 Follow instructions described on the following page: https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/active-directory-how-subscriptions-associated-directory
 This step may take some time, so in case of any visible misconfiguration just wait ~1 hour.
+After successful subscription transfer select it in **Default subscription filter** on **Directories + subscriptions** page.
+Then go to the new subscription and **Change service admin** on subscription **Properties** page.
+The final step is to transfer all resources groups to the new subscription into the new Resource Groups named after the source ones.
 
 ## Resources
 
