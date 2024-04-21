@@ -7,7 +7,7 @@
 import { CSSObject } from '@emotion/react';
 import React, { ReactElement, useMemo } from 'react';
 import { mergeStyles } from 'src/styles/mergeStyles';
-import { cloneElementWithEmotion } from 'src/types';
+import { cloneElementWithEmotion } from 'src/utils/cloneElementWithEmotion';
 import { GridArea } from './types';
 
 interface Props {

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { identify } from 'src/utils/identify';
 import { v4 as uuid } from 'uuid';
-import { identify } from 'src/types';
 
 export type TileDefinition = {
     name: string,

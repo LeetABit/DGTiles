@@ -8,7 +8,7 @@ import { CSSObject } from '@emotion/react';
 import React, { useCallback, useContext, useEffect, useMemo } from 'react';
 import { ReactElement } from 'react-markdown/lib/react-markdown';
 import { mergeStyles } from 'src/styles/mergeStyles';
-import { cloneElementWithEmotion } from 'src/types';
+import { cloneElementWithEmotion } from 'src/utils/cloneElementWithEmotion';
 import { ScreenOrientationContext } from './ScreenOrientationProvider';
 
 type Direction = 'horizontal' | 'vertical'
@@ -17,6 +17,8 @@ interface Props {
     landscapeDirection?: Direction;
     container?: ReactElement,
 }
+
+// TODO: move to layouts
 
 const baseStyle: CSSObject = {
     width: '100%',
@@ -41,6 +43,7 @@ const columnStyle: CSSObject = {
 }
 
 export default function FlowContainer({ landscapeDirection = 'horizontal', container = <div />, children }: React.PropsWithChildren<Props>) {
+    // TODO: create useScreenOrientation hook
     const screenOrientation = useContext(ScreenOrientationContext);
     const directionStyle = (screenOrientation === 'Landscape') === (landscapeDirection === 'horizontal') ? rowStyle : columnStyle;
     const divRef = React.useRef<HTMLDivElement>(null);

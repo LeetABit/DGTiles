@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
 import util from 'util';
-import { exec } from 'child_process';
+import { exec, execSync } from 'child_process';
 
 const execAsync = util.promisify(exec);
 
-export default async function executeCommandAsync(command) {
+export async function executeCommandAsync(command) {
     const { stdout, stderr } = await execAsync(command);
 
     if (stderr) {
@@ -13,4 +13,8 @@ export default async function executeCommandAsync(command) {
     }
 
     return stdout.trim();
+}
+
+export function executeCommand(command) {
+    return execSync(command).toString();
 }

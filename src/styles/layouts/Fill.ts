@@ -4,8 +4,10 @@
 //
 //  @jsxImportSource @emotion/react
 
-import EditWorkspaceToolbox from 'src/components/specialized/tiles/EditWorkspaceToolbox';
+import { CSSObject } from '@emotion/react';
 
-export default function Toolbox() {
-    return <EditWorkspaceToolbox />;
+// TODO: remove, move to component
+export const Fill: CSSObject = {
+    width: '100%',
+    height: '100%',
 }

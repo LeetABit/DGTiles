@@ -7,7 +7,7 @@
 import { CSSObject } from '@emotion/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { mergeStyles } from 'src/styles/mergeStyles';
-import { ReactComponent as Wedge } from 'src/icons/Wedge.svg';
+import { ReactComponent as Wedge } from 'src/images/Wedge.svg';
 
 interface Props {
     label: React.ReactNode,
@@ -30,6 +30,7 @@ const contentStyle: CSSObject = {
     marginLeft: '2em',
 }
 
+// TODO: move to dedicated button, two state button
 const collapsedWedgeStyle: CSSObject = {
     width: '1em',
     height: '1em',

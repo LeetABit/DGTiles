@@ -35,11 +35,20 @@
       "request": "launch",
       "type": "node-terminal",
       "cwd": "${workspaceFolder}",
-      "command": "swa start https://localhost:5002/ --run 'yarn start' --devserver-timeout 600000",
+      "command": "yarn run swa start https://localhost:5002/ --run 'yarn start' --devserver-timeout 600000",
       "presentation": {
           "hidden": true,
       },
     },
+    {
+      "type": "node-terminal",
+      "request": "launch",
+      "name": "Jest Tests",
+      "command": "yarn test -i",
+      "presentation": {
+          "hidden": true,
+      },
+  }
   ],
   "compounds": [
     {
@@ -55,6 +64,13 @@
       "configurations": [
         "HTTPS Chrome",
         "Static Web App"
+      ],
+      "stopAll": true,
+    },
+    {
+      "name": "Tests",
+      "configurations": [
+        "Jest Tests"
       ],
       "stopAll": true,
     }

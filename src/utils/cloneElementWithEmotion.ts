@@ -6,16 +6,6 @@
 
 import { CSSObject, jsx } from '@emotion/react';
 import { DOMElement, HTMLAttributes, JSXElementConstructor, LegacyRef, ReactElement, ReactNode } from 'react';
-import { v4 as uuid } from 'uuid';
-
-export interface Entity<T> {
-    id: string,
-    entity: T,
-}
-
-export function identify<T extends {}>(obj: T, id: string = uuid()): Entity<T> {
-    return { id, entity: obj };
-}
 
 function containsRef(element: ReactElement): element is DOMElement<HTMLAttributes<HTMLElement>, HTMLElement> {
     return 'ref' in element;

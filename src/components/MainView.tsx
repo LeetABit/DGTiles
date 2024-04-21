@@ -7,25 +7,26 @@
 import { CSSObject, useTheme } from '@emotion/react';
 import { useMemo } from 'react';
 import { mergeStyles } from 'src/styles/mergeStyles';
-import TileGalleryView from 'src/components/specialized/TileGallery';
+import { DialogProvider } from './common/Dialog';
+import TileGallery from './specialized/TileGallery';
 
 const baseStyle: CSSObject = {
-    label: 'Workspace',
-    position: 'relative',
-    width: '100%',
-    height: '100%',
-    overflow: 'auto',
+    width: '100vw',
+    height: '100vh',
 };
 
-export default function Workspace() {
+export default function MainView() {
     const theme = useTheme();
     const style = useMemo(() => {
-        return mergeStyles(baseStyle, { ...theme.workspace });
-    }, [theme.workspace]);
+        return mergeStyles(baseStyle, { backgroundColor: theme.colors.background.primary });
+    }, [theme.colors.background]);
 
     return (
         <main css={style}>
-            <TileGalleryView />
+            <DialogProvider>
+                <TileGallery />
+                {/* <ControlsButton /> */}
+            </DialogProvider>
         </main>
     );
 }

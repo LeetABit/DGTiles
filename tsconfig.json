@@ -21,11 +21,12 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
-    "types": [ "@emotion/react" ],
+    "types": [ "@emotion/react", "jest" ],
     "baseUrl": "."
   },
   "include": [
-    "src"
+    "src",
+    "src/tests"
   ],
   "exclude": [
     "node_modules/*",

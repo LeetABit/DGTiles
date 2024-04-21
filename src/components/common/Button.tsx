@@ -6,16 +6,18 @@
 
 import { CSSObject } from '@emotion/react';
 import { AriaAttributes } from 'react';
+import { mergeStyles } from 'src/styles/mergeStyles';
 
 interface Props extends AriaAttributes {
     style?: CSSObject,
     onClick: () => void,
 }
 
-export default function EditButton({ style, onClick, ...ariaAttributes }: Props) {
-    return (
-        <button type="button" css={style} onClick={onClick} aria-label="edit" {...ariaAttributes}>
-            Edit
-        </button>
-    );
+const baseStyle : CSSObject = {
+    cursor: 'pointer',
+};
+
+export default function Button({ style, onClick, ...ariaAttributes }: Props) {
+    const css = mergeStyles(baseStyle, style);
+    return <button type="button" css={css} onClick={onClick} {...ariaAttributes} />;
 }

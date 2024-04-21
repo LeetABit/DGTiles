@@ -8,7 +8,7 @@ import { CSSObject } from '@emotion/react';
 import React, { ReactElement, useCallback, useMemo, useRef, useState } from 'react';
 import { mergeStyles } from 'src/styles/mergeStyles';
 import useResizeObserver from 'src/hooks/useResizeObserver';
-import { cloneElementWithEmotion } from 'src/types';
+import { cloneElementWithEmotion } from 'src/utils/cloneElementWithEmotion';
 
 interface Props {
     container?: ReactElement,
@@ -20,33 +20,25 @@ interface Props {
 const baseStyle: CSSObject = {
     boxSizing: 'border-box',
     display: 'grid',
-    gridTemplateRows: '[row-line-0] max-content [row-line-1] 1fr [row-line-2]',
-    gridTemplateColumns: '[column-line-0] 1fr [column-line-1] max-content [column-line-2]',
+    gridTemplateColumns: '1fr max-content',
+    gridTemplateRows: 'max-content 1fr',
+    gridTemplateAreas: "'title buttons' 'content content'",
 }
 
-const titleStyle: CSSObject = {
-    label: 'BoxTitle',
-    gridRowStart: 'row-line-0',
-    gridRowEnd: 'row-line-1',
-    gridColumnStart: 'column-line-0',
-    gridColumnEnd: 'column-line-1',
+const baseTitleStyle: CSSObject = {
+    label: 'Box-Title',
+    gridArea: 'title',
     textAlign: 'center',
 };
 
-const closeButtonStyle: CSSObject = {
-    label: 'BoxCloseButton',
-    gridRowStart: 'row-line-0',
-    gridRowEnd: 'row-line-1',
-    gridColumnStart: 'column-line-1',
-    gridColumnEnd: 'column-line-2',
+const baseButtonStyle: CSSObject = {
+    label: 'Box-CloseButton',
+    gridArea: 'buttons',
 };
 
 const baseContentStyle: CSSObject = {
-    label: 'BoxContent',
-    gridRowStart: 'row-line-1',
-    gridRowEnd: 'row-line-2',
-    gridColumnStart: 'column-line-0',
-    gridColumnEnd: 'column-line-2',
+    label: 'Box-Content',
+    gridArea: 'content',
 };
 
 export default function Box({ container = <div />, titleBar, buttons, contentStyle, children }: React.PropsWithChildren<Props>) {
@@ -66,13 +58,13 @@ export default function Box({ container = <div />, titleBar, buttons, contentSty
         undefined,
         baseStyle,
         [
-            <div key="title" css={titleStyle}>
+            <div key="title" css={baseTitleStyle}>
                 {titleBar}
             </div>,
-            <div key="buttons" css={closeButtonStyle}>
+            <div key="buttons" css={baseButtonStyle}>
                 {buttons}
             </div>,
-            // TODO: https://chromestatus.com/feature/5231964663578624
+            // ISSUE #16: Remove tabIndex from scrollable div.
             // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
             <div key="content" css={contentCss} ref={contentRef} tabIndex={hasScrollbar ? 0 : undefined}>
                 {children}

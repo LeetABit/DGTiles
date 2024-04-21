@@ -4,6 +4,8 @@
 
 import { CSSObject } from '@emotion/react';
 
+// TODO: make function with dedicated name view* or smth.
+
 export const DiagonalCross : CSSObject = {
     backgroundColor: 'transparent',
     borderStyle: 'none',

@@ -5,7 +5,7 @@
 //  @jsxImportSource @emotion/react
 
 import React, { ReactElement } from 'react';
-import { cloneElementWithEmotion } from 'src/types';
+import { cloneElementWithEmotion } from 'src/utils/cloneElementWithEmotion';
 import Grid, { GridItem } from '../Grid';
 import GridAreaBuilder from './private/GridAreaBuilder';
 import { AreaSelector, ChildSelector, DockDirection, LazyReactNode, ReductionResult, ReductionResultFactory } from './types';

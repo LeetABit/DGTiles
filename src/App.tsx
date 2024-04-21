@@ -4,51 +4,30 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { CSSObject, Global, ThemeProvider } from '@emotion/react';
+import { Global, ThemeProvider } from '@emotion/react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react';
-import MainView from 'src/components/views/main/MainView';
-import { theme } from 'src/styles/themes';
+import MainView from 'src/components/MainView';
+import { darkTheme } from 'src/styles/themes';
 import store, { persistor } from 'src/store';
-import { DialogProvider } from 'src/components/common/Dialog';
 import ScreenOrientationProvider from 'src/components/common/ScreenOrientationProvider';
+import global from './styles/global';
 
 interface Props {
     basename?: string,
 }
 
-const globalStyle : CSSObject = {
-    label: 'MainView',
-    body: {
-        margin: '0px',
-    },
-    'a[target="_blank"]': {
-        whiteSpace: 'nowrap',
-        '&:after': {
-            content: '""',
-            background: `url(${process.env.PUBLIC_URL}/images/ExternalLink.svg)`,
-            backgroundRepeat: 'no-repeat',
-            width: '1em',
-            height: '1em',
-            display: 'inline-block',
-            verticalAlign: 'text-top',
-        },
-    },
-};
-
 export default ({ basename } : Props) => {
     return (
         <>
-            <Global styles={globalStyle} />
+            <Global styles={global} />
             <ScreenOrientationProvider>
-                <ThemeProvider theme={theme}>
+                <ThemeProvider theme={darkTheme}>
                     <BrowserRouter basename={basename}>
                         <Provider store={store}>
                             <PersistGate persistor={persistor}>
-                                <DialogProvider>
-                                    <MainView />
-                                </DialogProvider>
+                                <MainView />
                             </PersistGate>
                         </Provider>
                     </BrowserRouter>
