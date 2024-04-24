@@ -66,10 +66,6 @@ export async function getCurrentBranchNameAsync() {
 }
 
 export async function isWorkingDirectoryDirtyAsync() {
-    try {
-        await executeCommandAsync('git diff-index --quiet HEAD --');
-        return false;
-    } catch {
-        return true;
-    }
+    const status = await executeCommandAsync('git status --porcelain');
+    return status.trim() !== '';
 }
