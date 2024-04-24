@@ -5,19 +5,6 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "HTTP Chrome",
-      "request": "launch",
-      "type": "chrome",
-      "url": "http://localhost:4280",
-      "webRoot": "${workspaceFolder}/src",
-      "presentation": {
-          "hidden": true,
-      },
-      "sourceMapPathOverrides": {
-        "webpack:///src/*": "${webRoot}/*"
-      },
-    },
-    {
       "name": "HTTPS Chrome",
       "request": "launch",
       "type": "chrome",
@@ -35,21 +22,13 @@
       "request": "launch",
       "type": "node-terminal",
       "cwd": "${workspaceFolder}",
-      "command": "swa start https://localhost:5002/ --run 'yarn start' --devserver-timeout 600000",
+      "command": "swa start https://localhost:5002/ --run 'yarn start' --ssl",
       "presentation": {
           "hidden": true,
       },
     },
   ],
   "compounds": [
-    {
-      "name": "HTTP Static Web App",
-      "configurations": [
-        "HTTP Chrome",
-        "Static Web App"
-      ],
-      "stopAll": true,
-    },
     {
       "name": "HTTPS Static Web App",
       "configurations": [
