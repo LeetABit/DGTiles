@@ -6,12 +6,12 @@
 
 import { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import FlowContainer from 'src/components/common/FlowContainer';
+import FlowContainer from 'src/components/FlowContainer';
 import { useRootSelector } from 'src/hooks/useRootSelector';
 import { selectAllTiles, removeTile } from 'src/store/tiles';
 import { startEditing, stopEditing } from 'src/store/editor';
-import TileBox from './tiles/running/TileBox';
-import TileEditorDialog from './tiles/editing/TileEditorDialog';
+import TileBox from './TileBox';
+import TileEditorDialog from './TileEditorDialog';
 
 export default function TileGallery() {
     const dispatch = useDispatch();

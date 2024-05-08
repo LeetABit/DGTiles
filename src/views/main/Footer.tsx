@@ -4,9 +4,9 @@
 //
 //  @jsxImportSource @emotion/react
 
-import Dock from 'src/components/common/Dock/Dock';
-import LinksSection from 'src/components/specialized/LinksSection';
-import VersionLabel from 'src/components/specialized/VersionLabel';
+import Dock from 'src/components/Dock/Dock';
+import LinksSection from 'src/components/LinksSection';
+import VersionLabel from 'src/components/VersionLabel';
 
 export default function Footer() {
     return (

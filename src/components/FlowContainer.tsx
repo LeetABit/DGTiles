@@ -9,7 +9,7 @@ import React, { useCallback, useContext, useEffect, useMemo } from 'react';
 import { ReactElement } from 'react-markdown/lib/react-markdown';
 import { mergeStyles } from 'src/styles/mergeStyles';
 import { cloneElementWithEmotion } from 'src/types';
-import { ScreenOrientationContext } from './ScreenOrientationProvider';
+import { ScreenOrientationContext } from '../contexts/ScreenOrientationContext';
 
 type Direction = 'horizontal' | 'vertical'
 

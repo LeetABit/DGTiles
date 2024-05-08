@@ -4,8 +4,8 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { DialogLink } from 'src/components/common/Dialog';
-import TermsOfUse from 'src/components/documents/TermsOfUse';
+import { DialogLink } from 'src/components/Dialog';
+import TermsOfUse from 'src/documents/TermsOfUse';
 
 export default function TermsOfUseLink() {
     return (

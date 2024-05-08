@@ -6,10 +6,10 @@
 
 import { CSSObject } from '@emotion/react';
 import { TileDefinition } from 'src/store/tiles';
-import CloseButton from 'src/components/common/CloseButton';
-import EditButton from 'src/components/specialized/EditButton';
+import CloseButton from 'src/components/CloseButton';
+import EditButton from 'src/components/EditButton';
 import { AriaAttributes, useCallback, useMemo } from 'react';
-import Box from 'src/components/common/Box';
+import Box from 'src/components/Box';
 import { mergeStyles } from 'src/styles/mergeStyles';
 import { useRootSelector } from 'src/hooks/useRootSelector';
 import { Entity } from 'src/types';

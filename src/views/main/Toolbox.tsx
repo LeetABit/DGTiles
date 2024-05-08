@@ -4,7 +4,7 @@
 //
 //  @jsxImportSource @emotion/react
 
-import EditWorkspaceToolbox from 'src/components/specialized/tiles/EditWorkspaceToolbox';
+import EditWorkspaceToolbox from 'src/components/EditWorkspaceToolbox';
 
 export default function Toolbox() {
     return <EditWorkspaceToolbox />;

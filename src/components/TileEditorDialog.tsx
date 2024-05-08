@@ -6,7 +6,7 @@
 
 import { CSSObject } from '@emotion/react';
 import { AriaAttributes } from 'react';
-import Dialog from 'src/components/common/Dialog';
+import Dialog from 'src/components/Dialog';
 import { TileDefinition } from 'src/store/tiles';
 import { Entity } from 'src/types';
 import TileNameEditor from './TileNameEditor';
