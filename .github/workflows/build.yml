@@ -31,7 +31,6 @@ jobs:
             const { default: createGitTag } = await import('${{ github.workspace }}/scripts/createGitTag.mjs');
             await createGitTag(github, context);
 
-
       - name: Fetch tag
         if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         run: git fetch --tags
@@ -43,6 +42,19 @@ jobs:
           key: app-node-modules-${{ hashFiles('./yarn.lock') }}
           restore-keys: |
             app-node-modules-
+
+      - name: Build
+        if: github.event_name == 'workflow_dispatch'
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ""
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: "upload"
+          app_location: "/"
+          api_location: ""
+          output_location: "build"
+        env:
+          SKIP_DEPLOY_ON_MISSING_SECRETS: true
 
       - name: Build And Deploy
         if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
