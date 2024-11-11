@@ -6,8 +6,8 @@
 
 import { useCallback, useState } from 'react';
 import thirdPartyLicenses from 'src/thirdPartyLicenses.g.json';
-import Accordion from '../common/Accordion';
-import MarkdownDocument from '../common/MarkdownDocument';
+import Accordion from '../components/Accordion';
+import MarkdownDocument from '../components/MarkdownDocument';
 
 const documents: Record<string, string> = {};
 thirdPartyLicenses.forEach(entry => {

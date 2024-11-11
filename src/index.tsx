@@ -4,7 +4,7 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React from 'react';
+import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
 import axe from '@axe-core/react';
@@ -25,4 +25,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const root = createRoot(rootElement);
-root.render(<App basename={baseUrl} />);
+root.render(
+    <StrictMode>
+        <App basename={baseUrl} />
+    </StrictMode>,
+);

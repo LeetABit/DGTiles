@@ -5,7 +5,7 @@
 //  @jsxImportSource @emotion/react
 
 import { CSSObject } from '@emotion/react';
-import Dock from 'src/components/common/Dock';
+import Dock from 'src/components/Dock';
 import Footer from './Footer';
 import Header from './Header';
 import Toolbox from './Toolbox';

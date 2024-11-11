@@ -4,8 +4,8 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { DialogLink } from 'src/components/common/Dialog';
-import VersionHistory from 'src/components/documents/VersionHistory';
+import { DialogLink } from 'src/components/Dialog';
+import VersionHistory from 'src/documents/VersionHistory';
 
 export default function VersionHistoryLink() {
     return (

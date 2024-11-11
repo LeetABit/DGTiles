@@ -8,11 +8,11 @@ import { CSSObject, Global, ThemeProvider } from '@emotion/react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react';
-import MainView from 'src/components/views/main/MainView';
+import MainView from 'src/views/main/MainView';
 import { theme } from 'src/styles/themes';
 import store, { persistor } from 'src/store';
-import { DialogProvider } from 'src/components/common/Dialog';
-import ScreenOrientationProvider from 'src/components/common/ScreenOrientationProvider';
+import { DialogProvider } from 'src/components/Dialog';
+import ScreenOrientationProvider from 'src/contexts/ScreenOrientationContext';
 
 interface Props {
     basename?: string,

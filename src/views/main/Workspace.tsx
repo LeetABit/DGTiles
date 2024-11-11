@@ -7,7 +7,8 @@
 import { CSSObject, useTheme } from '@emotion/react';
 import { useMemo } from 'react';
 import { mergeStyles } from 'src/styles/mergeStyles';
-import TileGalleryView from 'src/components/specialized/TileGallery';
+import TileGalleryView from 'src/components/TileGallery';
+import Dock from 'src/components/Dock';
 
 const baseStyle: CSSObject = {
     label: 'Workspace',
@@ -25,7 +26,10 @@ export default function Workspace() {
 
     return (
         <main css={style}>
-            <TileGalleryView />
+            <Dock>
+                <TileGalleryView dock-direction="top" />
+                <TileGalleryView dock-direction="fill" />
+            </Dock>
         </main>
     );
 }

@@ -27,6 +27,7 @@
   "rules": {
     "import/extensions": [ "warn", "never", { "json": "always", "mjs": "always" } ],
     "camelcase": [ "warn", { "allow": [ "jwks_uri", "client_id", "redirect_uri", "response_mode", "response_type" ] } ],
+    "comma-dangle": ["warn", "always-multiline"],
     "no-undef": "off",
     "max-len": [ "warn", { "code": 180 } ],
     "react/react-in-jsx-scope": "off",

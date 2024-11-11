@@ -4,11 +4,11 @@
 //
 //  @jsxImportSource @emotion/react
 
-import Toolbar from 'src/components/common/Toolbar';
+import Toolbar from 'src/components/Toolbar';
 import { useRootSelector } from 'src/hooks/useRootSelector';
-import EditTilesButton from '../EditTilesButton';
-import AddTileButton from '../AddTileButton';
-import ClearTilesButton from '../ClearTilesButton';
+import EditTilesButton from './EditTilesButton';
+import AddTileButton from './AddTileButton';
+import ClearTilesButton from './ClearTilesButton';
 
 export default function EditWorkspaceToolbox() {
     const isTileEditorActive = useRootSelector((state) => state.editor.isActive);

@@ -5,9 +5,9 @@
 //  @jsxImportSource @emotion/react
 
 import raw from 'raw.macro';
-import MarkdownDocument from '../common/MarkdownDocument';
+import MarkdownDocument from '../components/MarkdownDocument';
 
-const termsOfUse = raw('../../../docs/TermsOfUse.md');
+const termsOfUse = raw('../../docs/TermsOfUse.md');
 
 export default function TermsOfUse() {
     return (
