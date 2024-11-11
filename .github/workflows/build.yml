@@ -10,20 +10,26 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  TAG: ${{ github.event_name == 'push' }}
+  DEPLOY: ${{ github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed') }}
+  BUILD: ${{ github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed') || github.event_name == 'workflow_dispatch' }}
+  REMOVE_STAGE_SITE: ${{ github.event_name == 'pull_request' && github.event.action == 'closed' }}
+
 jobs:
   build_and_deploy_job:
     name: Build and Deploy Job
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed') || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
+        if: ${{ env.BUILD == 'true' }}
         uses: actions/checkout@v3
         with:
           submodules: true
           fetch-depth: 0
 
       - name: Create tag
-        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        if: ${{ env.TAG == 'true' }}
         uses: actions/github-script@v6
         with:
           github-token: ${{ github.token }}
@@ -32,10 +38,11 @@ jobs:
             await createGitTag(github, context);
 
       - name: Fetch tag
-        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        if: ${{ env.TAG == 'true' }}
         run: git fetch --tags
 
       - name: Cache node modules
+        if: ${{ env.DEPLOY == 'true' }}
         uses: actions/cache@v3
         with:
           path: ./node_modules
@@ -43,28 +50,21 @@ jobs:
           restore-keys: |
             app-node-modules-
 
-      - name: Print config
-        run: yarn cfg
-
       - name: Build And Deploy
-        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+        if: ${{ env.BUILD == 'true' }}
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ github.event_name == 'workflow_dispatch' && '' || secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          azure_static_web_apps_api_token: ${{ env.DEPLOY && '' || secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "/"
           api_location: ""
           output_location: "build"
         env:
-          SKIP_DEPLOY_ON_MISSING_SECRETS: ${{ github.event_name == 'workflow_dispatch' }}
+          SKIP_DEPLOY_ON_MISSING_SECRETS: ${{ !env.DEPLOY }}
 
-  close_pull_request_job:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
-    runs-on: ubuntu-latest
-    name: Close Pull Request Job
-    steps:
-      - name: Close Pull Request
+      - name: Remove Pull Request Stage Site
+        if: ${{ env.REMOVE_STAGE_SITE == 'true' }}
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
