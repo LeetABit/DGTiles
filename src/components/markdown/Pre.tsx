@@ -7,6 +7,8 @@
 import { CSSObject } from '@emotion/react';
 import { ComponentPropsWithoutRef, ReactMarkdownProps } from 'react-markdown/lib/ast-to-react';
 
+// TODO: move to layouts
+
 const style: CSSObject = {
     whiteSpace: 'pre-wrap',
     marginLeft: '2em',

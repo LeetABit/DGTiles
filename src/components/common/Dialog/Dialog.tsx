@@ -19,12 +19,14 @@ interface Props extends AriaAttributes{
     onClose: () => void,
 }
 
+// TODO: move to layouts.
+
 const dialogStyle: CSSObject = {
-    borderStyle: 'none',
-    boxSizing: 'border-box',
-    display: 'flex',
-    flexDirection: 'column',
-    overflow: 'hidden',
+    // borderStyle: 'none',
+    // boxSizing: 'border-box',
+    // display: 'flex',
+    // flexDirection: 'column',
+    // overflow: 'hidden',
     padding: '0px',
 }
 

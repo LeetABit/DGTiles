@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import executeCommandAsync from './executeCommandAsync.mjs';
+import { executeCommandAsync, executeCommand } from './executeCommandAsync.mjs';
 
 const versionTagRegexp = /^v(\d+)\.(\d+)\.(\d+)$/;
 
@@ -63,6 +63,11 @@ export async function getLastCommitAsync(revision = 'HEAD') {
 
 export async function getCurrentBranchNameAsync() {
     return executeCommandAsync('git rev-parse --abbrev-ref HEAD');
+}
+
+export function getCommittedFiles() {
+    const result = executeCommand('git ls-tree --full-tree -r --name-only HEAD');
+    return result.split('\n').filter(file => file);
 }
 
 export async function isWorkingDirectoryDirtyAsync() {

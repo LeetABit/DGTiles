@@ -6,8 +6,9 @@
 
 import { CSSObject } from '@emotion/react';
 import React, { ReactElement, useMemo } from 'react';
+import { Fill } from 'src/styles/layouts/Fill';
 import { mergeStyles } from 'src/styles/mergeStyles';
-import { cloneElementWithEmotion } from 'src/types';
+import { cloneElementWithEmotion } from 'src/utils/cloneElementWithEmotion';
 import { GridTemplates } from './types';
 
 interface Props {
@@ -16,8 +17,6 @@ interface Props {
 }
 
 const baseStyle: CSSObject = {
-    width: '100%',
-    height: '100%',
     display: 'grid',
 }
 
@@ -25,6 +24,7 @@ export default function Grid({ templates: { rows, columns }, container = <div />
     const css = useMemo(
         () => mergeStyles(
             baseStyle,
+            Fill,
             {
                 gridTemplateRows: rows,
                 gridTemplateColumns: columns,
