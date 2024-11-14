@@ -11,11 +11,11 @@ import Dialog from './Dialog';
 import { DialogMode } from './types';
 
 interface Props extends AriaAttributes {
-    dialogMode?: DialogMode,
+    mode?: DialogMode,
     titleBar?: React.ReactNode,
     style?: CSSObject,
 }
-export default function RoutedDialog({ dialogMode, titleBar, style, children, ...ariaAttributes }: React.PropsWithChildren<Props>) {
+export default function RoutedDialog({ mode, titleBar, style, children, ...ariaAttributes }: React.PropsWithChildren<Props>) {
     const navigate = useNavigate();
     const location = useLocation();
     const navigateBack = useCallback(() => {
@@ -27,7 +27,7 @@ export default function RoutedDialog({ dialogMode, titleBar, style, children, ..
     }, []);
 
     return (
-        <Dialog mode={dialogMode} titleBar={titleBar} style={style} {...ariaAttributes} onClose={navigateBack}>
+        <Dialog mode={mode} titleBar={titleBar} style={style} {...ariaAttributes} onClose={navigateBack}>
             {children}
         </Dialog>
     );

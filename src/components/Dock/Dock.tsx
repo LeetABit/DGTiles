@@ -42,8 +42,8 @@ const createFactory = (
             };
 
             const itemContainer = container
-                ? cloneElementWithEmotion(container, undefined, css, null)
-                : <div css={css} />;
+                ? cloneElementWithEmotion(container, css)
+                : null;
 
             return (
                 <GridItem area={originalFill.getArea()} container={itemContainer} key={key}>
@@ -120,14 +120,17 @@ const reduceChildren = (area: GridAreaBuilder, children: React.ReactNode): Reduc
 }
 
 export default function Dock({ container = <div />, children }: React.PropsWithChildren<Props>) {
-    const gridAreaBuilder = GridAreaBuilder.create();
-    const [reducedChildren, fillArea] = reduceChildren(gridAreaBuilder, children) as [LazyReactNode, GridAreaBuilder];
-    const templates = gridAreaBuilder.getTemplates(fillArea);
-    const reducedChildrenNode = reducedChildren();
+    const { cachedTemplates, cachedReducedChildrenNode } = React.useMemo(() => {
+        const gridAreaBuilder = GridAreaBuilder.create();
+        const [reducedChildren, fillArea] = reduceChildren(gridAreaBuilder, children) as [LazyReactNode, GridAreaBuilder];
+        const templates = gridAreaBuilder.getTemplates(fillArea);
+        const reducedChildrenNode = reducedChildren();
+        return { cachedTemplates: templates, cachedReducedChildrenNode: reducedChildrenNode };
+    }, [children]);
 
     return (
-        <Grid templates={templates} container={container}>
-            {reducedChildrenNode}
+        <Grid templates={cachedTemplates} container={container}>
+            {cachedReducedChildrenNode}
         </Grid>
     );
 }

@@ -8,15 +8,14 @@ import { CSSObject } from '@emotion/react';
 import { TileDefinition } from 'src/store/tiles';
 import CloseButton from 'src/components/CloseButton';
 import EditButton from 'src/components/EditButton';
-import { AriaAttributes, useCallback, useMemo } from 'react';
+import { ReactElement, useCallback, useMemo } from 'react';
 import Box from 'src/components/Box';
-import { mergeStyles } from 'src/styles/mergeStyles';
 import { useRootSelector } from 'src/hooks/useRootSelector';
-import { Entity } from 'src/types';
+import { cloneElementWithEmotion, Entity } from 'src/types';
 
-interface Props extends AriaAttributes{
+interface Props {
     definition: Entity<TileDefinition>,
-    style?: CSSObject,
+    container?: ReactElement,
     onClose: (tileId: string) => void,
     onEdit: (tileId: string) => void,
 }
@@ -25,9 +24,8 @@ const baseStyle: CSSObject = {
     backgroundColor: 'white',
 }
 
-export default function TileBox({ definition, style, onClose, onEdit, ...ariaAttributes }: Props) {
+export default function TileBox({ definition, container = <div />, onClose, onEdit }: Props) {
     const isTileEditorActive = useRootSelector(state => state.editor.isActive);
-    const css = useMemo(() => mergeStyles(baseStyle, style), [style]);
     const onCloseHandler = useCallback(() => {
         onClose(definition.id);
     }, [definition.id]);
@@ -44,7 +42,9 @@ export default function TileBox({ definition, style, onClose, onEdit, ...ariaAtt
             </>
         ) : undefined;
 
+    const boxContainer = useMemo(() => cloneElementWithEmotion(container, baseStyle), [container]);
+
     return (
-        <Box container={<div css={css} {...ariaAttributes} />} titleBar={definition.entity.name} buttons={buttons} />
+        <Box container={boxContainer} titleBar={definition.entity.name} buttons={buttons} />
     );
 }

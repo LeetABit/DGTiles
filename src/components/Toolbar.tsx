@@ -29,6 +29,6 @@ const columnStyle: CSSObject = {
 };
 
 export default function Toolbar({ direction = 'row', container = <div />, children }: React.PropsWithChildren<Props>) {
-    const style = useMemo(() => mergeStyles(baseStyle, (direction === 'row' ? rowStyle : columnStyle)), [direction]);
-    return cloneElementWithEmotion(container, undefined, style, children);
+    const mergedStyle = useMemo(() => mergeStyles(baseStyle, (direction === 'row' ? rowStyle : columnStyle)), [direction]);
+    return useMemo(() => cloneElementWithEmotion(container, mergedStyle, undefined, children), [container, direction, children]);
 }

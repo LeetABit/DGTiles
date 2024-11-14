@@ -4,17 +4,22 @@
 //
 //  @jsxImportSource @emotion/react
 
+import { ReactElement } from 'react';
 import Toolbar from 'src/components/Toolbar';
 import { useRootSelector } from 'src/hooks/useRootSelector';
 import EditTilesButton from './EditTilesButton';
 import AddTileButton from './AddTileButton';
 import ClearTilesButton from './ClearTilesButton';
 
-export default function EditWorkspaceToolbox() {
+interface Props {
+    container?: ReactElement,
+}
+
+export default function EditWorkspaceToolbox({ container }: Props) {
     const isTileEditorActive = useRootSelector((state) => state.editor.isActive);
 
     return (
-        <Toolbar direction="column">
+        <Toolbar direction="column" {...container}>
             <EditTilesButton />
             { isTileEditorActive && (
                 <>

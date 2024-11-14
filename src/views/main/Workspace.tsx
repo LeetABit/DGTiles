@@ -5,12 +5,17 @@
 //  @jsxImportSource @emotion/react
 
 import { CSSObject, useTheme } from '@emotion/react';
-import { useMemo } from 'react';
+import { ReactElement, useMemo } from 'react';
 import { mergeStyles } from 'src/styles/mergeStyles';
 import TileGalleryView from 'src/components/TileGallery';
 import Dock from 'src/components/Dock';
+import { cloneElementWithEmotion } from 'src/types';
 
-const baseStyle: CSSObject = {
+interface Props {
+    container?: ReactElement,
+}
+
+const style: CSSObject = {
     label: 'Workspace',
     position: 'relative',
     width: '100%',
@@ -18,18 +23,19 @@ const baseStyle: CSSObject = {
     overflow: 'auto',
 };
 
-export default function Workspace() {
+export default function Workspace({ container = <main /> }: Props) {
     const theme = useTheme();
-    const style = useMemo(() => {
-        return mergeStyles(baseStyle, { ...theme.workspace });
+    const mergedStyle = useMemo(() => {
+        return mergeStyles({ ...theme.workspace }, style);
     }, [theme.workspace]);
 
-    return (
-        <main css={style}>
-            <Dock>
-                <TileGalleryView dock-direction="top" />
-                <TileGalleryView dock-direction="fill" />
-            </Dock>
-        </main>
-    );
+    return useMemo(() => cloneElementWithEmotion(
+        container,
+        mergedStyle,
+        undefined,
+        <Dock>
+            <TileGalleryView dock-direction="top" />
+            <TileGalleryView dock-direction="fill" />
+        </Dock>,
+    ), [container, theme.workspace]);
 }

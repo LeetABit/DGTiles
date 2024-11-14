@@ -4,13 +4,18 @@
 //
 //  @jsxImportSource @emotion/react
 
+import { CSSObject } from '@emotion/react';
 import Dock from 'src/components/Dock/Dock';
 import LinksSection from 'src/components/LinksSection';
 import VersionLabel from 'src/components/VersionLabel';
 
-export default function Footer() {
+interface Props {
+    style?: CSSObject,
+}
+
+export default function Footer({ style }: Props) {
     return (
-        <footer>
+        <footer css={style}>
             <Dock>
                 <VersionLabel dock-direction="fill" displayDate />
                 <LinksSection dock-direction="right" />

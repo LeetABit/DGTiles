@@ -20,7 +20,7 @@ interface Props extends AriaAttributes{
 export default function DialogLink({ to, dialogMode, dialogContent, titleBar, children, ...ariaAttributes }: React.PropsWithChildren<Props>) {
     const element = (
         <DialogItem>
-            <RoutedDialog dialogMode={dialogMode} titleBar={titleBar} {...ariaAttributes}>
+            <RoutedDialog mode={dialogMode} titleBar={titleBar} {...ariaAttributes}>
                 {dialogContent}
             </RoutedDialog>
         </DialogItem>

@@ -4,16 +4,21 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { useCallback, useEffect } from 'react';
+import { ReactElement, useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import FlowContainer from 'src/components/FlowContainer';
 import { useRootSelector } from 'src/hooks/useRootSelector';
 import { selectAllTiles, removeTile } from 'src/store/tiles';
 import { startEditing, stopEditing } from 'src/store/editor';
+import { cloneElementWithEmotion } from 'src/types';
 import TileBox from './TileBox';
 import TileEditorDialog from './TileEditorDialog';
 
-export default function TileGallery() {
+interface Props {
+    container?: ReactElement,
+}
+
+export default function TileGallery({ container = <div /> }: Props) {
     const dispatch = useDispatch();
     const [
         isTileEditorActive,
@@ -44,20 +49,26 @@ export default function TileGallery() {
         startEditingCallback(tileId);
     }, []);
 
+    // TODO: React and TypeScript does not support inert attribute yet.
+    // https://github.com/facebook/react/pull/24730
+    // https://github.com/DefinitelyTyped/DefinitelyTyped/pull/60822
+    const refCallback : React.RefCallback<HTMLElement> = node => node && (editedTile ? node.setAttribute('inert', '') : node.removeAttribute('inert'))
+    const containerCloned = cloneElementWithEmotion(
+        container,
+        undefined,
+        { ref: refCallback },
+        <FlowContainer>
+            {definitions.map((definition) => {
+                return (
+                    <TileBox key={definition.id} onClose={onCloseHandler} onEdit={onEditHandler} definition={definition} />
+                );
+            })}
+        </FlowContainer>,
+    );
+
     return (
         <>
-            {/* TODO: React and TypeScript does not support inert attribute yet. */}
-            {/* https://github.com/facebook/react/pull/24730 */}
-            {/* https://github.com/DefinitelyTyped/DefinitelyTyped/pull/60822 */}
-            <div ref={node => node && (editedTile ? node.setAttribute('inert', '') : node.removeAttribute('inert'))}>
-                <FlowContainer>
-                    {definitions.map((definition) => {
-                        return (
-                            <TileBox key={definition.id} onClose={onCloseHandler} onEdit={onEditHandler} definition={definition} />
-                        );
-                    })}
-                </FlowContainer>
-            </div>
+            {containerCloned}
             {editedTile && <TileEditorDialog definition={editedTile} onClose={stopEditingCallback} />}
         </>
     );

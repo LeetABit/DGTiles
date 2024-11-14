@@ -12,10 +12,10 @@ import { GridArea } from './types';
 
 interface Props {
     area: GridArea,
-    container?: ReactElement,
+    container?: ReactElement | null,
 }
 
-export default function GridItem({ area: { rowStart, rowEnd, columnStart, columnEnd }, container = <div />, children }: React.PropsWithChildren<Props>) {
+export default function GridItem({ area: { rowStart, rowEnd, columnStart, columnEnd }, container = <div id="GridItem" />, children }: React.PropsWithChildren<Props>) {
     const css: CSSObject = useMemo(
         () => mergeStyles(
             {
@@ -28,5 +28,18 @@ export default function GridItem({ area: { rowStart, rowEnd, columnStart, column
         [rowStart, rowEnd, columnStart, columnEnd],
     );
 
-    return cloneElementWithEmotion(container, undefined, css, children);
+    return useMemo(
+        () => {
+            if (container === null) {
+                if (React.isValidElement(children)) {
+                    return cloneElementWithEmotion(children, css);
+                }
+
+                return <div css={css}>{children}</div>
+            }
+
+            return cloneElementWithEmotion(container, css, undefined, children)
+        },
+        [container, rowStart, rowEnd, columnStart, columnEnd, children],
+    );
 }

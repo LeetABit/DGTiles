@@ -7,25 +7,20 @@
 import { CSSObject } from '@emotion/react';
 import { serialize, deserialize } from 'bson';
 import { compress, Compressed, decompress } from 'compress-json';
-import { useCallback, useMemo, useId } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useRootSelector } from 'src/hooks/useRootSelector';
 import { isTileDefinition, selectAllTiles, setTiles, TileDefinition } from 'src/store/tiles';
+import { PropsWithAria } from 'src/types';
+
+interface Props {
+    id?: string;
+    rows?: number;
+}
 
 const textareaStyle: CSSObject = {
     resize: 'none',
     width: '100%',
-}
-
-const divStyle: CSSObject = {
-    display: 'inline-block',
-    float: 'right',
-    width: '50%',
-    padding: '0em 1em',
-}
-
-const labelStyle: CSSObject = {
-    display: 'block',
 }
 
 const decode = (base64: string): ArrayBuffer => {
@@ -60,8 +55,7 @@ const consumeToken = (token: string) => {
     return undefined;
 }
 
-export default function TilesTokenInput() {
-    const id = useId();
+export default function TilesTokenInput({ id, rows, ...aria }: PropsWithAria<Props>) {
     const dispatch = useDispatch();
     const items = useRootSelector(state => selectAllTiles(state.tiles)).map(entity => entity.entity);
     const token = useMemo(() => calculateToken(items), [items]);
@@ -79,12 +73,5 @@ export default function TilesTokenInput() {
         }
     }, []);
 
-    return (
-        <div css={divStyle}>
-            <label css={labelStyle} htmlFor={id}>
-                <span>Workspace Token:</span>
-                <textarea id={id} css={textareaStyle} value={token} rows={3} aria-multiline onChange={tokenChanged} />
-            </label>
-        </div>
-    );
+    return <textarea id={id} css={textareaStyle} value={token} rows={3} {...aria} onChange={tokenChanged} />;
 }

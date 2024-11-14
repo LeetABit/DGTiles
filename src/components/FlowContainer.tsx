@@ -64,5 +64,5 @@ export default function FlowContainer({ landscapeDirection = 'horizontal', conta
         return undefined;
     }, [directionStyle]);
 
-    return cloneElementWithEmotion(container, { ref: divRef }, css, children);
+    return useMemo(() => cloneElementWithEmotion(container, css, { ref: divRef }, children), [container, screenOrientation, landscapeDirection, children]);
 }
