@@ -25,6 +25,7 @@
   ],
   "ignorePatterns": ["*.svg", "*.json", "*.md", "*.bicep"],
   "rules": {
+    "no-nested-ternary": "off",
     "import/extensions": [ "warn", "never", { "json": "always", "mjs": "always" } ],
     "camelcase": [ "warn", { "allow": [ "jwks_uri", "client_id", "redirect_uri", "response_mode", "response_type" ] } ],
     "comma-dangle": ["warn", "always-multiline"],

@@ -5,10 +5,11 @@
 //  @jsxImportSource @emotion/react
 
 import { CSSObject } from '@emotion/react';
-import React, { ReactElement, useCallback, useMemo, useRef, useState } from 'react';
+import React, { ReactElement, useMemo } from 'react';
 import { mergeStyles } from 'src/styles/mergeStyles';
-import useResizeObserver from 'src/hooks/useResizeObserver';
 import { cloneElementWithEmotion } from 'src/types';
+import Container from './Container';
+import VerticalScrollbar from './VerticalScrollbar';
 
 interface Props {
     container?: ReactElement,
@@ -17,7 +18,7 @@ interface Props {
     contentStyle?: CSSObject,
 }
 
-const baseStyle: CSSObject = {
+const containerStyle: CSSObject = {
     boxSizing: 'border-box',
     display: 'grid',
     gridTemplateRows: '[row-line-0] max-content [row-line-1] 1fr [row-line-2]',
@@ -50,33 +51,22 @@ const baseContentStyle: CSSObject = {
 };
 
 export default function Box({ container = <div />, titleBar, buttons, contentStyle, children }: React.PropsWithChildren<Props>) {
-    const contentRef = useRef<HTMLDivElement>(null);
-    const [hasScrollbar, setHasScrollbar] = useState<boolean>(false);
-
-    const callback = useCallback((_entry: ResizeObserverEntry, element: HTMLDivElement | null) => {
-        setHasScrollbar(element ? element.scrollHeight > element.offsetHeight : false);
-    }, [setHasScrollbar]);
-
-    useResizeObserver(contentRef, callback);
-
     const contentCss = useMemo(() => mergeStyles(baseContentStyle, contentStyle), [contentStyle]);
 
-    return cloneElementWithEmotion(
+    return useMemo(() => cloneElementWithEmotion(
         container,
+        containerStyle,
         undefined,
-        baseStyle,
-        [
-            <div key="title" css={titleStyle}>
+        <>
+            <Container key="title" style={titleStyle} container={<div />}>
                 {titleBar}
-            </div>,
-            <div key="buttons" css={closeButtonStyle}>
+            </Container>
+            <Container key="buttons" style={closeButtonStyle} container={<div />}>
                 {buttons}
-            </div>,
-            // TODO: https://chromestatus.com/feature/5231964663578624
-            // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-            <div key="content" css={contentCss} ref={contentRef} tabIndex={hasScrollbar ? 0 : undefined}>
+            </Container>
+            <VerticalScrollbar style={contentCss}>
                 {children}
-            </div>,
-        ],
-    );
+            </VerticalScrollbar>
+        </>,
+    ), [container, titleBar, buttons, contentStyle, children]);
 }

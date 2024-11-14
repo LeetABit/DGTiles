@@ -4,8 +4,13 @@
 //
 //  @jsxImportSource @emotion/react
 
+import { ReactElement } from 'react';
 import EditWorkspaceToolbox from 'src/components/EditWorkspaceToolbox';
 
-export default function Toolbox() {
-    return <EditWorkspaceToolbox />;
+interface Props {
+    container?: ReactElement,
+}
+
+export default function Toolbox({ container }: Props) {
+    return <EditWorkspaceToolbox {...container} />;
 }

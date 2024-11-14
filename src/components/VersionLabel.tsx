@@ -4,10 +4,19 @@
 //
 //  @jsxImportSource @emotion/react
 
+import { CSSObject } from '@emotion/react';
+import { ReactElement, useMemo } from 'react';
 import gitVersion from 'src/gitVersion.g.json';
+import { cloneElementWithEmotion } from 'src/types';
 
 interface Props {
-    displayDate?: boolean
+    displayDate?: boolean,
+    container?: ReactElement,
+}
+
+const baseStyle: CSSObject = {
+    marginTop: 'auto',
+    marginBottom: 'auto',
 }
 
 const versionString : string = `${gitVersion.major}.${gitVersion.minor}.${gitVersion.patch}${
@@ -17,9 +26,12 @@ const versionString : string = `${gitVersion.major}.${gitVersion.minor}.${gitVer
     + `+Sha.${gitVersion.sha}`
     + `+Timestamp.${gitVersion.safeTimestamp}`;
 
-export default function VersionLabel({ displayDate = false }: Props) {
-    return (
-        <div>
+export default function VersionLabel({ displayDate = false, container = <div /> }: Props) {
+    return useMemo(() => cloneElementWithEmotion(
+        container,
+        baseStyle,
+        undefined,
+        <>
             <div>
                 <span>Version:</span>
                 <span>{versionString}</span>
@@ -30,6 +42,6 @@ export default function VersionLabel({ displayDate = false }: Props) {
                     <span>{gitVersion.timestamp}</span>
                 </div>
             )}
-        </div>
-    );
+        </>,
+    ), [container, displayDate]);
 }

@@ -4,19 +4,20 @@
 //
 //  @jsxImportSource @emotion/react
 
-import { useCallback, AriaAttributes } from 'react';
+import { useCallback } from 'react';
 import { CSSObject } from '@emotion/react';
 import { useDispatch } from 'react-redux';
 import { v4 as uuid } from 'uuid';
 import { setTile } from 'src/store/tiles';
 import { startEditing } from 'src/store/editor';
 import { useRootSelector } from 'src/hooks/useRootSelector';
+import { PropsWithAria } from 'src/types';
 
-interface Props extends AriaAttributes {
+interface Props {
     style?: CSSObject,
 }
 
-export default function AddTileButton({ style, ...ariaAttributes }: Props) {
+export default function AddTileButton({ style, ...ariaAttributes }: PropsWithAria<Props>) {
     const tilesCount = useRootSelector(state => state.tiles.tilesOrder.length);
     const dispatch = useDispatch();
     const clickHandler = useCallback(() => {

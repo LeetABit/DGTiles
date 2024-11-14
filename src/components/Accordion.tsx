@@ -5,11 +5,13 @@
 //  @jsxImportSource @emotion/react
 
 import { CSSObject } from '@emotion/react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { ReactElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { mergeStyles } from 'src/styles/mergeStyles';
 import { ReactComponent as Wedge } from 'src/icons/Wedge.svg';
+import { cloneElementWithEmotion } from 'src/types';
 
 interface Props {
+    container?: ReactElement,
     label: React.ReactNode,
     isExpanded?: boolean,
     callbackSourceId?: string,
@@ -40,7 +42,7 @@ const expandedWedgeStyle: CSSObject = mergeStyles(collapsedWedgeStyle, {
     rotate: '90deg',
 });
 
-export default function Accordion({ label, isExpanded, callbackSourceId, onIsExpandedChanged, children }: React.PropsWithChildren<Props>) {
+export default function Accordion({ container = <div />, label, isExpanded, callbackSourceId, onIsExpandedChanged, children }: React.PropsWithChildren<Props>) {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const [isExpandedState, setIsExpandedState] = useState<boolean>(false);
     const effectiveIsExpanded = isExpanded ?? isExpandedState;
@@ -66,19 +68,22 @@ export default function Accordion({ label, isExpanded, callbackSourceId, onIsExp
         }
     }, [effectiveIsExpanded]);
 
-    return (
-        <div ref={containerRef} css={containerStyle}>
+    return useMemo(() => cloneElementWithEmotion(
+        container,
+        containerStyle,
+        { ref: containerRef },
+        <>
             <div role="button" tabIndex={0} onClick={onClickHandler} onKeyDown={onKeyDownHandler} css={buttonStyle}>
                 <Wedge css={effectiveIsExpanded ? expandedWedgeStyle : collapsedWedgeStyle} />
                 {label}
             </div>
-            { effectiveIsExpanded
+            {effectiveIsExpanded
                 ? (
                     <div css={contentStyle}>
                         {children}
                     </div>
                 )
-                : null }
-        </div>
-    );
+                : null}
+        </>,
+    ), [container, label, isExpanded, callbackSourceId, onIsExpandedChanged, children]);
 }

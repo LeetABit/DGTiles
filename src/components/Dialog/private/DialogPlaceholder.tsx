@@ -4,12 +4,15 @@
 //
 //  @jsxImportSource @emotion/react
 
-import React from 'react';
+import React, { ReactElement, useMemo } from 'react';
+import { cloneElementWithEmotion } from 'src/types';
 import { DialogSetterContext } from './DialogSetterContext';
 
-export default function DialogPlaceholder() {
+interface Props {
+    container?: ReactElement,
+}
+
+export default function DialogPlaceholder({ container = <div /> }: Props) {
     const setter = React.useContext(DialogSetterContext);
-    return (
-        <div css ref={setter} />
-    );
+    return useMemo(() => cloneElementWithEmotion(container, undefined, { ref: setter }), [container]);
 }

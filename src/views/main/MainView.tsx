@@ -4,12 +4,18 @@
 //
 //  @jsxImportSource @emotion/react
 
+import { ReactElement, useMemo } from 'react';
 import { CSSObject } from '@emotion/react';
 import Dock from 'src/components/Dock';
+import { cloneElementWithEmotion } from 'src/types';
 import Footer from './Footer';
 import Header from './Header';
 import Toolbox from './Toolbox';
 import Workspace from './Workspace';
+
+interface Props {
+    container?: ReactElement,
+}
 
 const style : CSSObject = {
     wordBreak: 'break-all',
@@ -18,8 +24,8 @@ const style : CSSObject = {
     height: '100%',
 };
 
-export default function MainView() {
-    const content = <div css={style} />;
+export default function MainView({ container = <div /> }: Props) {
+    const content = useMemo(() => cloneElementWithEmotion(container, style), [container]);
     return (
         <Dock container={content}>
             <Header dock-direction="top" />

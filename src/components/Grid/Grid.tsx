@@ -33,5 +33,5 @@ export default function Grid({ templates: { rows, columns }, container = <div />
         [rows, columns],
     );
 
-    return cloneElementWithEmotion(container, undefined, css, children);
+    return useMemo(() => cloneElementWithEmotion(container, css, undefined, children), [container, rows, columns, children]);
 }

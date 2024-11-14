@@ -5,12 +5,12 @@
 //  @jsxImportSource @emotion/react
 
 import { CSSObject } from '@emotion/react';
-import React, { AriaAttributes, useCallback, useMemo } from 'react';
-import { v4 as uuid } from 'uuid';
+import React, { AriaAttributes, useCallback, useId, useMemo } from 'react';
 import { mergeStyles } from 'src/styles/mergeStyles';
 import CloseButton from '../CloseButton';
 import { DialogMode } from './types';
 import Box from '../Box';
+import VerticalScrollbar from '../VerticalScrollbar';
 
 interface Props extends AriaAttributes{
     mode?: DialogMode,
@@ -55,9 +55,7 @@ const otherStyle = mergeStyles(dialogStyle, modalDialogStyle, gridStyle);
 export default function Dialog({ mode = 'modal', titleBar, style, onClose, children, ...ariaAttributes }: React.PropsWithChildren<Props>) {
     const dialogRef = React.useRef<HTMLDialogElement>(null);
 
-    const dialogLabelId = useMemo(() => {
-        return uuid();
-    }, []);
+    const dialogLabelId = useId();
 
     const css = useMemo(() => mergeStyles((mode === 'absolute-modal' ? absoluteModalStyle : otherStyle), style), [mode, style]);
     const closeOnEscapeKey = useCallback((event: KeyboardEvent) => {
@@ -85,7 +83,9 @@ export default function Dialog({ mode = 'modal', titleBar, style, onClose, child
 
     return (
         <Box container={container} titleBar={titleBar} buttons={<CloseButton onClick={onClose} />} contentStyle={contentStyle}>
-            {children}
+            <VerticalScrollbar>
+                {children}
+            </VerticalScrollbar>
         </Box>
     );
 }
