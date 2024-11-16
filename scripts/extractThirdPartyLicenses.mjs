@@ -18,22 +18,24 @@ export default async function extractThirdPartyLicensesAsync() {
     const result = [];
 
     for (const [packageId, { licenseFile }] of Object.entries(packages)) {
-        const licenseText = (await readFileAsync(licenseFile)).toString().trim();
-        const { name: packageFullName, version: packageVersion } = parse(packageId);
-        const npmUrl = `https://www.npmjs.com/package/${packageFullName}/v/${packageVersion}`;
-        const [packageOwner] = packageFullName.split('/');
+        if (licenseFile != null) {
+            const licenseText = (await readFileAsync(licenseFile)).toString().trim();
+            const { name: packageFullName, version: packageVersion } = parse(packageId);
+            const npmUrl = `https://www.npmjs.com/package/${packageFullName}/v/${packageVersion}`;
+            const [packageOwner] = packageFullName.split('/');
 
-        const ownerObject = result.find(owner => owner.packageOwner === packageOwner) ?? { packageOwner, licenses: [] };
-        if (!result.includes(ownerObject)) {
-            result.push(ownerObject);
+            const ownerObject = result.find(owner => owner.packageOwner === packageOwner) ?? { packageOwner, licenses: [] };
+            if (!result.includes(ownerObject)) {
+                result.push(ownerObject);
+            }
+
+            const licenseObject = ownerObject.licenses.find(license => license.licenseText === licenseText) ?? { licenseText, packages: {} };
+            if (!ownerObject.licenses.includes(licenseObject)) {
+                ownerObject.licenses.push(licenseObject);
+            }
+
+            licenseObject.packages[packageId] = npmUrl;
         }
-
-        const licenseObject = ownerObject.licenses.find(license => license.licenseText === licenseText) ?? { licenseText, packages: {} };
-        if (!ownerObject.licenses.includes(licenseObject)) {
-            ownerObject.licenses.push(licenseObject);
-        }
-
-        licenseObject.packages[packageId] = npmUrl;
     }
 
     const countPackages = (ownerObject) => {

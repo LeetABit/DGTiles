@@ -20,7 +20,7 @@ if (rootElement == null) {
     throw Error('Could not find element with root ID for React App substitution.');
 }
 
-if (process.env.NODE_ENV !== 'production') {
+if (import.meta.env.NODE_ENV !== 'production') {
     axe(React, ReactDOM, 1000);
 }
 
