@@ -5,11 +5,12 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "HTTPS Chrome",
+      "name": "Direct: Chrome",
       "request": "launch",
       "type": "chrome",
-      "url": "https://localhost:5002",
+      "url": "https://localhost:5000",
       "webRoot": "${workspaceFolder}/src",
+      "cascadeTerminateToConfigurations": ["Direct: Server"],
       "presentation": {
           "hidden": true,
       },
@@ -18,11 +19,35 @@
       },
     },
     {
-      "name": "Static Web App",
+      "name": "Emulator: Chrome",
+      "request": "launch",
+      "type": "chrome",
+      "url": "https://localhost:5001",
+      "webRoot": "${workspaceFolder}/src",
+      "cascadeTerminateToConfigurations": ["Emulator: Server"],
+      "presentation": {
+          "hidden": true,
+      },
+      "sourceMapPathOverrides": {
+        "webpack:///src/*": "${webRoot}/*"
+      },
+    },
+    {
+      "name": "Direct: Server",
       "request": "launch",
       "type": "node-terminal",
       "cwd": "${workspaceFolder}",
-      "command": "swa start https://localhost:5002/ --run 'yarn start' --ssl",
+      "command": "yarn start",
+      "presentation": {
+          "hidden": true,
+      },
+    },
+    {
+      "name": "Emulator: Server",
+      "request": "launch",
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}",
+      "command": "swa start",
       "presentation": {
           "hidden": true,
       },
@@ -30,10 +55,18 @@
   ],
   "compounds": [
     {
-      "name": "HTTPS Static Web App",
+      "name": "Direct",
       "configurations": [
-        "HTTPS Chrome",
-        "Static Web App"
+        "Direct: Chrome",
+        "Direct: Server"
+      ],
+      "stopAll": true,
+    },
+    {
+      "name": "Emulator",
+      "configurations": [
+        "Emulator: Chrome",
+        "Emulator: Server"
       ],
       "stopAll": true,
     }
