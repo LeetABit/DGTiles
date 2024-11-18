@@ -1,8 +1,6 @@
 //  Copyright (c) Hubert Bukowski. All rights reserved.
 //  Licensed under the MIT License.
 //  See LICENSE file in the project root for full license information.
-//
-//  @jsxImportSource @emotion/react
 
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
@@ -20,7 +18,7 @@ if (rootElement == null) {
     throw Error('Could not find element with root ID for React App substitution.');
 }
 
-if (process.env.NODE_ENV !== 'production') {
+if (import.meta.env.NODE_ENV !== 'production') {
     axe(React, ReactDOM, 1000);
 }
 

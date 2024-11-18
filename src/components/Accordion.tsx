@@ -1,13 +1,11 @@
 //  Copyright (c) Hubert Bukowski. All rights reserved.
 //  Licensed under the MIT License.
 //  See LICENSE file in the project root for full license information.
-//
-//  @jsxImportSource @emotion/react
 
 import { CSSObject } from '@emotion/react';
 import { ReactElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { mergeStyles } from 'src/styles/mergeStyles';
-import { ReactComponent as Wedge } from 'src/icons/Wedge.svg';
+import Wedge from 'src/icons/Wedge.svg?react';
 import { cloneElementWithEmotion } from 'src/types';
 
 interface Props {

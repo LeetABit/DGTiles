@@ -18,6 +18,9 @@
         "plusplus",
         "reduxjs",
         "viewports",
-        "whitesmoke"
+        "whitesmoke",
+        "svgr",
+        "staticwebapp",
+        "appDevserverUrl"
     ]
 }

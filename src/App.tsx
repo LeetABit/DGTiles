@@ -1,8 +1,6 @@
 //  Copyright (c) Hubert Bukowski. All rights reserved.
 //  Licensed under the MIT License.
 //  See LICENSE file in the project root for full license information.
-//
-//  @jsxImportSource @emotion/react
 
 import { CSSObject, Global, ThemeProvider } from '@emotion/react';
 import { BrowserRouter } from 'react-router-dom';
@@ -27,7 +25,7 @@ const globalStyle : CSSObject = {
         whiteSpace: 'nowrap',
         '&:after': {
             content: '""',
-            background: `url(${process.env.PUBLIC_URL}/images/ExternalLink.svg)`,
+            background: `url(/images/ExternalLink.svg)`,
             backgroundRepeat: 'no-repeat',
             width: '1em',
             height: '1em',

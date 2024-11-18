@@ -1,7 +1,6 @@
 //  Copyright (c) Hubert Bukowski. All rights reserved.
 //  Licensed under the MIT License.
 //  See LICENSE file in the project root for full license information.
-//
-//  @jsxImportSource @emotion/react
 
-/// <reference types="react-scripts" />
+/// <reference types="vite/client" />
+/// <reference types="vite-plugin-svgr/client" />

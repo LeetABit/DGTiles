@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-import checker from 'license-checker';
+import { init } from 'license-checker-rseidelsohn';
 import * as util from 'util';
 import { parse } from 'parse-package-name';
 import { readFileAsync } from './common/files.mjs';
 
-const checkerInitAsync = util.promisify(checker.init);
+const checkerInitAsync = util.promisify(init);
 
 export default async function extractThirdPartyLicensesAsync() {
     const packages = await checkerInitAsync({
@@ -18,22 +18,24 @@ export default async function extractThirdPartyLicensesAsync() {
     const result = [];
 
     for (const [packageId, { licenseFile }] of Object.entries(packages)) {
-        const licenseText = (await readFileAsync(licenseFile)).toString().trim();
-        const { name: packageFullName, version: packageVersion } = parse(packageId);
-        const npmUrl = `https://www.npmjs.com/package/${packageFullName}/v/${packageVersion}`;
-        const [packageOwner] = packageFullName.split('/');
+        if (licenseFile) {
+            const licenseText = (await readFileAsync(licenseFile)).toString().trim();
+            const { name: packageFullName, version: packageVersion } = parse(packageId);
+            const npmUrl = `https://www.npmjs.com/package/${packageFullName}/v/${packageVersion}`;
+            const [packageOwner] = packageFullName.split('/');
 
-        const ownerObject = result.find(owner => owner.packageOwner === packageOwner) ?? { packageOwner, licenses: [] };
-        if (!result.includes(ownerObject)) {
-            result.push(ownerObject);
+            const ownerObject = result.find(owner => owner.packageOwner === packageOwner) ?? { packageOwner, licenses: [] };
+            if (!result.includes(ownerObject)) {
+                result.push(ownerObject);
+            }
+
+            const licenseObject = ownerObject.licenses.find(license => license.licenseText === licenseText) ?? { licenseText, packages: {} };
+            if (!ownerObject.licenses.includes(licenseObject)) {
+                ownerObject.licenses.push(licenseObject);
+            }
+
+            licenseObject.packages[packageId] = npmUrl;
         }
-
-        const licenseObject = ownerObject.licenses.find(license => license.licenseText === licenseText) ?? { licenseText, packages: {} };
-        if (!ownerObject.licenses.includes(licenseObject)) {
-            ownerObject.licenses.push(licenseObject);
-        }
-
-        licenseObject.packages[packageId] = npmUrl;
     }
 
     const countPackages = (ownerObject) => {

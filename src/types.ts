@@ -1,8 +1,6 @@
 //  Copyright (c) Hubert Bukowski. All rights reserved.
 //  Licensed under the MIT License.
 //  See LICENSE file in the project root for full license information.
-//
-//  @jsxImportSource @emotion/react
 
 import { CSSObject, jsx } from '@emotion/react';
 import { AriaAttributes, DOMElement, HTMLAttributes, LegacyRef, PropsWithChildren, ReactElement, ReactNode } from 'react';
@@ -25,7 +23,7 @@ function extractRef(element: ReactElement): LegacyRef<HTMLElement> | undefined {
     return containsRef(element) ? element.ref : undefined;
 }
 
-export function cloneElementWithEmotion(element: ReactElement, css?: CSSObject, props?: {}, children?: ReactNode): ReactElement {
+export function cloneElementWithEmotion(element: ReactElement, css?: CSSObject, props?: object, children?: ReactNode): ReactElement {
     const elementRef = extractRef(element);
     const elementProps = { ...element.props, key: element.key, ref: elementRef };
     const { children: extractedChildren, css: extractedCss, style: extractedStyle, ...extractedProps } = elementProps;

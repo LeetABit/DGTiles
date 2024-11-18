@@ -1,13 +1,9 @@
 //  Copyright (c) Hubert Bukowski. All rights reserved.
 //  Licensed under the MIT License.
 //  See LICENSE file in the project root for full license information.
-//
-//  @jsxImportSource @emotion/react
 
-import raw from 'raw.macro';
 import MarkdownDocument from '../components/MarkdownDocument';
-
-const termsOfUse = raw('../../docs/TermsOfUse.md');
+import termsOfUse from '../../docs/TermsOfUse.md?raw';
 
 export default function TermsOfUse() {
     return (
