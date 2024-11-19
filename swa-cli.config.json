@@ -3,10 +3,10 @@
   "configurations": {
     "app": {
       "port": 5001,
-      "host": "127.0.0.1",
-      "appDevserverUrl": "https://127.0.0.1:5000",
-      "run": "yarn start",
-      "ssl": true
+      "appDevserverUrl": "https://localhost:5000",
+      "run": "yarn dev",
+      "ssl": true,
+      "outputLocation": "dist"
     }
   }
 }

@@ -14,6 +14,21 @@
       "presentation": {
           "hidden": true,
       },
+      // TODO: check this options
+      "sourceMapPathOverrides": {
+        "webpack:///src/*": "${webRoot}/*"
+      },
+    },
+    {
+      "name": "Preview: Chrome",
+      "request": "launch",
+      "type": "chrome",
+      "url": "https://localhost:5000",
+      "webRoot": "${workspaceFolder}/src",
+      "cascadeTerminateToConfigurations": ["Direct: Server"],
+      "presentation": {
+          "hidden": true,
+      },
       "sourceMapPathOverrides": {
         "webpack:///src/*": "${webRoot}/*"
       },
@@ -37,7 +52,17 @@
       "request": "launch",
       "type": "node-terminal",
       "cwd": "${workspaceFolder}",
-      "command": "yarn start",
+      "command": "yarn dev",
+      "presentation": {
+          "hidden": true,
+      },
+    },
+    {
+      "name": "Preview: Server",
+      "request": "launch",
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}",
+      "command": "yarn build && yarn preview",
       "presentation": {
           "hidden": true,
       },
@@ -52,21 +77,36 @@
           "hidden": true,
       },
     },
+    {
+      "name": "Build",
+      "request": "launch",
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}",
+      "command": "yarn build",
+    },
   ],
   "compounds": [
     {
       "name": "Direct",
       "configurations": [
+        "Direct: Server",
         "Direct: Chrome",
-        "Direct: Server"
       ],
       "stopAll": true,
     },
     {
       "name": "Emulator",
       "configurations": [
+        "Emulator: Server",
         "Emulator: Chrome",
-        "Emulator: Server"
+      ],
+      "stopAll": true,
+    },
+    {
+      "name": "Preview",
+      "configurations": [
+        "Preview: Server",
+        "Preview: Chrome",
       ],
       "stopAll": true,
     }

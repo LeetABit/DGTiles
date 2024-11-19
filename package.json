@@ -1,69 +1,40 @@
 {
   "name": "leetabit.dgtiles",
+  "private": true,
   "type": "module",
   "license": "MIT",
-  "private": true,
+  "scripts": {
+    "oldcfg": "( yarn list || npm ls --include=dev --include=peer --include=prod --include=optional ) && eslint --print-config ./src/index.tsx",
+    "dev": "vite",
+    "build": "tsc --build && vite build --debug",
+    "newlint": "tsc --build",
+    "oldlint": "eslint . --max-warnings=0",
+    "preview": "vite preview",
+    "oldclean": "rimraf ./dist",
+    "oldstart": "yon run clean && yon run generate && vite",
+    "oldbuild": "cross-env CI=true && yon run clean && yon run generate && yon run lint && vite build"
+  },
   "dependencies": {
-    "@axe-core/react": "4.4.3",
-    "@emotion/react": "11.9.3",
-    "@reduxjs/toolkit": "1.8.3",
-    "bson": "4.6.5",
-    "compress-json": "2.0.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-markdown": "8.0.3",
-    "react-redux": "8.0.2",
-    "react-router-dom": "6.3.0",
-    "redux": "4.2.0",
-    "redux-persist": "6.0.0",
-    "redux-thunk": "2.4.1",
-    "remark-gfm": "3.0.1"
+    "@emotion/react": "11.13.3",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router-dom": "6.28.0"
   },
   "devDependencies": {
-    "@babel/core": "7.19.0",
-    "@babel/plugin-syntax-flow": "7.18.6",
-    "@babel/plugin-transform-react-jsx": "7.19.0",
-    "@types/react": "18.0.18",
-    "@types/react-dom": "18.0.6",
-    "@types/react-redux": "7.1.24",
-    "@types/react-router-dom": "5.3.3",
-    "@types/uuid": "8.3.4",
-    "cross-env": "7.0.3",
-    "eslint": "8.23.0",
-    "eslint-config-airbnb": "19.0.4",
-    "eslint-import-resolver-typescript": "3.5.1",
-    "eslint-plugin-import": "2.26.0",
-    "eslint-plugin-jsx-a11y": "6.6.1",
-    "eslint-plugin-only-warn": "1.0.3",
-    "eslint-plugin-react": "7.31.7",
-    "eslint-plugin-react-hooks": "4.6.0",
-    "license-checker": "25.0.1",
-    "parse-package-name": "1.0.0",
-    "raw.macro": "0.5.0",
-    "react-scripts": "5.0.1",
-    "rimraf": "3.0.2",
-    "typescript": "4.7.4",
-    "yarn-or-npm": "3.0.1"
-  },
-  "scripts": {
-    "generate": "node scripts/generateFiles.mjs",
-    "cfg": "( yarn list || npm ls --include=dev --include=peer --include=prod --include=optional ) && eslint --print-config ./src/index.tsx",
-    "lint": "eslint ./src/**/*.{ts,tsx,js,jsx,mjs} ./scripts/**/*.{ts,tsx,js,jsx,mjs} --max-warnings=0",
-    "clean": "rimraf ./build",
-    "start": "yon run clean && yon run generate && react-scripts start",
-    "build": "cross-env CI=true && yon run clean && yon run generate && yon run lint && react-scripts build",
-    "test": "cross-env CI=true && yon run generate && react-scripts test --env=jsdom"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "@axe-core/react": "4.10.1",
+    "@eslint/js": "9.13.0",
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
+    "@vitejs/plugin-react-swc": "3.5.0",
+    "eslint": "9.13.0",
+    "eslint-plugin-react-hooks": "5.0.0",
+    "eslint-plugin-react-refresh": "0.4.14",
+    "globals": "15.11.0",
+    "typescript": "5.6.2",
+    "typescript-eslint": "8.11.0",
+    "vite": "5.4.10",
+    "@vitejs/plugin-basic-ssl": "1.1.0",
+    "eslint-plugin-react": "7.37.2",
+    "@types/node": "22.9.1"
   }
 }
