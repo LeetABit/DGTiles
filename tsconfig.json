@@ -1,6 +1,7 @@
 {
   "files": [],
   "references": [
+    // TODO: add config for scripts.
     { "path": "./tsconfig.node.json" },
     { "path": "./tsconfig.app.json" }
   ]

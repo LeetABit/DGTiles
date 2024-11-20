@@ -9,3 +9,7 @@ and what command shall be used to build it. When the application is this built G
 
 Application may be run locally using Static Web App CLI. The process is controller by configuration in
 `swa-cli.config.json` file. It runs `start` script of `package.json` file and then runs SWA emulator on another port.
+
+# Vite configurations:
+
+TODO: continue this doc

@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react-swc'
 import basicSsl from '@vitejs/plugin-basic-ssl'
 
 // https://vite.dev/config/
+// TODO: cleanup this and provide commented out chunks for different test configurations
 export default defineConfig({
   plugins: [
     react(),

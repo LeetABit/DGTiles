@@ -10,6 +10,7 @@ interface Props {
     basename?: string,
 }
 
+// TODO: maybe move to styles
 const globalStyle : CSSObject = {
     label: 'MainView',
     body: {

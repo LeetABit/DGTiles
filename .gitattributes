@@ -1,6 +1,7 @@
 ####################################################################
 # Attributes definitions
 ####################################################################
+# TODO: check existing file types
 [attr]rawtext           !binary text diff merge
 [attr]code              !binary text=auto diff merge=text
 [attr]windowscode       !binary text=auto eol=crlf diff merge=text

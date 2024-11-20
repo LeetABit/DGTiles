@@ -20,7 +20,7 @@ if (rootElement == null) {
 }
 
 if (import.meta.env.DEV) {
-    axe(React, ReactDOM, 1000);
+    await axe(React, ReactDOM, 1000);
 }
 
 const root = createRoot(rootElement);

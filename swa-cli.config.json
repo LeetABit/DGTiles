@@ -3,6 +3,7 @@
   "configurations": {
     "app": {
       "port": 5001,
+      "TODO": "add to dictionary",
       "appDevserverUrl": "https://localhost:5000",
       "run": "yarn dev",
       "ssl": true,

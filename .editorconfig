@@ -1,6 +1,7 @@
 ####################################################################
 # Editor configuration file
 ####################################################################
+# TODO: check existing file types
 root = true
 
 # Deep indentation code files
