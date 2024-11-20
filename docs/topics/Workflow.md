@@ -13,3 +13,12 @@ Application may be run locally using Static Web App CLI. The process is controll
 # Vite configurations:
 
 TODO: continue this doc
+minification
+                //
+                // moduleSideEffects: (id, external) => {
+                //     if (id.includes('/node_modules/@axe-core/react/')) {
+                //         return false;
+                //     }
+
+                //     return !external;
+                // },

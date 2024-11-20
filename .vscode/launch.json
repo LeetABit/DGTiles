@@ -3,54 +3,31 @@
   // Hover to view descriptions of existing attributes.
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 
-  // TODO: simplify or divide this configuration
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Direct: Chrome",
+      "name": "Chrome",
       "request": "launch",
       "type": "chrome",
       "url": "https://localhost:5000",
       "webRoot": "${workspaceFolder}/src",
-      "cascadeTerminateToConfigurations": ["Direct: Server"],
+      "cascadeTerminateToConfigurations": ["Vite: Dev", "Vite: Preview", "SWA: Start"],
       "presentation": {
           "hidden": true,
       },
-      // TODO: check this options
-      "sourceMapPathOverrides": {
-        "webpack:///src/*": "${webRoot}/*"
-      },
     },
     {
-      "name": "Preview: Chrome",
+      "name": "Vite: Test",
       "request": "launch",
-      "type": "chrome",
-      "url": "https://localhost:5000",
-      "webRoot": "${workspaceFolder}/src",
-      "cascadeTerminateToConfigurations": ["Direct: Server"],
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}",
+      "command": "yarn test",
       "presentation": {
           "hidden": true,
       },
-      "sourceMapPathOverrides": {
-        "webpack:///src/*": "${webRoot}/*"
-      },
     },
     {
-      "name": "Emulator: Chrome",
-      "request": "launch",
-      "type": "chrome",
-      "url": "https://localhost:5001",
-      "webRoot": "${workspaceFolder}/src",
-      "cascadeTerminateToConfigurations": ["Emulator: Server"],
-      "presentation": {
-          "hidden": true,
-      },
-      "sourceMapPathOverrides": {
-        "webpack:///src/*": "${webRoot}/*"
-      },
-    },
-    {
-      "name": "Direct: Server",
+      "name": "Vite: Dev",
       "request": "launch",
       "type": "node-terminal",
       "cwd": "${workspaceFolder}",
@@ -60,7 +37,7 @@
       },
     },
     {
-      "name": "Preview: Server",
+      "name": "Vite: Preview",
       "request": "launch",
       "type": "node-terminal",
       "cwd": "${workspaceFolder}",
@@ -70,7 +47,7 @@
       },
     },
     {
-      "name": "Emulator: Server",
+      "name": "SWA: Start",
       "request": "launch",
       "type": "node-terminal",
       "cwd": "${workspaceFolder}",
@@ -79,38 +56,34 @@
           "hidden": true,
       },
     },
-    {
-      "name": "Build",
-      "request": "launch",
-      "type": "node-terminal",
-      "cwd": "${workspaceFolder}",
-      "command": "yarn build",
-    },
   ],
   "compounds": [
     {
-      "name": "Direct",
+      "name": "Dev",
       "configurations": [
-        "Direct: Server",
-        "Direct: Chrome",
+        "Vite: Dev",
+        "Chrome",
       ],
-      "stopAll": true,
-    },
-    {
-      "name": "Emulator",
-      "configurations": [
-        "Emulator: Server",
-        "Emulator: Chrome",
-      ],
-      "stopAll": true,
     },
     {
       "name": "Preview",
       "configurations": [
-        "Preview: Server",
-        "Preview: Chrome",
+        "Vite: Preview",
+        "Chrome",
       ],
-      "stopAll": true,
-    }
-  ]
+    },
+    {
+      "name": "Emulator",
+      "configurations": [
+        "SWA: Start",
+        "Chrome",
+      ],
+    },
+    {
+      "name": "Test",
+      "configurations": [
+        "Vite: Test",
+      ],
+    },
+  ],
 }

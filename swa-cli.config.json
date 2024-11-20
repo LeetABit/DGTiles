@@ -2,10 +2,9 @@
   "$schema": "https://aka.ms/azure/static-web-apps-cli/schema",
   "configurations": {
     "app": {
-      "port": 5001,
-      "TODO": "add to dictionary",
-      "appDevserverUrl": "https://localhost:5000",
-      "run": "yarn dev",
+      "port": 5000,
+      "appDevserverUrl": "https://localhost:5001",
+      "run": "yarn build && yarn preview --port 5001",
       "ssl": true,
       "outputLocation": "dist"
     }

@@ -7,6 +7,7 @@ import react from 'eslint-plugin-react'
 import tsPlugin from '@typescript-eslint/eslint-plugin'
 
 // TODO: understand this file - extends vs individual rules, applying typescript rules to js files etc.
+// TODO: change to mts
 
 export default tseslint.config(
   { ignores: ['dist'] },

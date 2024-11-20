@@ -18,6 +18,12 @@
         "plusplus",
         "reduxjs",
         "viewports",
-        "whitesmoke"
+        "whitesmoke",
+        "gitattribute",
+        "rawtext",
+        "nixcode",
+        "windowscode",
+        "tseslint",
+        "appDevserverUrl"
     ]
 }
