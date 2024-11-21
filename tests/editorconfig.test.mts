@@ -1,25 +1,24 @@
-import { expect, test } from 'vitest'
-import { execSync } from 'child_process';
-import editorconfig, { ParseOptions } from 'editorconfig';
-import * as fs from 'fs/promises';
+//  Copyright (c) Hubert Bukowski. All rights reserved.
+//  Licensed under the MIT License.
+//  See LICENSE file in the project root for full license information.
 
-// TODO: tests
-test('all files in repository are covered by .editorconfig', async () => {
-    const options : ParseOptions = {
-        // config?: string;
-        // version?: string;
-        // root?: string;
-         files: [],
-        // cache?: Cache;
-        // unset?: boolean;
-    };
-    //const config = await editorconfig.parse('.editorconfig', options);
-    const config = await editorconfig.parse('a.png', options);
-    const data = await fs.readFile('./.editorconfig');
-    const matcher = editorconfig.matcher(options, data);
-    const match = matcher('.editorconfig');
-    console.log(match);
+// TODO: relative path
+
+import { expect, test } from 'vitest';
+import editorconfig, { ParseOptions } from 'editorconfig';
+import { getRepositoryFilesAsync } from './utils.mts';
+
+test("All files in repository are covered by '.editorconfig'.", async () => {
+    const files = await getRepositoryFilesAsync();
+    for (const file of files) {
+        const options : ParseOptions = {
+             files: [],
+        };
+        await editorconfig.parse(file, options);
+        expect(options.files?.length, `File '${file}' is not included in .editorconfig file.`).toBeGreaterThan(0);
+    }
 });
+
 
 // test('adds 1 + 2 to equal 3', () => {
 //     const getFileExtensions = () => {

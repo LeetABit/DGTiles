@@ -21,7 +21,7 @@
       "request": "launch",
       "type": "node-terminal",
       "cwd": "${workspaceFolder}",
-      "command": "yarn test",
+      "command": "yarn test --test-timeout=99999999 --hook-timeout=99999999 --teardown-timeout=99999999",
       "presentation": {
           "hidden": true,
       },
