@@ -5,17 +5,14 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "TODO": "cleanup this and dependencies",
-    "oldcfg": "( yarn list || npm ls --include=dev --include=peer --include=prod --include=optional ) && eslint --print-config ./src/index.tsx",
+    "cfg": "yarn list && tsc --showConfig && eslint --print-config ./src/index.tsx",
+    "clean": "rm -rf ./dist",
+    "lint": "tsc --build && eslint . --max-warnings=0 --flag unstable_ts_config && prettier --list-different .",
+    "test": "vitest run",
     "dev": "vite",
-    "build": "tsc --build && vite build --debug",
-    "newlint": "tsc --build && eslint . --max-warnings=0",
-    "oldlint": "eslint . --max-warnings=0",
+    "build": "cross-env CI=true && vite build --debug",
     "preview": "vite preview",
-    "oldclean": "rimraf ./dist",
-    "oldstart": "yon run clean && yon run generate && vite",
-    "oldbuild": "cross-env CI=true && yon run clean && yon run generate && yon run lint && vite build",
-    "test": "vitest"
+    "verify": "yarn clean && yarn lint && yarn test && yarn build"
   },
   "dependencies": {
     "@emotion/react": "11.13.3",
@@ -25,31 +22,26 @@
   },
   "devDependencies": {
     "@axe-core/react": "4.10.1",
-
-
+    "@eslint/js": "9.13.0",
+    "@types/node": "22.9.1",
     "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
-
-
+    "@typescript-eslint/eslint-plugin": "8.15.0",
+    "@typescript-eslint/parser": "8.15.0",
+    "@vitejs/plugin-basic-ssl": "1.1.0",
+    "@vitejs/plugin-react-swc": "3.5.0",
+    "editorconfig": "2.0.0",
     "eslint": "9.13.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-react": "7.37.2",
     "eslint-plugin-react-hooks": "5.0.0",
     "eslint-plugin-react-refresh": "0.4.14",
     "globals": "15.11.0",
-
+    "jiti": "2.4.0",
+    "prettier": "3.3.3",
     "typescript": "5.6.2",
-
-    "eslint-plugin-react": "7.37.2",
     "typescript-eslint": "8.11.0",
-    "@eslint/js": "9.13.0",
-    "@typescript-eslint/eslint-plugin": "8.15.0",
-    "@typescript-eslint/parser": "8.15.0",
-
     "vite": "5.4.10",
-    "@vitejs/plugin-basic-ssl": "1.1.0",
-    "@vitejs/plugin-react-swc": "3.5.0",
-
-    "@types/node": "22.9.1",
-    "vitest": "2.1.5",
-    "editorconfig": "2.0.0"
+    "vitest": "2.1.5"
   }
 }

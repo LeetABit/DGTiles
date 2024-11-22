@@ -11,7 +11,20 @@ export const readFileAsync = util.promisify(fs.readFile);
 export const execAsync = util.promisify(exec);
 
 export const getRepositoryFilesAsync = async () => {
-    const { stdout, stderr } = await execAsync('git ls-files --others --exclude-standard');
+    const rootPath = await getProjectRootAsync();
+    return await getCommandOutputAsync(`git ls-files --cached --others --exclude-standard ${rootPath}`);
+};
+
+export const getFileGitAttributesAsync = async (filePath: string) => {
+    return await getCommandOutputAsync(`git check-attr --all -- ${filePath}`);
+};
+
+export const getProjectRootAsync = async () => {
+    return await getCommandOutputAsync('git rev-parse --show-toplevel');
+};
+
+export const getCommandOutputAsync = async (command : string) => {
+    const { stdout, stderr } = await execAsync(command);
     if (stderr) {
         throw new Error(stderr);
     }

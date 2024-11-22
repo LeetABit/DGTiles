@@ -6,6 +6,8 @@
     "azureadb2ctools.aadb2c",
     "ms-vscode.vscode-node-azure-pack",
     "streetsidesoftware.code-spell-checker",
-    "npxms.hide-gitignored"
+    "npxms.hide-gitignored",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint"
   ]
 }

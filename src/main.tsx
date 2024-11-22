@@ -6,7 +6,7 @@ import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
 import axe from '@axe-core/react';
-import App from './App';
+import App from '@/App';
 
 const baseElement: HTMLCollectionOf<HTMLBaseElement> = document.getElementsByTagName('base');
 const baseUrl: string | undefined = (baseElement.length > 0)

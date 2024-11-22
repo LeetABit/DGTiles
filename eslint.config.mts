@@ -5,11 +5,12 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
 import react from 'eslint-plugin-react'
 import tsPlugin from '@typescript-eslint/eslint-plugin'
+import eslintConfigPrettier from 'eslint-config-prettier'
+import { ESLint } from 'eslint'
 
 // TODO: understand this file - extends vs individual rules, applying typescript rules to js files etc.
-// TODO: change to mts
-
 export default tseslint.config(
+    eslintConfigPrettier,
   { ignores: ['dist'] },
   {
     settings: { react: { version: '18.3' } },
@@ -27,8 +28,10 @@ export default tseslint.config(
     plugins: {
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
-      'react': react,
-      '@typescript-eslint': tsPlugin,
+      // TODO: Issue #30
+      // https://github.com/LeetABit/DGTiles/issues/30
+      react: react as ESLint.Plugin,
+      tsPlugin,
     },
     rules: {
         ...react.configs.recommended.rules,

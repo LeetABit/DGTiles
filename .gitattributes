@@ -1,17 +1,11 @@
 ####################################################################
 # Attributes definitions
 ####################################################################
-# TODO: check existing file types
 [attr]rawtext           !binary text diff merge
 [attr]code              !binary text=auto diff merge=text
 [attr]windowscode       !binary text=auto eol=crlf diff merge=text
 [attr]nixcode           !binary text=auto eol=lf diff merge=text
 [attr]binary            -text -diff -merge
-
-####################################################################
-# Default settings for all files
-####################################################################
-*                       binary
 
 ####################################################################
 # File extensions
@@ -22,11 +16,13 @@
 *.yml                   code
 *.json                  code
 *.html                  code
-*.css                   code
 *.lock                  code
+*.bicep                 code
 *.js                    nixcode
-*.mjs                   nixcode
+*.mts                   nixcode
 *.ts                    nixcode
 *.tsx                   nixcode
 *.md                    rawtext
 *.txt                   rawtext
+*.ico                   binary
+*.png                   binary

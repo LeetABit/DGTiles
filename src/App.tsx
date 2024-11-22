@@ -4,13 +4,12 @@
 
 import { CSSObject, Global, ThemeProvider } from '@emotion/react';
 import { BrowserRouter } from 'react-router-dom';
-import { theme } from './styles/themes';
+import { theme } from '@/styles/themes';
 
 interface Props {
     basename?: string,
 }
 
-// TODO: maybe move to styles
 const globalStyle : CSSObject = {
     label: 'MainView',
     body: {
@@ -30,7 +29,7 @@ const globalStyle : CSSObject = {
     },
 };
 
-export default ({ basename } : Props) => {
+export default function ({ basename } : Props) {
     return (
         <>
             <Global styles={globalStyle} />

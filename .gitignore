@@ -1,8 +1,6 @@
 ####################################################################
 # Visual Studio cache/options directory.
 ####################################################################
-# TODO: verify this file, may package-lock.json be used to produce yarn?
-
 local.settings.json
 
 ####################################################################
