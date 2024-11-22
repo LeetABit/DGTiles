@@ -1,13 +1,10 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react-swc';
-import basicSsl from '@vitejs/plugin-basic-ssl';
-import { resolve } from 'path';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+import basicSsl from "@vitejs/plugin-basic-ssl";
+import { resolve } from "path";
 
 export default defineConfig({
-    plugins: [
-        react(),
-        basicSsl()
-    ],
+    plugins: [react(), basicSsl()],
     server: {
         port: 5000,
     },
@@ -17,7 +14,7 @@ export default defineConfig({
     build: {
         rollupOptions: {
             treeshake: {
-                preset: 'smallest',
+                preset: "smallest",
             },
         },
         minify: false,
@@ -28,8 +25,8 @@ export default defineConfig({
     },
     resolve: {
         alias: {
-            '@': resolve(__dirname, 'src'),
-            '#root': resolve(__dirname),
+            "@": resolve(__dirname, "src"),
+            "#root": resolve(__dirname),
         },
     },
-})
+});

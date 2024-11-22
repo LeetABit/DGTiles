@@ -7,10 +7,11 @@
   "scripts": {
     "cfg": "yarn list && tsc --showConfig && eslint --print-config ./src/index.tsx",
     "clean": "rm -rf ./dist",
-    "lint": "tsc --build && eslint . --max-warnings=0 --flag unstable_ts_config && prettier --list-different .",
+    "lint": "tsc --build && eslint . --max-warnings=0 --flag unstable_ts_config && prettier . --check",
+    "fix": "eslint . --flag unstable_ts_config --fix && prettier . --write",
     "test": "vitest run",
     "dev": "vite",
-    "build": "cross-env CI=true && vite build --debug",
+    "build": "vite build",
     "preview": "vite preview",
     "verify": "yarn clean && yarn lint && yarn test && yarn build"
   },

@@ -1,10 +1,9 @@
 ---
 name: Requirement
 about: Define a requirement for this project
-title: ''
+title: ""
 labels: ["Status:New", "Type:Requirement"]
 assignees: hubuk
-
 ---
 
 **Who?**

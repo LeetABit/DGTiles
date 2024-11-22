@@ -11,10 +11,14 @@
       "type": "chrome",
       "url": "https://localhost:5000",
       "webRoot": "${workspaceFolder}/src",
-      "cascadeTerminateToConfigurations": ["Vite: Dev", "Vite: Preview", "SWA: Start"],
+      "cascadeTerminateToConfigurations": [
+        "Vite: Dev",
+        "Vite: Preview",
+        "SWA: Start"
+      ],
       "presentation": {
-          "hidden": true,
-      },
+        "hidden": true
+      }
     },
     {
       "name": "Vite: Test",
@@ -23,8 +27,8 @@
       "cwd": "${workspaceFolder}",
       "command": "yarn test --test-timeout=99999999 --hook-timeout=99999999 --teardown-timeout=99999999",
       "presentation": {
-          "hidden": true,
-      },
+        "hidden": true
+      }
     },
     {
       "name": "Vite: Dev",
@@ -33,8 +37,8 @@
       "cwd": "${workspaceFolder}",
       "command": "yarn dev",
       "presentation": {
-          "hidden": true,
-      },
+        "hidden": true
+      }
     },
     {
       "name": "Vite: Preview",
@@ -43,8 +47,8 @@
       "cwd": "${workspaceFolder}",
       "command": "yarn build && yarn preview",
       "presentation": {
-          "hidden": true,
-      },
+        "hidden": true
+      }
     },
     {
       "name": "SWA: Start",
@@ -53,37 +57,26 @@
       "cwd": "${workspaceFolder}",
       "command": "swa start",
       "presentation": {
-          "hidden": true,
-      },
-    },
+        "hidden": true
+      }
+    }
   ],
   "compounds": [
     {
       "name": "Dev",
-      "configurations": [
-        "Vite: Dev",
-        "Chrome",
-      ],
+      "configurations": ["Vite: Dev", "Chrome"]
     },
     {
       "name": "Preview",
-      "configurations": [
-        "Vite: Preview",
-        "Chrome",
-      ],
+      "configurations": ["Vite: Preview", "Chrome"]
     },
     {
       "name": "Emulator",
-      "configurations": [
-        "SWA: Start",
-        "Chrome",
-      ],
+      "configurations": ["SWA: Start", "Chrome"]
     },
     {
       "name": "Test",
-      "configurations": [
-        "Vite: Test",
-      ],
-    },
-  ],
+      "configurations": ["Vite: Test"]
+    }
+  ]
 }

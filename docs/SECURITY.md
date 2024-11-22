@@ -4,9 +4,9 @@
 
 Currently the project is in a pre-release development.
 
-| Version | Supported          |
-| ------- | ------------------ |
-| | |
+| Version | Supported |
+| ------- | --------- |
+|         |           |
 
 ## Reporting a Vulnerability
 

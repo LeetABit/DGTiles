@@ -1,10 +1,9 @@
 ---
 name: Improvement suggestion
 about: Suggest an improvement for this project
-title: ''
+title: ""
 labels: ["Status:New", "Type:Improvement"]
 assignees: hubuk
-
 ---
 
 **Is your improvement idea related to a problem? Please describe.**

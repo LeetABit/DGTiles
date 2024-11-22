@@ -32,6 +32,7 @@ There are few scripts defined in `package.json` file.
 | clean    | Remove build output.                                          |
 | generate | Generates intermediate source code files.                     |
 | lint     | Executes linters on the code.                                 |
+| fix      | Fixes all linter issues that may be automatically fixed.      |
 | test     | Executes tests.                                               |
 | dev      | Starts development server with HMR.                           |
 | build    | Produces production build.                                    |
