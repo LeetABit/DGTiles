@@ -10,5 +10,8 @@ declare module "eslint-plugin-react-hooks" {
     declare const plugin: Omit<ESLint.Plugin, "configs"> & {
         configs: Record<string, ESLint.ConfigData>;
     };
+    declare type Plugin<T extends string | null | undefined> = T extends string
+        ? number
+        : null;
     export default plugin;
 }
