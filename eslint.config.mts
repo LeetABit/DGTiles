@@ -35,7 +35,7 @@ export default tseslint.config(
             // Issue #30
             // https://github.com/LeetABit/DGTiles/issues/30
             react: react as ESLint.Plugin,
-            'react-hooks': reactHooks,
+            "react-hooks": reactHooks,
             "react-refresh": reactRefresh,
             tsPlugin,
         },
@@ -43,10 +43,10 @@ export default tseslint.config(
             ...react.configs.all.rules,
             //...react.configs["jsx-runtime"].rules,
             "init-declarations": ["off"],
-            'react/jsx-uses-react': ["off"],
-            'react/react-in-jsx-scope': ["off"],
+            "react/jsx-uses-react": ["off"],
+            "react/react-in-jsx-scope": ["off"],
             ...reactHooks.configs.recommended.rules,
-            "no-magic-numbers": ["error", { "ignore": [0] }],
+            "no-magic-numbers": ["error", { ignore: [0] }],
             "no-ternary": ["off"],
             "no-undefined": ["off"],
             "one-var": ["error", "never"],
@@ -57,8 +57,11 @@ export default tseslint.config(
                 // Propagate update to importers when the constant changes.). Vite supports it
                 { allowConstantExport: true },
             ],
-            "react/jsx-filename-extension": ["error", { "extensions": [".tsx"] }],
-            "react/require-default-props": ["error", { "functions": "defaultArguments" }],
+            "react/jsx-filename-extension": ["error", { extensions: [".tsx"] }],
+            "react/require-default-props": [
+                "error",
+                { functions: "defaultArguments" },
+            ],
         },
         settings: { react: { version: "18.3" } },
     },

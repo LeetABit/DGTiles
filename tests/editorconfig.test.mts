@@ -8,14 +8,16 @@ import { getRepositoryFilesAsync } from "#root/tests/utils.mts";
 
 test("All files in repository are covered by '.editorconfig'.", async () => {
     const files = await getRepositoryFilesAsync();
-    await Promise.all(files.map(async (file) => {
-        const options: ParseOptions = {
-            files: [],
-        };
-        await editorconfig.parse(file, options);
-        expect(
-            options.files?.length,
-            `File '${file}' is not included in '.editorconfig' file.`,
-        ).toBeGreaterThan(0);
-    }));
+    await Promise.all(
+        files.map(async (file) => {
+            const options: ParseOptions = {
+                files: [],
+            };
+            await editorconfig.parse(file, options);
+            expect(
+                options.files?.length,
+                `File '${file}' is not included in '.editorconfig' file.`,
+            ).toBeGreaterThan(0);
+        }),
+    );
 });

@@ -21,5 +21,10 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["./vite.config.mts", "./eslint.config.mts", "./prettier.config.mts", "./src/vite-env.d.mts"]
+  "include": [
+    "./vite.config.mts",
+    "./eslint.config.mts",
+    "./prettier.config.mts",
+    "./src/vite-env.d.mts"
+  ]
 }

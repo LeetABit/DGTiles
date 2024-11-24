@@ -10,11 +10,13 @@ import {
 
 test("All files in repository are covered by '.gitattributes'.", async () => {
     const files = await getRepositoryFilesAsync();
-    await Promise.all(files.map(async (file) => {
-        const attributes = await getFileGitAttributesAsync(file);
-        expect(
-            attributes.length,
-            `File '${file}' is not included in '.gitattributes' file.`,
-        ).toBeGreaterThan(0);
-    }));
+    await Promise.all(
+        files.map(async (file) => {
+            const attributes = await getFileGitAttributesAsync(file);
+            expect(
+                attributes.length,
+                `File '${file}' is not included in '.gitattributes' file.`,
+            ).toBeGreaterThan(0);
+        }),
+    );
 });

@@ -16,7 +16,7 @@ const baseUrl: string | undefined =
     baseElement.length > 0
         ? (baseElement[0].getAttribute("href") ?? undefined)
         : undefined;
- const rootElement: HTMLElement | null = document.getElementById("root");
+const rootElement: HTMLElement | null = document.getElementById("root");
 
 if (!rootElement) {
     throw Error(
