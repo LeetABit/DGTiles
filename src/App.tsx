@@ -4,37 +4,38 @@
 
 import { CSSObject, Global, ThemeProvider } from "@emotion/react";
 import { BrowserRouter } from "react-router-dom";
-import { theme } from "@/styles/themes";
+import { theme } from "@/styles/themes.mts";
 
 interface Props {
-    basename?: string;
+    readonly basename?: string;
 }
 
 const globalStyle: CSSObject = {
-    label: "MainView",
+    'a[target="_blank"]': {
+        "&:after": {
+            background: `url(/images/ExternalLink.svg)`,
+            backgroundRepeat: "no-repeat",
+            content: '""',
+            display: "inline-block",
+            height: "1em",
+            verticalAlign: "text-top",
+            width: "1em",
+        },
+        whiteSpace: "nowrap",
+    },
     body: {
         margin: "0px",
     },
-    'a[target="_blank"]': {
-        whiteSpace: "nowrap",
-        "&:after": {
-            content: '""',
-            background: `url(/images/ExternalLink.svg)`,
-            backgroundRepeat: "no-repeat",
-            width: "1em",
-            height: "1em",
-            display: "inline-block",
-            verticalAlign: "text-top",
-        },
-    },
+    label: "MainView",
 };
 
 export default function App({ basename }: Props) {
     return (
         <>
             <Global styles={globalStyle} />
+
             <ThemeProvider theme={theme}>
-                <BrowserRouter basename={basename}></BrowserRouter>
+                <BrowserRouter basename={basename} />
             </ThemeProvider>
         </>
     );

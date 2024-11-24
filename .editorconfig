@@ -13,7 +13,7 @@ charset = urf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[*.{js,mts,ts,tsx}]
+[*.{mts,tsx}]
 indent_style = space
 indent_size = 4
 end_of_line = lf

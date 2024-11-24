@@ -18,9 +18,7 @@
 *.html                  code
 *.lock                  code
 *.bicep                 code
-*.js                    nixcode
 *.mts                   nixcode
-*.ts                    nixcode
 *.tsx                   nixcode
 *.md                    rawtext
 *.txt                   rawtext

@@ -9,12 +9,12 @@ import axe from "@axe-core/react";
 import App from "@/App";
 
 const baseElement: HTMLCollectionOf<HTMLBaseElement> =
-    document.getElementsByTagName("base");
-const baseUrl: string | undefined =
+    document.getElementsByTagName("base"),
+ baseUrl: string | undefined =
     baseElement.length > 0
         ? (baseElement[0].getAttribute("href") ?? undefined)
-        : undefined;
-const rootElement: HTMLElement | null = document.getElementById("root");
+        : undefined,
+ rootElement: HTMLElement | null = document.getElementById("root");
 
 if (rootElement == null) {
     throw Error(

@@ -6,6 +6,11 @@
     "lib": ["ES2023"],
     "module": "ES2022",
     "skipLibCheck": true,
+    // TODO: Issue #31
+    // https://github.com/eslint/eslint/issues/18100#issuecomment-1971500684
+    // https://github.com/facebook/react/issues/30119
+    "maxNodeModuleJsDepth": 1,
+    "allowJs": true,
 
     /* Bundler mode */
     "moduleResolution": "Bundler",
@@ -21,5 +26,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["./vite.config.mts"]
+  "include": ["./vite.config.mts", "./eslint.config.mts", "./prettier.config.mts"]
 }
