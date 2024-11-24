@@ -4,23 +4,9 @@
 
 import * as util from "util";
 import { exec } from "child_process";
-import * as fsAsync from "fs/promises";
 import { existsSync } from "fs";
 
-export const readFileAsync = util.promisify(fsAsync.readFile);
-
 export const execAsync = util.promisify(exec);
-
-export const getRepositoryFilesAsync = async () => {
-    const rootPath = await getProjectRootAsync();
-    return (await getCommandOutputAsync(
-        `git ls-files --cached --others --exclude-standard ${[rootPath]}`,
-    )).filter((file) => existsSync(file));
-};
-
-export const getFileGitAttributesAsync = async (filePath: string) => await getCommandOutputAsync(`git check-attr --all -- ${filePath}`);
-
-export const getProjectRootAsync = async () => await getCommandOutputAsync("git rev-parse --show-toplevel");
 
 export const getCommandOutputAsync = async (command: string) => {
     const { stdout, stderr } = await execAsync(command);
@@ -29,4 +15,15 @@ export const getCommandOutputAsync = async (command: string) => {
     }
 
     return stdout.split("\n").filter((file) => file);
+};
+
+export const getFileGitAttributesAsync = async (filePath: string) => await getCommandOutputAsync(`git check-attr --all -- ${filePath}`);
+
+export const getProjectRootAsync = async () => (await getCommandOutputAsync("git rev-parse --show-toplevel"))[0];
+
+export const getRepositoryFilesAsync = async () => {
+    const rootPath = await getProjectRootAsync();
+    return (await getCommandOutputAsync(
+        `git ls-files --cached --others --exclude-standard ${rootPath}`,
+    )).filter((file) => existsSync(file));
 };

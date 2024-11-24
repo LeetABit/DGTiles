@@ -2,13 +2,13 @@
 //  Licensed under the MIT License.
 //  See LICENSE file in the project root for full license information.
 
-import { expect, test } from "vitest";
 import editorconfig, { ParseOptions } from "editorconfig";
+import { expect, test } from "vitest";
 import { getRepositoryFilesAsync } from "#root/tests/utils.mts";
 
 test("All files in repository are covered by '.editorconfig'.", async () => {
     const files = await getRepositoryFilesAsync();
-    for (const file of files) {
+    await Promise.all(files.map(async (file) => {
         const options: ParseOptions = {
             files: [],
         };
@@ -17,5 +17,5 @@ test("All files in repository are covered by '.editorconfig'.", async () => {
             options.files?.length,
             `File '${file}' is not included in '.editorconfig' file.`,
         ).toBeGreaterThan(0);
-    }
+    }));
 });

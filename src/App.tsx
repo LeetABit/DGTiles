@@ -29,7 +29,7 @@ const globalStyle: CSSObject = {
     label: "MainView",
 };
 
-export default function App({ basename }: Props) {
+export default function App({ basename = undefined }: Props) {
     return (
         <>
             <Global styles={globalStyle} />

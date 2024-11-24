@@ -4,3 +4,11 @@
 
 /// <reference types="vite/client" />
 /// <reference types="node" />
+
+declare module 'eslint-plugin-react-hooks' {
+	import type { ESLint } from 'eslint';
+	declare const plugin: Omit<ESLint.Plugin, 'configs'> & {
+		configs: Record<string, ESLint.ConfigData>;
+	};
+	export default plugin;
+}
