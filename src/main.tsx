@@ -24,7 +24,7 @@ if (!rootElement) {
     );
 }
 
-if (import.meta.env.DEV) {
+if (import.meta.env.DEV && !import.meta.env.TEST) {
     await axe(React, ReactDOM, ONE_SECOND_IN_MILLISECONDS);
 }
 

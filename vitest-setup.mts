@@ -2,6 +2,5 @@
 //  Licensed under the MIT License.
 //  See LICENSE file in the project root for full license information.
 
-import { Config } from "prettier";
-
-export const config: Config = {};
+import "@testing-library/jest-dom/vitest";
+import "vitest-axe/extend-expect";

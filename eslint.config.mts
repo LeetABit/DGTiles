@@ -1,3 +1,7 @@
+//  Copyright (c) Hubert Bukowski. All rights reserved.
+//  Licensed under the MIT License.
+//  See LICENSE file in the project root for full license information.
+
 import tseslint, { ConfigWithExtends } from "typescript-eslint";
 // Issue #31
 // https://github.com/eslint/eslint/issues/18100#issuecomment-1971500684
@@ -33,7 +37,7 @@ const defaultConfig: ConfigWithExtends = {
         "react/jsx-uses-react": ["off"],
         "react/react-in-jsx-scope": ["off"],
         ...reactHooks.configs.recommended.rules,
-        "no-magic-numbers": ["error", { ignore: [0] }],
+        "no-magic-numbers": ["error", { ignore: [0, 1] }],
         "no-ternary": ["off"],
         "no-undefined": ["off"],
         "one-var": ["error", "never"],

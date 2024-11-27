@@ -26,7 +26,17 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    "types": ["vitest/importMeta"]
   },
-  "include": ["./src", "./tests"]
+  "include": [
+    "./src",
+    "./tests",
+    "./vite.config.mts",
+    "./eslint.config.mts",
+    "./prettier.config.mts",
+    "./src/vite-env.d.mts",
+    "./vitest-setup.mts"
+  ]
 }

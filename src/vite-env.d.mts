@@ -4,6 +4,7 @@
 
 /// <reference types="vite/client" />
 /// <reference types="node" />
+/// <reference types="axe-core" />
 
 declare module "eslint-plugin-react-hooks" {
     import type { ESLint } from "eslint";
