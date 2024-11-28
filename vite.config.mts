@@ -13,6 +13,7 @@ const viteConfig = defineConfig({
         minify: false,
         rollupOptions: {
             treeshake: {
+                moduleSideEffects: false,
                 preset: "smallest",
             },
         },
