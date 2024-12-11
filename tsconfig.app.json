@@ -34,10 +34,11 @@
   "include": [
     "./src",
     "./tests",
+    "./scripts",
     "./vite.config.mts",
     "./eslint.config.mts",
     "./prettier.config.mts",
     "./src/vite-env.d.mts",
-    "./vitest-setup.mts"
-, "scripts/common/utils.mts"  ]
+    "./vitest-setup.mts",
+  ]
 }
