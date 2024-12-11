@@ -4,7 +4,7 @@
 
 import editorconfig, { ParseOptions } from "editorconfig";
 import { expect, test } from "vitest";
-import { getRepositoryFilesAsync } from "#root/tests/utils.mts";
+import { getRepositoryFilesAsync } from "#root/scripts/common/git.mts";
 
 test("All files in repository are covered by '.editorconfig'.", async () => {
     const files = await getRepositoryFilesAsync();

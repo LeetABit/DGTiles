@@ -15,6 +15,7 @@
 
     /* Bundler mode */
     "moduleResolution": "Bundler",
+    "allowSyntheticDefaultImports": true,
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
@@ -38,5 +39,5 @@
     "./prettier.config.mts",
     "./src/vite-env.d.mts",
     "./vitest-setup.mts"
-  ]
+, "scripts/common/utils.mts"  ]
 }

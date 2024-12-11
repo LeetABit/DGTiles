@@ -34,7 +34,7 @@ jobs:
         with:
           github-token: ${{ github.token }}
           script: |
-            const { default: createGitTag } = await import('${{ github.workspace }}/scripts/createGitTag.mjs');
+            const { default: createGitTag } = await import('${{ github.workspace }}/scripts/createGitTag.mts');
             await createGitTag(github, context);
 
       - name: Fetch tag

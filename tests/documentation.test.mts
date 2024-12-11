@@ -3,11 +3,8 @@
 //  See LICENSE file in the project root for full license information.
 
 import { describe, expect, test } from "vitest";
-import {
-    evaluateFileContentAsync,
-    getProjectRootAsync,
-    getRepositoryFilesAsync,
-} from "#root/tests/utils.mts";
+import { evaluateFileContentAsync } from "#root/scripts/common/files.mts";
+import { getProjectRootAsync, getRepositoryFilesAsync } from "#root/scripts/common/git.mts";
 
 const MAX_EXTRA_LINES = 1;
 const rootPath = await getProjectRootAsync();
