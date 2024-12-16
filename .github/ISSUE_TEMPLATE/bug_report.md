@@ -21,9 +21,9 @@ A clear and concise description of what you expected to happen.
 
 **Environment:**
 
--   OS version:
--   Relevant environment (dotnet, PowerShell) version:
--   Product version:
+- OS version:
+- Relevant environment (dotnet, PowerShell) version:
+- Product version:
 
 **Additional information**
 Add any other context logs or gist with an additional information about the problem.

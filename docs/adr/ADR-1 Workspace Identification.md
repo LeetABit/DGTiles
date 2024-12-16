@@ -26,4 +26,4 @@ might not want to share.
 
 ## Known Alternatives
 
-would be to assign a SID to a Setup on demand (share button) and associate the State to the SID in database.
+An alternative approach would be to assign a SID to a Setup on demand (share button) and associate the State to the SID in database.

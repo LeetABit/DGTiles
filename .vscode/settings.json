@@ -27,5 +27,11 @@
     "appDevserverUrl",
     "staticwebapp",
     "rseidelsohn",
-  ]
+    "creatordate",
+    "hubuk",
+    "dockable"
+  ],
+  "eslint.options": {
+    "flags": ["unstable_ts_config"]
+  }
 }

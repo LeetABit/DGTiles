@@ -5,19 +5,12 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "cfg": "yarn list && tsc --showConfig && eslint --print-config ./src/index.tsx",
-    "clean": "rm -rf ./dist",
-    "lint": "yarn lint_ts && yarn lint_es",
-    "lint_ts": "tsc --build",
-    "lint_es": "eslint . --max-warnings=0 --flag unstable_ts_config && prettier . --check",
-    "fix": "yarn fix_es && yarn fix_prettier",
-    "fix_es": "eslint . --flag unstable_ts_config --fix",
-    "fix_prettier": "prettier . --write",
-    "test": "vitest",
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "verify": "yarn clean && yarn lint && vitest run && yarn build"
+    "lint": "tsx ./scripts/generateFiles.mts && prettier . --write && tsc --build && eslint . --flag unstable_ts_config --fix",
+    "test": "tsx ./scripts/generateFiles.mts && vitest",
+    "dev": "tsx ./scripts/generateFiles.mts && vite",
+    "build": "rm -rf ./dist && tsx ./scripts/generateFiles.mts && vite build",
+    "preview": "rm -rf ./dist && tsx ./scripts/generateFiles.mts && vite build && vite preview",
+    "verify": "rm -rf ./dist && tsx ./scripts/generateFiles.mts && prettier . --write && tsc --build && eslint . --flag unstable_ts_config --max-warnings=0 && vitest run && vite build"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",
@@ -26,6 +19,8 @@
     "react-router-dom": "7.0.2"
   },
   "devDependencies": {
+    "@actions/github": "6.0.0",
+    "@octokit/request-error": "6.1.5",
     "@axe-core/react": "4.10.1",
     "@eslint/js": "9.16.0",
     "@testing-library/dom": "10.4.0",
@@ -42,6 +37,7 @@
     "editorconfig": "2.0.0",
     "eslint": "9.16.0",
     "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-only-warn": "1.1.0",
     "eslint-plugin-react": "7.37.2",
     "eslint-plugin-react-hooks": "5.1.0",
     "eslint-plugin-react-refresh": "0.4.16",
@@ -53,6 +49,7 @@
     "parse-package-name": "1.0.0",
     "prettier": "3.4.2",
     "rollup": "4.28.1",
+    "rollup-plugin-visualizer": "5.12.0",
     "tsx": "4.19.2",
     "typescript": "5.7.2",
     "typescript-eslint": "8.18.0",

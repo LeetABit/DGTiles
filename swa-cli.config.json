@@ -4,7 +4,7 @@
     "app": {
       "port": 5000,
       "appDevserverUrl": "https://localhost:5001",
-      "run": "yarn build && yarn preview --port 5001",
+      "run": "yarn preview --port 5001",
       "ssl": true,
       "outputLocation": "dist"
     }

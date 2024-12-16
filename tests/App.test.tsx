@@ -3,7 +3,7 @@
 //  See LICENSE file in the project root for full license information.
 
 import { describe, expect, test } from "vitest";
-import App from "../src/App";
+import App from "/src/App.tsx";
 import { render } from "@testing-library/react";
 
 describe("App Component", () => {

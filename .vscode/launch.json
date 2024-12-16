@@ -46,7 +46,7 @@
       "request": "launch",
       "type": "node-terminal",
       "cwd": "${workspaceFolder}",
-      "command": "yarn build && yarn preview",
+      "command": "yarn preview",
       "presentation": {
         "hidden": true
       }

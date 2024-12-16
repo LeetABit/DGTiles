@@ -3,7 +3,7 @@
 //  See LICENSE file in the project root for full license information.
 
 import React, { StrictMode } from "react";
-import App from "@/App";
+import App from "@/App.tsx";
 import ReactDOM from "react-dom";
 import axe from "@axe-core/react";
 import { createRoot } from "react-dom/client";

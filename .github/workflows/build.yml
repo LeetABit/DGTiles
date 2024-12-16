@@ -28,21 +28,8 @@ jobs:
           submodules: true
           fetch-depth: 0
 
-      - name: Create tag
-        if: ${{ env.TAG == 'true' }}
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{ github.token }}
-          script: |
-            const { default: createGitTag } = await import('${{ github.workspace }}/scripts/createGitTag.mts');
-            await createGitTag(github, context);
-
-      - name: Fetch tag
-        if: ${{ env.TAG == 'true' }}
-        run: git fetch --tags
-
       - name: Cache node modules
-        if: ${{ env.DEPLOY == 'true' }}
+        if: ${{ env.BUILD == 'true' }}
         uses: actions/cache@v3
         with:
           path: ./node_modules
@@ -50,13 +37,32 @@ jobs:
           restore-keys: |
             app-node-modules-
 
+      - name: Install packages
+        if: ${{ env.BUILD == 'true' }}
+        run: yarn
+
+      - name: Create tag
+        if: ${{ env.TAG == 'true' }}
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const { tsImport } = await import('${{ github.workspace }}/.github/node_modules/tsx/dist/esm/api/index.cjs');
+            const { default: createGitTag } = await tsImport('./scripts/createGitTag.mts', '${{ github.workspace }}/');
+            await createGitTag(github, context);
+
+      - name: Fetch tag
+        if: ${{ env.TAG == 'true' }}
+        run: git fetch --tags
+
       - name: Build And Deploy
         if: ${{ env.BUILD == 'true' }}
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ env.DEPLOY && '' || secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          azure_static_web_apps_api_token: ${{ env.DEPLOY && secrets.AZURE_STATIC_WEB_APPS_API_TOKEN || '' }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
+          app_build_command: "yarn verify"
           app_location: "/"
           api_location: ""
           output_location: "dist"

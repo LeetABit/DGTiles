@@ -20,4 +20,4 @@ All previous ADRs that requires active communication to the server should be con
 
 ## Known Alternatives
 
-None
+None.

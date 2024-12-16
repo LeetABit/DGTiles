@@ -2,6 +2,7 @@
 //  Licensed under the MIT License.
 //  See LICENSE file in the project root for full license information.
 
+import "eslint-plugin-only-warn";
 import tseslint, { ConfigWithExtends } from "typescript-eslint";
 // Issue #31
 // https://github.com/eslint/eslint/issues/18100#issuecomment-1971500684
@@ -15,6 +16,8 @@ import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import tsPlugin from "@typescript-eslint/eslint-plugin";
+
+const MAX_FUNCTION_STATEMENTS = 50;
 
 const defaultConfig: ConfigWithExtends = {
     extends: [
@@ -33,24 +36,31 @@ const defaultConfig: ConfigWithExtends = {
     rules: {
         ...react.configs.all.rules,
         ...react.configs["jsx-runtime"].rules,
-        "init-declarations": ["error"],
+        "func-style": ["warn", "declaration", { allowArrowFunctions: true }],
+        "init-declarations": ["warn"],
         "react/jsx-uses-react": ["off"],
         "react/react-in-jsx-scope": ["off"],
         ...reactHooks.configs.recommended.rules,
-        "no-magic-numbers": ["error", { ignore: [0, 1] }],
+        "max-statements": [
+            "warn",
+            MAX_FUNCTION_STATEMENTS,
+            { ignoreTopLevelFunctions: true },
+        ],
+        "no-magic-numbers": ["warn", { ignore: [0, 1] }],
         "no-ternary": ["off"],
+        "no-undef-init": ["off"],
         "no-undefined": ["off"],
-        "one-var": ["error", "never"],
+        "one-var": ["warn", "never"],
         "react-refresh/only-export-components": [
-            "error",
+            "warn",
             // https://github.com/ArnaudBarre/eslint-plugin-react-refresh#:~:text=allowConstantExport%20(v0.4.0)
             // This should be enabled if the fast refresh implementation correctly handles this case (HMR when the constant doesn't change,
             // Propagate update to importers when the constant changes.). Vite supports it
             { allowConstantExport: true },
         ],
-        "react/jsx-filename-extension": ["error", { extensions: [".tsx"] }],
+        "react/jsx-filename-extension": ["warn", { extensions: [".tsx"] }],
         "react/require-default-props": [
-            "error",
+            "warn",
             { functions: "defaultArguments" },
         ],
     },
