@@ -14,8 +14,12 @@ const viteConfig = defineConfig({
         minify: false,
         rollupOptions: {
             output: {
-                manualChunks(id) {
+                manualChunks(id: string) {
                     if (id.includes("/node_modules/")) {
+                        if (id.includes("/react-dom/")) {
+                            return "react-dom";
+                        }
+
                         return "modules";
                     }
 

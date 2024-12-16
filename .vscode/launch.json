@@ -37,6 +37,7 @@
       "type": "node-terminal",
       "cwd": "${workspaceFolder}",
       "command": "yarn dev",
+      "cascadeTerminateToConfigurations": ["Dev", "Chrome"],
       "presentation": {
         "hidden": true
       }
@@ -47,6 +48,7 @@
       "type": "node-terminal",
       "cwd": "${workspaceFolder}",
       "command": "yarn preview",
+      "cascadeTerminateToConfigurations": ["Preview", "Chrome"],
       "presentation": {
         "hidden": true
       }
@@ -57,6 +59,7 @@
       "type": "node-terminal",
       "cwd": "${workspaceFolder}",
       "command": "swa start",
+      "cascadeTerminateToConfigurations": ["Emulator", "Chrome"],
       "presentation": {
         "hidden": true
       }
