@@ -1,0 +1,69 @@
+name: Bug report
+description: Create a bug report to help us improve.
+title: "Bug Title"
+labels: ["Status:New"]
+assignees: hubuk
+type: Bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description and reproduction steps.
+      description: Detailed description of the issue and steps to reproduce it.
+      placeholder: |
+        When attempting to add new tile the editor does not show up.
+        1. Open the website.
+        2. Click on the "Add Tile" button.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expectation
+    attributes:
+      label: Expected behavior.
+      description: >-
+        A clear and concise description of what you expected to happen.
+      placeholder: I expected to see the "New Tile Editor".
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior.
+      description: What actually happened instead.
+      placeholder: Nothing happens when I click the "Add Tile" button.
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add any other contextual information.
+      placeholder: >-
+        Problem occurs only on Chrome and only when visiting the website the
+        first time after opening browser.
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: >-
+        Please copy and paste any relevant log output. This will be
+        automatically formatted into code, so no need for backticks.
+      render: shell
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: >-
+        By submitting this issue, you agree to follow our
+        [Code of Conduct](docs/CODE_OF_CONDUCT.md).
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

@@ -1,0 +1,73 @@
+name: Improvement suggestion
+description: Suggest an improvement for this project.
+title: "Improvement Title"
+labels: ["Status:New"]
+assignees: hubuk
+type: Improvement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to submit your improvement idea!
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Please describe the problem.
+      description: A clear and concise description of what the problem is.
+      placeholder: >-
+        Removing all the tiles is problematic because each tile has to be
+        removed individually.
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Please describe the proposed solution.
+      description: A clear and concise description of what you want to happen.
+      placeholder: There should be a "Remove all tiles" button.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Please describe the alternatives you considered.
+      description: >-
+        A clear and concise description of any alternative solutions or features
+        you've considered.
+      placeholder: >-
+        I considered adding a "Remove all tiles" button to the settings menu.
+        I also thought about making remove button of the next tile appear at the
+        same location where the button for removed tile was to allow removing
+        multiple tiles by spamming "Remove Tile" button.
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add any other contextual information.
+      placeholder: >-
+        Problem occurs only on Chrome and only when visiting the website the
+        first time after opening browser.
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: >-
+        Please copy and paste any relevant log output. This will be
+        automatically formatted into code, so no need for backticks.
+      render: shell
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: >-
+        By submitting this issue, you agree to follow our
+        [Code of Conduct](docs/CODE_OF_CONDUCT.md).
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

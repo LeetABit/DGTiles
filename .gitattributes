@@ -13,3 +13,4 @@
 .gitattributes          code
 .gitignore              code
 *.md                    text
+*.yml                   code
