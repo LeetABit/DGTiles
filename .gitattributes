@@ -1,0 +1,15 @@
+####################################################################
+# Attributes definitions
+####################################################################
+[attr]text              !binary text diff merge
+[attr]code              !binary text diff merge=text
+[attr]wincode           !binary text eol=crlf diff merge=text
+[attr]nixcode           !binary text eol=lf diff merge=text
+[attr]binary            -text -diff -merge
+
+####################################################################
+# File extensions
+####################################################################
+.gitattributes          code
+.gitignore              code
+*.md                    text
