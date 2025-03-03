@@ -12,5 +12,6 @@
 ####################################################################
 .gitattributes          code
 .gitignore              code
+*.json                  code
 *.md                    text
 *.yml                   code
