@@ -10,6 +10,7 @@
 ####################################################################
 # File extensions
 ####################################################################
+.editorconfig           code
 .gitattributes          code
 .gitignore              code
 *.json                  code
