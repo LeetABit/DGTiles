@@ -14,5 +14,6 @@
 .gitattributes          code
 .gitignore              code
 *.json                  code
+*.lock                  text
 *.md                    text
 *.yml                   code
