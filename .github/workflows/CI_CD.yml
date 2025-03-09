@@ -1,0 +1,33 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  verify:
+    name: Verify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4.2.2
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Cache node modules
+        uses: actions/cache@v4.2.2
+        with:
+          path: ./node_modules
+          key: app-node-modules-${{ hashFiles('./yarn.lock') }}
+          restore-keys: |
+            app-node-modules-
+
+      - name: Install packages
+        run: yarn
