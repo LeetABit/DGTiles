@@ -13,7 +13,7 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 
 # Shallow indentation code files
-[*.{json,lock,yml}]
+[*.{html,json,lock,yml}]
 ruler = 80
 indent_style = space
 indent_size = 2

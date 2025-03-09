@@ -13,6 +13,7 @@
 .editorconfig           code
 .gitattributes          code
 .gitignore              code
+*.html                  code
 *.json                  code
 *.lock                  text
 *.md                    text

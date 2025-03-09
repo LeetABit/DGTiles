@@ -31,3 +31,6 @@ jobs:
 
       - name: Install packages
         run: yarn
+
+      - name: Build
+        run: yarn build
