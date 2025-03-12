@@ -9,6 +9,10 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@actions/github": "6.0.0",
+    "@types/node": "22.13.10",
+    "minimatch": "10.0.1",
+    "tsx": "4.19.3",
     "vite": "6.2.1"
   }
 }
