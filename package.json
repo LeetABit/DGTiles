@@ -11,8 +11,10 @@
   "devDependencies": {
     "@actions/github": "6.0.0",
     "@types/node": "22.13.10",
+    "editorconfig": "2.0.1",
     "minimatch": "10.0.1",
     "tsx": "4.19.3",
-    "vite": "6.2.1"
+    "vite": "6.2.1",
+    "vitest": "3.0.8"
   }
 }

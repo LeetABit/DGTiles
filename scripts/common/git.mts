@@ -34,6 +34,7 @@ export async function getFileGitAttributesAsync(
 
 export async function getRepositoryFilesAsync(
     pattern?: string,
+    except?: string,
 ): Promise<string[]> {
     const rootPath = await getProjectRootAsync();
     return (
@@ -44,7 +45,9 @@ export async function getRepositoryFilesAsync(
         .split("\n")
         .filter(
             (file) =>
-                file && existsSync(file) && minimatch(file, pattern ?? "*"),
+                file && existsSync(file) &&
+                    minimatch(file, pattern ?? "**") &&
+                    (!!!except || !minimatch(file, except)),
         );
 }
 
@@ -77,8 +80,11 @@ export async function getAllTagsWithDateAndMessagesAsync(
     tagPattern = "*",
 ): Promise<TagInfo[]> {
     const lines = await execCommandAsync(
-        `git for-each-ref --format="%(refname:short) %(creatordate:short) %(contents:lines=9)" "refs/tags/${tagPattern}"`,
+        `git for-each-ref --format="%(refname:short) %(creatordate:short) ` +
+        `%(contents:lines=9)" "refs/tags/${tagPattern}"`,
     );
+    const regex =
+        /^(?<version>v\d+\.\d+\.\d+) (?<date>\d+-\d+-\d+) (?<message>.*)$/u;
     const result: TagInfo[] = [];
     let tagName: string | undefined = undefined;
     let tagDate: Date | undefined = undefined;
@@ -93,10 +99,10 @@ export async function getAllTagsWithDateAndMessagesAsync(
     for (const line of lines.split("\n")) {
         const trimmedLine = line.trim();
         if (trimmedLine) {
-            const match =
-                /^(?<version>v\d+\.\d+\.\d+) (?<date>\d+-\d+-\d+) (?<message>.*)$/u.exec(
-                    line,
-                );
+            const match = regex.exec(
+                line,
+            );
+
             if (match?.groups) {
                 pushNewInfo();
                 tagName = match.groups.version;

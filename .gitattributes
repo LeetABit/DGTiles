@@ -17,4 +17,5 @@
 *.json                  code
 *.lock                  text
 *.md                    text
+*.mts                   code
 *.yml                   code

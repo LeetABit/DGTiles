@@ -15,7 +15,10 @@ export default async function createGitTag(
 ): Promise<void> {
     const newVersion = await calculateNewVersion();
 
-    const tag = `tags/v${newVersion.major.toString()}.${newVersion.minor.toString()}.${newVersion.patch.toString()}`;
+    const tag = `tags/v` +
+        `${newVersion.major.toString()}.` +
+        `${newVersion.minor.toString()}.` +
+        `${newVersion.patch.toString()}`;
     const tagRef = `refs/${tag}`;
 
     console.log(`Creating tag ${tag}`);

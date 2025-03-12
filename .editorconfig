@@ -20,3 +20,12 @@ indent_size = 2
 charset = urf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
+
+# Deep indentation code files
+[*.mts]
+ruler = 80
+indent_style = space
+indent_size = 4
+charset = urf-8
+trim_trailing_whitespace = true
+insert_final_newline = true

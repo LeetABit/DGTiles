@@ -72,7 +72,9 @@ export async function calculateNewVersion(): Promise<VersionInfo> {
 
     const currentCommit = await getCommitHashAsync("HEAD");
     const lastVersionCommit = await getCommitHashAsync(
-        `v${lastVersion.major.toString()}.${lastVersion.minor.toString()}.${lastVersion.patch.toString()}`,
+        `v${lastVersion.major.toString()}.` +
+        `${lastVersion.minor.toString()}.` +
+        `${lastVersion.patch.toString()}`,
     );
     if (lastVersionCommit === currentCommit) {
         return lastVersion;
