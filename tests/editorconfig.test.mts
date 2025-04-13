@@ -2,7 +2,7 @@
 //  Licensed under the MIT License.
 //  See LICENSE file in the project root for full license information.
 
-import editorconfig, { ParseOptions } from "editorconfig";
+import editorconfig, { type ParseOptions } from "editorconfig";
 import { expect, test } from "vitest";
 import { getRepositoryFilesAsync } from "../scripts/common/git.mts";
 

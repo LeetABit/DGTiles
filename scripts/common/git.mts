@@ -15,9 +15,13 @@ export interface TagInfo {
 export async function getProjectRootAsync(): Promise<string> {
     const result = (await execCommandAsync("git rev-parse --show-toplevel"))
         .split("\n")
-        .find((file) => file && existsSync(file));
+        .find((file) => existsSync(file));
 
-    if (!result) {
+    if (!(result ?? '')) {
+        throw new Error("Could not find project root.");
+    }
+
+    if (result === undefined || result === '') {
         throw new Error("Could not find project root.");
     }
 
@@ -44,14 +48,17 @@ export async function getRepositoryFilesAsync(
     )
         .split("\n")
         .filter(
-            (file) =>
-                file && existsSync(file) &&
-                    minimatch(file, pattern ?? "**") &&
-                    (!!!except || !minimatch(file, except)),
+            (file) => file !== '' && existsSync(file)
+                && minimatch(file, pattern ?? "**")
+                && (
+                    except === undefined
+                    || except === ''
+                    || !minimatch(file, except)
+                ),
         );
 }
 
-export async function getCommitHashAsync(revision = "HEAD") {
+export async function getCommitHashAsync(revision = "HEAD"): Promise<string> {
     return execCommandAsync(`git rev-parse ${revision}`);
 }
 
@@ -80,19 +87,23 @@ export async function getAllTagsWithDateAndMessagesAsync(
     tagPattern = "*",
 ): Promise<TagInfo[]> {
     const lines = await execCommandAsync(
-        `git for-each-ref --format="%(refname:short) %(creatordate:short) ` +
-        `%(contents:lines=9)" "refs/tags/${tagPattern}"`,
+        `git for-each-ref --format="%(refname:short) %(creatordate:short) `
+        + `%(contents:lines=9)" "refs/tags/${tagPattern}"`,
     );
-    const regex =
-        /^(?<version>v\d+\.\d+\.\d+) (?<date>\d+-\d+-\d+) (?<message>.*)$/u;
+    const regex
+        = /^(?<version>v\d+\.\d+\.\d+) (?<date>\d+-\d+-\d+) (?<message>.*)$/u;
     const result: TagInfo[] = [];
     let tagName: string | undefined = undefined;
     let tagDate: Date | undefined = undefined;
     let messages: string[] = [];
 
     const pushNewInfo = () => {
-        if (tagName && tagDate) {
-            result.push({ date: tagDate, messages, name: tagName });
+        if (tagName !== undefined && tagDate !== undefined) {
+            result.push({
+                date: tagDate,
+                messages,
+                name: tagName,
+            });
         }
     };
 
@@ -103,11 +114,15 @@ export async function getAllTagsWithDateAndMessagesAsync(
                 line,
             );
 
-            if (match?.groups) {
+            if (match?.groups
+                && 'date' in match.groups
+                && 'version' in match.groups
+                && 'message' in match.groups
+            ) {
                 pushNewInfo();
-                tagName = match.groups.version;
-                tagDate = new Date(match.groups.date);
-                messages = [match.groups.message.trim()];
+                tagName = match.groups['version'];
+                tagDate = new Date(match.groups['date']);
+                messages = [match.groups['message'].trim()];
             } else {
                 messages.push(line);
             }

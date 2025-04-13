@@ -50,7 +50,7 @@ jobs:
         run: git fetch --tags
 
       - name: Build
-        run: yarn build
+        run: yarn verify
 
       - name: Upload
         if: ${{ env.DEPLOY == 'true' }}

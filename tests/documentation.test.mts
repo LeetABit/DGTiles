@@ -13,7 +13,8 @@ const MAX_EXTRA_LINES = 1;
 const rootPath = await getProjectRootAsync();
 const typeScriptFiles = await getRepositoryFilesAsync(
     "**",
-    "**/*.{gitattributes,gitignore,editorconfig,md,html,json,lock,yml}");
+    "**/*.{gitattributes,gitignore,editorconfig,md,html,json,lock,yml}",
+);
 const expectedHeader = [
     "Copyright (c) Hubert Bukowski. All rights reserved.",
     "Licensed under the MIT License.",
@@ -27,7 +28,8 @@ describe.each(typeScriptFiles)("File '%s'", (file: string) => {
         const result = await evaluateFileContentAsync(
             `${rootPath}/${file}`,
             (line, lineNumber) => {
-                if (line.includes(expectedHeader[lineToFindIndex])) {
+                const header = expectedHeader[lineToFindIndex]!;
+                if (header !== '' && line.includes(header)) {
                     lastMatchedLineNumber = lineNumber;
                     lineToFindIndex += 1;
                     return lineToFindIndex < expectedHeader.length;

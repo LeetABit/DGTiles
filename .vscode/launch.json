@@ -1,0 +1,86 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Chrome",
+      "request": "launch",
+      "type": "chrome",
+      "url": "https://localhost:5000",
+      "webRoot": "${workspaceFolder}/src",
+      "cascadeTerminateToConfigurations": [
+        "Vite: Dev",
+        "Vite: Preview",
+        "SWA: Start"
+      ],
+      "presentation": {
+        "hidden": true
+      }
+    },
+    {
+      "name": "Vite: Test",
+      "request": "launch",
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}",
+      "command": "yarn test --test-timeout=99999999 --hook-timeout=99999999 --teardown-timeout=99999999",
+      "cascadeTerminateToConfigurations": ["Test"],
+      "presentation": {
+        "hidden": true
+      }
+    },
+    {
+      "name": "Vite: Lint",
+      "request": "launch",
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}",
+      "command": "yarn lint",
+      "cascadeTerminateToConfigurations": ["Lint"],
+      "presentation": {
+        "hidden": true
+      }
+    },
+    {
+      "name": "Vite: Dev",
+      "request": "launch",
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}",
+      "command": "yarn dev",
+      "cascadeTerminateToConfigurations": ["Dev", "Chrome"],
+      "presentation": {
+        "hidden": true
+      }
+    },
+    {
+      "name": "Vite: Preview",
+      "request": "launch",
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}",
+      "command": "yarn preview",
+      "cascadeTerminateToConfigurations": ["Preview", "Chrome"],
+      "presentation": {
+        "hidden": true
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Dev",
+      "configurations": ["Vite: Dev", "Chrome"]
+    },
+    {
+      "name": "Preview",
+      "configurations": ["Vite: Preview", "Chrome"]
+    },
+    {
+      "name": "Test",
+      "configurations": ["Vite: Test"]
+    },
+    {
+      "name": "Lint",
+      "configurations": ["Vite: Lint"]
+    },
+  ]
+}

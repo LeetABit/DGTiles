@@ -17,7 +17,7 @@ export async function evaluateFileContentAsync(
     let result = true;
     readInterface.on("line", (line) => {
         try {
-            if (evaluator(line, (lineNumber += 1))) {
+            if (evaluator(line, lineNumber += 1)) {
                 return;
             }
         } catch {

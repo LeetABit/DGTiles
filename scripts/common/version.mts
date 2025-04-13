@@ -14,13 +14,17 @@ export interface VersionInfo {
     readonly patch: number;
 }
 
-export const InitialVersion: VersionInfo = { major: 0, minor: 1, patch: 0 };
+export const INITIAL_VERSION: VersionInfo = {
+    major: 0,
+    minor: 1,
+    patch: 0,
+};
 
 const versionTagRegexp = /^v(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)$/u;
 
 export function bumpVersion(
     version: VersionInfo,
-    messages: string[],
+    messages: readonly string[],
 ): VersionInfo {
     if (messages.some((message) => message.startsWith("Breaking:"))) {
         return {
@@ -52,11 +56,15 @@ export async function getLatestVersionAsync(): Promise<VersionInfo | null> {
     const tags = await getLatestTagsAsync("HEAD", "v*");
     for (const tag of tags) {
         const versionTagMatch = versionTagRegexp.exec(tag);
-        if (versionTagMatch?.groups) {
+        if (versionTagMatch?.groups
+            && 'major' in versionTagMatch.groups
+            && 'minor' in versionTagMatch.groups
+            && 'patch' in versionTagMatch.groups
+        ) {
             return {
-                major: parseInt(versionTagMatch.groups.major, 10),
-                minor: parseInt(versionTagMatch.groups.minor, 10),
-                patch: parseInt(versionTagMatch.groups.patch, 10),
+                major: parseInt(versionTagMatch.groups['major'], 10),
+                minor: parseInt(versionTagMatch.groups['minor'], 10),
+                patch: parseInt(versionTagMatch.groups['patch'], 10),
             };
         }
     }
@@ -67,14 +75,15 @@ export async function getLatestVersionAsync(): Promise<VersionInfo | null> {
 export async function calculateNewVersion(): Promise<VersionInfo> {
     const lastVersion = await getLatestVersionAsync();
     if (!lastVersion) {
-        return InitialVersion;
+        return INITIAL_VERSION;
     }
 
     const currentCommit = await getCommitHashAsync("HEAD");
+    const major = lastVersion.major.toString();
+    const minor = lastVersion.minor.toString();
+    const patch = lastVersion.patch.toString();
     const lastVersionCommit = await getCommitHashAsync(
-        `v${lastVersion.major.toString()}.` +
-        `${lastVersion.minor.toString()}.` +
-        `${lastVersion.patch.toString()}`,
+        `v${major}.${minor}.${patch}`,
     );
     if (lastVersionCommit === currentCommit) {
         return lastVersion;

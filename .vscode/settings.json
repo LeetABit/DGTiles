@@ -1,10 +1,15 @@
 {
   "cSpell.words": [
     "Bukowski",
+    "creatordate",
     "dgtiles",
     "hubuk",
     "leetabit",
+    "multilines",
     "nixcode",
+    "nonblock",
+    "nonconstructor",
+    "nonoctal",
     "wincode"
   ],
   "editor.rulers": [ 80 ],
