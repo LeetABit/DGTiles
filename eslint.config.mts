@@ -317,7 +317,7 @@ const config = tseslint.config(
             'no-alert': 'warn',
             'no-array-constructor': 'off',
             'no-async-promise-executor': 'warn',
-            'no-await-in-loop': 'warn',
+            'no-await-in-loop': 'off',
             'no-bitwise': 'warn',
             'no-caller': 'warn',
             'no-case-declarations': 'warn',
