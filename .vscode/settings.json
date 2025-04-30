@@ -14,5 +14,5 @@
     "npxms",
     "wincode"
   ],
-  "editor.rulers": [ 80 ],
+  "editor.rulers": [80]
 }

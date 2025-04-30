@@ -59,11 +59,13 @@ We decided to use TypeScript along with ESM Modules for the project.
 ## Alternatives Considered
 
 ### Plain JavaScript with ESM Modules:
-   - **Pros**: Simplifies the setup by avoiding the TypeScript compilation step.
-   - **Cons**: Lacks static typing and the benefits of TypeScript’s tooling,
-     making the codebase less robust and harder to maintain.
+
+- **Pros**: Simplifies the setup by avoiding the TypeScript compilation step.
+- **Cons**: Lacks static typing and the benefits of TypeScript’s tooling,
+  making the codebase less robust and harder to maintain.
 
 ### TypeScript with CommonJS Modules:
-   - **Pros**: Broad compatibility with older tools and runtime environments.
-   - **Cons**: CommonJS is becoming less relevant as the ecosystem shifts toward
-     ESM.
+
+- **Pros**: Broad compatibility with older tools and runtime environments.
+- **Cons**: CommonJS is becoming less relevant as the ecosystem shifts toward
+  ESM.

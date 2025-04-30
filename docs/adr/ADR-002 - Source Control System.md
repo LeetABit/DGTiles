@@ -50,14 +50,17 @@ We decided to use Git as the source control system for this project.
 ## Alternatives Considered
 
 ### Subversion (SVN):
-   - **Pros**: Centralized system, simpler to understand for newcomers.
-   - **Cons**: Less flexible and future-proof compared to Git.
+
+- **Pros**: Centralized system, simpler to understand for newcomers.
+- **Cons**: Less flexible and future-proof compared to Git.
 
 ### Mercurial:
-   - **Pros**: Similar to Git in terms of functionality.
-   - **Cons**: Smaller ecosystem and less adoption, which could limit future
-     options.
+
+- **Pros**: Similar to Git in terms of functionality.
+- **Cons**: Smaller ecosystem and less adoption, which could limit future
+  options.
 
 ### Perforce:
-   - **Pros**: Strong for managing large files and enterprise-scale projects.
-   - **Cons**: Overkill for a single developer and more complex to set up.
+
+- **Pros**: Strong for managing large files and enterprise-scale projects.
+- **Cons**: Overkill for a single developer and more complex to set up.

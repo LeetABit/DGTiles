@@ -21,6 +21,14 @@ runtime bugs and improving developer productivity.
 The project ensures consistent code formatting across the codebase to maintain
 readability and reduce manual formatting efforts.
 
+### Prettier
+
+- **Purpose**: Automatically formats the code based on a predefined set of
+  rules.
+- **Configuration**: Defined in the
+  [`prettier.config.mts`](../../prettier.config.mts) file and enforced via the
+  `format` script in the [`package.json`](../../package.json).
+
 ### EditorConfig
 
 - **Purpose**: Standardizes indentation, line endings, and other formatting
@@ -60,6 +68,20 @@ code to maintain high-quality and consistent code.
 - **Purpose**: Integrates TypeScript with ESLint to enable linting for
   TypeScript-specific syntax and features.
 - **Configuration**: Included as part of the ESLint configuration in the
+  [`eslint.config.mts`](../../eslint.config.mts) file.
+
+### ESLint-Config-Prettier
+
+- **Purpose**: Disables ESLint rules that conflict with Prettier to ensure
+  compatibility between linting and formatting.
+- **Configuration**: Included in the ESLint configuration in the
+  [`eslint.config.mts`](../../eslint.config.mts) file.
+
+### ESLint-Plugin-JSDoc
+
+- **Purpose**: Enforces documentation standards by linting JSDoc comments in the
+  codebase.
+- **Configuration**: Included in the ESLint configuration in the
   [`eslint.config.mts`](../../eslint.config.mts) file.
 
 ### Stylistic ESLint Plugin

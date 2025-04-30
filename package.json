@@ -3,15 +3,18 @@
   "name": "leetabit.dgtiles",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=23.6.0 <24.0.0"
+  },
   "scripts": {
-    "lint": "tsc --build && eslint",
-    "fix": "eslint --fix",
+    "lint": "tsc --build && prettier . --check && eslint",
+    "fix": "prettier . --write && eslint --fix",
     "test": "vitest",
     "dev": "vite",
     "clean": "rm -rf ./dist",
     "build": "yarn clean && vite build",
     "preview": "yarn build && vite preview",
-    "verify": "yarn clean && tsc --build && eslint --max-warnings=0 && vitest run && vite build",
+    "verify": "yarn clean && tsc --build && prettier . --check && eslint --max-warnings=0 && vitest run && vite build",
     "update": "yarn upgrade --latest --exact"
   },
   "devDependencies": {
@@ -21,9 +24,11 @@
     "@types/node": "22.14.0",
     "editorconfig": "2.0.1",
     "eslint": "9.24.0",
+    "eslint-config-prettier": "10.1.2",
     "eslint-plugin-jsdoc": "50.6.9",
     "jiti": "2.4.2",
     "minimatch": "10.0.1",
+    "prettier": "3.5.3",
     "tsx": "4.19.3",
     "typescript": "5.8.3",
     "typescript-eslint": "8.29.1",

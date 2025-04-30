@@ -19,7 +19,7 @@ export default async function createNewVersionTag(): Promise<void> {
     const patch = newVersion.patch.toString();
 
     const tag = `v${major}.${minor}.${patch}`;
-    if (!await doesTagExistAsync(tag)) {
+    if (!(await doesTagExistAsync(tag))) {
         await createTagAsync(tag);
     }
 }

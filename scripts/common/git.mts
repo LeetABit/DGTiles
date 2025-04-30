@@ -23,11 +23,11 @@ export async function getProjectRootAsync(): Promise<string> {
         .split("\n")
         .find((file) => existsSync(file));
 
-    if (!(result ?? '')) {
+    if (!(result ?? "")) {
         throw new Error("Could not find project root.");
     }
 
-    if (result === undefined || result === '') {
+    if (result === undefined || result === "") {
         throw new Error("Could not find project root.");
     }
 
@@ -68,14 +68,13 @@ export async function getRepositoryFilesAsync(
     )
         .split("\n")
         .filter(
-            (file) => file !== '' &&
+            (file) =>
+                file !== "" &&
                 existsSync(file) &&
-                minimatch(file, pattern ?? "**") &&
-                (
-                    except === undefined ||
-                    except === '' ||
-                    !minimatch(file, except)
-                ),
+                minimatch(file, pattern ?? "**", { dot: true }) &&
+                (except === undefined ||
+                    except === "" ||
+                    !minimatch(file, except, { dot: true })),
         );
 }
 

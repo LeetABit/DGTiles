@@ -29,7 +29,7 @@ describe.each(typeScriptFiles)("File '%s'", (file: string) => {
             `${rootPath}/${file}`,
             (line, lineNumber) => {
                 const header = expectedHeader[lineToFindIndex]!;
-                if (header !== '' && line.includes(header)) {
+                if (header !== "" && line.includes(header)) {
                     lastMatchedLineNumber = lineNumber;
                     lineToFindIndex += 1;
                     return lineToFindIndex < expectedHeader.length;

@@ -121,9 +121,9 @@ describe("calculateNewVersion", () => {
         vi.spyOn(git, "getCommitHashAsync")
             .mockResolvedValueOnce("abc123")
             .mockResolvedValueOnce("def456");
-        vi.spyOn(git, "getCommitMessageAsync").mockResolvedValue(
-            ["Feature: Added new feature"],
-        );
+        vi.spyOn(git, "getCommitMessageAsync").mockResolvedValue([
+            "Feature: Added new feature",
+        ]);
         const result = await calculateNewVersion();
         expect(result).toEqual({
             major: 1,

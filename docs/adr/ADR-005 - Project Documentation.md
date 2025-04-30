@@ -68,15 +68,18 @@ repository, using Markdown files.
 ## Alternatives Considered
 
 ### External Tools or Platforms:
-   - **Pros**: Rich formatting options, collaborative features.
-   - **Cons**: Documentation would be decoupled from the codebase, requiring
-     additional tools and accounts to access.
+
+- **Pros**: Rich formatting options, collaborative features.
+- **Cons**: Documentation would be decoupled from the codebase, requiring
+  additional tools and accounts to access.
 
 ### Plain Text:
-   - **Pros**: Simplicity, no specific syntax required.
-   - **Cons**: Lacks the readability and formatting options of Markdown.
+
+- **Pros**: Simplicity, no specific syntax required.
+- **Cons**: Lacks the readability and formatting options of Markdown.
 
 ### Other Formats (e.g., HTML, PDF):
-   - **Pros**: More advanced formatting options.
-   - **Cons**: Requires additional tools for creation and editing, less
-     convenient for version control.
+
+- **Pros**: More advanced formatting options.
+- **Cons**: Requires additional tools for creation and editing, less
+  convenient for version control.

@@ -78,7 +78,7 @@ describe("evaluateFileContentAsync", () => {
 
         readable.push(
             "const someVariable = 42;\n" +
-            "import { something } from 'dependency';\n",
+                "import { something } from 'dependency';\n",
         );
         readable.push(null);
         const result = await promise;

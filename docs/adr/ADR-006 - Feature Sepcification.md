@@ -79,11 +79,13 @@ Each feature documentation file should include the following sections:
 ## Alternatives Considered
 
 ### General Documentation Without Separation:
-   - **Pros**: Simpler structure, no additional files.
-   - **Cons**: Difficult to locate feature-specific information; risk of
-     cluttered or incomplete documentation.
+
+- **Pros**: Simpler structure, no additional files.
+- **Cons**: Difficult to locate feature-specific information; risk of
+  cluttered or incomplete documentation.
 
 ### Inline Comments in Code:
-   - **Pros**: Documentation stays close to the implementation.
-   - **Cons**: Limited scope; hard to include broader project-wide changes or
-     removal considerations.
+
+- **Pros**: Documentation stays close to the implementation.
+- **Cons**: Limited scope; hard to include broader project-wide changes or
+  removal considerations.

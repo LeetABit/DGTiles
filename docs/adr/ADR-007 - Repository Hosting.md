@@ -58,16 +58,19 @@ We decided to use GitHub as the hosting platform for the project repository.
 ## Alternatives Considered
 
 ### GitLab:
-   - **Pros**: Strong CI/CD integration and robust free tier for private
-     repositories.
-   - **Cons**: Slightly less user-friendly for newcomers and smaller
-     community compared to GitHub.
+
+- **Pros**: Strong CI/CD integration and robust free tier for private
+  repositories.
+- **Cons**: Slightly less user-friendly for newcomers and smaller
+  community compared to GitHub.
 
 ### Bitbucket:
-   - **Pros**: Good integration with Atlassian tools (e.g., Jira).
-   - **Cons**: Free tier limits the number of users for private repositories.
+
+- **Pros**: Good integration with Atlassian tools (e.g., Jira).
+- **Cons**: Free tier limits the number of users for private repositories.
 
 ### Self-hosted Git Server:
-   - **Pros**: Complete control over the repository and data.
-   - **Cons**: Requires significant setup and maintenance effort, overkill for a
-     single-developer project.
+
+- **Pros**: Complete control over the repository and data.
+- **Cons**: Requires significant setup and maintenance effort, overkill for a
+  single-developer project.

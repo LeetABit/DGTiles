@@ -57,11 +57,13 @@ the project.
 ## Alternatives Considered
 
 ### Manual Enforcing of Formatting Standards:
-   - **Pros**: No additional configuration file required.
-   - **Cons**: Relies on developers to manually adhere to standards, leading to
-     inconsistencies.
+
+- **Pros**: No additional configuration file required.
+- **Cons**: Relies on developers to manually adhere to standards, leading to
+  inconsistencies.
 
 ### Relying on Editor/IDE-specific Settings:
-   - **Pros**: May leverage existing preferences in developers' environments.
-   - **Cons**: Difficult to ensure uniformity across different tools and
-     environments.
+
+- **Pros**: May leverage existing preferences in developers' environments.
+- **Cons**: Difficult to ensure uniformity across different tools and
+  environments.

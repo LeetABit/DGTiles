@@ -39,18 +39,22 @@ part of the CI/CD pipeline to ensure consistency and reduce manual effort.
 ## Reasons
 
 1. **Automated and Predictable Versioning**:
+
    - Automating version bumps ensures that releases are consistent and
      predictable without manual intervention.
 
 2. **Semantic Versioning Compliance**:
+
    - Following semantic versioning makes it clear to users and contributors what
      kind of changes to expect (e.g., breaking changes, new features, or patches).
 
 3. **Streamlined Workflow**:
+
    - Treating each commit to the **main** branch as a release simplifies the
      workflow, eliminating the need for separate release branches or manual tagging.
 
 4. **Improved Traceability**:
+
    - Tagging each release commit with a version ensures that every version is
      easily identifiable, allowing developers to quickly trace changes and debug issues.
 
@@ -61,14 +65,17 @@ part of the CI/CD pipeline to ensure consistency and reduce manual effort.
 ## Consequences
 
 1. **Commit Discipline**:
+
    - Developers must write clear, categorized commit messages with the correct
      prefixes to ensure accurate version bumps.
 
 2. **No Unstable Changes on Main**:
+
    - Only fully tested and production-ready changes can be merged into the
      **main** branch, as each commit will represent a new release.
 
 3. **Increased Tag Volume**:
+
    - Tagging every release commit will result in a large number of tags in the
      repository. However, this is considered acceptable to maintain clear
      traceability of versions.
@@ -81,17 +88,20 @@ part of the CI/CD pipeline to ensure consistency and reduce manual effort.
 ## Alternatives Considered
 
 ### Manual Versioning
-   - **Pros**: Offers complete control over version bumps and release timing.
-   - **Cons**: Prone to human error and delays in version increments, requiring
-     manual effort for each release.
+
+- **Pros**: Offers complete control over version bumps and release timing.
+- **Cons**: Prone to human error and delays in version increments, requiring
+  manual effort for each release.
 
 ### Using Release Branches
-   - **Pros**: Allows for more granular control over releases.
-   - **Cons**: Introduces additional complexity and delays, conflicting with the
-     goal of a simple and automated process.
+
+- **Pros**: Allows for more granular control over releases.
+- **Cons**: Introduces additional complexity and delays, conflicting with the
+  goal of a simple and automated process.
 
 ### Skipping Git Tags
-   - **Pros**: Reduces the number of tags and potential clutter in the
-     repository.
-   - **Cons**: Makes it harder to trace specific versions to commits, reducing
-     traceability and clarity.
+
+- **Pros**: Reduces the number of tags and potential clutter in the
+  repository.
+- **Cons**: Makes it harder to trace specific versions to commits, reducing
+  traceability and clarity.

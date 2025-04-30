@@ -53,11 +53,13 @@ decisions in the project.
 ## Alternatives Considered
 
 ### No Formal Documentation:
-   - **Pros**: No additional effort or overhead.
-   - **Cons**: Risks of undocumented decisions leading to confusion,
-     inefficiency, and potential rework in the future.
+
+- **Pros**: No additional effort or overhead.
+- **Cons**: Risks of undocumented decisions leading to confusion,
+  inefficiency, and potential rework in the future.
 
 ### Informal Notes:
-   - **Pros**: Easy to create and manage without a structured format.
-   - **Cons**: Lack of consistency and standardization, making it harder to
-     retrieve and understand decisions.
+
+- **Pros**: Easy to create and manage without a structured format.
+- **Cons**: Lack of consistency and standardization, making it harder to
+  retrieve and understand decisions.

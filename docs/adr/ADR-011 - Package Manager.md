@@ -56,11 +56,13 @@ We decided to use Yarn as the package manager for the project.
 ## Alternatives Considered
 
 ### npm:
-   - **Pros**: Comes pre-installed with Node.js, requires no additional setup.
-   - **Cons**: Historically slower and less consistent than Yarn, though recent
-     updates have improved performance.
+
+- **Pros**: Comes pre-installed with Node.js, requires no additional setup.
+- **Cons**: Historically slower and less consistent than Yarn, though recent
+  updates have improved performance.
 
 ### pnpm:
-   - **Pros**: Excellent performance and disk space optimization through a
-     unique symlink-based approach.
-   - **Cons**: Smaller community and less adoption compared to Yarn and npm.
+
+- **Pros**: Excellent performance and disk space optimization through a
+  unique symlink-based approach.
+- **Cons**: Smaller community and less adoption compared to Yarn and npm.

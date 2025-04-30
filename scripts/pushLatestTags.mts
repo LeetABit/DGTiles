@@ -37,7 +37,8 @@ export default async function pushLatestTags(
 
             console.log(`Tag already exists.`);
         } catch (getError) {
-            if (typeof getError === "object" &&
+            if (
+                typeof getError === "object" &&
                 getError !== null &&
                 "status" in getError &&
                 getError.status === HTTP_STATUS_NOT_FOUND

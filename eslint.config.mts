@@ -5,6 +5,7 @@
 import tseslint, {
     type InfiniteDepthConfigWithExtends,
 } from "typescript-eslint";
+import eslintConfigPrettier from "eslint-config-prettier";
 import js from "@eslint/js";
 import jsdoc from "eslint-plugin-jsdoc";
 import stylistic from "@stylistic/eslint-plugin";
@@ -533,6 +534,7 @@ const jsdocRules: InfiniteDepthConfigWithExtends = {
 };
 
 const config = tseslint.config(
+    eslintConfigPrettier,
     {
         ignores: ["./dist"],
     },

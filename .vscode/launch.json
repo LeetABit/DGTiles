@@ -81,6 +81,6 @@
     {
       "name": "Lint",
       "configurations": ["Vite: Lint"]
-    },
+    }
   ]
 }

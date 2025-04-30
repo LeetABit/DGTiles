@@ -64,16 +64,19 @@ project.
 ## Alternatives Considered
 
 ### JetBrains IDEs:
-   - **Pros**: Comprehensive tools tailored to specific languages, excellent
-     debugging capabilities.
-   - **Cons**: Paid licenses required for full features; heavier resource usage.
+
+- **Pros**: Comprehensive tools tailored to specific languages, excellent
+  debugging capabilities.
+- **Cons**: Paid licenses required for full features; heavier resource usage.
 
 ### Sublime Text:
-   - **Pros**: Lightweight and fast with a robust plugin ecosystem.
-   - **Cons**: Requires a paid license for continuous use; lacks some modern
-     development features out of the box.
+
+- **Pros**: Lightweight and fast with a robust plugin ecosystem.
+- **Cons**: Requires a paid license for continuous use; lacks some modern
+  development features out of the box.
 
 ### Vim/Neovim:
-   - **Pros**: Extremely lightweight, fully customizable.
-   - **Cons**: Steeper learning curve and requires significant configuration to
-     match VS Code’s feature set.
+
+- **Pros**: Extremely lightweight, fully customizable.
+- **Cons**: Steeper learning curve and requires significant configuration to
+  match VS Code’s feature set.
