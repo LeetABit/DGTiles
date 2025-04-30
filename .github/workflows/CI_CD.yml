@@ -5,13 +5,14 @@ on:
     branches:
       - main
   pull_request:
-    types: [opened, synchronize, reopened, closed]
+    types: [opened, synchronize, reopened]
     branches:
       - main
   workflow_dispatch:
 
 env:
-  DEPLOY: ${{ github.event_name == 'push' }}
+  DEPLOY: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
+  TAG: ${{ github.event_name == 'push' }}
 
 jobs:
   verify:
@@ -35,19 +36,14 @@ jobs:
       - name: Install packages
         run: yarn
 
-      - name: Create tag
-        if: ${{ env.DEPLOY == 'true' }}
+      - name: Create local tag
+        if: ${{ env.TAG == 'true' }}
         uses: actions/github-script@v7.0.1
         with:
-          github-token: ${{ github.token }}
           script: |
             const { tsImport } = await import('${{ github.workspace }}/node_modules/tsx/dist/esm/api/index.cjs');
-            const { default: createGitTag } = await tsImport('./scripts/createGitTag.mts', '${{ github.workspace }}/');
-            await createGitTag(github, context);
-
-      - name: Fetch tag
-        if: ${{ env.DEPLOY == 'true' }}
-        run: git fetch --tags
+            const { default: createNewVersionTag } = await tsImport('./scripts/createNewVersionTag.mts', '${{ github.workspace }}/');
+            await createNewVersionTag();
 
       - name: Build
         run: yarn verify
@@ -58,6 +54,16 @@ jobs:
         uses: actions/upload-pages-artifact@v3.0.1
         with:
           path: dist/
+
+      - name: Push tag
+        if: ${{ env.TAG == 'true' }}
+        uses: actions/github-script@v7.0.1
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const { tsImport } = await import('${{ github.workspace }}/node_modules/tsx/dist/esm/api/index.cjs');
+            const { default: pushLatestTags } = await tsImport('./scripts/pushLatestTags.mts', '${{ github.workspace }}/');
+            await pushLatestTags(github, context);
 
   deploy:
     name: Deploy

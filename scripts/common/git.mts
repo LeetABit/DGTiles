@@ -75,6 +75,16 @@ export async function getLatestTagsAsync(
         .filter((tag) => tag);
 }
 
+export async function doesTagExistAsync(tagName: string): Promise<boolean> {
+    const tag = await execCommandAsync(`git tag -l ${tagName}`);
+
+    return tag !== "";
+}
+
+export async function createTagAsync(tagName: string): Promise<void> {
+    await execCommandAsync(`git tag ${tagName} --no-sign`);
+}
+
 export async function getCommitMessageAsync(
     revision = "HEAD",
 ): Promise<string[]> {
