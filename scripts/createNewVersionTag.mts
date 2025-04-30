@@ -5,6 +5,13 @@
 import { createTagAsync, doesTagExistAsync } from "./common/git.mts";
 import { calculateNewVersion } from "./common/version.mts";
 
+/**
+ * Creates a new Git tag for the current commit.
+ * - Calculates the new version based on the commit messages.
+ * - Creates a tag in the format "vX.Y.Z".
+ * @returns {Promise<void>} A promise that resolves when the tag is created.
+ * @throws {Error} If the command fails or produces stderr.
+ */
 export default async function createNewVersionTag(): Promise<void> {
     const newVersion = await calculateNewVersion();
     const major = newVersion.major.toString();

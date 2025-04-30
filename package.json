@@ -9,9 +9,9 @@
     "test": "vitest",
     "dev": "vite",
     "clean": "rm -rf ./dist",
-    "build": "rm -rf ./dist && vite build",
-    "preview": "rm -rf ./dist && vite build && vite preview",
-    "verify": "rm -rf ./dist && tsc --build && eslint --max-warnings=0 && vitest run && vite build",
+    "build": "yarn clean && vite build",
+    "preview": "yarn build && vite preview",
+    "verify": "yarn clean && tsc --build && eslint --max-warnings=0 && vitest run && vite build",
     "update": "yarn upgrade --latest --exact"
   },
   "devDependencies": {
@@ -21,6 +21,7 @@
     "@types/node": "22.14.0",
     "editorconfig": "2.0.1",
     "eslint": "9.24.0",
+    "eslint-plugin-jsdoc": "50.6.9",
     "jiti": "2.4.2",
     "minimatch": "10.0.1",
     "tsx": "4.19.3",

@@ -22,6 +22,16 @@ export const INITIAL_VERSION: VersionInfo = {
 
 const versionTagRegexp = /^v(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)$/u;
 
+/**
+ * Bumps the version based on the provided messages.
+ * - If any message starts with "Breaking:", increments the major version.
+ * - If any message starts with "Feature:", increments the minor version.
+ * - If there are any other messages, increments the patch version.
+ * - If there are no messages, returns the current version.
+ * @param {VersionInfo} version The current version.
+ * @param {string[]} messages The commit messages.
+ * @returns {VersionInfo} The bumped version.
+ */
 export function bumpVersion(
     version: VersionInfo,
     messages: readonly string[],
@@ -52,19 +62,25 @@ export function bumpVersion(
     return { ...version };
 }
 
+/**
+ * Gets the latest version from the tags in the repository.
+ * @returns {Promise<VersionInfo | null>} The latest version or null if no
+ * version is found.
+ */
 export async function getLatestVersionAsync(): Promise<VersionInfo | null> {
     const tags = await getLatestTagsAsync("HEAD", "v*");
     for (const tag of tags) {
         const versionTagMatch = versionTagRegexp.exec(tag);
-        if (versionTagMatch?.groups
-            && 'major' in versionTagMatch.groups
-            && 'minor' in versionTagMatch.groups
-            && 'patch' in versionTagMatch.groups
+        if (
+            versionTagMatch?.groups &&
+            "major" in versionTagMatch.groups &&
+            "minor" in versionTagMatch.groups &&
+            "patch" in versionTagMatch.groups
         ) {
             return {
-                major: parseInt(versionTagMatch.groups['major'], 10),
-                minor: parseInt(versionTagMatch.groups['minor'], 10),
-                patch: parseInt(versionTagMatch.groups['patch'], 10),
+                major: parseInt(versionTagMatch.groups["major"], 10),
+                minor: parseInt(versionTagMatch.groups["minor"], 10),
+                patch: parseInt(versionTagMatch.groups["patch"], 10),
             };
         }
     }
@@ -72,6 +88,16 @@ export async function getLatestVersionAsync(): Promise<VersionInfo | null> {
     return null;
 }
 
+/**
+ * Calculates the new version based on the latest version and the current
+ * commit.
+ * - If the current commit is the same as the last version, returns the last
+ * version.
+ * - If the current commit is different, bumps the version based on the commit
+ * message.
+ * @returns {Promise<VersionInfo>} The new version calculated from current
+ * commit.
+ */
 export async function calculateNewVersion(): Promise<VersionInfo> {
     const lastVersion = await getLatestVersionAsync();
     if (!lastVersion) {

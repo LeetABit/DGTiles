@@ -7,7 +7,7 @@ import { execCommandAsync } from "#/scripts/common/exec.mjs";
 import util from "util";
 
 vi.mock("util", () => ({
-    'default': { promisify: vi.fn() },
+    default: { promisify: vi.fn() },
 }));
 
 vi.mock("child_process", () => ({

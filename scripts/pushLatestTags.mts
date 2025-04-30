@@ -10,6 +10,13 @@ type GitHub = ReturnType<typeof getOctokit>;
 
 const HTTP_STATUS_NOT_FOUND = 404;
 
+/**
+ * Creates a new Git tag for the current commit.
+ * @param {GitHub} github The GitHub client.
+ * @param {Context} context The GitHub context.
+ * @returns {Promise<void>} A promise that resolves when the tag is created.
+ * @throws {Error} An error if the tag creation fails.
+ */
 export default async function pushLatestTags(
     github: GitHub,
     context: Context,
@@ -30,10 +37,10 @@ export default async function pushLatestTags(
 
             console.log(`Tag already exists.`);
         } catch (getError) {
-            if (typeof getError === "object"
-                && getError !== null
-                && "status" in getError
-                && getError.status === HTTP_STATUS_NOT_FOUND
+            if (typeof getError === "object" &&
+                getError !== null &&
+                "status" in getError &&
+                getError.status === HTTP_STATUS_NOT_FOUND
             ) {
                 try {
                     await github.rest.git.createRef({
