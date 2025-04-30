@@ -8,6 +8,7 @@
     "fix": "eslint --fix",
     "test": "vitest",
     "dev": "vite",
+    "clean": "rm -rf ./dist",
     "build": "rm -rf ./dist && vite build",
     "preview": "rm -rf ./dist && vite build && vite preview",
     "verify": "rm -rf ./dist && tsc --build && eslint --max-warnings=0 && vitest run && vite build",
