@@ -485,10 +485,17 @@ const config = tseslint.config(
         },
     },
     {
-        files: ['./*.mts'],
+        files: ["./tests/**/*.mts"],
         rules: {
-            '@typescript-eslint/naming-convention': ['off'],
-            'max-lines': ['off'],
+            "@typescript-eslint/no-magic-numbers": "off",
+            "@typescript-eslint/no-unsafe-type-assertion": "off",
+        },
+    },
+    {
+        files: ["./*.mts"],
+        rules: {
+            "@typescript-eslint/naming-convention": ["off"],
+            "max-lines": ["off"],
         },
     },
 );

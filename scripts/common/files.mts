@@ -14,12 +14,13 @@ export async function evaluateFileContentAsync(
     const stream = createReadStream(filePath);
     const readInterface = readline.createInterface(stream);
     let lineNumber = 0;
-    let result = true;
+    let result = false;
     readInterface.on("line", (line) => {
         try {
-            if (evaluator(line, lineNumber += 1)) {
+            if (!evaluator(line, lineNumber += 1)) {
                 return;
             }
+            result = true;
         } catch {
             result = false;
         }

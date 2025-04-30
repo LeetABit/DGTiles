@@ -5,14 +5,13 @@
 import { exec } from "child_process";
 import util from "util";
 
-const execAsync = util.promisify(exec);
-
 export async function execCommandAsync(command: string): Promise<string> {
+    const execAsync = util.promisify(exec);
     const { stdout, stderr } = await execAsync(command);
 
     if (stderr) {
-        throw new Error(stderr);
+        throw new Error(stderr.trim());
     }
 
-    return stdout;
+    return stdout.trim();
 }
