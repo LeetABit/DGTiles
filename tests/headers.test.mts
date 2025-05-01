@@ -13,7 +13,19 @@ const MAX_EXTRA_LINES = 1;
 const rootPath = await getProjectRootAsync();
 const typeScriptFiles = await getRepositoryFilesAsync(
     "**",
-    "**/*.{gitattributes,gitignore,editorconfig,md,html,json,lock,yml}",
+    "**/*.{" +
+        "gitattributes," +
+        "gitignore," +
+        "editorconfig," +
+        "md," +
+        "html," +
+        "json," +
+        "lock," +
+        "yml," +
+        "png," +
+        "txt," +
+        "svg," +
+        "ico}",
 );
 const expectedHeader = [
     "Copyright (c) Hubert Bukowski. All rights reserved.",

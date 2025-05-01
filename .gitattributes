@@ -14,8 +14,12 @@
 .gitattributes          code
 .gitignore              code
 *.html                  code
+*.ico                   binary
 *.json                  code
 *.lock                  text
 *.md                    text
 *.mts                   code
+*.png                   binary
+*.svg                   code
+*.txt                   text
 *.yml                   code

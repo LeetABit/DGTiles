@@ -7,7 +7,7 @@ import { expect, test } from "vitest";
 import { getRepositoryFilesAsync } from "../scripts/common/git.mts";
 
 test("All files in repository are covered by '.editorconfig'.", async () => {
-    const files = await getRepositoryFilesAsync();
+    const files = await getRepositoryFilesAsync("**", "**/*.{png,ico}");
     await Promise.all(
         files.map(async (file) => {
             const options: ParseOptions = {

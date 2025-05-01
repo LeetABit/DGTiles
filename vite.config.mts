@@ -6,10 +6,16 @@ import { defineConfig } from "vite";
 import { resolve } from "path";
 
 export default defineConfig({
+    preview: {
+        port: 5000,
+    },
     resolve: {
         alias: {
             "#/": `${resolve(__dirname)}/`,
             "@/": `${resolve(__dirname, "src")}/`,
         },
+    },
+    server: {
+        port: 5000,
     },
 });
