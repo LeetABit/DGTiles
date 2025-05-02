@@ -2,7 +2,7 @@
 //  Licensed under the MIT License.
 //  See LICENSE file in the project root for full license information.
 
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 import { resolve } from "path";
 
 export default defineConfig({
@@ -17,5 +17,31 @@ export default defineConfig({
     },
     server: {
         port: 5000,
+    },
+    test: {
+        setupFiles: ["vitest-setup.mts"],
+        workspace: [
+            {
+                extends: true,
+                test: {
+                    include: [
+                        "tests/meta/**/*.test.mts",
+                        "tests/scripts/**/*.test.mts",
+                    ],
+                },
+            },
+            {
+                extends: true,
+                test: {
+                    environment: "jsdom",
+                    exclude: [
+                        "tests/meta/**/*.test.mts",
+                        "tests/scripts/**/*.test.mts",
+                    ],
+                    globals: true,
+                    include: ["tests/**/*.test.mts"],
+                },
+            },
+        ],
     },
 });

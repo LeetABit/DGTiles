@@ -6,8 +6,8 @@ import { describe, expect, test } from "vitest";
 import {
     getProjectRootAsync,
     getRepositoryFilesAsync,
-} from "../scripts/common/git.mts";
-import { evaluateFileContentAsync } from "../scripts/common/files.mts";
+} from "#/scripts/common/git.mts";
+import { evaluateFileContentAsync } from "#/scripts/common/files.mts";
 
 const MAX_EXTRA_LINES = 1;
 const rootPath = await getProjectRootAsync();
