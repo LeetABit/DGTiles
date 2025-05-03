@@ -1,0 +1,28 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "Bukowski",
+    "codespell",
+    "creatordate",
+    "declutter",
+    "dgtiles",
+    "leetabit",
+    "linecap",
+    "multilines",
+    "nonblock",
+    "nonconstructor",
+    "nonoctal",
+    "npxms",
+    "viewports",
+    "WCAG",
+    "wireframes",
+    "Wouter"
+  ],
+  "ignorePaths": [
+    "./yarn.lock",
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/.git/**"
+  ]
+}
