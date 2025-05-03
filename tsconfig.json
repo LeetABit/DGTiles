@@ -14,6 +14,7 @@
     "allowImportingTsExtensions": true,
     // https://vite.dev/guide/features#isolatedmodules
     "isolatedModules": true,
+    "jsx": "react-jsx",
     "moduleDetection": "force",
     "esModuleInterop": true,
     "noEmit": true,
@@ -41,5 +42,5 @@
     "resolvePackageJsonImports": true,
     "rewriteRelativeImportExtensions": false
   },
-  "include": ["./tests", "./scripts", "./*.mts"]
+  "include": ["./scripts", "./src", "./tests", "./*.mts"]
 }

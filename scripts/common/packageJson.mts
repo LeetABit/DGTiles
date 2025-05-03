@@ -11,5 +11,8 @@ export default packageJson;
  * @returns {string[]} An array of dependency names.
  */
 export function getDependencies(): string[] {
-    return Object.keys(packageJson.devDependencies);
+    return [
+        ...Object.keys(packageJson.devDependencies),
+        ...Object.keys(packageJson.dependencies),
+    ];
 }

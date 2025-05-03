@@ -3,9 +3,11 @@
 //  See LICENSE file in the project root for full license information.
 
 import { defineConfig } from "vitest/config";
+import react from "@vitejs/plugin-react-swc";
 import { resolve } from "path";
 
 export default defineConfig({
+    plugins: [react()],
     preview: {
         port: 5000,
     },

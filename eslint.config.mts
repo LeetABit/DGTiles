@@ -8,6 +8,8 @@ import tseslint, {
 import eslintConfigPrettier from "eslint-config-prettier";
 import js from "@eslint/js";
 import jsdoc from "eslint-plugin-jsdoc";
+import react from "eslint-plugin-react";
+import reactHooks from "eslint-plugin-react-hooks";
 import stylistic from "@stylistic/eslint-plugin";
 
 const MAX_FUNCTION_LINES = 200;
@@ -154,7 +156,7 @@ const jsRules: InfiniteDepthConfigWithExtends = {
         "no-shadow-restricted-names": "warn",
         "no-sparse-arrays": "warn",
         "no-template-curly-in-string": "warn",
-        "no-ternary": "warn",
+        "no-ternary": "off",
         "no-this-before-super": "warn",
         "no-throw-literal": "off",
         "no-undef": "off",
@@ -247,7 +249,33 @@ const typescriptRules: InfiniteDepthConfigWithExtends = {
         "@typescript-eslint/max-params": "warn",
         "@typescript-eslint/member-ordering": "warn",
         "@typescript-eslint/method-signature-style": "warn",
-        "@typescript-eslint/naming-convention": "warn",
+        "@typescript-eslint/naming-convention": [
+            "warn",
+            {
+                format: ["camelCase"],
+                leadingUnderscore: "allow",
+                selector: "default",
+                trailingUnderscore: "allow",
+            },
+            {
+                format: ["camelCase", "PascalCase"],
+                selector: "import",
+            },
+            {
+                format: ["camelCase", "PascalCase"],
+                selector: "function",
+            },
+            {
+                format: ["camelCase", "UPPER_CASE"],
+                leadingUnderscore: "allow",
+                selector: "variable",
+                trailingUnderscore: "allow",
+            },
+            {
+                format: ["PascalCase"],
+                selector: "typeLike",
+            },
+        ],
         "@typescript-eslint/no-array-constructor": "warn",
         "@typescript-eslint/no-array-delete": "warn",
         "@typescript-eslint/no-base-to-string": "warn",
@@ -378,7 +406,7 @@ const stylisticRules: InfiniteDepthConfigWithExtends = {
         "@stylistic/indent-binary-ops": "off",
         "@stylistic/jsx-child-element-spacing": "warn",
         "@stylistic/jsx-closing-bracket-location": "warn",
-        "@stylistic/jsx-closing-tag-location": "warn",
+        "@stylistic/jsx-closing-tag-location": ["warn", "line-aligned"],
         "@stylistic/jsx-curly-brace-presence": "warn",
         "@stylistic/jsx-curly-newline": "warn",
         "@stylistic/jsx-curly-spacing": "warn",
@@ -389,7 +417,10 @@ const stylisticRules: InfiniteDepthConfigWithExtends = {
         "@stylistic/jsx-indent-props": "warn",
         "@stylistic/jsx-max-props-per-line": "warn",
         "@stylistic/jsx-newline": "warn",
-        "@stylistic/jsx-one-expression-per-line": "warn",
+        "@stylistic/jsx-one-expression-per-line": [
+            "warn",
+            { allow: "single-line" },
+        ],
         "@stylistic/jsx-pascal-case": "warn",
         "@stylistic/jsx-props-no-multi-spaces": "warn",
         "@stylistic/jsx-quotes": "warn",
@@ -547,7 +578,7 @@ const config = tseslint.config(
             jsdoc.configs["flat/recommended-typescript"],
             jsdoc.configs["flat/stylistic-typescript"],
         ],
-        files: ["./**/*.mts"],
+        files: ["./**/*.{mts,tsx}"],
         languageOptions: {
             ecmaVersion: 2024,
             parserOptions: {
@@ -557,6 +588,8 @@ const config = tseslint.config(
         },
         plugins: {
             "@stylistic": stylistic,
+            react,
+            "react-hooks": reactHooks,
         },
         rules: {
             ...jsRules.rules,

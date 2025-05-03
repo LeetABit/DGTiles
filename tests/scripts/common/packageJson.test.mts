@@ -18,6 +18,10 @@ describe("packageJson object", () => {
         expect(packageJson).toHaveProperty("name");
     });
 
+    it("should have a dependencies property", () => {
+        expect(packageJson).toHaveProperty("dependencies");
+    });
+
     it("should have a devDependencies property", () => {
         expect(packageJson).toHaveProperty("devDependencies");
     });
@@ -30,9 +34,10 @@ describe("packageJson object", () => {
 describe("getDependencies function", () => {
     it("should return an array of dependencies", () => {
         const dependencies = getDependencies();
-        const packageJsonDevDependencies = Object.keys(
-            packageJson.devDependencies,
-        );
+        const packageJsonDevDependencies = [
+            ...Object.keys(packageJson.devDependencies),
+            ...Object.keys(packageJson.dependencies),
+        ];
         expect(Array.isArray(dependencies)).toBe(true);
         expect(dependencies.length).toBeGreaterThan(0);
         dependencies.forEach((dep) => {
