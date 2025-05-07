@@ -18,6 +18,10 @@ jobs:
   verify:
     name: Verify
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
     steps:
       - name: Install Node.js
         uses: actions/setup-node@v4
