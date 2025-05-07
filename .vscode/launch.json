@@ -9,7 +9,7 @@
       "name": "Chrome",
       "request": "launch",
       "type": "chrome",
-      "url": "https://localhost:5000",
+      "url": "http://localhost:5000",
       "webRoot": "${workspaceFolder}/src",
       "cascadeTerminateToConfigurations": [
         "Vite: Dev",
