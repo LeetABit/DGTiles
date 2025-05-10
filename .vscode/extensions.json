@@ -1,6 +1,9 @@
 {
   "recommendations": [
     "streetsidesoftware.code-spell-checker",
-    "npxms.hide-gitignored"
+    "npxms.hide-gitignored",
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode"
   ]
 }
