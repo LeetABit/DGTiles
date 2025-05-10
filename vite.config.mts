@@ -5,9 +5,11 @@
 import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react-swc";
 import { resolve } from "path";
+import { serviceWorker } from "#/scripts/serviceWorkerPlugin.mts";
 
 export default defineConfig({
-    plugins: [react()],
+    esbuild: { legalComments: "none" },
+    plugins: [react(), serviceWorker("sw/service-worker.mts")],
     preview: {
         port: 5000,
     },

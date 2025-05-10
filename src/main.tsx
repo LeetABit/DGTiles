@@ -5,6 +5,7 @@
 import App from "@/App.tsx";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { serviceWorkerFilePath } from "virtual:service-worker";
 
 const rootElement: HTMLElement | null = document.getElementById("root");
 
@@ -20,3 +21,13 @@ root.render(
         <App />
     </StrictMode>,
 );
+
+if ("serviceWorker" in navigator && import.meta.env.PROD) {
+    navigator.serviceWorker
+        .register(serviceWorkerFilePath, {
+            type: "module",
+        })
+        .catch((error: unknown) => {
+            throw error;
+        });
+}
