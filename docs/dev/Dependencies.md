@@ -35,3 +35,24 @@ package.json that are not imported by any source file.
   JavaScript.
 - **Used By:** `package.json/scripts` element to run code analysis during
   build and lint commands.
+
+### `cspell`
+
+- **Purpose:** A spell checker for code and documentation to ensure consistency
+  and correctness in text.
+- **Used By:** `package.json/scripts` element to run code analysis during
+  lint commands.
+
+### `prettier`
+
+- **Purpose:** A code formatter that enforces a consistent style by parsing code
+  and reprinting it with its own rules.
+- **Used By:** `package.json/scripts` element to run code analysis during
+  lint commands.
+
+### `jsdom`
+
+- **Purpose:** A JavaScript implementation of the DOM and HTML standards, used
+  for testing and simulating browser environments.
+- **Used By:** `tests\axe.test.mts` file to make `document` global available in
+  axe function.

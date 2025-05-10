@@ -7,14 +7,19 @@ import { evaluateFileContentAsync } from "#/scripts/common/files.mjs";
 import { getDependencies } from "#/scripts/common/packageJson.mjs";
 import { getRepositoryFilesAsync } from "#/scripts/common/git.mjs";
 
+const typeLibPrefix = "@types/";
 const dependencies = getDependencies();
 const files = await getRepositoryFilesAsync();
 
 test.each(dependencies)(
     "Dependency '%s' is used in the project.",
     async (dependency: string) => {
+        const dependencyName = dependency.startsWith(typeLibPrefix)
+            ? dependency.substring(typeLibPrefix.length)
+            : dependency;
+
         const importRegex = new RegExp(
-            `( from)|(import)\\s+["']${dependency}`,
+            `(( from|import))\\s+["']${dependencyName}`,
             "u",
         );
 
