@@ -6,7 +6,7 @@ import {
     INITIAL_VERSION,
     getLatestVersionAsync,
 } from "#/scripts/common/version.mts";
-import { type PluginOption, normalizePath } from "vite";
+import { type Plugin, normalizePath } from "vite";
 import { readFile, readdir, writeFile } from "fs/promises";
 
 const ONE_CAR_FROM_START = 1;
@@ -15,9 +15,9 @@ const ONE_CAR_FROM_END = -1;
 /**
  * A Vite plugin to handle service worker registration.
  * @param {string} filePath The path to the service worker file.
- * @returns {PluginOption} The Vite plugin.
+ * @returns {Plugin} The Vite plugin.
  */
-export function serviceWorker(filePath: string): PluginOption {
+export function serviceWorker(filePath: string): Plugin {
     const pluginName = "service-worker";
     const virtualModuleId = `virtual:${pluginName}`;
     const resolvedVirtualModuleId = `\0${virtualModuleId}`;
