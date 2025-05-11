@@ -416,7 +416,7 @@ const stylisticRules: InfiniteDepthConfigWithExtends = {
         "@stylistic/jsx-indent": "warn",
         "@stylistic/jsx-indent-props": "warn",
         "@stylistic/jsx-max-props-per-line": "warn",
-        "@stylistic/jsx-newline": "warn",
+        "@stylistic/jsx-newline": "off",
         "@stylistic/jsx-one-expression-per-line": [
             "warn",
             { allow: "single-line" },
