@@ -8,6 +8,14 @@ import { resolve } from "path";
 import { serviceWorker } from "#/scripts/serviceWorkerPlugin.mts";
 
 export default defineConfig({
+    build: {
+        rollupOptions: {
+            treeshake: {
+                moduleSideEffects: false,
+                preset: "smallest",
+            },
+        },
+    },
     esbuild: { legalComments: "none" },
     plugins: [react(), serviceWorker("sw/service-worker.mts")],
     preview: {
