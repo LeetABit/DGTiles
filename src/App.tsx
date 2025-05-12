@@ -3,7 +3,12 @@
 //  See LICENSE file in the project root for full license information.
 
 import { type CSSObject, Global } from "@emotion/react";
+import { BrowserRouter } from "react-router";
 import React from "react";
+
+interface Props {
+    basename: string;
+}
 
 const globalStyle: CSSObject = {
     body: {
@@ -14,13 +19,16 @@ const globalStyle: CSSObject = {
 
 /**
  * The main application component.
+ * @param {Props} props The component props.
  * @returns {React.JSX.Element} The rendered component.
  */
-export default function App(): React.JSX.Element {
+export default function App({ basename }: Props): React.JSX.Element {
     return (
         <>
             <Global styles={globalStyle} />
-            <h1>DGTiles</h1>
+            <BrowserRouter basename={basename}>
+                <h1>DGTiles</h1>
+            </BrowserRouter>
         </>
     );
 }

@@ -7,6 +7,11 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { serviceWorkerFilePath } from "virtual:service-worker";
 
+const baseUrl = document.getElementsByTagName("base")[0]?.getAttribute("href");
+if (baseUrl === undefined || baseUrl === null) {
+    throw Error("Could not find base element for React App substitution.");
+}
+
 const rootElement: HTMLElement | null = document.getElementById("root");
 
 if (!rootElement) {
@@ -18,7 +23,7 @@ if (!rootElement) {
 const root = createRoot(rootElement);
 root.render(
     <StrictMode>
-        <App />
+        <App basename={baseUrl} />
     </StrictMode>,
 );
 
