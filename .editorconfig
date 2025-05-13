@@ -4,25 +4,18 @@
 
 root = true
 
-# No tabs code files
-[*.{gitattributes,gitignore,editorconfig,md,txt}]
-ruler = 80
-indent_style = space
-charset = utf-8
-trim_trailing_whitespace = true
-insert_final_newline = true
-
 # Shallow indentation code files
-[*.{html,json,lock,yml,svg}]
+[*.{gitattributes,gitignore,editorconfig,html,json,lock,yml,svg,md}]
 ruler = 80
 indent_style = space
 indent_size = 2
 charset = utf-8
+end_of_line = lf
 trim_trailing_whitespace = true
 insert_final_newline = true
 
 # Deep indentation code files
-[*.{mts,tsx}]
+[*.{mts,tsx,txt}]
 ruler = 80
 indent_style = space
 indent_size = 4

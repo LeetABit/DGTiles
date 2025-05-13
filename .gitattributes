@@ -1,10 +1,8 @@
 ####################################################################
 # Attributes definitions
 ####################################################################
-[attr]text              !binary text diff merge
-[attr]code              !binary text diff merge=text
-[attr]wincode           !binary text eol=crlf diff merge=text
-[attr]nixcode           !binary text eol=lf diff merge=text
+[attr]text              !binary text eol=lf diff merge
+[attr]code              !binary text eol=lf diff merge=text
 [attr]binary            -text -diff -merge
 
 ####################################################################
@@ -16,11 +14,11 @@
 *.html                  code
 *.ico                   binary
 *.json                  code
-*.lock                  text
+*.lock                  code
 *.md                    text
-*.mts                   nixcode
+*.mts                   code
 *.png                   binary
 *.svg                   code
-*.tsx                   nixcode
+*.tsx                   code
 *.txt                   text
 *.yml                   code
