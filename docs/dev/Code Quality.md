@@ -26,7 +26,7 @@ readability and reduce manual formatting efforts.
 - **Purpose**: Automatically formats the code based on a predefined set of
   rules.
 - **Configuration**: Defined in the
-  [`prettier.config.mts`](../../prettier.config.mts) file and enforced via the
+  [`prettier.config.ts`](../../prettier.config.ts) file and enforced via the
   `format` script in the [`package.json`](../../package.json).
 
 ### EditorConfig
@@ -60,7 +60,7 @@ code to maintain high-quality and consistent code.
 - **Purpose**: Lints the codebase to enforce coding standards and identify
   potential issues.
 - **Configuration**: Defined in the
-  [`eslint.config.mts`](../../eslint.config.mts) file, which includes rules for
+  [`eslint.config.ts`](../../eslint.config.ts) file, which includes rules for
   code quality, style, and best practices.
 
 ### TypeScript-ESLint
@@ -68,28 +68,28 @@ code to maintain high-quality and consistent code.
 - **Purpose**: Integrates TypeScript with ESLint to enable linting for
   TypeScript-specific syntax and features.
 - **Configuration**: Included as part of the ESLint configuration in the
-  [`eslint.config.mts`](../../eslint.config.mts) file.
+  [`eslint.config.ts`](../../eslint.config.ts) file.
 
 ### ESLint-Config-Prettier
 
 - **Purpose**: Disables ESLint rules that conflict with Prettier to ensure
   compatibility between linting and formatting.
 - **Configuration**: Included in the ESLint configuration in the
-  [`eslint.config.mts`](../../eslint.config.mts) file.
+  [`eslint.config.ts`](../../eslint.config.ts) file.
 
 ### ESLint-Plugin-JSDoc
 
 - **Purpose**: Enforces documentation standards by linting JSDoc comments in the
   codebase.
 - **Configuration**: Included in the ESLint configuration in the
-  [`eslint.config.mts`](../../eslint.config.mts) file.
+  [`eslint.config.ts`](../../eslint.config.ts) file.
 
 ### Stylistic ESLint Plugin
 
 - **Purpose**: Provides stylistic linting rules to enforce consistent code
   formatting and style.
 - **Configuration**: Included in the ESLint configuration in the
-  [`eslint.config.mts`](../../eslint.config.mts) file.
+  [`eslint.config.ts`](../../eslint.config.ts) file.
 
 ## Testing
 

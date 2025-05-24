@@ -2,8 +2,8 @@
 //  Licensed under the MIT License.
 //  See LICENSE file in the project root for full license information.
 
-import { createTagAsync, doesTagExistAsync } from "./common/git.mts";
-import { calculateNewVersion } from "./common/version.mts";
+import { createTagAsync, doesTagExistAsync } from "./common/git.ts";
+import { calculateNewVersion } from "./common/version.ts";
 
 /**
  * Creates a new Git tag for the current commit.

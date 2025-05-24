@@ -578,7 +578,7 @@ const config = tseslint.config(
             jsdoc.configs["flat/recommended-typescript"],
             jsdoc.configs["flat/stylistic-typescript"],
         ],
-        files: ["./**/*.{mts,tsx}"],
+        files: ["./**/*.{ts,tsx}"],
         languageOptions: {
             ecmaVersion: 2024,
             parserOptions: {
@@ -599,20 +599,20 @@ const config = tseslint.config(
         },
     },
     {
-        files: ["./scripts/**/*.mts"],
+        files: ["./scripts/**/*.ts"],
         rules: {
             "no-console": "off",
         },
     },
     {
-        files: ["./tests/**/*.mts"],
+        files: ["./tests/**/*.ts"],
         rules: {
             "@typescript-eslint/no-magic-numbers": "off",
             "@typescript-eslint/no-unsafe-type-assertion": "off",
         },
     },
     {
-        files: ["./*.mts"],
+        files: ["./*.ts"],
         rules: {
             "@typescript-eslint/naming-convention": ["off"],
             "max-lines": ["off"],

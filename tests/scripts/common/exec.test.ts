@@ -3,7 +3,7 @@
 //  See LICENSE file in the project root for full license information.
 
 import { type Mock, describe, expect, it, vi } from "vitest";
-import { execCommandAsync } from "#/scripts/common/exec.mjs";
+import { execCommandAsync } from "#/scripts/common/exec.js";
 import util from "util";
 
 vi.mock("util", () => ({

@@ -3,7 +3,7 @@
 //  See LICENSE file in the project root for full license information.
 
 import { describe, expect, it } from "vitest";
-import packageJson, { getDependencies } from "#/scripts/common/packageJson.mts";
+import packageJson, { getDependencies } from "#/scripts/common/packageJson.ts";
 
 describe("packageJson object", () => {
     it("should be defined", () => {

@@ -5,7 +5,7 @@
 import {
     INITIAL_VERSION,
     getLatestVersionAsync,
-} from "#/scripts/common/version.mts";
+} from "#/scripts/common/version.ts";
 import { type Plugin, normalizePath } from "vite";
 import { readFile, readdir, writeFile } from "fs/promises";
 

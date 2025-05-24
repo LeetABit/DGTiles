@@ -10,7 +10,7 @@ The service worker is utilized only in production builds. Its content is
 dynamically generated to include the current application version, which
 determines the cache name used by the website. Additionally, a list of all files
 in the `dist` folder is passed for pre-caching. The code generation and
-preparation are handled by the `scripts/serviceWorkerPlugin.mts` plugin.
+preparation are handled by the `scripts/serviceWorkerPlugin.ts` plugin.
 
 ## Pre-Caching During Installation
 

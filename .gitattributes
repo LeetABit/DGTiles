@@ -16,7 +16,7 @@
 *.json                  code
 *.lock                  code
 *.md                    text
-*.mts                   code
+*.ts                    code
 *.png                   binary
 *.svg                   code
 *.tsx                   code

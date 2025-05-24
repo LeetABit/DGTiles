@@ -8,7 +8,7 @@ definitions. Additionally, some dependencies may automatically import the "DOM"
 library into the scope.
 
 To address this, the project uses separate configurations for the Service Worker
-and the rest of the codebase. Initially, the `service-worker.mts` file was
+and the rest of the codebase. Initially, the `service-worker.ts` file was
 intended to reside in the `src` directory. However, to ensure TypeScript
 correctly parses the file, it was placed in a dedicated `sw` folder.
 Consequently, the TypeScript configuration for the main application was moved to
@@ -20,7 +20,7 @@ rather than per path specification of `projectService`.
 
 Once the GitHub issue mentioned below is resolved, an attempt may be made to
 consolidate the configuration into a single file and relocate
-`service-worker.mts` back to the `src` folder.
+`service-worker.ts` back to the `src` folder.
 
 [GitHub: TypeScript #20595][TypeScript20595]
 

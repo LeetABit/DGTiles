@@ -44,6 +44,6 @@
     "resolvePackageJsonImports": true,
     "rewriteRelativeImportExtensions": false
   },
-  "include": ["./*.mts"],
+  "include": ["./*.ts"],
   "exclude": []
 }

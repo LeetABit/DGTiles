@@ -4,7 +4,7 @@
 
 import { type Mock, describe, expect, it, vi } from "vitest";
 import { createReadStream } from "fs";
-import { evaluateFileContentAsync } from "#/scripts/common/files.mts";
+import { evaluateFileContentAsync } from "#/scripts/common/files.ts";
 import stream from "stream";
 
 vi.mock("fs", () => ({

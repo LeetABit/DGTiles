@@ -3,9 +3,9 @@
 //  See LICENSE file in the project root for full license information.
 
 import { expect, test } from "vitest";
-import { evaluateFileContentAsync } from "#/scripts/common/files.mjs";
-import { getDependencies } from "#/scripts/common/packageJson.mjs";
-import { getRepositoryFilesAsync } from "#/scripts/common/git.mjs";
+import { evaluateFileContentAsync } from "#/scripts/common/files.js";
+import { getDependencies } from "#/scripts/common/packageJson.js";
+import { getRepositoryFilesAsync } from "#/scripts/common/git.js";
 
 const typeLibPrefix = "@types/";
 const dependencies = getDependencies();

@@ -20,7 +20,7 @@ package.json that are not imported by any source file.
 ### `jiti`
 
 - **Purpose:** A runtime TypeScript and JavaScript loader.
-- **Used By:** eslint to load TypeScript `./eslint.config.mts` file in
+- **Used By:** eslint to load TypeScript `./eslint.config.ts` file in
   Node.js environment.
 
 ### `tsx`
@@ -54,5 +54,5 @@ package.json that are not imported by any source file.
 
 - **Purpose:** A JavaScript implementation of the DOM and HTML standards, used
   for testing and simulating browser environments.
-- **Used By:** `tests\axe.test.mts` file to make `document` global available in
+- **Used By:** `tests\axe.test.ts` file to make `document` global available in
   axe function.

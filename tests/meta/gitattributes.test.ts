@@ -6,7 +6,7 @@ import { expect, test } from "vitest";
 import {
     getFileGitAttributesAsync,
     getRepositoryFilesAsync,
-} from "#/scripts/common/git.mts";
+} from "#/scripts/common/git.ts";
 
 test("All files in repository are covered by '.gitattributes'.", async () => {
     const files = await getRepositoryFilesAsync();

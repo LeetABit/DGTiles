@@ -15,7 +15,7 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 
 # Deep indentation code files
-[*.{mts,tsx,txt}]
+[*.{ts,tsx,txt}]
 ruler = 80
 indent_style = space
 indent_size = 4

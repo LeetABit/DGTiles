@@ -3,7 +3,7 @@
 //  See LICENSE file in the project root for full license information.
 
 import { describe, expect, it } from "vitest";
-import { serviceWorker } from "#/scripts/serviceWorkerPlugin.mts";
+import { serviceWorker } from "#/scripts/serviceWorkerPlugin.ts";
 
 describe("serviceWorker plugin", () => {
     const filePath = "src/sw.js";

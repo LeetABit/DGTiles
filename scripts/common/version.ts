@@ -6,7 +6,7 @@ import {
     getCommitHashAsync,
     getCommitMessageAsync,
     getLatestTagsAsync,
-} from "#/scripts/common/git.mts";
+} from "#/scripts/common/git.ts";
 
 export interface VersionInfo {
     readonly major: number;

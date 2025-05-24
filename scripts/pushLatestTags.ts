@@ -3,7 +3,7 @@
 //  See LICENSE file in the project root for full license information.
 
 import type { Context } from "@actions/github/lib/context";
-import { getLatestTagsAsync } from "./common/git.mts";
+import { getLatestTagsAsync } from "./common/git.ts";
 import type { getOctokit } from "@actions/github";
 
 type GitHub = ReturnType<typeof getOctokit>;

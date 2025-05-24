@@ -12,12 +12,12 @@ import {
     getLatestTagsAsync,
     getProjectRootAsync,
     getRepositoryFilesAsync,
-} from "#/scripts/common/git.mts";
+} from "#/scripts/common/git.ts";
 import { describe, expect, it, vi } from "vitest";
-import { execCommandAsync } from "#/scripts/common/exec.mts";
+import { execCommandAsync } from "#/scripts/common/exec.ts";
 import { existsSync } from "fs";
 
-vi.mock("#/scripts/common/exec.mts");
+vi.mock("#/scripts/common/exec.ts");
 vi.mock("fs");
 
 describe("getProjectRootAsync", () => {

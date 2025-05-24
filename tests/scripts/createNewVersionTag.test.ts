@@ -3,13 +3,13 @@
 //  See LICENSE file in the project root for full license information.
 
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { createTagAsync, doesTagExistAsync } from "#/scripts/common/git.mjs";
-import { calculateNewVersion } from "#/scripts/common/version.mts";
-import createNewVersionTag from "#/scripts/createNewVersionTag.mts";
+import { createTagAsync, doesTagExistAsync } from "#/scripts/common/git.js";
+import { calculateNewVersion } from "#/scripts/common/version.ts";
+import createNewVersionTag from "#/scripts/createNewVersionTag.ts";
 
-vi.mock("#/scripts/common/version.mts");
-vi.mock("#/scripts/common/exec.mts");
-vi.mock("#/scripts/common/git.mts");
+vi.mock("#/scripts/common/version.ts");
+vi.mock("#/scripts/common/exec.ts");
+vi.mock("#/scripts/common/git.ts");
 
 describe("createNewVersionTag", () => {
     afterEach(() => {

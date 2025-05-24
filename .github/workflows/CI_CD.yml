@@ -50,8 +50,13 @@ jobs:
         uses: actions/github-script@v7.0.1
         with:
           script: |
-            const { tsImport } = await import('${{ github.workspace }}/node_modules/tsx/dist/esm/api/index.cjs');
-            const { default: createNewVersionTag } = await tsImport('./scripts/createNewVersionTag.mts', '${{ github.workspace }}/');
+            const { tsImport } = await import(
+              '${{ github.workspace }}/node_modules/tsx/dist/esm/api/index.cjs'
+            );
+            const { default: createNewVersionTag } = await tsImport(
+              './scripts/createNewVersionTag.ts',
+              '${{ github.workspace }}/'
+            );
             await createNewVersionTag();
 
       - name: Build
@@ -70,8 +75,13 @@ jobs:
         with:
           github-token: ${{ github.token }}
           script: |
-            const { tsImport } = await import('${{ github.workspace }}/node_modules/tsx/dist/esm/api/index.cjs');
-            const { default: pushLatestTags } = await tsImport('./scripts/pushLatestTags.mts', '${{ github.workspace }}/');
+            const { tsImport } = await import(
+              '${{ github.workspace }}/node_modules/tsx/dist/esm/api/index.cjs'
+            );
+            const { default: pushLatestTags } = await tsImport(
+              './scripts/pushLatestTags.ts',
+              '${{ github.workspace }}/'
+            );
             await pushLatestTags(github, context);
 
   deploy:

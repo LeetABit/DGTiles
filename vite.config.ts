@@ -5,7 +5,7 @@
 import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react-swc";
 import { resolve } from "path";
-import { serviceWorker } from "#/scripts/serviceWorkerPlugin.mts";
+import { serviceWorker } from "#/scripts/serviceWorkerPlugin.ts";
 
 export default defineConfig({
     build: {
@@ -17,7 +17,7 @@ export default defineConfig({
         },
     },
     esbuild: { legalComments: "none" },
-    plugins: [react(), serviceWorker("sw/service-worker.mts")],
+    plugins: [react(), serviceWorker("sw/service-worker.ts")],
     preview: {
         port: 5000,
     },
@@ -31,14 +31,14 @@ export default defineConfig({
         port: 5000,
     },
     test: {
-        setupFiles: ["vitest-setup.mts"],
+        setupFiles: ["vitest-setup.ts"],
         workspace: [
             {
                 extends: true,
                 test: {
                     include: [
-                        "tests/meta/**/*.test.mts",
-                        "tests/scripts/**/*.test.mts",
+                        "tests/meta/**/*.test.ts",
+                        "tests/scripts/**/*.test.ts",
                     ],
                 },
             },
@@ -47,11 +47,11 @@ export default defineConfig({
                 test: {
                     environment: "jsdom",
                     exclude: [
-                        "tests/meta/**/*.test.mts",
-                        "tests/scripts/**/*.test.mts",
+                        "tests/meta/**/*.test.ts",
+                        "tests/scripts/**/*.test.ts",
                     ],
                     globals: true,
-                    include: ["tests/**/*.test.mts"],
+                    include: ["tests/**/*.test.ts"],
                 },
             },
         ],

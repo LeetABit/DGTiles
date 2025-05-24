@@ -2,17 +2,17 @@
 //  Licensed under the MIT License.
 //  See LICENSE file in the project root for full license information.
 
-import * as git from "#/scripts/common/git.mts";
+import * as git from "#/scripts/common/git.ts";
 import {
     INITIAL_VERSION,
     type VersionInfo,
     bumpVersion,
     calculateNewVersion,
     getLatestVersionAsync,
-} from "#/scripts/common/version.mts";
+} from "#/scripts/common/version.ts";
 import { describe, expect, it, vi } from "vitest";
 
-vi.mock("#/scripts/common/git.mts");
+vi.mock("#/scripts/common/git.ts");
 
 describe("bumpVersion", () => {
     it("should bump major version if a message starts with 'Breaking:'", () => {

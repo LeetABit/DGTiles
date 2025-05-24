@@ -4,13 +4,13 @@
 
 import { type Mock, afterEach, describe, expect, it, vi } from "vitest";
 import type { Context } from "@actions/github/lib/context";
-import { getLatestTagsAsync } from "#/scripts/common/git.mjs";
+import { getLatestTagsAsync } from "#/scripts/common/git.js";
 import type { getOctokit } from "@actions/github";
-import pushLatestTags from "#/scripts/pushLatestTags.mjs";
+import pushLatestTags from "#/scripts/pushLatestTags.js";
 
 type GitHub = ReturnType<typeof getOctokit>;
-vi.mock("#/scripts/common/version.mts");
-vi.mock("#/scripts/common/git.mts");
+vi.mock("#/scripts/common/version.ts");
+vi.mock("#/scripts/common/git.ts");
 
 describe("createRemoteGitTag", () => {
     afterEach(() => {

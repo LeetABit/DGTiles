@@ -47,8 +47,8 @@
     "./scripts",
     "./src",
     "./tests",
-    "./*.mts",
-    "sw/service-worker.mts"
+    "./*.ts",
+    "sw/service-worker.ts"
   ],
   "exclude": ["./sw"]
 }
