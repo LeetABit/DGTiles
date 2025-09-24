@@ -4,6 +4,7 @@
 
 import { type CSSObject, Global } from "@emotion/react";
 import { BrowserRouter } from "react-router";
+import MainView from "@/layout/MainView";
 import React from "react";
 import { theme } from "./styles/themes";
 
@@ -50,7 +51,7 @@ export default function App({ basename }: Props): React.JSX.Element {
         <>
             <Global styles={globalStyle} />
             <BrowserRouter basename={basename}>
-                <h1>DGTiles</h1>
+                <MainView />
             </BrowserRouter>
         </>
     );

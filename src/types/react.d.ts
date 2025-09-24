@@ -3,6 +3,7 @@
 //  See LICENSE file in the project root for full license information.
 
 import "@emotion/react";
+import type { DockDirection } from "@/components/Dock/types.ts";
 
 declare module "@emotion/react" {
     export interface Theme {
@@ -18,5 +19,16 @@ declare module "@emotion/react" {
                 minorColor: React.CSSProperties["color"];
             };
         };
+    }
+}
+
+declare module "react" {
+    export interface Attributes {
+        // Specifies the element that shall be used as a container for the dock.
+        "dock-container"?: ReactElement;
+        // Specified the direction of the dock.
+        "dock-direction"?: DockDirection;
+        // Specifies whether the element accepts style from the Dock component.
+        "dock-accept-style"?: boolean;
     }
 }
