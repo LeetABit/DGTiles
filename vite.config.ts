@@ -31,8 +31,7 @@ export default defineConfig({
         port: 5000,
     },
     test: {
-        setupFiles: ["vitest-setup.ts"],
-        workspace: [
+        projects: [
             {
                 extends: true,
                 test: {
@@ -55,5 +54,6 @@ export default defineConfig({
                 },
             },
         ],
+        setupFiles: ["vitest-setup.ts"],
     },
 });

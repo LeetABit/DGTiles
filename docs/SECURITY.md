@@ -20,12 +20,10 @@ We take all security vulnerabilities seriously. If you discover a potential
 security issue, please follow the steps below to report it responsibly:
 
 1. **Contact Us**:
-
    - Email us at **github@leetabit.dev**.
    - Use the subject line: "Security Vulnerability Report" for clarity.
 
 2. **Provide Details**:
-
    - Include a detailed description of the issue, including:
      - Steps to reproduce the vulnerability.
      - Potential impact or exploitation scenarios.
@@ -33,7 +31,6 @@ security issue, please follow the steps below to report it responsibly:
    - If possible, indicate which version(s) of the project are affected.
 
 3. **Keep It Confidential**:
-
    - Do not disclose the vulnerability publicly or share it with others until we
      have resolved the issue and released a patch.
 

@@ -5,6 +5,7 @@
 import tseslint, {
     type InfiniteDepthConfigWithExtends,
 } from "typescript-eslint";
+import { defineConfig } from "eslint/config";
 import eslintConfigPrettier from "eslint-config-prettier";
 import js from "@eslint/js";
 import jsdoc from "eslint-plugin-jsdoc";
@@ -396,7 +397,6 @@ const stylisticRules: InfiniteDepthConfigWithExtends = {
         "@stylistic/curly-newline": "warn",
         "@stylistic/dot-location": ["warn", "property"],
         "@stylistic/eol-last": "warn",
-        "@stylistic/func-call-spacing": "warn",
         "@stylistic/function-call-argument-newline": ["warn", "consistent"],
         "@stylistic/function-call-spacing": "warn",
         "@stylistic/function-paren-newline": "off",
@@ -413,7 +413,6 @@ const stylisticRules: InfiniteDepthConfigWithExtends = {
         "@stylistic/jsx-equals-spacing": "warn",
         "@stylistic/jsx-first-prop-new-line": "warn",
         "@stylistic/jsx-function-call-newline": "warn",
-        "@stylistic/jsx-indent": "warn",
         "@stylistic/jsx-indent-props": "warn",
         "@stylistic/jsx-max-props-per-line": "warn",
         "@stylistic/jsx-newline": "off",
@@ -422,7 +421,6 @@ const stylisticRules: InfiniteDepthConfigWithExtends = {
             { allow: "single-line" },
         ],
         "@stylistic/jsx-pascal-case": "warn",
-        "@stylistic/jsx-props-no-multi-spaces": "warn",
         "@stylistic/jsx-quotes": "warn",
         "@stylistic/jsx-self-closing-comp": "warn",
         "@stylistic/jsx-sort-props": "warn",
@@ -564,7 +562,7 @@ const jsdocRules: InfiniteDepthConfigWithExtends = {
     },
 };
 
-const config = tseslint.config(
+const config = defineConfig(
     eslintConfigPrettier,
     {
         ignores: ["./dist"],

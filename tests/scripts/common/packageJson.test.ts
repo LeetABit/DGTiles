@@ -37,7 +37,7 @@ describe("getDependencies function", () => {
         const packageJsonDevDependencies = [
             ...Object.keys(packageJson.devDependencies),
             ...Object.keys(packageJson.dependencies),
-        ];
+        ].filter((dep) => !dep.startsWith("//"));
         expect(Array.isArray(dependencies)).toBe(true);
         expect(dependencies.length).toBeGreaterThan(0);
         dependencies.forEach((dep) => {

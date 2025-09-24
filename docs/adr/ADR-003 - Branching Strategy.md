@@ -19,27 +19,22 @@ We decided to adopt a linear history branching strategy for this project.
 ## Reasons
 
 1. **Clean and Readable Git History**:
-
    - A linear history avoids clutter caused by merge commits, making it easier
      to understand the sequence of changes.
 
 2. **Simplified Debugging**:
-
    - A clear, chronological history helps identify issues and trace changes to
      specific commits more efficiently.
 
 3. **Encourages Atomic Commits**:
-
    - Squashing changes into meaningful commits ensures that each commit is
      self-contained and describes a single logical change.
 
 4. **Enhanced Code Review Process**:
-
    - Rebasing and squashing changes before merging encourages developers to
      review their commits, ensuring quality and clarity.
 
 5. **Improved Collaboration**:
-
    - A clean history reduces confusion for contributors, making it easier to
      onboard new team members and collaborate effectively.
 
@@ -50,12 +45,10 @@ We decided to adopt a linear history branching strategy for this project.
 ## Consequences
 
 1. **Increased Developer Responsibility**:
-
    - Developers must rebase their changes and resolve conflicts before merging,
      which requires familiarity with Git commands and workflows.
 
 2. **Potential for Accidental Rewrite**:
-
    - Incorrect use of rebasing or force-pushing can lead to history rewriting,
      which may disrupt collaboration if not done carefully.
 

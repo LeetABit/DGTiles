@@ -26,27 +26,22 @@ offline capabilities and consistent performance across sessions.
 ## Reasons
 
 1. **Installable Experience**:
-
    - Users can add the app to their home screen or desktop, improving
      accessibility and engagement without going through an app store.
 
 2. **Offline Availability**:
-
    - With service workers, core assets are cached and available offline,
      improving reliability in poor or no network conditions.
 
 3. **Performance Optimization**:
-
    - Cached responses reduce latency and enable faster load times for returning
      users.
 
 4. **Consistent Cross-Platform UX**:
-
    - Delivers a native-like experience on web, desktop, and mobile platforms
      with a single codebase.
 
 5. **Secure and Progressive by Design**:
-
    - PWAs require HTTPS and embrace progressive enhancement principles, ensuring
      a secure baseline experience with optional advanced features.
 
@@ -57,12 +52,10 @@ offline capabilities and consistent performance across sessions.
 ## Consequences
 
 1. **Service Worker Management**:
-
    - Requires handling cache invalidation, update detection, and offline
      fallbacks to prevent stale content issues.
 
 2. **Testing and Maintenance Overhead**:
-
    - Additional testing is required for offline scenarios and install flows
      across different browsers and devices.
 

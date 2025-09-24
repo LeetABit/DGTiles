@@ -21,33 +21,27 @@ We decided to use **React** as the frontend framework for the project.
 ## Reasons
 
 1. **Component-Based Architecture**:
-
    - React promotes the creation of reusable and composable components,
      improving code maintainability and scalability.
 
 2. **Strong Ecosystem and Community**:
-
    - React has a mature ecosystem, widespread adoption, and excellent community
      support, ensuring access to libraries, tooling, and best practices.
 
 3. **TypeScript Compatibility**:
-
    - React has robust TypeScript support, enhancing code safety and developer
      productivity in large-scale applications.
 
 4. **Declarative UI**:
-
    - React's declarative programming model simplifies reasoning about UI state
      and behavior, leading to fewer bugs and clearer code.
 
 5. **Tooling and Integrations**:
-
    - First-class integration with modern build tools (e.g. Vite, Webpack),
      testing libraries (e.g. Testing Library, Vitest), and styling solutions
      (e.g. Tailwind, styled-components).
 
 6. **Platform Flexibility**:
-
    - React can be used across platforms (web, mobile via React Native, desktop
      via Electron), offering potential code sharing and architectural
      consistency.
@@ -59,12 +53,10 @@ We decided to use **React** as the frontend framework for the project.
 ## Consequences
 
 1. **Learning Curve for Advanced Concepts**:
-
    - Concepts like hooks, context, and rendering behavior may be non-trivial for
      developers new to React or functional programming.
 
 2. **Unopinionated by Design**:
-
    - React focuses on the view layer, so additional decisions are required for
      routing, state management, and data fetching (e.g., using React Router,
      Zustand, TanStack Query, etc.).

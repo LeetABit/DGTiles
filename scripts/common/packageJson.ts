@@ -14,5 +14,5 @@ export function getDependencies(): string[] {
     return [
         ...Object.keys(packageJson.devDependencies),
         ...Object.keys(packageJson.dependencies),
-    ];
+    ].filter((dep) => !dep.startsWith("//"));
 }

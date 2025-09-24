@@ -22,37 +22,30 @@ state management solution.
 ## Reasons
 
 1. **Standardized Redux Patterns**:
-
    - Redux Toolkit provides a recommended and modernized approach to using
      Redux, enforcing best practices by default and reducing boilerplate.
 
 2. **Powerful DevTools Integration**:
-
    - Out-of-the-box support for Redux DevTools enables time-travel debugging and
      insight into state transitions.
 
 3. **TypeScript Support**:
-
    - Built-in TypeScript support simplifies typing for actions, reducers,
      thunks, and selectors, improving maintainability and DX.
 
 4. **Built-in Async Support**:
-
    - `createAsyncThunk` makes it easy to handle async logic and loading/error
      states in a consistent, scalable way.
 
 5. **Scalability**:
-
    - RTK scales well for both small components and large applications with
      complex, shared, or nested state.
 
 6. **Community and Ecosystem**:
-
    - Redux remains one of the most widely adopted and well-supported state
      management libraries in the React ecosystem.
 
 7. **Integration with React**:
-
    - RTK works seamlessly with `react-redux`, and hooks-based APIs like
      `useSelector` and `useDispatch` align with modern React patterns.
 
@@ -63,12 +56,10 @@ state management solution.
 ## Consequences
 
 1. **Learning Curve**:
-
    - Developers unfamiliar with Redux concepts (e.g., reducers, actions,
      normalization) may need time to ramp up, despite RTK’s simplifications.
 
 2. **Boilerplate vs Simpler Alternatives**:
-
    - Even with RTK, there is still more structure and boilerplate than
      alternatives like Zustand or useReducer for smaller apps.
 

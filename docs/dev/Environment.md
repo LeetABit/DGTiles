@@ -23,7 +23,6 @@ following files and directories are dedicated to supporting this service:
 - **`.github/workflows/` directory**:
   Contains GitHub Actions workflows for automating tasks such as continuous
   integration (CI), testing, and deployment. For example:
-
   - `CI_CD.yml`: Defines the CI/CD pipeline, including steps for verifying the
     code, running tests, and deploying the website to GitHub Pages.
 

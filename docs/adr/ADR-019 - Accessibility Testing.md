@@ -25,29 +25,24 @@ project.
 ## Reasons
 
 1. **Industry Standard and Compliance**:
-
    - axe is widely adopted and conforms to WCAG 2.1 and Section 508 guidelines,
      ensuring a high standard of accessibility compliance.
 
 2. **Automation-Friendly**:
-
    - axe can be easily integrated into existing testing environments, including
      browser-based tools, unit tests, and E2E frameworks like Cypress,
      Playwright, and Selenium.
 
 3. **Immediate Feedback for Developers**:
-
    - With integrations such as `axe-core` and `@axe-core/react`, developers
      receive real-time feedback on accessibility issues while developing or
      running tests.
 
 4. **CI/CD Integration**:
-
    - Accessibility tests using axe can be added to automated pipelines,
      preventing regressions before deployment.
 
 5. **Developer Tooling**:
-
    - The axe browser extensions (e.g., for Chrome and Firefox) provide instant
      analysis during manual testing and are helpful for debugging complex
      issues.
@@ -59,12 +54,10 @@ project.
 ## Consequences
 
 1. **Limited Coverage of Semantic and Contextual Issues**:
-
    - axe focuses on detectable violations and cannot replace comprehensive
      manual testing, especially for content or UX judgments.
 
 2. **Initial Test Setup Overhead**:
-
    - Integrating axe into unit or E2E tests requires additional tooling and
      configuration effort.
 

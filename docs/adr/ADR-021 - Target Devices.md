@@ -24,28 +24,23 @@ project.
 ## Reasons
 
 1. **Better Performance on Mobile Devices**:
-
    - Mobile-first CSS typically results in smaller payloads and fewer overrides,
      leading to faster load times on constrained networks and devices.
 
 2. **Progressive Enhancement**:
-
    - Mobile-first design encourages building from the simplest use case up,
      layering complexity only where needed for larger screens, which improves
      maintainability.
 
 3. **Improved User Experience on Mobile**:
-
    - Prioritizing mobile ensures key interactions and content are optimized for
      small screens, which often represent the majority of user traffic.
 
 4. **Simplified CSS Structure**:
-
    - Using mobile as the base and applying media queries for larger viewports
      minimizes redundant or conflicting styles.
 
 5. **Consistency Across Breakpoints**:
-
    - Mobile-first enforces clarity in layout decisions and ensures deliberate
      scaling up rather than reactive scaling down.
 
@@ -56,12 +51,10 @@ project.
 ## Consequences
 
 1. **Design Team Alignment Required**:
-
    - Designers must ensure wireframes and prototypes start from mobile views,
      which may require a shift in process or tooling.
 
 2. **Increased Effort for Desktop-Heavy Features**:
-
    - Some desktop-centric features may require more upfront planning to fit into
      a progressively enhanced layout.
 

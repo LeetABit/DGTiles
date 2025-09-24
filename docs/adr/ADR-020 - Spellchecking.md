@@ -24,27 +24,22 @@ We decided to use **cspell** as the spellchecking tool for the project.
 ## Reasons
 
 1. **Designed for Codebases**:
-
    - cspell is built to work with programming languages, recognizing camelCase,
      snake_case, and other naming conventions.
 
 2. **Flexible Configuration**:
-
    - Supports project-specific word lists, file patterns, and custom
      dictionaries, making it easy to tune for our domain-specific vocabulary.
 
 3. **CI and Editor Integration**:
-
    - Can be integrated into CI workflows and supported by popular editors like
      VS Code for real-time feedback.
 
 4. **Language and File Support**:
-
    - Supports a wide range of file types including `.ts`, `.tsx`, `.js`,
      `.json`, `.md`, and configuration files.
 
 5. **Developer Productivity**:
-
    - Reduces time spent fixing typos during code reviews and helps standardize
      naming and terminology across the project.
 
@@ -55,12 +50,10 @@ We decided to use **cspell** as the spellchecking tool for the project.
 ## Consequences
 
 1. **Initial Dictionary Tuning Required**:
-
    - Project-specific terms, acronyms, and names will need to be added to a
      custom dictionary to avoid false positives.
 
 2. **False Positives in Code Symbols**:
-
    - While cspell is optimized for code, some unusual variable names or
      abbreviations may be flagged unnecessarily.
 

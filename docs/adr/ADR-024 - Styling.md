@@ -22,32 +22,26 @@ We decided to use **Emotion** as the styling solution for the project.
 ## Reasons
 
 1. **CSS-in-JS with Component Co-location**:
-
    - Emotion enables co-locating styles with components, improving modularity,
      readability, and maintainability.
 
 2. **Dynamic Styling Support**:
-
    - Supports conditional and dynamic styles based on props, state, or themes,
      enhancing flexibility in UI development.
 
 3. **TypeScript Support**:
-
    - Provides first-class TypeScript support, allowing for type-safe theming and
      styled components.
 
 4. **Styled and `css` APIs**:
-
    - Offers both `styled` and `css` APIs, enabling use cases ranging from
      styled-components-like syntax to inline utility styles.
 
 5. **Theming System**:
-
    - Emotion supports theming out of the box, allowing for a consistent design
      system and easy customization.
 
 6. **Performance and Optimization**:
-
    - Emotion has a fast runtime and supports critical CSS extraction and SSR,
      which is useful for performance-sensitive applications.
 
@@ -58,17 +52,14 @@ We decided to use **Emotion** as the styling solution for the project.
 ## Consequences
 
 1. **Runtime Dependency**:
-
    - Emotion requires a runtime, which may add some overhead compared to static
      or utility-based CSS solutions.
 
 2. **Potential Developer Fragmentation**:
-
    - Developers must be aligned on styling conventions to avoid inconsistent
      usage between `styled`, `css`, and vanilla class-based styles.
 
 3. **Debugging Complexity**:
-
    - Dynamically generated class names can make debugging styles harder unless
      dev tools like Babel plugins or Emotion DevTools are used.
 

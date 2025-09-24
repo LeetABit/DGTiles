@@ -49,7 +49,6 @@ Contributions can be made in several ways, including:
 - Use the **Pull Request Template** provided in the repository to describe
   your changes clearly.
 - Ensure your PR:
-
   - Is associated with an existing issue (if applicable).
   - Is focused on a single improvement or fix to make review easier.
   - Passes all tests and adheres to the project’s coding standards.
