@@ -19,6 +19,7 @@ export default defineConfig({
     esbuild: { legalComments: "none" },
     plugins: [react(), serviceWorker("sw/service-worker.ts")],
     preview: {
+        host: "0.0.0.0",
         port: 5000,
     },
     resolve: {
@@ -28,6 +29,7 @@ export default defineConfig({
         },
     },
     server: {
+        host: "0.0.0.0",
         port: 5000,
     },
     test: {

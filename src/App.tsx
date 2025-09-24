@@ -12,6 +12,13 @@ interface Props {
 
 const globalStyle: CSSObject = {
     body: {
+        background: "#eee",
+        backgroundImage:
+            "linear-gradient(#ccc 0.07rem, transparent 0)," +
+            "linear-gradient(90deg, #ccc 0.07rem, transparent 0), " +
+            "linear-gradient(#ddd 0.05rem, transparent 0)," +
+            "linear-gradient(90deg, #ddd 0.05rem, transparent 0)",
+        backgroundSize: "2cm 2cm, 2cm 2cm, 0.5cm 0.5cm, 0.5cm 0.5cm",
         margin: "0px",
     },
     label: "MainView",

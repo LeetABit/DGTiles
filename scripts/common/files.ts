@@ -12,8 +12,8 @@ export type LineEvaluator = (line: string, lineNumber: number) => boolean;
  * function.
  * @param {string} filePath The path to the file to be evaluated.
  * @param {LineEvaluator} evaluator A function that takes a line and its number,
- * and throws when the line does not meet the criteria, returns true if next
- * line should be fetched and false when evaluation should stop.
+ * and throws when the evaluation shall fail, returns true when the evaluation
+ * shall succeed and false if next line shall be fetched.
  * @returns {Promise<boolean>} A promise that resolves to true if all lines meet
  * the criteria, false otherwise.
  */

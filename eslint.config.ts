@@ -11,11 +11,9 @@ import js from "@eslint/js";
 import jsdoc from "eslint-plugin-jsdoc";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
-import stylistic from "@stylistic/eslint-plugin";
 
 const MAX_FUNCTION_LINES = 200;
 const MAX_FUNCTION_STATEMENTS = 50;
-const INDENTATION_SIZE = 4;
 
 const jsRules: InfiniteDepthConfigWithExtends = {
     rules: {
@@ -381,132 +379,6 @@ const typescriptRules: InfiniteDepthConfigWithExtends = {
     },
 };
 
-const stylisticRules: InfiniteDepthConfigWithExtends = {
-    rules: {
-        "@stylistic/array-bracket-newline": ["warn", "consistent"],
-        "@stylistic/array-bracket-spacing": "warn",
-        "@stylistic/array-element-newline": ["warn", "consistent"],
-        "@stylistic/arrow-parens": "warn",
-        "@stylistic/arrow-spacing": "warn",
-        "@stylistic/block-spacing": "warn",
-        "@stylistic/brace-style": "warn",
-        "@stylistic/comma-dangle": ["warn", "always-multiline"],
-        "@stylistic/comma-spacing": "warn",
-        "@stylistic/comma-style": "warn",
-        "@stylistic/computed-property-spacing": "warn",
-        "@stylistic/curly-newline": "warn",
-        "@stylistic/dot-location": ["warn", "property"],
-        "@stylistic/eol-last": "warn",
-        "@stylistic/function-call-argument-newline": ["warn", "consistent"],
-        "@stylistic/function-call-spacing": "warn",
-        "@stylistic/function-paren-newline": "off",
-        "@stylistic/generator-star-spacing": "warn",
-        "@stylistic/implicit-arrow-linebreak": "off",
-        "@stylistic/indent": ["warn", INDENTATION_SIZE],
-        "@stylistic/indent-binary-ops": "off",
-        "@stylistic/jsx-child-element-spacing": "warn",
-        "@stylistic/jsx-closing-bracket-location": "warn",
-        "@stylistic/jsx-closing-tag-location": ["warn", "line-aligned"],
-        "@stylistic/jsx-curly-brace-presence": "warn",
-        "@stylistic/jsx-curly-newline": "warn",
-        "@stylistic/jsx-curly-spacing": "warn",
-        "@stylistic/jsx-equals-spacing": "warn",
-        "@stylistic/jsx-first-prop-new-line": "warn",
-        "@stylistic/jsx-function-call-newline": "warn",
-        "@stylistic/jsx-indent-props": "warn",
-        "@stylistic/jsx-max-props-per-line": "warn",
-        "@stylistic/jsx-newline": "off",
-        "@stylistic/jsx-one-expression-per-line": [
-            "warn",
-            { allow: "single-line" },
-        ],
-        "@stylistic/jsx-pascal-case": "warn",
-        "@stylistic/jsx-quotes": "warn",
-        "@stylistic/jsx-self-closing-comp": "warn",
-        "@stylistic/jsx-sort-props": "warn",
-        "@stylistic/jsx-tag-spacing": "warn",
-        "@stylistic/jsx-wrap-multilines": "warn",
-        "@stylistic/key-spacing": "warn",
-        "@stylistic/keyword-spacing": "warn",
-        "@stylistic/line-comment-position": "warn",
-        "@stylistic/linebreak-style": "warn",
-        "@stylistic/lines-around-comment": "warn",
-        "@stylistic/lines-between-class-members": "warn",
-        "@stylistic/max-len": ["warn", { code: 120 }],
-        "@stylistic/max-statements-per-line": "warn",
-        "@stylistic/member-delimiter-style": "warn",
-        "@stylistic/multiline-comment-style": ["warn", "separate-lines"],
-        "@stylistic/multiline-ternary": ["warn", "always-multiline"],
-        "@stylistic/new-parens": "warn",
-        "@stylistic/newline-per-chained-call": "warn",
-        "@stylistic/no-confusing-arrow": "warn",
-        "@stylistic/no-extra-parens": "off",
-        "@stylistic/no-extra-semi": "warn",
-        "@stylistic/no-floating-decimal": "warn",
-        "@stylistic/no-mixed-operators": "warn",
-        "@stylistic/no-mixed-spaces-and-tabs": "warn",
-        "@stylistic/no-multi-spaces": "warn",
-        "@stylistic/no-multiple-empty-lines": "warn",
-        "@stylistic/no-tabs": "warn",
-        "@stylistic/no-trailing-spaces": "warn",
-        "@stylistic/no-whitespace-before-property": "warn",
-        "@stylistic/nonblock-statement-body-position": "warn",
-        "@stylistic/object-curly-newline": "warn",
-        "@stylistic/object-curly-spacing": ["warn", "always"],
-        "@stylistic/object-property-newline": "warn",
-        "@stylistic/one-var-declaration-per-line": "warn",
-        "@stylistic/operator-linebreak": "off",
-        "@stylistic/padded-blocks": ["warn", "never"],
-        "@stylistic/padding-line-between-statements": "warn",
-        "@stylistic/quote-props": [
-            "warn",
-            "as-needed",
-            {
-                keywords: false,
-                numbers: true,
-                unnecessary: true,
-            },
-        ],
-        "@stylistic/rest-spread-spacing": "warn",
-        "@stylistic/semi-spacing": "warn",
-        "@stylistic/semi-style": "warn",
-        "@stylistic/space-before-blocks": "warn",
-        "@stylistic/space-before-function-paren": [
-            "warn",
-            {
-                anonymous: "never",
-                asyncArrow: "always",
-                named: "never",
-            },
-        ],
-        "@stylistic/space-in-parens": "warn",
-        "@stylistic/space-infix-ops": "warn",
-        "@stylistic/space-unary-ops": "warn",
-        "@stylistic/spaced-comment": "warn",
-        "@stylistic/switch-colon-spacing": "warn",
-        "@stylistic/template-curly-spacing": "warn",
-        "@stylistic/template-tag-spacing": "warn",
-        "@stylistic/type-annotation-spacing": [
-            "warn",
-            {
-                after: true,
-                before: false,
-                overrides: {
-                    arrow: {
-                        after: true,
-                        before: true,
-                    },
-                },
-            },
-        ],
-        "@stylistic/type-generic-spacing": "warn",
-        "@stylistic/type-named-tuple-spacing": "warn",
-        "@stylistic/wrap-iife": "warn",
-        "@stylistic/wrap-regex": "warn",
-        "@stylistic/yield-star-spacing": "warn",
-    },
-};
-
 const jsdocRules: InfiniteDepthConfigWithExtends = {
     rules: {
         "jsdoc/check-access": "warn",
@@ -585,14 +457,12 @@ const config = defineConfig(
             },
         },
         plugins: {
-            "@stylistic": stylistic,
             react,
             "react-hooks": reactHooks,
         },
         rules: {
             ...jsRules.rules,
             ...typescriptRules.rules,
-            ...stylisticRules.rules,
             ...jsdocRules.rules,
         },
     },

@@ -43,12 +43,6 @@
     "resolvePackageJsonImports": true,
     "rewriteRelativeImportExtensions": false
   },
-  "include": [
-    "./scripts",
-    "./src",
-    "./tests",
-    "./*.ts",
-    "sw/service-worker.ts"
-  ],
+  "include": ["./scripts", "./src", "./tests", "./*.ts"],
   "exclude": ["./sw"]
 }

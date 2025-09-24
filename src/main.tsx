@@ -24,9 +24,6 @@ if (!rootElement) {
     );
 }
 
-if (import.meta.env.DEV) {
-    await axe(React, ReactDOM, ONE_SECOND_IN_MILLISECONDS);
-}
 const root = createRoot(rootElement);
 root.render(
     <StrictMode>
@@ -42,4 +39,8 @@ if ("serviceWorker" in navigator && import.meta.env.PROD) {
         .catch((error: unknown) => {
             throw error;
         });
+}
+
+if (import.meta.env.DEV) {
+    await axe(React, ReactDOM, ONE_SECOND_IN_MILLISECONDS);
 }
