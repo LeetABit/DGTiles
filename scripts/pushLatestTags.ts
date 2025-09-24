@@ -26,16 +26,12 @@ export default async function pushLatestTags(
         const tagObject = `tags/${tag}`;
         const tagRef = `refs/${tagObject}`;
 
-        console.log(`Creating tag ${tagObject}`);
-
         try {
             await github.rest.git.getRef({
                 owner: context.repo.owner,
                 ref: tagObject,
                 repo: context.repo.repo,
             });
-
-            console.log(`Tag already exists.`);
         } catch (getError) {
             if (
                 typeof getError === "object" &&
@@ -43,21 +39,13 @@ export default async function pushLatestTags(
                 "status" in getError &&
                 getError.status === HTTP_STATUS_NOT_FOUND
             ) {
-                try {
-                    await github.rest.git.createRef({
-                        owner: context.repo.owner,
-                        ref: tagRef,
-                        repo: context.repo.repo,
-                        sha: context.sha,
-                    });
-
-                    console.log(`Tag ${tagObject} created.`);
-                } catch (createError) {
-                    console.error(`Failed to create tag ${tagObject}.`);
-                    throw createError;
-                }
+                await github.rest.git.createRef({
+                    owner: context.repo.owner,
+                    ref: tagRef,
+                    repo: context.repo.repo,
+                    sha: context.sha,
+                });
             } else {
-                console.error(`Failed to get tag ${tagObject}.`);
                 throw getError;
             }
         }
