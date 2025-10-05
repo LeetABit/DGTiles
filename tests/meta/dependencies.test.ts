@@ -66,3 +66,14 @@ describe.each(documentedDependencies)(
         });
     },
 );
+
+test.each(documentedDependencies)(
+    "Documented Dependency '%s' is specified in project.json file.",
+    async (documentedDependency: string) => {
+        expect(
+            dependencies,
+            `Dependency '${documentedDependency}' is documented but not` +
+            "specified in project.json file.")
+            .toContain(documentedDependency);
+    },
+);

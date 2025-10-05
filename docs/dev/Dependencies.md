@@ -63,3 +63,9 @@ package.json that are not imported by any source file.
   and managing performance budgets in continuous integration environments.
 - **Used By:** `package.json/scripts` element to run accessibility and performance
   checks during lint commands.
+
+### `@testing-library/dom`
+
+- **Purpose:** A set of utilities for testing DOM nodes, simulating user
+  interactions, and querying elements in unit tests.
+- **Used By:** `@testing-library/react` has this library as a peer dependency.

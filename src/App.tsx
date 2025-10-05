@@ -3,6 +3,7 @@
 //  See LICENSE file in the project root for full license information.
 
 import { type CSSObject, Global } from "@emotion/react";
+import { Grid, GridItem } from "./components/Grid";
 import { BrowserRouter } from "react-router";
 import React from "react";
 import { theme } from "./styles/themes";
@@ -29,7 +30,9 @@ const globalStyle: CSSObject = {
             `90deg, ${majorGridColor} 0.05rem, transparent 0)`,
         backgroundSize: "2cm 2cm, 2cm 2cm, 0.5cm 0.5cm, 0.5cm 0.5cm",
         margin: "0px",
+
         position: "absolute",
+
         height: "100%",
         width: "100%",
     },
@@ -37,6 +40,11 @@ const globalStyle: CSSObject = {
         height: "100%",
         width: "100%",
     },
+};
+
+const stretchStyle: CSSObject = {
+    height: "100%",
+    width: "100%",
 };
 
 /**
@@ -50,7 +58,23 @@ export default function App({ basename }: Props): React.JSX.Element {
         <>
             <Global styles={globalStyle} />
             <BrowserRouter basename={basename}>
-                <h1>DGTiles</h1>
+                <Grid columns={["1fr"]} rows={["1fr", "max-content"]} style={stretchStyle}>
+                    <GridItem
+                        columnStart={1}
+                        columnEnd={2}
+                        rowStart={1}
+                        rowEnd={2}
+                        style={stretchStyle}
+                    />
+                    <GridItem
+                        columnEnd={2}
+                        columnStart={1}
+                        rowEnd={3}
+                        rowStart={2}
+                    >
+                        <h1>DGTiles</h1>
+                    </GridItem>
+                </Grid>
             </BrowserRouter>
         </>
     );

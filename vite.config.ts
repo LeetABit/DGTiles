@@ -33,7 +33,12 @@ export default defineConfig({
         },
     },
     esbuild: { legalComments: "none" },
-    plugins: [react(), serviceWorker("src/sw/service-worker.ts")],
+    plugins: [
+        react({
+            jsxImportSource: "@emotion/react",
+        }),
+        serviceWorker("src/sw/service-worker.ts"),
+    ],
     preview: {
         host: "0.0.0.0",
         port: 5000,
