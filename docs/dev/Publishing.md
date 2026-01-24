@@ -50,7 +50,7 @@ logic for calculating the new version is following:
 The deployment process is triggered as a last step. It consist of the following
 tasks:
 
-1. The production build is created using `yarn build` with information about
+1. The production build is created using `pnpm build` with information about
    incremented version.
 2. The build artifacts are uploaded using the `actions/upload-pages-artifact`
    action.

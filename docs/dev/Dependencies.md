@@ -26,7 +26,7 @@ package.json that are not imported by any source file.
 ### `tsx`
 
 - **Purpose:** A fast TypeScript execution environment for Node.js.
-- **Used By:** `.github/workflows/CI_CD.yml` file to execute TypeScript
+- **Used By:** `.github/workflows/CI_CD.yaml` file to execute TypeScript
   scripts.
 
 ### `typescript`

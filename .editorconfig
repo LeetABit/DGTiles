@@ -5,7 +5,7 @@
 root = true
 
 # Shallow indentation code files
-[*.{gitattributes,gitignore,editorconfig,html,json,lock,yml,svg,md}]
+[*.{gitattributes,gitignore,editorconfig,prettierignore,html,json,lock,yaml,svg,md}]
 ruler = 80
 indent_style = space
 indent_size = 2

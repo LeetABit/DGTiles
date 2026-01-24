@@ -7,9 +7,9 @@ Accepted
 ## Context
 
 Dependency management is a critical aspect of the project to ensure consistent
-and predictable builds across all environments. While a `yarn.lock` file ensures
-deterministic dependency resolution, changes in indirect dependencies could
-still occur if versions are not explicitly pinned in `package.json`.
+and predictable builds across all environments. While a `pnpm-lock.yaml` file
+ensures deterministic dependency resolution, changes in indirect dependencies
+could still occur if versions are not explicitly pinned in `package.json`.
 
 ## Decision
 
@@ -18,14 +18,14 @@ We decided to use version pinning (exact versions) in `package.json`.
 ## Reasons
 
 1. **Maximum Consistency**:
-   - The `yarn.lock` file ensures that all environments (development, CI/CD,
-     production) use the exact same versions of dependencies and
+   - The `pnpm-lock.yaml` file ensures that all environments (development,
+     CI/CD, production) use the exact same versions of dependencies and
      sub-dependencies.
    - Version pinning in `package.json` prevents accidental drift in direct
-     dependencies when the `yarn.lock` file is regenerated.
+     dependencies when the `pnpm-lock.yaml` file is regenerated.
 
 2. **Predictable Builds**:
-   - Combining the `yarn.lock` file and exact version pinning ensures fully
+   - Combining the `pnpm-lock.yaml` file and exact version pinning ensures fully
      reproducible builds, reducing the likelihood of bugs caused by version
      mismatches.
 
@@ -35,7 +35,7 @@ We decided to use version pinning (exact versions) in `package.json`.
 
 4. **Change Visibility**:
    - Updates to dependencies are transparent and can be tracked in version
-     control (both in `yarn.lock` and `package.json`), making it easier to
+     control (both in `pnpm-lock.yaml` and `package.json`), making it easier to
      review changes during code reviews.
 
 5. **Mitigation of Breaking Changes**:
@@ -55,20 +55,20 @@ We decided to use version pinning (exact versions) in `package.json`.
      automatically applied, requiring proactive updates.
 
 3. **Dependency Management Complexity**:
-   - Both the `yarn.lock` file and `package.json` must be kept in sync, which
+   - Both the `pnpm-lock.yaml` file and `package.json` must be kept in sync, which
      could introduce confusion if one is not properly updated.
 
 ## Alternatives Considered
 
-### Exclude `yarn.lock` from Git Repository
+### Exclude `pnpm-lock.yaml` from Git Repository
 
 - **Pros**: Simplifies the repository by removing a large file.
 - **Cons**: Causes inconsistencies in dependency resolution, making builds
   less predictable.
 
-### Include `yarn.lock` in Git Without Version Pinning
+### Include `pnpm-lock.yaml` in Git Without Version Pinning
 
 - **Pros**: Balances consistency and flexibility by allowing automatic
   updates to direct dependencies.
 - **Cons**: Still allows potential changes to direct dependencies if the
-  `yarn.lock` file is regenerated.
+  `pnpm-lock.yaml` file is regenerated.

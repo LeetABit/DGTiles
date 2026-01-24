@@ -17,11 +17,12 @@ const typeScriptFiles = await getRepositoryFilesAsync(
         "gitattributes," +
         "gitignore," +
         "editorconfig," +
+        "prettierignore," +
         "md," +
         "html," +
         "json," +
         "lock," +
-        "yml," +
+        "yaml," +
         "png," +
         "txt," +
         "svg," +

@@ -6,6 +6,7 @@
   "engines": {
     "node": ">=24.0.0 <25.0.0"
   },
+  "packageManager": "pnpm@10.28.1",
   "scripts": {
     "lint": "tsc --build && cspell . --no-exit-code && prettier . --check && eslint",
     "lint:break": "tsc --build && cspell . && prettier . --check && eslint --max-warnings=0",
@@ -15,9 +16,9 @@
     "dev": "vite",
     "clean": "rm -rf ./dist",
     "build": "vite build",
-    "preview": "yarn build && vite preview",
-    "verify": "yarn clean && yarn lint:break && yarn test:run && yarn build",
-    "update": "yarn upgrade --latest --exact"
+    "preview": "pnpm build && vite preview",
+    "verify": "pnpm clean && pnpm lint:break && pnpm test:run && pnpm build",
+    "upgrade": "pnpm update --latest"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",
@@ -34,6 +35,7 @@
     "@types/react-dom": "19.1.9",
     "@vitejs/plugin-react-swc": "4.1.0",
     "cspell": "9.2.1",
+    "csstype": "3.2.3",
     "editorconfig": "3.0.1",
     "eslint": "9.36.0",
     "eslint-config-prettier": "10.1.8",
@@ -41,24 +43,14 @@
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "5.2.0",
     "jiti": "2.6.0",
-    "//": "When updating jsdom try to remove the resolutions for postcss",
-    "jsdom": "27.0.0",
+    "jsdom": "27.4.0",
     "minimatch": "10.0.3",
-    "prettier": "3.6.2",
+    "prettier": "3.8.1",
     "tsx": "4.20.5",
     "typescript": "5.9.2",
     "typescript-eslint": "8.44.1",
     "vite": "7.1.7",
     "vitest": "3.2.4",
     "vitest-axe": "1.0.0-pre.5"
-  },
-  "//": [
-    "This is for warning:",
-    "jsdom > cssstyle > @csstools/css-syntax-patches-for-csstree@1.0.14",
-    "has unmet peer dependency postcss@^8.4",
-    "Try to remove it when updating jsdom"
-  ],
-  "resolutions": {
-    "postcss": "8.5.6"
   }
 }

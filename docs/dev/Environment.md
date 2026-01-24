@@ -23,7 +23,7 @@ following files and directories are dedicated to supporting this service:
 - **`.github/workflows/` directory**:
   Contains GitHub Actions workflows for automating tasks such as continuous
   integration (CI), testing, and deployment. For example:
-  - `CI_CD.yml`: Defines the CI/CD pipeline, including steps for verifying the
+  - `CI_CD.yaml`: Defines the CI/CD pipeline, including steps for verifying the
     code, running tests, and deploying the website to GitHub Pages.
 
 - **`/docs/CODE_OF_CONDUCT.md`**:
@@ -52,5 +52,5 @@ following files and directories are dedicated to supporting this service:
 GitHub Pages is used for hosting the project's website. The following files and
 directories are dedicated to supporting this service:
 
-- `.github/workflows/CI_CD.yml`: GitHub Actions workflow for deploying the site
+- `.github/workflows/CI_CD.yaml`: GitHub Actions workflow for deploying the site
   to GitHub Pages.

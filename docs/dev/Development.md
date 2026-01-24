@@ -10,15 +10,15 @@ technical debt, and ensures a smooth development process for all contributors.
 To build, test, lint, or perform other operations with the source code, the
 following scripts are available in the `package.json` file:
 
-- **Lint the code**: `yarn lint`
-- **Fix linting issues**: `yarn fix`
-- **Run tests**: `yarn test`
-- **Start the development server**: `yarn dev`
-- **Clean the build directory**: `yarn clean`
-- **Build the application**: `yarn build`
-- **Preview the production build**: `yarn preview`
-- **Verify the project**: `yarn verify`
-- **Update dependencies to their latest versions**: `yarn update`
+- **Lint the code**: `pnpm lint`
+- **Fix linting issues**: `pnpm lint:fix`
+- **Run tests**: `pnpm test`
+- **Start the development server**: `pnpm dev`
+- **Clean the build directory**: `pnpm clean`
+- **Build the application**: `pnpm build`
+- **Preview the production build**: `pnpm preview`
+- **Verify the project**: `pnpm verify`
+- **Update dependencies to their latest versions**: `pnpm update`
 
 ## Build Tools
 
@@ -37,7 +37,7 @@ Vite uses native ESM in the browser and provides the following features:
   reducing startup time.
 - **Source Maps**: Automatically generated for easier debugging.
 
-The development server is started using the `yarn dev` script, which runs the
+The development server is started using the `pnpm dev` script, which runs the
 `vite` command.
 
 ### Production Build
@@ -52,14 +52,14 @@ The production build is optimized for performance and deployment. Vite leverages
 - **Static Asset Optimization**: Optimizes images, fonts, and other static
   assets.
 
-The production build is created using the `yarn build` script, which runs
+The production build is created using the `pnpm build` script, which runs
 `vite build`. This process generates the output in the `dist` directory, ready
 for deployment.
 
 ## Package Manager
 
-The project uses **Yarn** as the package manager to manage dependencies and
-scripts. Yarn ensures fast, reliable, and deterministic dependency management.
+The project uses **pnpm** as the package manager to manage dependencies and
+scripts. Pnpm ensures fast, reliable, and deterministic dependency management.
 All dependency versions are **pinned** in the `package.json` file to guarantee
 consistency across different environments and prevent unexpected updates.
 
@@ -68,15 +68,15 @@ consistency across different environments and prevent unexpected updates.
 - **Pinned Versions**: All dependencies are locked to specific versions in the
   `package.json` file, ensuring a stable and predictable development
   environment.
-- **Lockfile**: The `yarn.lock` file is checked into the repository to ensure
-  that all contributors and CI environments use the exact same versions of
-  dependencies.
-- **Dependency Updates**: The `yarn update` script is provided to update
+- **Lockfile**: The `pnpm-lock.yaml` file is checked into the repository to
+  ensure that all contributors and CI environments use the exact same versions
+  of dependencies.
+- **Dependency Updates**: The `pnpm upgrade` script is provided to update
   dependencies to their latest versions when needed.
-- **Script Management**: Yarn is used to run all project scripts, such as
-  `yarn lint`, `yarn build`, and `yarn test`.
+- **Script Management**: Pnpm is used to run all project scripts, such as
+  `pnpm lint`, `pnpm build`, and `pnpm test`.
 
-By using Yarn and maintaining the `yarn.lock` file in the repository, the
+By using pnpm and maintaining the `pnpm-lock.yaml` file in the repository, the
 project ensures consistency and reliability in dependency management across all
 environments.
 
@@ -109,17 +109,17 @@ within VSCode. This configuration is defined in the
 [`.vscode/launch.json`](../../.vscode/launch.json) file and allows developers
 to:
 
-- Debug scripts such as `yarn dev`, `yarn preview`, `yarn test`, and
-  `yarn lint`.
+- Debug scripts such as `pnpm dev`, `pnpm preview`, `pnpm test`, and
+  `pnpm lint`.
 - Set breakpoints and inspect variables during script execution.
 - Step through code to diagnose issues.
 
 The following launch configurations are available:
 
-- **Vite: Dev**: Launches the development server (`yarn dev`).
-- **Vite: Preview**: Launches the production preview server (`yarn preview`).
-- **Vite: Test**: Runs the test suite (`yarn test`).
-- **Vite: Lint**: Runs the linter (`yarn lint`).
+- **Vite: Dev**: Launches the development server (`pnpm dev`).
+- **Vite: Preview**: Launches the production preview server (`pnpm preview`).
+- **Vite: Test**: Runs the test suite (`pnpm test`).
+- **Vite: Lint**: Runs the linter (`pnpm lint`).
 
 ### Settings
 

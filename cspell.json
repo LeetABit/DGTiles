@@ -22,9 +22,10 @@
     "Wouter"
   ],
   "ignorePaths": [
-    "./yarn.lock",
     "**/node_modules/**",
     "**/dist/**",
-    "**/.git/**"
+    "**/.git/**",
+    "pnpm-lock.yaml",
+    "pnpm-workspace.yaml"
   ]
 }
