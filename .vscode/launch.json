@@ -43,6 +43,17 @@
       }
     },
     {
+      "name": "Vite: Build",
+      "request": "launch",
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}",
+      "command": "pnpm build",
+      "cascadeTerminateToConfigurations": ["Build"],
+      "presentation": {
+        "hidden": true
+      }
+    },
+    {
       "name": "Vite: Dev",
       "request": "launch",
       "type": "node-terminal",
@@ -81,6 +92,10 @@
     {
       "name": "Lint",
       "configurations": ["Vite: Lint"]
+    },
+    {
+      "name": "Build",
+      "configurations": ["Vite: Build"]
     }
   ]
 }

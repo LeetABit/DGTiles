@@ -10,8 +10,23 @@ import { serviceWorker } from "#/scripts/serviceWorkerPlugin.ts";
 export default defineConfig({
     build: {
         rollupOptions: {
+            output: {
+                manualChunks: (id) => {
+                    if (id.includes("service-worker")) {
+                        return "sw";
+                    }
+
+                    if (
+                        id.includes("node_modules") ||
+                        id.endsWith("commonjsHelpers.js")
+                    ) {
+                        return "vendor";
+                    }
+
+                    return "main";
+                },
+            },
             treeshake: {
-                moduleSideEffects: false,
                 preset: "smallest",
             },
         },

@@ -1,3 +1,7 @@
 onlyBuiltDependencies:
   - "@swc/core"
   - esbuild
+
+patchedDependencies:
+  chrome-launcher@1.2.1: patches/chrome-launcher@1.2.1.patch
+  vite: patches/vite.patch

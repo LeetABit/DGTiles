@@ -1,0 +1,27 @@
+diff --git a/dist/node/chunks/config.js b/dist/node/chunks/config.js
+index 782dc4d707f0009436224f3577f4fc46f3c68378..4f3eb1f3cb697c92afa6fd5d9765891fd6a5e557 100644
+--- a/dist/node/chunks/config.js
++++ b/dist/node/chunks/config.js
+@@ -26695,7 +26695,8 @@ function buildHtmlPlugin(config$2) {
+ 					if (canInlineEntry) assetTags = imports.map((chunk$1) => toScriptTag(chunk$1, toOutputAssetFilePath, isAsync));
+ 					else {
+ 						const { modulePreload } = this.environment.config.build;
+-						assetTags = [toScriptTag(chunk, toOutputAssetFilePath, isAsync)];
++						assetTags = [];
++						const scriptTag = toScriptTag(chunk, toOutputAssetFilePath, isAsync);
+ 						if (modulePreload !== false) {
+ 							const resolveDependencies = typeof modulePreload === "object" && modulePreload.resolveDependencies;
+ 							const importsFileNames = imports.filter((chunkOrUrl) => typeof chunkOrUrl !== "string").map((chunk$1) => chunk$1.fileName);
+@@ -26704,7 +26705,12 @@ function buildHtmlPlugin(config$2) {
+ 								hostType: "html"
+ 							}) : importsFileNames;
+ 							assetTags.push(...resolvedDeps.map((i$1) => toPreloadTag(i$1, toOutputAssetFilePath)));
++							const chunkFileName = typeof chunk === "string" ? chunk : toOutputAssetFilePath(chunk.fileName);
++							if (!resolvedDeps.includes(chunkFileName)) {
++								assetTags.push(toPreloadTag(chunkFileName, toOutputAssetFilePath))
++							}
+ 						}
++						assetTags.push(scriptTag);
+ 					}
+ 					assetTags.push(...getCssTagsForChunk(chunk, toOutputAssetFilePath));
+ 					result = injectToHead(result, assetTags);

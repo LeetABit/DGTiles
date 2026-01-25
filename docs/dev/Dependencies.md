@@ -56,3 +56,10 @@ package.json that are not imported by any source file.
   for testing and simulating browser environments.
 - **Used By:** `tests\axe.test.ts` file to make `document` global available in
   axe function.
+
+### `@lhci/cli`
+
+- **Purpose:** Lighthouse CI command-line interface for running Lighthouse audits
+  and managing performance budgets in continuous integration environments.
+- **Used By:** `package.json/scripts` element to run accessibility and performance
+  checks during lint commands.

@@ -26,7 +26,8 @@ const typeScriptFiles = await getRepositoryFilesAsync(
         "png," +
         "txt," +
         "svg," +
-        "ico}",
+        "ico," +
+        "patch}",
 );
 const expectedHeader = [
     "Copyright (c) Hubert Bukowski. All rights reserved.",

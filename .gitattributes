@@ -11,7 +11,7 @@
 .editorconfig           code
 .gitattributes          code
 .gitignore              code
-.prettierignore        code
+.prettierignore         code
 *.html                  code
 *.ico                   binary
 *.json                  code
@@ -22,4 +22,5 @@
 *.svg                   code
 *.tsx                   code
 *.txt                   text
-*.yaml                   code
+*.yaml                  code
+*.patch                 text

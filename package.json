@@ -13,15 +13,17 @@
     "lint:fix": "prettier . --write && eslint --fix",
     "test": "vitest",
     "test:run": "vitest run",
+    "evaluate": "lhci autorun",
     "dev": "vite",
     "clean": "rm -rf ./dist",
     "build": "vite build",
     "preview": "pnpm build && vite preview",
-    "verify": "pnpm clean && pnpm lint:break && pnpm test:run && pnpm build",
+    "verify": "pnpm clean && pnpm lint:break && pnpm test:run && pnpm evaluate && pnpm build",
     "upgrade": "pnpm update --latest"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",
+    "@lhci/cli": "0.15.1",
     "react": "19.1.1",
     "react-dom": "19.1.1",
     "react-router": "7.12.0"
