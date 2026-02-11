@@ -2,15 +2,15 @@
 //  Licensed under the MIT License.
 //  See LICENSE file in the project root for full license information.
 
-import { type Mock, afterEach, describe, expect, it, vi } from "vitest";
+import { type Mock, afterEach, describe, expect, test, vi } from "vitest";
 import type { Context } from "@actions/github/lib/context";
-import { getLatestTagsAsync } from "#/scripts/common/git.js";
+import { getLatestTagsAsync } from "./common/git";
 import type { getOctokit } from "@actions/github";
-import pushLatestTags from "#/scripts/pushLatestTags.js";
+import pushLatestTags from "./pushLatestTags";
 
 type GitHub = ReturnType<typeof getOctokit>;
-vi.mock("#/scripts/common/version.ts");
-vi.mock("#/scripts/common/git.ts");
+vi.mock("./common/version");
+vi.mock("./common/git");
 
 describe("createRemoteGitTag", () => {
     afterEach(() => {
@@ -35,7 +35,7 @@ describe("createRemoteGitTag", () => {
         sha: "test-sha",
     } as Context;
 
-    it("should create a new tag if it does not exist", async () => {
+    test("should create a new tag if it does not exist", async () => {
         (mockGithub.rest.git.getRef as unknown as Mock).mockRejectedValueOnce({
             status: 404,
         });
@@ -60,7 +60,7 @@ describe("createRemoteGitTag", () => {
         });
     });
 
-    it("should not create a tag if it already exists", async () => {
+    test("should not create a tag if it already exists", async () => {
         (mockGithub.rest.git.getRef as unknown as Mock).mockResolvedValueOnce(
             {},
         );
@@ -77,7 +77,7 @@ describe("createRemoteGitTag", () => {
         expect(mockGithub.rest.git.createRef).not.toHaveBeenCalled();
     });
 
-    it("should throw an error if getRef fails", async () => {
+    test("should throw an error if getRef fails", async () => {
         const unexpectedError = new Error("Unexpected error");
         (mockGithub.rest.git.getRef as unknown as Mock).mockRejectedValueOnce(
             unexpectedError,
@@ -95,7 +95,7 @@ describe("createRemoteGitTag", () => {
         });
     });
 
-    it("should throw an error if createRef fails", async () => {
+    test("should throw an error if createRef fails", async () => {
         (mockGithub.rest.git.getRef as unknown as Mock).mockRejectedValueOnce({
             status: 404,
         });

@@ -9,22 +9,23 @@ import {
 import { type Plugin, normalizePath } from "vite";
 import { readFile, readdir, writeFile } from "fs/promises";
 
-const ONE_CAR_FROM_START = 1;
-const ONE_CAR_FROM_END = -1;
+const ONE_CHAR_FROM_START = 1;
+const ONE_CHAR_FROM_END = -1;
+
+export const SERVICE_WORKER_PLUGIN_NAME = "service-worker";
+export const SERVICE_WORKER_MODULE_ID = `virtual:${SERVICE_WORKER_PLUGIN_NAME}`;
 
 /**
  * A Vite plugin to handle service worker registration.
- * @param {string} filePath The path to the service worker file.
+ * @param {string} sourceFilePath The path to the service worker file.
  * @returns {Plugin} The Vite plugin.
  */
-export function serviceWorker(filePath: string): Plugin {
-    const pluginName = "service-worker";
-    const virtualModuleId = `virtual:${pluginName}`;
-    const resolvedVirtualModuleId = `\0${virtualModuleId}`;
+export function serviceWorker(sourceFilePath: string): Plugin {
+    const resolvedVirtualModuleId = `\0${SERVICE_WORKER_MODULE_ID}`;
     let isBuild = false;
 
     return {
-        name: pluginName,
+        name: SERVICE_WORKER_PLUGIN_NAME,
 
         config(_, { command }) {
             isBuild = command === "build";
@@ -33,7 +34,7 @@ export function serviceWorker(filePath: string): Plugin {
                     rollupOptions: {
                         input: {
                             main: "index.html",
-                            sw: filePath,
+                            sw: sourceFilePath,
                         },
                         output: {
                             entryFileNames: ({ name }) => {
@@ -51,19 +52,19 @@ export function serviceWorker(filePath: string): Plugin {
 
         load(id) {
             if (id === resolvedVirtualModuleId) {
-                let filename = isBuild ? "sw.js" : filePath;
+                let filename = isBuild ? "sw.js" : sourceFilePath;
                 if (!filename.startsWith("/")) {
                     filename = `/${filename}`;
                 }
 
-                return `export const serviceWorkerFilePath = '${filename}'`;
+                return `export const serviceWorkerFilePath = "${filename}";`;
             }
 
             return null;
         },
 
         resolveId(id) {
-            if (id === virtualModuleId) {
+            if (id === SERVICE_WORKER_MODULE_ID) {
                 return resolvedVirtualModuleId;
             }
 
@@ -96,7 +97,7 @@ export function serviceWorker(filePath: string): Plugin {
                 )
                 .map((fileName) => `"${fileName}"`)
                 .join(",")
-                .slice(ONE_CAR_FROM_START, ONE_CAR_FROM_END);
+                .slice(ONE_CHAR_FROM_START, ONE_CHAR_FROM_END);
             const swFilePath = "dist/sw.js";
             let swContent = await readFile(swFilePath, "utf-8");
             swContent = swContent.replace(/\{APP_VERSION\}/gu, version);

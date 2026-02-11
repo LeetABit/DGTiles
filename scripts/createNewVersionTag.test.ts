@@ -2,14 +2,14 @@
 //  Licensed under the MIT License.
 //  See LICENSE file in the project root for full license information.
 
-import { afterEach, describe, expect, it, vi } from "vitest";
-import { createTagAsync, doesTagExistAsync } from "#/scripts/common/git.js";
-import { calculateNewVersion } from "#/scripts/common/version.ts";
-import createNewVersionTag from "#/scripts/createNewVersionTag.ts";
+import { afterEach, describe, expect, test, vi } from "vitest";
+import { createTagAsync, doesTagExistAsync } from "./common/git";
+import { calculateNewVersion } from "./common/version";
+import createNewVersionTag from "./createNewVersionTag";
 
-vi.mock("#/scripts/common/version.ts");
-vi.mock("#/scripts/common/exec.ts");
-vi.mock("#/scripts/common/git.ts");
+vi.mock("./common/version");
+vi.mock("./common/exec");
+vi.mock("./common/git");
 
 describe("createNewVersionTag", () => {
     afterEach(() => {
@@ -17,7 +17,7 @@ describe("createNewVersionTag", () => {
         vi.resetAllMocks();
     });
 
-    it("should create a new tag if it does not exist", async () => {
+    test("should create a new tag if it does not exist", async () => {
         vi.mocked(calculateNewVersion).mockResolvedValue({
             major: 1,
             minor: 0,
@@ -30,7 +30,7 @@ describe("createNewVersionTag", () => {
         expect(createTagAsync).toHaveBeenCalledWith("v1.0.0");
     });
 
-    it("should not create a tag if it already exists", async () => {
+    test("should not create a tag if it already exists", async () => {
         vi.mocked(calculateNewVersion).mockResolvedValue({
             major: 1,
             minor: 0,

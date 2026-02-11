@@ -3,9 +3,10 @@
 //  See LICENSE file in the project root for full license information.
 
 import { defineConfig } from "vitest/config";
+import { playwright } from "@vitest/browser-playwright";
 import react from "@vitejs/plugin-react-swc";
 import { resolve } from "path";
-import { serviceWorker } from "#/scripts/serviceWorkerPlugin.ts";
+import { serviceWorker } from "#/scripts/serviceWorkerPlugin";
 
 export default defineConfig({
     build: {
@@ -32,7 +33,7 @@ export default defineConfig({
         },
     },
     esbuild: { legalComments: "none" },
-    plugins: [react(), serviceWorker("sw/service-worker.ts")],
+    plugins: [react(), serviceWorker("src/sw/service-worker.ts")],
     preview: {
         host: "0.0.0.0",
         port: 5000,
@@ -48,27 +49,101 @@ export default defineConfig({
         port: 5000,
     },
     test: {
+        coverage: {
+            provider: "v8",
+            reporter: ["text", "html"],
+            reportsDirectory: "results/coverage",
+            thresholds: {
+                lines: 100,
+                functions: 100,
+                branches: 100,
+                statements: 100,
+                perFile: true,
+                autoUpdate: true,
+            },
+        },
         projects: [
             {
-                extends: true,
                 test: {
-                    include: [
-                        "tests/meta/**/*.test.ts",
-                        "tests/scripts/**/*.test.ts",
-                    ],
+                    include: ["scripts/**/*.test.ts"],
+                    alias: {
+                        "#/": `${resolve(__dirname)}/`,
+                        "@/": `${resolve(__dirname, "src")}/`,
+                    },
                 },
+                plugins: [
+                    {
+                        name: "virtual-modules",
+                        resolveId(id) {
+                            if (id.startsWith("virtual:")) {
+                                return id;
+                            }
+
+                            return null;
+                        },
+                    },
+                ],
             },
             {
-                extends: true,
                 test: {
                     environment: "jsdom",
-                    exclude: [
-                        "tests/meta/**/*.test.ts",
-                        "tests/scripts/**/*.test.ts",
-                    ],
                     globals: true,
-                    include: ["tests/**/*.test.ts"],
+                    include: [
+                        "src/**/*.test.ts",
+                        "src/**/*.test.tsx",
+                        "tests/**/*.test.ts",
+                    ],
+                    alias: {
+                        "#/": `${resolve(__dirname)}/`,
+                        "@/": `${resolve(__dirname, "src")}/`,
+                    },
                 },
+                plugins: [
+                    {
+                        name: "virtual-modules",
+                        resolveId(id) {
+                            if (id.startsWith("virtual:")) {
+                                return id;
+                            }
+
+                            return null;
+                        },
+                    },
+                ],
+            },
+            {
+                test: {
+                    browser: {
+                        enabled: true,
+                        headless: true,
+                        instances: [{ browser: "chromium" }],
+                        provider: playwright(),
+                        screenshotFailures: false,
+                    },
+                    globals: true,
+                    include: [
+                        "src/**/*.browser.ts",
+                        "src/**/*.browser.tsx",
+                        "tests/**/*.browser.ts",
+                        "tests/**/*.browser.tsx",
+                    ],
+                    alias: {
+                        "#/": `${resolve(__dirname)}/`,
+                        "@/": `${resolve(__dirname, "src")}/`,
+                    },
+                },
+                plugins: [
+                    {
+                        name: "virtual-modules",
+                        resolveId(id) {
+                            if (id.startsWith("virtual:")) {
+                                return id;
+                            }
+
+                            return null;
+                        },
+                    },
+                ],
             },
         ],
         setupFiles: ["vitest-setup.ts"],

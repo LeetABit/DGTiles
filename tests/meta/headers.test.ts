@@ -6,8 +6,8 @@ import { describe, expect, test } from "vitest";
 import {
     getProjectRootAsync,
     getRepositoryFilesAsync,
-} from "#/scripts/common/git.ts";
-import { evaluateFileContentAsync } from "#/scripts/common/files.ts";
+} from "#/scripts/common/git";
+import { evaluateFileContentAsync } from "#/scripts/common/files";
 
 const MAX_EXTRA_LINES = 1;
 const rootPath = await getProjectRootAsync();
@@ -29,6 +29,7 @@ const typeScriptFiles = await getRepositoryFilesAsync(
         "ico," +
         "patch}",
 );
+
 const expectedHeader = [
     "Copyright (c) Hubert Bukowski. All rights reserved.",
     "Licensed under the MIT License.",
@@ -36,7 +37,7 @@ const expectedHeader = [
 ];
 
 describe.each(typeScriptFiles)("File '%s'", (file: string) => {
-    test("contains copyright header.", async () => {
+    test("contains copyright header", async () => {
         let lineToFindIndex = 0;
         let lastMatchedLineNumber = -1;
         const result = await evaluateFileContentAsync(
@@ -59,8 +60,6 @@ describe.each(typeScriptFiles)("File '%s'", (file: string) => {
             },
         );
 
-        expect(result, `File '${file}' does not contain expected header.`).toBe(
-            true,
-        );
+        expect(result).toBe(true);
     });
 });

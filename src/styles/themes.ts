@@ -5,9 +5,15 @@
 import type { Property } from "csstype";
 import type { Theme } from "@emotion/react";
 
-export const BACKGROUND_COLOR: Property.Color = "white";
+export const DEFAULT_BACKGROUND_COLOR: Property.Color = "#eee";
+export const DEFAULT_BACKGROUND_MAJOR_GRID_COLOR: Property.Color = "#ddd";
+export const DEFAULT_BACKGROUND_MINOR_GRID_COLOR: Property.Color = "#ccc";
 export const theme: Theme = {
-    workspace: {
-        background: `${BACKGROUND_COLOR}`,
+    background: {
+        color: DEFAULT_BACKGROUND_COLOR,
+        grid: {
+            majorColor: DEFAULT_BACKGROUND_MAJOR_GRID_COLOR,
+            minorColor: DEFAULT_BACKGROUND_MINOR_GRID_COLOR,
+        },
     },
 };

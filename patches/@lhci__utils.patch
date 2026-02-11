@@ -1,0 +1,13 @@
+diff --git a/src/saved-reports.js b/src/saved-reports.js
+index 739f2da2a8faa3e1f1aa1d3552973e2fab480dd7..f347801efa56999961ec08b28031d58d625423a6 100644
+--- a/src/saved-reports.js
++++ b/src/saved-reports.js
+@@ -7,7 +7,7 @@
+ 
+ const fs = require('fs');
+ const path = require('path');
+-const LHCI_DIR = path.join(process.cwd(), '.lighthouseci');
++const LHCI_DIR = path.join(process.cwd(), 'results/lighthouse');
+ const LHR_REGEX = /^lhr-\d+\.json$/;
+ const LH_HTML_REPORT_REGEX = /^lhr-\d+\.html$/;
+ const ASSERTION_RESULTS_PATH = path.join(LHCI_DIR, 'assertion-results.json');

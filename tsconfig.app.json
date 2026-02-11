@@ -28,7 +28,9 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noUncheckedIndexedAccess": true,
-    "noUnusedLocals": true,
+    // @typescript-eslint/no-unused-vars handles this and may be configured to
+    // accept _ as a discarded variable
+    "noUnusedLocals": false,
     "noUnusedParameters": true,
     "strictBindCallApply": true,
     "strictBuiltinIteratorReturn": true,
@@ -43,6 +45,6 @@
     "resolvePackageJsonImports": true,
     "rewriteRelativeImportExtensions": false
   },
-  "include": ["./scripts", "./src", "./tests", "./*.ts"],
-  "exclude": ["./sw"]
+  "include": ["./**/*.ts", "./**/*.tsx"],
+  "exclude": ["./src/sw/"]
 }

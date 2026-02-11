@@ -2,20 +2,20 @@
 //  Licensed under the MIT License.
 //  See LICENSE file in the project root for full license information.
 
-import * as git from "#/scripts/common/git.ts";
+import * as git from "./git.ts";
 import {
     INITIAL_VERSION,
     type VersionInfo,
     bumpVersion,
     calculateNewVersion,
     getLatestVersionAsync,
-} from "#/scripts/common/version.ts";
-import { describe, expect, it, vi } from "vitest";
+} from "./version.ts";
+import { describe, expect, test, vi } from "vitest";
 
-vi.mock("#/scripts/common/git.ts");
+vi.mock("./git");
 
 describe("bumpVersion", () => {
-    it("should bump major version if a message starts with 'Breaking:'", () => {
+    test("should bump major version if a message starts with 'Breaking:'", () => {
         const currentVersion: VersionInfo = {
             major: 1,
             minor: 0,
@@ -30,7 +30,7 @@ describe("bumpVersion", () => {
         });
     });
 
-    it("should bump minor version if a message starts with 'Feature:'", () => {
+    test("should bump minor version if a message starts with 'Feature:'", () => {
         const currentVersion: VersionInfo = {
             major: 1,
             minor: 0,
@@ -45,7 +45,7 @@ describe("bumpVersion", () => {
         });
     });
 
-    it("should bump patch version if there are other messages", () => {
+    test("should bump patch version if there are other messages", () => {
         const currentVersion: VersionInfo = {
             major: 1,
             minor: 0,
@@ -60,7 +60,7 @@ describe("bumpVersion", () => {
         });
     });
 
-    it("should return the same version if there are no messages", () => {
+    test("should return the same version if there are no messages", () => {
         const currentVersion: VersionInfo = {
             major: 1,
             minor: 0,
@@ -73,7 +73,7 @@ describe("bumpVersion", () => {
 });
 
 describe("getLatestVersionAsync", () => {
-    it("should return the latest version from tags", async () => {
+    test("should return the latest version from tags", async () => {
         vi.spyOn(git, "getLatestTagsAsync").mockResolvedValue([
             "v1.2.3",
             "v1.1.0",
@@ -86,7 +86,7 @@ describe("getLatestVersionAsync", () => {
         });
     });
 
-    it("should return null if no valid version tags are found", async () => {
+    test("should return null if no valid version tags are found", async () => {
         vi.spyOn(git, "getLatestTagsAsync").mockResolvedValue([
             "invalid-tag",
             "v1.2",
@@ -97,13 +97,13 @@ describe("getLatestVersionAsync", () => {
 });
 
 describe("calculateNewVersion", () => {
-    it("should return INITIAL_VERSION if no version exists", async () => {
+    test("should return INITIAL_VERSION if no version exists", async () => {
         vi.spyOn(git, "getLatestTagsAsync").mockResolvedValue([]);
         const result = await calculateNewVersion();
         expect(result).toEqual(INITIAL_VERSION);
     });
 
-    it("should return the last version there is no new commits", async () => {
+    test("should return the last version there is no new commits", async () => {
         vi.spyOn(git, "getLatestTagsAsync").mockResolvedValue(["v1.2.3"]);
         vi.spyOn(git, "getCommitHashAsync")
             .mockResolvedValueOnce("abc123")
@@ -116,7 +116,7 @@ describe("calculateNewVersion", () => {
         });
     });
 
-    it("should bump the version based on the commit message", async () => {
+    test("should bump the version based on the commit message", async () => {
         vi.spyOn(git, "getLatestTagsAsync").mockResolvedValue(["v1.2.3"]);
         vi.spyOn(git, "getCommitHashAsync")
             .mockResolvedValueOnce("abc123")

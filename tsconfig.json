@@ -9,5 +9,8 @@
   },
   "files": [],
   "include": [],
-  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./sw" }]
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.sw.json" }
+  ]
 }

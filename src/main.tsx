@@ -9,6 +9,7 @@ import axe from "@axe-core/react";
 import { serviceWorkerFilePath } from "virtual:service-worker";
 
 const ONE_SECOND_IN_MILLISECONDS = 1000;
+globalThis.EMOTION_RUNTIME_AUTO_LABEL = true;
 
 const baseUrl = document.getElementsByTagName("base")[0]?.getAttribute("href");
 if (baseUrl === undefined || baseUrl === null) {
@@ -31,13 +32,9 @@ root.render(
 );
 
 if ("serviceWorker" in navigator && import.meta.env.PROD) {
-    navigator.serviceWorker
-        .register(serviceWorkerFilePath, {
-            type: "module",
-        })
-        .catch((error: unknown) => {
-            throw error;
-        });
+    await navigator.serviceWorker.register(serviceWorkerFilePath, {
+        type: "module",
+    });
 }
 
 if (import.meta.env.DEV) {

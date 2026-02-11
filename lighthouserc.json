@@ -4,7 +4,8 @@
       "startServerCommand": "pnpm preview",
       "url": ["http://localhost:5000"],
       "numberOfRuns": 3,
-      "startServerReadyPattern": "localhost"
+      "startServerReadyPattern": "localhost",
+      "outputDir": "./custom-lighthouse-results"
     },
     "assert": {
       "preset": "lighthouse:all",

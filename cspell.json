@@ -10,14 +10,17 @@
     "dgtiles",
     "leetabit",
     "lhci",
+    "lighthouseci",
     "linecap",
     "multilines",
+    "networkidle",
     "nonblock",
     "nonconstructor",
     "nonoctal",
     "npxms",
     "precached",
     "precaches",
+    "unstub",
     "viewports",
     "WCAG",
     "wireframes",
@@ -28,6 +31,8 @@
     "**/dist/**",
     "**/.git/**",
     "pnpm-lock.yaml",
-    "pnpm-workspace.yaml"
+    "pnpm-workspace.yaml",
+    "/results/",
+    "/coverage/"
   ]
 }

@@ -2,10 +2,10 @@
 //  Licensed under the MIT License.
 //  See LICENSE file in the project root for full license information.
 
+import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint, {
     type InfiniteDepthConfigWithExtends,
 } from "typescript-eslint";
-import { defineConfig } from "eslint/config";
 import eslintConfigPrettier from "eslint-config-prettier";
 import js from "@eslint/js";
 import jsdoc from "eslint-plugin-jsdoc";
@@ -73,7 +73,7 @@ const jsRules: InfiniteDepthConfigWithExtends = {
         "no-constant-binary-expression": "warn",
         "no-constant-condition": "warn",
         "no-constructor-return": "warn",
-        "no-continue": "warn",
+        "no-continue": "off",
         "no-control-regex": "warn",
         "no-debugger": "warn",
         "no-delete-var": "warn",
@@ -121,7 +121,7 @@ const jsRules: InfiniteDepthConfigWithExtends = {
         "no-multi-assign": "warn",
         "no-multi-str": "warn",
         "no-negated-condition": "warn",
-        "no-nested-ternary": "warn",
+        "no-nested-ternary": "off",
         "no-new": "warn",
         "no-new-func": "warn",
         "no-new-native-nonconstructor": "warn",
@@ -133,7 +133,7 @@ const jsRules: InfiniteDepthConfigWithExtends = {
         "no-octal": "warn",
         "no-octal-escape": "warn",
         "no-param-reassign": "warn",
-        "no-plusplus": "warn",
+        "no-plusplus": "off",
         "no-promise-executor-return": "warn",
         "no-proto": "warn",
         "no-prototype-builtins": "warn",
@@ -161,7 +161,7 @@ const jsRules: InfiniteDepthConfigWithExtends = {
         "no-undef": "off",
         "no-undef-init": "off",
         "no-undefined": "off",
-        "no-underscore-dangle": "warn",
+        "no-underscore-dangle": "off",
         "no-unexpected-multiline": "warn",
         "no-unmodified-loop-condition": "warn",
         "no-unneeded-ternary": "warn",
@@ -211,14 +211,14 @@ const jsRules: InfiniteDepthConfigWithExtends = {
         "require-unicode-regexp": "warn",
         "require-yield": "warn",
         "sort-imports": "warn",
-        "sort-keys": ["warn", "asc", { allowLineSeparatedGroups: true }],
+        "sort-keys": "off",
         "sort-vars": "warn",
         strict: "warn",
         "symbol-description": "warn",
         "unicode-bom": "warn",
         "use-isnan": "warn",
         "valid-typeof": "warn",
-        "vars-on-top": "warn",
+        "vars-on-top": "off",
         yoda: "warn",
     },
 };
@@ -244,8 +244,8 @@ const typescriptRules: InfiniteDepthConfigWithExtends = {
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/explicit-member-accessibility": "warn",
         "@typescript-eslint/explicit-module-boundary-types": "warn",
-        "@typescript-eslint/init-declarations": "warn",
-        "@typescript-eslint/max-params": "warn",
+        "@typescript-eslint/init-declarations": "off",
+        "@typescript-eslint/max-params": ["warn", { max: 5 }],
         "@typescript-eslint/member-ordering": "warn",
         "@typescript-eslint/method-signature-style": "warn",
         "@typescript-eslint/naming-convention": [
@@ -274,6 +274,10 @@ const typescriptRules: InfiniteDepthConfigWithExtends = {
                 format: ["PascalCase"],
                 selector: "typeLike",
             },
+            {
+                format: null,
+                selector: "property",
+            },
         ],
         "@typescript-eslint/no-array-constructor": "warn",
         "@typescript-eslint/no-array-delete": "warn",
@@ -297,7 +301,7 @@ const typescriptRules: InfiniteDepthConfigWithExtends = {
         "@typescript-eslint/no-inferrable-types": "warn",
         "@typescript-eslint/no-invalid-this": "off",
         "@typescript-eslint/no-invalid-void-type": "warn",
-        "@typescript-eslint/no-loop-func": "warn",
+        "@typescript-eslint/no-loop-func": "off",
         "@typescript-eslint/no-magic-numbers": ["warn", { ignore: [0, 1] }],
         "@typescript-eslint/no-meaningless-void-operator": "warn",
         "@typescript-eslint/no-misused-new": "warn",
@@ -330,14 +334,17 @@ const typescriptRules: InfiniteDepthConfigWithExtends = {
         "@typescript-eslint/no-unsafe-call": "warn",
         "@typescript-eslint/no-unsafe-declaration-merging": "warn",
         "@typescript-eslint/no-unsafe-enum-comparison": "warn",
-        "@typescript-eslint/no-unsafe-function-type": "warn",
+        "@typescript-eslint/no-unsafe-function-type": "off",
         "@typescript-eslint/no-unsafe-member-access": "warn",
         "@typescript-eslint/no-unsafe-return": "warn",
         "@typescript-eslint/no-unsafe-type-assertion": "warn",
         "@typescript-eslint/no-unsafe-unary-minus": "warn",
         "@typescript-eslint/no-unused-expressions": "warn",
-        "@typescript-eslint/no-unused-vars": "warn",
-        "@typescript-eslint/no-use-before-define": "warn",
+        "@typescript-eslint/no-unused-vars": [
+            "warn",
+            { varsIgnorePattern: "^_" },
+        ],
+        "@typescript-eslint/no-use-before-define": "off",
         "@typescript-eslint/no-useless-constructor": "warn",
         "@typescript-eslint/no-useless-empty-export": "warn",
         "@typescript-eslint/no-wrapper-object-types": "warn",
@@ -370,6 +377,7 @@ const typescriptRules: InfiniteDepthConfigWithExtends = {
         "@typescript-eslint/restrict-template-expressions": "warn",
         "@typescript-eslint/return-await": "warn",
         "@typescript-eslint/strict-boolean-expressions": "warn",
+        "@typescript-eslint/strict-void-return": "off",
         "@typescript-eslint/switch-exhaustiveness-check": "warn",
         "@typescript-eslint/triple-slash-reference": "warn",
         "@typescript-eslint/typedef": "off",
@@ -434,12 +442,20 @@ const jsdocRules: InfiniteDepthConfigWithExtends = {
     },
 };
 
-const config = defineConfig(
-    eslintConfigPrettier,
+const config = defineConfig([
+    globalIgnores(["./dist", "./results", "./node_modules"]),
     {
-        ignores: ["./dist"],
+        languageOptions: {
+            ecmaVersion: 2024,
+            parser: tseslint.parser,
+            parserOptions: {
+                projectService: true,
+                tsconfigRootDir: import.meta.dirname,
+            },
+        },
     },
     {
+        files: ["./**/*.ts", "./**/*.tsx"],
         extends: [
             js.configs.all,
             tseslint.configs.all,
@@ -448,44 +464,56 @@ const config = defineConfig(
             jsdoc.configs["flat/recommended-typescript"],
             jsdoc.configs["flat/stylistic-typescript"],
         ],
-        files: ["./**/*.{ts,tsx}"],
-        languageOptions: {
-            ecmaVersion: 2024,
-            parserOptions: {
-                projectService: true,
-                tsconfigRootDir: import.meta.dirname,
-            },
-        },
-        plugins: {
-            react,
-            "react-hooks": reactHooks,
-        },
         rules: {
             ...jsRules.rules,
             ...typescriptRules.rules,
             ...jsdocRules.rules,
+            ...eslintConfigPrettier.rules,
         },
     },
     {
+        name: "Source",
+        files: ["./**/*.tsx"],
+        plugins: {
+            react,
+            "react-hooks": reactHooks,
+        },
+    },
+    {
+        name: "Scripts",
         files: ["./scripts/**/*.ts"],
         rules: {
             "no-console": "off",
         },
     },
     {
-        files: ["./tests/**/*.ts"],
+        name: "Tests",
+        files: [
+            "./**/*.test.ts",
+            "./**/*.test.tsx",
+            "./**/*.browser.ts",
+            "./**/*.browser.tsx",
+        ],
         rules: {
             "@typescript-eslint/no-magic-numbers": "off",
             "@typescript-eslint/no-unsafe-type-assertion": "off",
+            "@typescript-eslint/no-empty-function": "off",
+            "@typescript-eslint/no-unsafe-assignment": "off",
+            "@typescript-eslint/no-explicit-any": "off",
+            "@typescript-eslint/no-unsafe-return": "off",
+            "max-lines": "off",
+            "max-lines-per-function": "off",
+            "no-console": "off",
         },
     },
     {
+        name: "Configuration",
         files: ["./*.ts"],
         rules: {
             "@typescript-eslint/naming-convention": ["off"],
             "max-lines": ["off"],
         },
     },
-);
+]);
 
 export default config;

@@ -12,16 +12,16 @@ import {
     getLatestTagsAsync,
     getProjectRootAsync,
     getRepositoryFilesAsync,
-} from "#/scripts/common/git.ts";
-import { describe, expect, it, vi } from "vitest";
-import { execCommandAsync } from "#/scripts/common/exec.ts";
+} from "./git";
+import { describe, expect, test, vi } from "vitest";
+import { execCommandAsync } from "./exec";
 import { existsSync } from "fs";
 
-vi.mock("#/scripts/common/exec.ts");
+vi.mock("./exec");
 vi.mock("fs");
 
 describe("getProjectRootAsync", () => {
-    it("should return the root directory of the Git repository", async () => {
+    test("should return the root directory of the Git repository", async () => {
         vi.mocked(execCommandAsync).mockResolvedValue("/root/project");
         vi.mocked(existsSync).mockReturnValue(true);
 
@@ -29,7 +29,7 @@ describe("getProjectRootAsync", () => {
         expect(result).toBe("/root/project");
     });
 
-    it("should throw an error if the project root is missing", async () => {
+    test("should throw an error if the project root is missing", async () => {
         vi.mocked(execCommandAsync).mockResolvedValue("");
         vi.mocked(existsSync).mockReturnValue(false);
 
@@ -40,7 +40,7 @@ describe("getProjectRootAsync", () => {
 });
 
 describe("getFileGitAttributesAsync", () => {
-    it("should return Git attributes for a file", async () => {
+    test("should return Git attributes for a file", async () => {
         vi.mocked(execCommandAsync).mockResolvedValue("attr1\nattr2");
 
         const result = await getFileGitAttributesAsync("file.txt");
@@ -49,7 +49,7 @@ describe("getFileGitAttributesAsync", () => {
 });
 
 describe("getRepositoryFilesAsync", () => {
-    it("should return files matching the pattern", async () => {
+    test("should return files matching the pattern", async () => {
         vi.mocked(execCommandAsync).mockResolvedValue("file1.txt\nfile2.js");
         vi.mocked(existsSync).mockReturnValue(true);
 
@@ -59,7 +59,7 @@ describe("getRepositoryFilesAsync", () => {
 });
 
 describe("getCommitHashAsync", () => {
-    it("should return the commit hash for a revision", async () => {
+    test("should return the commit hash for a revision", async () => {
         vi.mocked(execCommandAsync).mockResolvedValue("abc123");
 
         const result = await getCommitHashAsync("HEAD");
@@ -68,7 +68,7 @@ describe("getCommitHashAsync", () => {
 });
 
 describe("getLatestTagsAsync", () => {
-    it("should return the latest tags matching the pattern", async () => {
+    test("should return the latest tags matching the pattern", async () => {
         vi.mocked(execCommandAsync).mockResolvedValue("v1.0.0\nv1.1.0");
 
         const result = await getLatestTagsAsync("", "v*");
@@ -77,7 +77,7 @@ describe("getLatestTagsAsync", () => {
 });
 
 describe("getCommitMessageAsync", () => {
-    it("should return the commit message for a revision", async () => {
+    test("should return the commit message for a revision", async () => {
         vi.mocked(execCommandAsync).mockResolvedValue("Initial commit");
 
         const result = await getCommitMessageAsync("HEAD");
@@ -86,21 +86,47 @@ describe("getCommitMessageAsync", () => {
 });
 
 describe("getAllTagsWithDateAndMessagesAsync", () => {
-    it("should return all tags with creation date and messages", async () => {
+    test(
+        "should return all tags with creation date, messages and additional" +
+            "lines",
+        async () => {
+            vi.mocked(execCommandAsync).mockResolvedValue(
+                "v1.0.0 2023-01-01 Initial\n" +
+                    "Unknown line\n" +
+                    "v1.1.0 2023-02-01 Update",
+            );
+
+            const result = await getAllTagsWithDateAndMessagesAsync("v*");
+            expect(result).toEqual([
+                {
+                    date: new Date("2023-01-01"),
+                    messages: ["Initial", "Unknown line"],
+                    name: "v1.0.0",
+                },
+                {
+                    date: new Date("2023-02-01"),
+                    messages: ["Update"],
+                    name: "v1.1.0",
+                },
+            ]);
+        },
+    );
+
+    test("should handle empty lines returned by git command", async () => {
         vi.mocked(execCommandAsync).mockResolvedValue(
-            "v1.0.0 2023-01-01 Initial\nv1.1.0 2023-02-01 Update",
+            "v1.0.0 2023-01-01 First\n\n\nv1.1.0 2023-02-01 Second\n",
         );
 
         const result = await getAllTagsWithDateAndMessagesAsync("v*");
         expect(result).toEqual([
             {
                 date: new Date("2023-01-01"),
-                messages: ["Initial"],
+                messages: ["First"],
                 name: "v1.0.0",
             },
             {
                 date: new Date("2023-02-01"),
-                messages: ["Update"],
+                messages: ["Second"],
                 name: "v1.1.0",
             },
         ]);
@@ -108,7 +134,7 @@ describe("getAllTagsWithDateAndMessagesAsync", () => {
 });
 
 describe("createTagAsync", () => {
-    it("should create a new Git tag for the current commit", async () => {
+    test("should create a new Git tag for the current commit", async () => {
         vi.mocked(execCommandAsync).mockResolvedValue("");
 
         await expect(createTagAsync("v1.2.0")).resolves.not.toThrow();
@@ -117,7 +143,7 @@ describe("createTagAsync", () => {
         );
     });
 
-    it("should throw an error if the command fails", async () => {
+    test("should throw an error if the command fails", async () => {
         vi.mocked(execCommandAsync).mockRejectedValue(
             new Error("Command failed"),
         );
@@ -129,21 +155,21 @@ describe("createTagAsync", () => {
 });
 
 describe("doesTagExistAsync", () => {
-    it("should return true if the tag exists", async () => {
+    test("should return true if the tag exists", async () => {
         vi.mocked(execCommandAsync).mockResolvedValue("v1.0.0");
 
         const result = await doesTagExistAsync("v1.0.0");
         expect(result).toBe(true);
     });
 
-    it("should return false if the tag does not exist", async () => {
+    test("should return false if the tag does not exist", async () => {
         vi.mocked(execCommandAsync).mockResolvedValue("");
 
         const result = await doesTagExistAsync("v1.0.0");
         expect(result).toBe(false);
     });
 
-    it("should throw an error if the command fails", async () => {
+    test("should throw an error if the command fails", async () => {
         vi.mocked(execCommandAsync).mockRejectedValue(
             new Error("Command failed"),
         );

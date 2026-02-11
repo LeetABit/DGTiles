@@ -23,10 +23,6 @@ export async function getProjectRootAsync(): Promise<string> {
         .split("\n")
         .find((file) => existsSync(file));
 
-    if (!(result ?? "")) {
-        throw new Error("Could not find project root.");
-    }
-
     if (result === undefined || result === "") {
         throw new Error("Could not find project root.");
     }

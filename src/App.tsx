@@ -5,28 +5,44 @@
 import { type CSSObject, Global } from "@emotion/react";
 import { BrowserRouter } from "react-router";
 import React from "react";
+import { theme } from "./styles/themes";
 
 interface Props {
     basename: string;
 }
 
+const backgroundColor = theme.background.color;
+const majorGridColor = theme.background.grid.majorColor;
+const minorGridColor = theme.background.grid.minorColor;
+
 const globalStyle: CSSObject = {
     body: {
-        background: "#eee",
+        background: backgroundColor,
         backgroundImage:
-            "linear-gradient(#ccc 0.07rem, transparent 0)," +
-            "linear-gradient(90deg, #ccc 0.07rem, transparent 0), " +
-            "linear-gradient(#ddd 0.05rem, transparent 0)," +
-            "linear-gradient(90deg, #ddd 0.05rem, transparent 0)",
+            `linear-gradient(` +
+            `${minorGridColor} 0.07rem, transparent 0),` +
+            `linear-gradient(` +
+            `90deg, ${minorGridColor} 0.07rem, transparent 0),` +
+            `linear-gradient(` +
+            `${majorGridColor} 0.05rem, transparent 0),` +
+            `linear-gradient(` +
+            `90deg, ${majorGridColor} 0.05rem, transparent 0)`,
         backgroundSize: "2cm 2cm, 2cm 2cm, 0.5cm 0.5cm, 0.5cm 0.5cm",
         margin: "0px",
+        position: "absolute",
+        height: "100%",
+        width: "100%",
     },
-    label: "MainView",
+    main: {
+        height: "100%",
+        width: "100%",
+    },
 };
 
 /**
  * The main application component.
- * @param {Props} props The component props.
+ * @param {Props} root0 The component props.
+ * @param {string} root0.basename The base URL for the router.
  * @returns {React.JSX.Element} The rendered component.
  */
 export default function App({ basename }: Props): React.JSX.Element {

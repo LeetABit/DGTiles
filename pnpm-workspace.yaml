@@ -3,5 +3,6 @@ onlyBuiltDependencies:
   - esbuild
 
 patchedDependencies:
+  "@lhci/utils": patches/@lhci__utils.patch
   chrome-launcher@1.2.1: patches/chrome-launcher@1.2.1.patch
   vite: patches/vite.patch

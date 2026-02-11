@@ -6,6 +6,10 @@ import { createReadStream } from "fs";
 import readline from "node:readline/promises";
 
 export type LineEvaluator = (line: string, lineNumber: number) => boolean;
+export type ContentExtractor = (
+    line: string,
+    lineNumber: number,
+) => string | undefined;
 
 /**
  * Evaluates the content of a file line by line using the provided evaluator
@@ -37,6 +41,38 @@ export async function evaluateFileContentAsync(
 
         readInterface.close();
         readInterface.removeAllListeners();
+    });
+
+    await new Promise<void>((resolve) => {
+        readInterface.on("close", resolve);
+    });
+
+    return result;
+}
+
+/**
+ * Extracts content from a file line by line using the provided extractor
+ * function.
+ * @param {string} filePath The path to the file to be evaluated.
+ * @param {ContentExtractor} extractor A function that takes a line and its
+ * number, and returns the extracted content or null if nothing shall be
+ * extracted.
+ * @returns {Promise<string[]>} A promise that resolves to an array of
+ * extracted content.
+ */
+export async function extractFileContentAsync(
+    filePath: string,
+    extractor: ContentExtractor,
+): Promise<string[]> {
+    const stream = createReadStream(filePath);
+    const readInterface = readline.createInterface(stream);
+    let lineNumber = 0;
+    const result: string[] = [];
+    readInterface.on("line", (line) => {
+        const extracted = extractor(line, (lineNumber += 1));
+        if (extracted !== undefined) {
+            result.push(extracted);
+        }
     });
 
     await new Promise<void>((resolve) => {

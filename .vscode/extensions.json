@@ -4,6 +4,9 @@
     "npxms.hide-gitignored",
     "editorconfig.editorconfig",
     "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "github.vscode-github-actions",
+    "ms-playwright.playwright",
+    "vitest.explorer"
   ]
 }

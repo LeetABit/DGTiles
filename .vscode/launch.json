@@ -25,7 +25,7 @@
       "request": "launch",
       "type": "node-terminal",
       "cwd": "${workspaceFolder}",
-      "command": "pnpm test --test-timeout=99999999 --hook-timeout=99999999 --teardown-timeout=99999999",
+      "command": "pnpm test:watch",
       "cascadeTerminateToConfigurations": ["Test"],
       "presentation": {
         "hidden": true

@@ -2,18 +2,28 @@
 //  Licensed under the MIT License.
 //  See LICENSE file in the project root for full license information.
 
-import { expect, test } from "vitest";
-import { evaluateFileContentAsync } from "#/scripts/common/files.js";
-import { getDependencies } from "#/scripts/common/packageJson.js";
-import { getRepositoryFilesAsync } from "#/scripts/common/git.js";
+import { describe, expect, test } from "vitest";
+import {
+    evaluateFileContentAsync,
+    extractFileContentAsync,
+} from "#/scripts/common/files";
+import { getDependencies } from "#/scripts/common/packageJson";
+import { getRepositoryFilesAsync } from "#/scripts/common/git";
 
 const typeLibPrefix = "@types/";
 const dependencies = getDependencies();
 const files = await getRepositoryFilesAsync();
+const documentationRegex = /### `(?<name>[^`]+)`/u;
+const documentedDependencies = await extractFileContentAsync(
+    "docs/dev/Dependencies.md",
+    (line) => {
+        const extracted = documentationRegex.exec(line);
+        return extracted && extracted.length > 1 ? extracted[1] : undefined;
+    },
+);
 
-test.each(dependencies)(
-    "Dependency '%s' is used in the project.",
-    async (dependency: string) => {
+describe.each(dependencies)("Dependency '%s'", (dependency: string) => {
+    test("is used or documented in the project", async () => {
         const dependencyName = dependency.startsWith(typeLibPrefix)
             ? dependency.substring(typeLibPrefix.length)
             : dependency;
@@ -22,8 +32,6 @@ test.each(dependencies)(
             `(( from|import))\\s+["']${dependencyName}`,
             "u",
         );
-
-        const documentationRegex = new RegExp(`### \`${dependency}\``, "u");
 
         let isUsed = false;
         let isDocumented = false;
@@ -46,9 +54,15 @@ test.each(dependencies)(
             );
         }
 
-        expect(
-            isUsed || isDocumented,
-            `Dependency '${dependency}' is not used nor documented.`,
-        ).toBe(true);
+        expect(isUsed || isDocumented).toBe(true);
+    });
+});
+
+describe.each(documentedDependencies)(
+    "Documented Dependency '%s'",
+    (documentedDependency: string) => {
+        test("is specified in project.json file", () => {
+            expect(dependencies).toContain(documentedDependency);
+        });
     },
 );
