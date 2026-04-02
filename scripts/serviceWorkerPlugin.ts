@@ -82,8 +82,7 @@ export function serviceWorker(sourceFilePath: string): Plugin {
                 await readdir("dist", {
                     recursive: true,
                     withFileTypes: true,
-                })
-            )
+                }))
                 .filter(
                     (dirent) =>
                         dirent.isFile() &&
