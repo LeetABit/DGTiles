@@ -290,7 +290,10 @@ const typescriptRules: InfiniteDepthConfigWithExtends = {
         "@typescript-eslint/no-duplicate-type-constituents": "warn",
         "@typescript-eslint/no-dynamic-delete": "warn",
         "@typescript-eslint/no-empty-function": "warn",
-        "@typescript-eslint/no-empty-object-type": "warn",
+        "@typescript-eslint/no-empty-object-type": [
+            "warn",
+            { allowInterfaces: 'with-single-extends' }
+        ],
         "@typescript-eslint/no-explicit-any": "warn",
         "@typescript-eslint/no-extra-non-null-assertion": "warn",
         "@typescript-eslint/no-extraneous-class": "warn",
