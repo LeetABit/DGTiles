@@ -14,6 +14,8 @@ jobs:
   verify:
     name: Verify
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     permissions:
       contents: write
@@ -51,7 +53,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Install browsers
-        run: pnpm exec playwright install
+        run: pnpm exec playwright install --with-deps
 
       - name: Create local tag
         if: ${{ github.event_name == 'push' }}

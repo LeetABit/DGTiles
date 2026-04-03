@@ -13,6 +13,7 @@ export default defineConfig({
     },
     webServer: {
         command: "pnpm preview",
+        url: "http://localhost:5000",
     },
     outputDir: "results/playwright/",
     projects: [
