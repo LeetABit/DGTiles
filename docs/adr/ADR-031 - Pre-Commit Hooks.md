@@ -13,71 +13,71 @@ the repository.
 
 ## Decision
 
-We have decided to **adopt Husky** for managing git pre-commit hooks.
+We have decided to **use a `package.json` prepare script that configures the git
+hooks directory**.
 
 ## Reasons
 
-1. **Ease of Installation and Configuration**:
+1. **Zero External Dependencies**:
 
-- Husky simplifies git hook setup with straightforward pnpm scripts, eliminating
-  manual shell script management.
+- No additional npm packages required; uses only native git functionality and
+  npm lifecycle scripts.
 
-2. **Framework Agnostic**:
+2. **Simplicity**:
 
-- Works seamlessly with Node.js projects regardless of the underlying framework,
-  providing flexibility for diverse tech stacks.
+- Minimal setup with a single prepare script that runs `git config core.hooksPath
+.githooks`.
 
-3. **Developer Experience**:
+3. **Native Git Support**:
 
-- Husky integrates naturally into the pnpm workflow, requiring minimal developer
-  overhead and learning curve.
+- Leverages Git's built-in `core.hooksPath` configuration, avoiding abstraction
+  layers.
 
-4. **Community Support**:
+4. **Ease of Maintenance**:
 
-- Well-maintained with extensive documentation and a large ecosystem of
-  integration examples.
+- Hook scripts live in a `.githooks` directory and are version-controlled
+  directly, making changes transparent.
 
-5. **Automation Enforcement**:
+5. **Developer Experience**:
 
-- Prevents commits that violate quality gates, catching issues early without
-  relying on code review.
+- Automatic hook installation on `pnpm install` with no additional commands
+  required.
 
-6. **Scalability**:
+6. **Team Collaboration**:
 
-- Simple to extend with additional hooks as project standards evolve without
-  restructuring existing setup.
+- All hooks are committed to the repository, ensuring consistent enforcement
+  across the entire team.
 
 ## Consequences
 
-1. **Node.js Dependency**:
+1. **Hook Maintenance**:
 
-- Requires Node.js environment for pre-commit execution.
+- Team must maintain shell scripts in `.githooks` directory and update them as
+  quality standards change.
 
-2. **Hook Maintenance**:
-
-- Team must maintain hook scripts and update them as quality standards change.
-
-3. **Bypass Potential**:
+2. **Bypass Potential**:
 
 - Developers can bypass hooks with `--no-verify` flag; requires team discipline.
 
+3. **Platform Considerations**:
+
+- Shell scripts may require platform-specific handling for Windows developers
+  using non-POSIX shells.
+
 ## Alternatives Considered
 
-### simple-git-hooks
+### Husky
 
-- **Pros**: Zero external dependencies, extremely lightweight, fast execution.
-- **Cons**: Less feature-rich compared to Husky, lacks some advanced
-  configuration options.
+- **Pros**: Feature-rich, well-maintained, excellent documentation.
+- **Cons**: Adds external dependency, requires additional configuration layer.
 
 ### Lefthook
 
-- **Pros**: Very fast (written in Go), supports concurrent execution of hooks,
-  language-agnostic but installable via npm.
-- **Cons**: More complex configuration, introduces a non-Node binary under the
-  hood.
+- **Pros**: Very fast (written in Go), supports concurrent execution, language-agnostic.
+- **Cons**: Non-Node binary dependency, more complex configuration.
 
 ### Manual Git Hooks
 
-- **Pros**: No external dependencies required, built-in to Git.
-- **Cons**: Difficult to share and enforce automatically across the entire
-  development team, requires manual setup by each developer.
+- **Pros**: Built-in to Git, no dependencies.
+- **Cons**: Not automatically shared across the team, requires manual setup by
+  each developer.

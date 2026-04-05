@@ -53,10 +53,14 @@ export async function getFileGitAttributesAsync(
  * @throws {Error} If the command fails or produces stderr.
  */
 export async function getRepositoryFilesAsync(
-    pattern?: string,
-    except?: string,
+    pattern?: string | string[],
+    except?: string | string[],
 ): Promise<string[]> {
     const rootPath = await getProjectRootAsync();
+
+    const patternArray = Array.isArray(pattern) ? pattern : [pattern ?? "**"];
+    const exceptArray = Array.isArray(except) ? except : [except ?? ""];
+
     return (
         await execCommandAsync(
             `git ls-files --cached --others --exclude-standard ${rootPath}`,
@@ -67,10 +71,14 @@ export async function getRepositoryFilesAsync(
             (file) =>
                 file !== "" &&
                 existsSync(file) &&
-                minimatch(file, pattern ?? "**", { dot: true }) &&
-                (except === undefined ||
-                    except === "" ||
-                    !minimatch(file, except, { dot: true })),
+                patternArray.some((patternItem) =>
+                    minimatch(file, patternItem, { dot: true }),
+                ) &&
+                exceptArray.every(
+                    (exceptItem) =>
+                        exceptItem === "" ||
+                        !minimatch(file, exceptItem, { dot: true }),
+                ),
         );
 }
 

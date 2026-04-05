@@ -11,8 +11,7 @@ import { evaluateFileContentAsync } from "#/scripts/common/files";
 
 const MAX_EXTRA_LINES = 1;
 const rootPath = await getProjectRootAsync();
-const typeScriptFiles = await getRepositoryFilesAsync(
-    "**",
+const typeScriptFiles = await getRepositoryFilesAsync("**", [
     "**/*.{" +
         "gitattributes," +
         "gitignore," +
@@ -28,7 +27,8 @@ const typeScriptFiles = await getRepositoryFilesAsync(
         "svg," +
         "ico," +
         "patch}",
-);
+    ".githooks/*",
+]);
 
 const expectedHeader = [
     "Copyright (c) Hubert Bukowski. All rights reserved.",

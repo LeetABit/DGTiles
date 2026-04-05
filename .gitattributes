@@ -24,3 +24,4 @@
 *.txt                   text
 *.yaml                  code
 *.patch                 text
+.githooks/*             code

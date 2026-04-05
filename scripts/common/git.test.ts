@@ -2,6 +2,7 @@
 //  Licensed under the MIT License.
 //  See LICENSE file in the project root for full license information.
 
+import { beforeEach, describe, expect, test, vi } from "vitest";
 import {
     createTagAsync,
     doesTagExistAsync,
@@ -13,12 +14,15 @@ import {
     getProjectRootAsync,
     getRepositoryFilesAsync,
 } from "./git";
-import { describe, expect, test, vi } from "vitest";
 import { execCommandAsync } from "./exec";
 import { existsSync } from "fs";
 
 vi.mock("./exec");
 vi.mock("fs");
+
+beforeEach(() => {
+    vi.resetAllMocks();
+});
 
 describe("getProjectRootAsync", () => {
     test("should return the root directory of the Git repository", async () => {
@@ -50,11 +54,42 @@ describe("getFileGitAttributesAsync", () => {
 
 describe("getRepositoryFilesAsync", () => {
     test("should return files matching the pattern", async () => {
-        vi.mocked(execCommandAsync).mockResolvedValue("file1.txt\nfile2.js");
+        vi.mocked(execCommandAsync)
+            .mockResolvedValueOnce("/root/project")
+            .mockResolvedValueOnce("file1.txt\nfile2.js");
         vi.mocked(existsSync).mockReturnValue(true);
 
         const result = await getRepositoryFilesAsync("*.txt");
         expect(result).toEqual(["file1.txt"]);
+    });
+
+    test("should return all existing files when no filters are provided", async () => {
+        vi.mocked(execCommandAsync)
+            .mockResolvedValueOnce("/root/project")
+            .mockResolvedValueOnce("file1.txt\n.hidden\nmissing.js\n");
+        vi.mocked(existsSync).mockImplementation(
+            (filePath) => filePath !== "missing.js",
+        );
+
+        const result = await getRepositoryFilesAsync();
+
+        expect(result).toEqual(["file1.txt", ".hidden"]);
+    });
+
+    test("should support array include and exclude patterns", async () => {
+        vi.mocked(execCommandAsync)
+            .mockResolvedValueOnce("/root/project")
+            .mockResolvedValueOnce(
+                "src/app.ts\nsrc/app.test.ts\nREADME.md\nnotes.txt",
+            );
+        vi.mocked(existsSync).mockReturnValue(true);
+
+        const result = await getRepositoryFilesAsync(
+            ["src/**/*.ts", "*.md"],
+            ["**/*.test.ts", "notes.*"],
+        );
+
+        expect(result).toEqual(["src/app.ts", "README.md"]);
     });
 });
 
@@ -64,6 +99,15 @@ describe("getCommitHashAsync", () => {
 
         const result = await getCommitHashAsync("HEAD");
         expect(result).toBe("abc123");
+    });
+
+    test("should use HEAD when no revision is provided", async () => {
+        vi.mocked(execCommandAsync).mockResolvedValue("abc123");
+
+        const result = await getCommitHashAsync();
+
+        expect(result).toBe("abc123");
+        expect(execCommandAsync).toHaveBeenCalledWith("git rev-parse HEAD");
     });
 });
 
