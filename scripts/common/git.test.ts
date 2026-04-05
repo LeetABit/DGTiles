@@ -87,7 +87,7 @@ describe("getCommitMessageAsync", () => {
 
 describe("getAllTagsWithDateAndMessagesAsync", () => {
     test(
-        "should return all tags with creation date, messages and additional" +
+        "should return all tags with creation date, messages and additional " +
             "lines",
         async () => {
             vi.mocked(execCommandAsync).mockResolvedValue(

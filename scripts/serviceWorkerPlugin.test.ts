@@ -422,7 +422,7 @@ describe("serviceWorkerPlugin", () => {
     });
 
     test(
-        "closeBundle function overwrites service worker file content with" +
+        "closeBundle function overwrites service worker file content with " +
             "default version if outside of git repository",
         async () => {
             const plugin = serviceWorker(filePath);
