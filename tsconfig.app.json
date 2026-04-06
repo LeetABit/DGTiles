@@ -14,6 +14,7 @@
     // https://vite.dev/guide/features#isolatedmodules
     "isolatedModules": true,
     "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
     "moduleDetection": "force",
     "esModuleInterop": true,
     "noEmit": true,

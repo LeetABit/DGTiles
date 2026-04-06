@@ -3,9 +3,13 @@
 //  See LICENSE file in the project root for full license information.
 
 import { type CSSObject, Global } from "@emotion/react";
+import { Grid, GridItem } from "./components/Grid";
 import { BrowserRouter } from "react-router";
 import React from "react";
 import { theme } from "./styles/themes";
+import GridBuilder from "./components/GridBuilder/GridBuilder";
+import Movable from "./components/Movable/Movable.tsx";
+import Draggable from "./components/Draggable/Draggable.tsx";
 
 interface Props {
     basename: string;
@@ -29,7 +33,9 @@ const globalStyle: CSSObject = {
             `90deg, ${majorGridColor} 0.05rem, transparent 0)`,
         backgroundSize: "2cm 2cm, 2cm 2cm, 0.5cm 0.5cm, 0.5cm 0.5cm",
         margin: "0px",
+
         position: "absolute",
+
         height: "100%",
         width: "100%",
     },
@@ -38,6 +44,11 @@ const globalStyle: CSSObject = {
         width: "100%",
         position: "absolute",
     },
+};
+
+const stretchStyle: CSSObject = {
+    height: "100%",
+    width: "100%",
 };
 
 /**
@@ -51,7 +62,10 @@ export default function App({ basename }: Props): React.JSX.Element {
         <>
             <Global styles={globalStyle} />
             <BrowserRouter basename={basename}>
-                <h1>DGTiles</h1>
+                <Draggable>
+                    <div css={{ backgroundColor: "red", width: "100px", height: "100px" }} />
+                </DragSource>
+                <div css={{ backgroundColor: "blue", width: "100px", height: "100px" }} />
             </BrowserRouter>
         </>
     );
