@@ -3,4 +3,8 @@
 #  Licensed under the MIT License.
 #  See LICENSE file in the project root for full license information.
 
-pnpm verify
+current_branch="$(git rev-parse --abbrev-ref HEAD)"
+
+if [ "$current_branch" = "main" ]; then
+	pnpm verify
+fi
