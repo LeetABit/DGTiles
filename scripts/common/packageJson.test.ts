@@ -3,7 +3,7 @@
 //  See LICENSE file in the project root for full license information.
 
 import { describe, expect, test } from "vitest";
-import packageJson, { getDependencies } from "./packageJson";
+import packageJson, { getDependencies, getNodeVersion } from "./packageJson";
 
 describe("packageJson", () => {
     test("should be defined", () => {
@@ -28,6 +28,24 @@ describe("packageJson", () => {
 
     test("should have a scripts property", () => {
         expect(packageJson).toHaveProperty("scripts");
+    });
+});
+
+describe("getNodeVersion", () => {
+    test("should return the Node.js version string", () => {
+        const nodeVersion = getNodeVersion();
+        expect(typeof nodeVersion).toBe("string");
+        expect(nodeVersion.length).toBeGreaterThan(0);
+    });
+
+    test("should match the engines.node value in package.json", () => {
+        const nodeVersion = getNodeVersion();
+        expect(nodeVersion).toBe(packageJson.engines.node);
+    });
+
+    test("package.json should have engines.node property", () => {
+        expect(packageJson).toHaveProperty("engines");
+        expect(packageJson.engines).toHaveProperty("node");
     });
 });
 

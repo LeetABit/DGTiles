@@ -67,6 +67,9 @@ importers:
       '@types/react-dom':
         specifier: 19.1.9
         version: 19.1.9(@types/react@19.1.13)
+      '@types/semver':
+        specifier: 7.7.1
+        version: 7.7.1
       '@typescript-eslint/types':
         specifier: 8.55.0
         version: 8.55.0
@@ -118,6 +121,9 @@ importers:
       rollup:
         specifier: 4.59.0
         version: 4.59.0
+      semver:
+        specifier: 7.7.4
+        version: 7.7.4
       tsx:
         specifier: 4.20.5
         version: 4.20.5
@@ -1105,6 +1111,9 @@ packages:
 
   '@types/react@19.1.13':
     resolution: {integrity: sha512-hHkbU/eoO3EG5/MZkuFSKmYqPbSVk5byPFa3e7y/8TybHiLMACgI8seVYlicwk7H5K/rI2px9xrQp/C+AUDTiQ==}
+
+  '@types/semver@7.7.1':
+    resolution: {integrity: sha512-FmgJfu+MOcQ370SD0ev7EI8TlCAfKYU+B4m5T3yXc1CiRN94g/SZPtsCkk506aUDtlMnFZvasDwHHUcZUEaYuA==}
 
   '@types/yauzl@2.10.3':
     resolution: {integrity: sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q==}
@@ -4551,6 +4560,8 @@ snapshots:
   '@types/react@19.1.13':
     dependencies:
       csstype: 3.2.3
+
+  '@types/semver@7.7.1': {}
 
   '@types/yauzl@2.10.3':
     dependencies:
