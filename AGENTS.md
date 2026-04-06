@@ -72,9 +72,11 @@ pnpm verify
 
 ## Code Style And Conventions
 
+- Never use comments for silencing warnings.
 - Language: TypeScript (strict checks enabled via project `tsconfig`
   references).
 - Formatting and linting are mandatory:
+  - Typecheck: `pnpm type:break`
   - Format check: `pnpm style:break`
   - Lint check: `pnpm lint:break`
   - Spelling check: `pnpm spell:break`
