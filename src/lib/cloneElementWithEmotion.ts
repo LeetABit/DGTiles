@@ -3,15 +3,17 @@
 //  See LICENSE file in the project root for full license information.
 
 import { type CSSObject, jsx } from "@emotion/react";
-import type { ReactElement, ReactNode } from "react";
+import { type ReactElement, type ReactNode, type ElementType, type JSXElementConstructor, cloneElement } from "react";
 import { isWellKnownElement } from "@/types/WellKnownProps.ts";
 
-export const cloneElementWithEmotion = (
-    element: ReactElement,
+export const cloneElementWithEmotion = <
+    P = unknown,
+    T extends string | JSXElementConstructor<P> = string | JSXElementConstructor<P>>(
+    element: ReactElement<P, T>,
     css?: CSSObject,
-    props?: object,
+    props?: P,
     children?: ReactNode,
-): ReactElement => {
+): ReactElement<P,T> => {
     if (!isWellKnownElement(element)) {
         throw new Error(
             "The element does not have an object props." +
@@ -47,5 +49,7 @@ export const cloneElementWithEmotion = (
 
     const elementType = emotionType ?? element.type;
 
-    return jsx(elementType, mergedProps, mergedChildren);
+    cloneElement
+
+    return jsx<P, T>(elementType, mergedProps, mergedChildren);
 }
